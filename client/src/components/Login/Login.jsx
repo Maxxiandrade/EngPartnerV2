@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { auth } from '../../firebase-config.js';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import style from './Login.module.css'
 
 const Login = () => {
 
@@ -29,23 +30,23 @@ const Login = () => {
 
     return (
         <div>
-            <form onSubmit={signInWithEmail}>
-                <label htmlFor="email">Email</label>
+            <form onSubmit={signInWithEmail} className={style.form}>
+                <label htmlFor="email" className={style.input}>Email</label>
                 <br />
-                <input type="text" name="email" id="email" />
+                <input type="text" name="email" id="email" className={style.input} />
                 <hr />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password"> Password</label>
                 <br />
-                <input type="password" name="password" id="password" />
+                <input type="password" name="password" id="password" className={style.input}/>
                 <br />
-                <button type="submit">Log in</button>
+                <button type="submit" className={style.button}>Log in</button>
             </form>
             <br />
             <p>Sign in with Google</p>
-            <button onClick={signInWithGoogle}>Sign in</button>
+            <button onClick={signInWithGoogle} className={style.button}>Sign in</button>
             <br />
             <label htmlFor="">Don't have an account?</label>
-            <Link to='/register'><button>Register</button></Link>
+            <Link to='/register'><button className={style.button}>Register</button></Link>
         </div>
     );
 };
