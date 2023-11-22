@@ -1,9 +1,9 @@
 const {Router} = require('express');
-const {getAllContries}= require('../handels/controlers')
+const getAllCountries= require('../controllers/getAllCountries')
 
 const router = Router();
 
-router.get("/getcountries", getAllContries)
+router.get("/getcountries", getAllCountries)
 
 
 module.exports = router;

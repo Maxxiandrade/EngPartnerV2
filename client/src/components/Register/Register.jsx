@@ -6,6 +6,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { validation } from './validation';
 import './register.css'
+import {auth} from '../../firebase-config'
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = () => {
 
@@ -50,9 +52,15 @@ const Register = () => {
         })
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(values);
+    const handleRegister = async(event)=>{
+        event.preventDefault();
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
+            const user = userCredential.user;
+            console.log('Usuario registrado:', user);
+        } catch (error) {
+            throw Error(error)
+        }
     }
     
     
@@ -71,7 +79,7 @@ const Register = () => {
                 </LocalizationProvider>
                 {errors.date && <span className='registerErrors'>{errors.date}</span>}
 
-                <Button onClick={handleSubmit} variant="contained" disabled={errors.hasOwnProperty('email') || errors.hasOwnProperty('password') || errors.hasOwnProperty('date') || !values.email || !values.password || !values.date} color="success" id='registerSubmit'>
+                <Button onClick={handleRegister} variant="contained" disabled={errors.hasOwnProperty('email') || errors.hasOwnProperty('password') || errors.hasOwnProperty('date') || !values.email || !values.password || !values.date} color="success" id='registerSubmit'>
                     Register
                 </Button>              
             </form> 
