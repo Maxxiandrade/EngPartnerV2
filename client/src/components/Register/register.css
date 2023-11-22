@@ -1,0 +1,26 @@
+#registerContainer{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    justify-content: center;
+    margin: auto;
+}
+
+#registerContainer form{
+    display: flex;
+    flex-direction: column;
+    outline: 2px solid black;
+    padding: 10% 5%;
+    border-radius: 10px;
+}
+
+.inputRegister{
+    margin-top: 5%;
+}
+#registerSubmit{
+    margin-top: 5%;
+}
+
+.registerErrors{
+    color: red;
+}
