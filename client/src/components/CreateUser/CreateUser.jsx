@@ -2,9 +2,11 @@ import styles from './CreateUser.module.css'
 
 const CreateUser = ()=>{
     return(
-        <div className={styles.createUserContainer}>
-            <button>select your country of origin</button>
-            <button>select your native lenguage</button>
+        <form className={styles.createUserContainer}>
+            <select>
+                <option value="">select your country of origin</option>
+            </select>
+            
 
             <label htmlFor="pfp">please upload a profile picture</label>
             <input 
@@ -19,12 +21,15 @@ const CreateUser = ()=>{
             <input type="text" name='lastName'/>
 
             <div className={styles.sexsContainer}>
-                but
+                <button value='male'>Male</button>
+                <button value='female'>Female</button>
             </div>
+
+            <button type='submit'>create</button>
 
             
 
-        </div>
+        </form>
     )
 }
 
