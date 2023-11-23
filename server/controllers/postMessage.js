@@ -10,8 +10,8 @@ const sendMessage = async (senderUid, message, receiverUid) => {
         }
 
         const messageRef = await db.collection('messages').add({
-            sender: senderRef,
-            receiver: receiverRef,
+            sender: senderRef.id,
+            receiver: receiverRef.id,
             text: message,
             timestamp: new Date(),
         });
