@@ -7,7 +7,7 @@ export const getAllCountries = ()=> async (dispatch)=>{
     try {
         const response = await axios("http://localhost:3001/getcountries")
         const countriesData = response.data
-        console.log(countriesData)
+        // console.log(countriesData)
 
         dispatch({
             type: GET_ALL_COUNTRIES,
