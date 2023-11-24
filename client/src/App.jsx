@@ -9,21 +9,11 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <>
-<<<<<<< HEAD
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/createuser" element={<CreateUser />} />
-      </Routes>
-=======
      <Routes>
         <Route path='/' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/createuser' element={<CreateUser/>}/>
      </Routes>
->>>>>>> main
     </>
   );
 }
