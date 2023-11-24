@@ -1,9 +1,11 @@
 import axios from "axios";
 
 import { GET_ONLINE, GET_BY_ID } from "../action_types/action-types";
+import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE, CREATE_NEW_USER } from "../action_types/userActionTypes";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const ERROR_GETTING_USERS = "ERROR_GETTING_USERS";
+
 
 export const getAllUsers = () => {
   return async function (dispatch) {
@@ -23,6 +25,48 @@ export const getAllUsers = () => {
     }
   };
 };
+
+export const setUserDataRegister = (userData) => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: SET_USER_DATA_REGISTER,
+        payload: userData
+      });
+    } catch (error) {
+      throw Error(error)
+    }
+  }
+}
+
+export const setUserDataCreateProfile = (userData) => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: SET_USER_DATA_CREATE_PROFILE,
+        payload: userData
+      });
+      console.log(userData);
+    } catch (error) {
+      throw Error(error)
+    }
+  }
+}
+
+export const createNewUser = (userData) => {
+  return async function (dispatch) {
+    try {
+      const response = await axios.post("http://localhost:3001/createuser", userData);
+      dispatch({
+        type: CREATE_NEW_USER,
+        payload: response
+      })
+      console.log(response);
+    } catch (error) {
+      throw Error(error)
+    }
+  }
+}
 
 export const getOnline = ()=>async(dispatch)=>{
     try {
