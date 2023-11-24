@@ -1,5 +1,7 @@
 import axios from "axios";
 
+import { GET_ONLINE } from "../action_types/action-types";
+
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const ERROR_GETTING_USERS = "ERROR_GETTING_USERS";
 
@@ -21,3 +23,15 @@ export const getAllUsers = () => {
     }
   };
 };
+
+export const getOnline = ()=>async(dispatch)=>{
+    try {
+      const {data} = await axios.get('http://localhost:3001/getonline')
+      if(data){
+        dispatch({type: GET_ONLINE, payload: data})
+      }
+    } catch (error) {
+      throw Error(error)
+    }
+  }
+

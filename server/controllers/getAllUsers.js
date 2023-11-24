@@ -2,7 +2,7 @@ const {db} = require('../firebase-confing')
 
 
 
-const Users = async () => {
+const Users = async (req, res) => {
     try {
       const usersCollection = await db.collection('users').get();
         console.log(usersCollection)
@@ -25,9 +25,9 @@ const Users = async () => {
 const getAllUsers = async (req,res)=>{
 
     try {
-        const result= await Users();
+        const result = await Users();
         if(result.success){
-            res.status(200).json(result);
+            res.status(200).json(result.users);
         }
     } catch (error) {
         res.status(500).json({ error: result.error });
