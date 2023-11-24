@@ -13,9 +13,12 @@ import { Link } from "react-router-dom";
 import {auth} from '../../firebase-config'
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import Cookies from 'universal-cookie'
+import { setUserDataRegister } from '../../redux/actions/actions';
+import { useDispatch } from 'react-redux';
 
 
 const Register = ({setIsAuth}) => {
+    const dispatch = useDispatch()
 
     const cookies = new Cookies()
 
@@ -71,6 +74,10 @@ const Register = ({setIsAuth}) => {
             await sendEmailVerification(user);
             setRegistred(true);
             cookies.set("auth-token", user.refreshToken);
+            dispatch(setUserDataRegister({
+                ...values,
+                uid: user?.uid
+            }))
         } catch (error) {
             throw Error(error)
         }
