@@ -1,11 +1,13 @@
 // Import the functions you need from the SDKs you need
-import firebase from 'firebase/compat/app'
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, setDoc } from 'firebase/firestore/lite';
-import { getAnalytics } from "firebase/analytics";
-import {getAuth, GoogleAuthProvider} from 'firebase/auth'
-import { getDatabase } from "firebase/database";
-import "firebase/compat/firestore"
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore, collection, serverTimestamp, addDoc } from 'firebase/firestore';
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getDatabase } from 'firebase/database';
+import 'firebase/compat/firestore';
+import 'firebase/compat/database';
+import 'firebase/compat/auth';
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,6 +31,6 @@ const analytics = getAnalytics(app);
 const database = getDatabase(app)
 
 
-
+export const db = getFirestore(app)
 export const auth = getAuth(app)
 export const provider = new GoogleAuthProvider();

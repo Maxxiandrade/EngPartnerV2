@@ -13,13 +13,11 @@ const Users = () => {
 
   return (
     <>
-      <h1>Online Users</h1>
+      <h3>Online Users</h3>
       <div>
-        {Array.isArray(users) &&
-          users.map((user) => (
+        { users.map((user) => (
             <div key={user.id}>
-              <p>Name: {user.name}</p>
-              <p>UID: {user.uid}</p>
+              <p>{user.name}</p>
             </div>
           ))}
       </div>

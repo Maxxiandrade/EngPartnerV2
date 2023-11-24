@@ -21,13 +21,16 @@
       align-items: center;
 }
 .textContainer {
+  color: white;
+  margin-top: 9%;
   background: transparent; 
   border-radius: 20px;
-  backdrop-filter: blur(2px);
-  text-shadow: -1px -1px 0  rgba(0, 0, 0, 0.301),  
-    1px -1px 0  rgba(0, 0, 0, 0.301),
-   -1px 1px 0  rgba(0, 0, 0, 0.301),
-    1px 1px 0 rgba(0, 0, 0, 0.301);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(3px);
+  text-shadow: -1.5px -1.5px 0  rgba(0, 0, 0, 0.301),  
+    1.5px -1.5px 0  rgba(0, 0, 0, 0.301),
+   -1.5px 1.5px 0  rgba(0, 0, 0, 0.301),
+    1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
   flex: 1;
   max-width: 50%;
   padding: 20px;
@@ -42,10 +45,12 @@
   }
   
   .form{
-      text-shadow: -1px -1px 0  rgba(0, 0, 0, 0.301),  
-      1px -1px 0  rgba(0, 0, 0, 0.301),
-      -1px 1px 0  rgba(0, 0, 0, 0.301),
-       1px 1px 0 rgba(0, 0, 0, 0.301);
+      margin-top: 50%;
+      margin-left: 10%;
+      text-shadow: -1.5px -1.5px 0  rgba(0, 0, 0, 0.301),  
+      1.5px -1.5px 0  rgba(0, 0, 0, 0.301),
+     -1.5px 1.5px 0  rgba(0, 0, 0, 0.301),
+      1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
       position: relative;
       width: 400px;
       height: 650px;
@@ -53,9 +58,10 @@
       border: 2px solid rgba(255, 255, 255, 0.5);
       border-radius: 20px;
       backdrop-filter: blur(15px);
-      display: grid;
-      justify-content: center;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center; 
+      gap: 10px; 
   };
   
   
@@ -86,7 +92,7 @@
       color: rgb(165, 24, 24);
   }
   .button {
-      background-color: transparent; /* Green */
+      background-color: transparent;
       border: 1%;
       border-color: white;
       color: white;
@@ -95,8 +101,8 @@
       text-decoration: none;
       display: inline-block;
       font-size: 16px;
-      margin: 4px 2px;
       cursor: pointer;
+      justify-content: center;
     }
     
     .disabled {

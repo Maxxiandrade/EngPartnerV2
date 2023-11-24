@@ -1,18 +1,25 @@
-/* eslint-disable react/no-unescaped-entities */
-import { Link } from "react-router-dom";
-import { auth } from '../../firebase-config.js';
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+//Visuals
 import logo from '../../assets/logo.png'
 import style from './Login.module.css'
 
-const Login = () => {
+//Tools
+import { Link } from "react-router-dom";
+import { auth, provider } from '../../firebase-config.js';
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import Cookies from 'universal-cookie'
+
+const Login = ({setIsAuth}) => {
+
+  const cookies = new Cookies()
+
   const signInWithGoogle = async () => {
-    const provider = new GoogleAuthProvider();
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log(result);
+      cookies.set("auth-token", result.user.refreshToken);
+      setIsAuth(true);
+      console.log(auth);
     } catch (error) {
-      console.error(error);
+      throw Error(error)
     }
   };
 
@@ -20,12 +27,12 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
-      console.log(result);
+      cookies.set("auth-token", result.user.refreshToken);
+      setIsAuth(true);
     } catch (error) {
-      console.error(error);
+      throw Error(error)
     }
   };
 
@@ -51,16 +58,13 @@ const Login = () => {
                  <div className={style.formContainer}>    
                 <form onSubmit={signInWithEmail} className={style.form}>
                     <label htmlFor="email" className={style.input}>Email</label>
-                    <br />
                     <input type="text" name="email" id="email" className={style.input} />
-                    <hr />
-                    <label htmlFor="password">Password</label>
                     <br />
+                    <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" className={style.input} />
                     <br />
                     <button type="submit" className={style.button}>Log in</button>
                     <button onClick={signInWithGoogle} className={style.button}>Sign in with Google</button>
-                    <br />
                     <label className={style.input}>Don't have an account?</label>
                     <Link to='/register'><button className={style.button}>Register</button></Link>
                     </form>
@@ -68,7 +72,7 @@ const Login = () => {
             </div>
        </div>
        <footer className={style.about}>     
-            <p>Developed by: Andrade Maximiliano, Britos Gaspar, Reyes Luis, Ford Vicente, D'lppolito, Martinez Jose.</p>
+            <p>Developed by: Andrade Maximiliano, Britos Gaspar, Reyes Luis, Ford Vicente, Luciano D'lppolito, Martinez Jose.</p>
         </footer>
         </>
     );

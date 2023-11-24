@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+//Visuals
 import { TextField, Button} from '@mui/material';
 import { StyledEngineProvider } from '@mui/material/styles';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { validation } from './validation';
 import './register.css'
+
+//Tools
+import { validation } from './validation';
+import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import {auth} from '../../firebase-config'
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import Cookies from 'universal-cookie'
 
-const Register = () => {
+
+const Register = ({setIsAuth}) => {
+
+    const cookies = new Cookies()
+
+    const [registred, setRegistred] = useState(false)
 
     const [values, setValues] = useState({
         email: '',
@@ -57,8 +67,10 @@ const Register = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
-            await sendEmailVerification(user)
-            console.log('Usuario registrado:', user);
+            console.log(user);
+            await sendEmailVerification(user);
+            setRegistred(true);
+            cookies.set("auth-token", user.refreshToken);
         } catch (error) {
             throw Error(error)
         }
@@ -82,7 +94,15 @@ const Register = () => {
 
                 <Button onClick={handleRegister} variant="contained" disabled={errors.hasOwnProperty('email') || errors.hasOwnProperty('password') || errors.hasOwnProperty('date') || !values.email || !values.password || !values.date} color="success" id='registerSubmit'>
                     Register
-                </Button>              
+                </Button>
+                {registred &&<>
+                    <p>Registration succefull!</p>
+                    <br />
+                    <Link to="/createuser">
+                    <Button/> Create your EngPartner profile!
+                    </Link>
+                </>}   
+                       
             </form> 
         </div>
         </StyledEngineProvider>
