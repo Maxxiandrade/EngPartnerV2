@@ -1,5 +1,5 @@
 import { GET_ALL_USERS, ERROR_GETTING_USERS } from "../actions/actions";
-import { GET_ONLINE } from "../action_types/action-types";
+import { GET_ONLINE, GET_BY_ID } from "../action_types/action-types";
 
 const initialState = {
   users: [],
@@ -18,6 +18,8 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, error: action.payload };
     
       case GET_ONLINE:
+        return{...state, users: action.payload};
+      case GET_BY_ID:
         return{...state, users: action.payload}
     default:
       return { ...state };

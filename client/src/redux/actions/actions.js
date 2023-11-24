@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_ONLINE } from "../action_types/action-types";
+import { GET_ONLINE, GET_BY_ID } from "../action_types/action-types";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const ERROR_GETTING_USERS = "ERROR_GETTING_USERS";
@@ -33,5 +33,14 @@ export const getOnline = ()=>async(dispatch)=>{
     } catch (error) {
       throw Error(error)
     }
+  };
+
+export const getById = (uid)=>async(dispatch)=>{
+  try {
+    const {data} = await axios.post(`http://localhost:3001/user/`, {uid})
+    dispatch({type: GET_BY_ID, payload: data})
+  } catch (error) {
+    throw Error(error);
   }
+}
 
