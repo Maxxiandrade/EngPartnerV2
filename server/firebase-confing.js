@@ -3,6 +3,7 @@ const { initializeApp } = require('firebase/app');
 const admin = require('firebase-admin');
 const { getAnalytics } = require('firebase/analytics');
 const { getAuth, GoogleAuthProvider } = require('firebase/auth');
+const {getFirestore} = require('firebase/firestore')
 
 // Tu configuración de Firebase
 const firebaseConfig = {
@@ -26,6 +27,7 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
+const fs = getFirestore(app)
 
 // Exporta los módulos que necesitas
-module.exports = {db};
+module.exports = {db, fs};
