@@ -13,6 +13,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const CreateUser = () => {
   const dispatch = useDispatch();
@@ -57,14 +58,40 @@ const CreateUser = () => {
       })
     };
 
+    const handleChangeImage = (event) => {
+      setCreateUserInfo({
+        ...createUserInfo,
+        [event.target.name]: event.target.files[0],
+      })
+    }
+
     const handleSubmit = async (event) => {
       event.preventDefault();
       console.log(createUserInfo);
       try {
+        await uploadImageToCloudinary();
         await dispatch(setUserDataCreateProfile(createUserInfo));
         await dispatch(createNewUser(createUserInfo));
         navigate('/home');
       } catch (error) {
+        throw Error(error)
+      }
+    }
+
+    const uploadImageToCloudinary = async () => {
+      const file = createUserInfo.photo;
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "vkblr6a8");
+
+      try {
+        const {data} = await axios.post("https://api.cloudinary.com/v1_1/engpartnercloudinary/image/upload", formData)
+        setCreateUserInfo({
+          ...createUserInfo,
+          photo: data.url
+        })
+      }
+      catch (error) {
         throw Error(error)
       }
     }
@@ -138,7 +165,7 @@ const CreateUser = () => {
         )}
 
         <label htmlFor="pfp">Please upload a profile picture:</label>
-        <TextField type="file" name="photo" value={createUserInfo.photo} onChange={handleChangeInput}/>
+        <TextField type="file" name="photo" onChange={handleChangeImage}/>
 
         <TextField type="text" name="description" label="Description" value={createUserInfo.description} onChange={handleChangeInput} />
 
