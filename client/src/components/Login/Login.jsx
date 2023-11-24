@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { auth } from '../../firebase-config.js';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import logo from '../../assets/logo.png'
 import style from './Login.module.css'
 
 const Login = () => {
@@ -31,12 +32,12 @@ const Login = () => {
     return (
         
        <>
-       <div>
-
+       <div className={style.backgroundImg}>
+            <div className={style.container}>
+                <div className={style.textContainer}>
+                <img src={logo} alt="" className={style.logo}/>
                 <h1>EngPartner</h1>
                 <h2>¡Bienvenido a EngPartner!</h2>
-       </div>
-            <div className={style.container}>
                 <p>
                     En EngPartner, nos apasiona conectar a personas que comparten el deseo de dominar el idioma inglés y mejorar sus habilidades lingüísticas. Nuestro objetivo es brindar un espacio interactivo y colaborativo donde puedas sumergirte en el mundo del inglés, practicar conversaciones en tiempo real y avanzar en tu aprendizaje de una manera divertida y efectiva.
                     <br /><br />
@@ -46,7 +47,8 @@ const Login = () => {
                     <br /><br />
                     Únete a nuestra comunidad de aprendizaje, sumérgete en conversaciones estimulantes y lleva tu dominio del inglés al siguiente nivel en EngPartner. ¡Descubre un mundo de posibilidades para fortalecer tus habilidades lingüísticas mientras te diviertes y conectas con personas de ideas afines!
                 </p>
-            <div>
+                </div>
+                 <div className={style.formContainer}>    
                 <form onSubmit={signInWithEmail} className={style.form}>
                     <label htmlFor="email" className={style.input}>Email</label>
                     <br />
@@ -57,18 +59,17 @@ const Login = () => {
                     <input type="password" name="password" id="password" className={style.input} />
                     <br />
                     <button type="submit" className={style.button}>Log in</button>
-                </form>
-                <br />
-                <p className={style.input}>Sign in with Google</p>
-                <button onClick={signInWithGoogle} className={style.button}>Sign in</button>
-                <br />
-                <label className={style.input}>Don't have an account?</label>
-                <Link to='/register'><button className={style.button}>Register</button></Link>
+                    <button onClick={signInWithGoogle} className={style.button}>Sign in with Google</button>
+                    <br />
+                    <label className={style.input}>Don't have an account?</label>
+                    <Link to='/register'><button className={style.button}>Register</button></Link>
+                    </form>
+                    </div>
             </div>
-            <div>
-                <h1></h1>
-            </div>
-            </div>
+       </div>
+       <footer className={style.about}>     
+            <p>Developed by: Andrade Maximiliano, Britos Gaspar, Reyes Luis, Ford Vicente, D'lppolito, Martinez Jose.</p>
+        </footer>
         </>
     );
 };
