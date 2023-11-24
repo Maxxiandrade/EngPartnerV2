@@ -7,7 +7,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { validation } from './validation';
 import './register.css'
 import {auth} from '../../firebase-config'
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 
 const Register = () => {
 
@@ -57,6 +57,7 @@ const Register = () => {
         try {
             const userCredential = await createUserWithEmailAndPassword(auth, values.email, values.password);
             const user = userCredential.user;
+            await sendEmailVerification(user)
             console.log('Usuario registrado:', user);
         } catch (error) {
             throw Error(error)
