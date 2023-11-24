@@ -20,7 +20,6 @@ function App() {
         <Route path="/" element={<Login setIsAuth={setIsAuth} />} />
         <Route path="/register" element={<Register setIsAuth={setIsAuth}/>} />
         <Route path="/createuser" element={<CreateUser />} />
-        {/* Puedes agregar una redirección aquí si no hay autenticación */}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     );

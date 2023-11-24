@@ -37,10 +37,15 @@ const GlobalChat = ({ room = "global", setRoom }) => {
       createdAt: serverTimestamp(),
       user: auth.currentUser.displayName,
       profilePic: auth.currentUser.photoURL,
+      uid: auth.currentUser.uid,
       room
     });
     setNewMessage("");
   };
+
+  const handleDetail = ()=>{
+    console.log(auth.currentUser.uid);
+  }
 
   return (
     <div className={style.chatApp}>
@@ -50,8 +55,8 @@ const GlobalChat = ({ room = "global", setRoom }) => {
       <div className={style.messages}>
         {messages.map((message) => (
           <div className={style.message} key={message.id}>
-            <img src={message.profilePic} className={style.profilePic}/>
-            <span className={style.user}>{`${message.user}: `}</span>{message.text}
+            <img src={message.profilePic} className={style.profilePic} onClick={handleDetail}/>
+            <span className={style.user} onClick={handleDetail}>{`${message.user}: `}</span>{message.text}
           </div>
         ))}
         <div ref={messagesEndRef} />

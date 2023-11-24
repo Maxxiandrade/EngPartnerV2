@@ -5,7 +5,9 @@ import style from './Login.module.css'
 //Tools
 import { Link } from "react-router-dom";
 import { auth, provider } from '../../firebase-config.js';
+import { collection, doc, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { db } from '../../firebase-config.js';
 import Cookies from 'universal-cookie'
 
 const Login = ({setIsAuth}) => {
@@ -15,6 +17,13 @@ const Login = ({setIsAuth}) => {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
+      const {displayName, photoURL, uid} = result.user;
+      const userRef = doc(db, 'users', uid);
+        await setDoc(userRef, {
+          name: displayName,
+          photo: photoURL,
+          uid: uid
+        });
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
       console.log(auth);

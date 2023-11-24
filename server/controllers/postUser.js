@@ -18,7 +18,7 @@ const postUser = async (req,res)=>{
         isPremium,
         friends
        })
-       res.status(200).json("todo bien")
+       res.status(200).json("ok")
     } catch (error) {
         res.status(400).json({error: error.message})
     }
