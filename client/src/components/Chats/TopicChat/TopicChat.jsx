@@ -3,6 +3,7 @@ import {addDoc, collection, serverTimestamp, onSnapshot, query, where, orderBy} 
 import { auth, db } from "../../../firebase-config";
 import style from './TopicChat.module.css'
 import { set } from "firebase/database";
+import { Link } from "react-router-dom";
 
 const Chat = ({room, setRoom})=>{
     const [newMessage, setNewMessage] = useState("")
@@ -53,8 +54,10 @@ const Chat = ({room, setRoom})=>{
             </div>
             <div className={style.messages}>{messages.map((message)=>(
             <div className={style.message} key={message.id}>
+             <Link to={`/profile/${message.uid}`}>
             <img src={message.profilePic} className={style.profilePic}/>
             <span className={style.user}>{`${message.user}: `}</span>{message.text} 
+             </Link>
             </div>))}
             <div ref={messagesEndRef} />
             </div>
