@@ -77,11 +77,11 @@ const Login = ({ setIsAuth }) => {
               <br />
               <button type="submit" className={style.button}>Log in</button>
               <button onClick={signInWithGoogle} className={style.button}>
-                <img src={googleLogo} alt="Google" className={style.googleLogo} /> Sign in with Google
+                <img src={googleLogo} alt="Google" className={style.googleLogo}/> Sign in with Google
               </button>
               <br />
               <label className={style.inputSize}>Don't have an account?</label>
-              <Link to='/register'><button className={style.button}>Register</button></Link>
+              <Link to='/createuser'><button className={style.button}>Register</button></Link>
             </form>
           </div>
         </div>

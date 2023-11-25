@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
+import crown from "../../assets/crown.svg";
 import Users from "./Users/Users";
 import GlobalChat from "../Chats/GlobalChat/GlobalChat";
 
@@ -24,34 +25,34 @@ const Home = ({ setIsAuth }) => {
   const user = auth.currentUser?.displayName;
 
   return (
-    <>
-    <nav className={style.nav}>
-        <img src={logo} className={style.logo} />
-        <h2 className="">Welcome, {user} !</h2>
+    <div className={style.background}>
+      <nav className={style.nav}>
+      <img src={logo} className={style.logo}/>
         <div>
           <Link to='/profile'>
-          <button className={style.profileBtn}>Your profile</button>
+            <button className={style.profileBtn}>Profile</button>
           </Link>
           <Link to='/premium'>
-          <button className={style.premium}>Premium</button>
+            <button className={style.premium}>
+            <img src={crown} alt="" className={style.crown}/>Get VIP
+            </button>
           </Link>
           <button onClick={handleLogOut} className={style.signOut}>Log out</button>
         </div>
       </nav>
+      <h2 className="">Welcome, {user} !</h2>
       <div className={style.globalChat}>
         <GlobalChat />
       </div>
-        <div className={style.container}>
-      <div className={style.users}>
-        <Link to="/topics">
-          <button className={style.topic}>
-            Search for a topic to talk about!
-          </button>
-        </Link>
-        <Users />
+      <div className={style.container}>
+        <div className={style.users}>
+          <Link to="/topics">
+            <button className={style.topic}>Search for a topic to talk about!</button>
+          </Link>
+          <Users />
+        </div>
       </div>
     </div>
-    </>
   );
 };
 

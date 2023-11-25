@@ -27,16 +27,17 @@
 .textContainer {
   color: white;
   margin-top: 6.5%;
-  background: transparent;
+  background: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(5px);
   border-radius: 20px;
   border: 2px solid rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(3px);
   text-shadow: -1.5px -1.5px 0 rgba(0, 0, 0, 0.301),
     1.5px -1.5px 0 rgba(0, 0, 0, 0.301), -1.5px 1.5px 0 rgba(0, 0, 0, 0.301),
     1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
   max-width: 50%;
   height: 650px;
   padding: 20px;
+  font-size: 17px;
 }
 
 .formContainer {
@@ -44,10 +45,10 @@
   margin-top: 6.5%;
   width: 400px;
   height: 685px;
-  background: transparent;
+  background: rgba(100, 100, 100, 0.5);
+  backdrop-filter: blur(5px);
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-radius: 20px;
-  backdrop-filter: blur(15px);
   text-shadow: -1.5px -1.5px 0 rgba(0, 0, 0, 0.301),
     1.5px -1.5px 0 rgba(0, 0, 0, 0.301), -1.5px 1.5px 0 rgba(0, 0, 0, 0.301),
     1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
@@ -95,6 +96,8 @@
 
 .inputSize {
   font-size: 18px;
+  text-shadow: none;
+  color: white;
 }
 
 .errors {
