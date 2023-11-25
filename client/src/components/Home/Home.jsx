@@ -20,7 +20,7 @@ const Home = ({ setIsAuth }) => {
 
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
-    axios.put('http://localhost:3001/geton',{ uid, on:false} )
+    axios.put('http://localhost:3001/geton',{ uid, is:"off"} )
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
