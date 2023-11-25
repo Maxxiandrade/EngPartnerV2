@@ -24,7 +24,7 @@ const Home = ({ setIsAuth }) => {
   const user = auth.currentUser?.displayName;
 
   return (
-    <div className={style.background}>
+    <>
       <nav className={style.nav}>
       <img src={logo} className={style.logo}/>
         <div>
@@ -38,7 +38,7 @@ const Home = ({ setIsAuth }) => {
           </Link>
           <button onClick={handleLogOut} className={style.signOut}>Log out</button>
           <Link to='/connect'>
-            <button>Connect</button>
+            <button className={style.connectBtn}>Connect</button>
           </Link>
         </div>
       </nav>
@@ -46,15 +46,16 @@ const Home = ({ setIsAuth }) => {
       <div className={style.globalChat}>
         <GlobalChat />
       </div>
-        <div className={style.container}>
-      <div className={style.users}>
-        <Link to="/topics">
-          <button className={style.topic}>
-            Search for a topic to talk about!
-          </button>
-        </Link>
+      <div className={style.container}>
+        <div className={style.users}>
+          <Link to="/topics">
+            <button className={style.topic}>
+              Search for a topic to talk about!
+            </button>
+          </Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
