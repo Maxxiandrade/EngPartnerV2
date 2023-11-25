@@ -2,7 +2,7 @@ const {db, fs} = require('../firebase-confing')
 const {addDoc, collection} = require('firebase/firestore')
 const postUser = async (req,res)=>{
     try {
-        const {uid, name, lastname, age, sex, country, photo, description, isOn, isVip, user, friends} = req.body;
+        const {uid, name, lastname, age, sex, country, photo, description, isOn, isVip, userName, friends} = req.body;
         const usersRef = collection(fs, "users")
         
        await addDoc(usersRef,{
@@ -16,7 +16,7 @@ const postUser = async (req,res)=>{
         description,
         isOn,
         isVip,
-        user,
+        userName,
         friends
        })
        res.status(200).json("ok")
