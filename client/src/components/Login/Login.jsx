@@ -4,6 +4,7 @@ import googleLogo from '../../assets/googleLogo.svg'
 import style from './Login.module.css'
 
 //Tools
+import axios from 'axios'
 import { Link } from "react-router-dom";
 import { auth, provider } from '../../firebase-config.js';
 import { collection, doc, setDoc } from 'firebase/firestore';
@@ -28,6 +29,7 @@ const Login = ({ setIsAuth }) => {
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
       console.log(auth);
+      axios.put('http://localhost:3001/geton',{ uid, on:true} )
     } catch (error) {
       throw Error(error)
     }
@@ -41,6 +43,7 @@ const Login = ({ setIsAuth }) => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
+      axios.put('http://localhost:3001/geton',{ uid, on:true} )
     } catch (error) {
       throw Error(error)
     }

@@ -1,6 +1,7 @@
 import style from "./Home.module.css";
 
 //Tools
+import axios from 'axios'
 import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { auth } from "../../firebase-config";
@@ -13,8 +14,13 @@ import GlobalChat from "../Chats/GlobalChat/GlobalChat";
 
 
 const Home = ({ setIsAuth }) => {
+  
+ 
   const cookies = new Cookies();
+
   const handleLogOut = async () => {
+    const uid = auth.currentUser.uid
+    axios.put('http://localhost:3001/geton',{ uid, on:false} )
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
