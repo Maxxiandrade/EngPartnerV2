@@ -6,6 +6,7 @@ import { getOnline } from "../../../redux/actions/actions";
 import defaultImg from '../../../assets/user-default-pfp.png'
 
 import Searchbar from "../searchbar/searchbar";
+import Filters from "../../Filters/Filters";
 
 import styles from './Users.module.css'
 
@@ -21,6 +22,7 @@ const Users = () => {
   return (
     <div className={styles.connectContainer}>
     <Searchbar/>
+    <Filters/>
       <div className={styles.usersContainer}>
       <h3>Online Users</h3>
         { users.map((user) => (
