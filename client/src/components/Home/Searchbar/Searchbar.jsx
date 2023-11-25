@@ -6,7 +6,7 @@ const Searchbar = ()=>{
         <nav className={styles.connectContainer}>
                 <input 
                 type="search" 
-                placeholder="Id here"
+                placeholder="EngPartner ID"
                 />
                 <button>Search</button>
         </nav>
