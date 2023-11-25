@@ -41,6 +41,7 @@ const Login = ({ setIsAuth }) => {
     const password = event.target.password.value;
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
+      const uid = result.user.uid
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
       axios.put('http://localhost:3001/geton',{ uid, is: "on"} )
