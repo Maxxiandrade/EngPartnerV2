@@ -5,21 +5,33 @@ import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { auth } from "../../firebase-config";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
 import crown from "../../assets/crown.svg";
 import GlobalChat from "../Chats/GlobalChat/GlobalChat";
-
-
+import TopicsChat from "../Chats/TopicsChat/TopicsChat";
+import TopicChat from '../Chats/TopicChat/TopicChat'
 
 const Home = ({ setIsAuth }) => {
+  const [room, setRoom] = useState(null)
   const cookies = new Cookies();
   const handleLogOut = async () => {
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
   };
+  const setingValueRoom =(value)=>{
+    if (value == 'null') {
+      setRoom(null)
+      console.log(room)
+    }else{
+      setRoom(value)
+      console.log(room)
+      
+    } 
+  }
 
   const user = auth.currentUser?.displayName;
 
@@ -41,20 +53,20 @@ const Home = ({ setIsAuth }) => {
             <button className={style.connectBtn}>Connect</button>
           </Link>
         </div>
+        <TopicsChat setingValueRoom={setingValueRoom}/>
       </nav>
       <h2 className="">Welcome, {user} !</h2>
       <div className={style.globalChat}>
+        {room ? 
+        <TopicChat room={room} setRoom={setRoom}/>
+        :
         <GlobalChat />
+        }
       </div>
-      <div className={style.container}>
-        <div className={style.users}>
-          <Link to="/topics">
-            <button className={style.topic}>
-              Search for a topic to talk about!
-            </button>
-          </Link>
-        </div>
+        <div className={style.container}>
+      <div className={style.users}>
       </div>
+    </div>
     </>
   );
 };
