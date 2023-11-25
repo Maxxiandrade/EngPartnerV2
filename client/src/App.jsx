@@ -8,10 +8,12 @@ import Home from "./components/Home/Home";
 import { Routes, Route, Navigate } from "react-router-dom";
 import TopicsChat from "./components/Chats/TopicsChat/TopicsChat";
 import Profile from "./components/Profile/Profile";
+import {Cloudinary} from "@cloudinary/url-gen";
 import Users from "./components/Home/Users/Users";
 
 
 function App() {
+  const cld = new Cloudinary({cloud: {cloudName: 'engpartnercloudinary'}})
   const cookies = new Cookies()
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"))
 
