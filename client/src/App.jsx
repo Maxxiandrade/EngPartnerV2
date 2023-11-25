@@ -1,15 +1,20 @@
 import "./App.css";
-import { useState} from "react";
-import Cookies from 'universal-cookie';
+
+//Components to render
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import CreateUser from "./components/CreateUser/CreateUser";
 import Home from "./components/Home/Home";
-import { Routes, Route, Navigate } from "react-router-dom";
 import TopicsChat from "./components/Chats/TopicsChat/TopicsChat";
 import Profile from "./components/Profile/Profile";
-import {Cloudinary} from "@cloudinary/url-gen";
 import Users from "./components/Home/Users/Users";
+
+//Tools
+import { useState} from "react";
+import Cookies from 'universal-cookie';
+import { Routes, Route, Navigate } from "react-router-dom";
+import {Cloudinary} from "@cloudinary/url-gen";
+
 
 
 function App() {
