@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
-import Users from "./Users/Users";
 import GlobalChat from "../Chats/GlobalChat/GlobalChat";
 
 
@@ -36,6 +35,9 @@ const Home = ({ setIsAuth }) => {
           <button className={style.premium}>Premium</button>
           </Link>
           <button onClick={handleLogOut} className={style.signOut}>Log out</button>
+          <Link to='/connect'>
+            <button>Connect</button>
+          </Link>
         </div>
       </nav>
       <div className={style.globalChat}>
@@ -48,7 +50,6 @@ const Home = ({ setIsAuth }) => {
             Search for a topic to talk about!
           </button>
         </Link>
-        <Users />
       </div>
     </div>
     </>

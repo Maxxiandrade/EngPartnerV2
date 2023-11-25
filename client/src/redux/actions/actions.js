@@ -1,10 +1,14 @@
 import axios from "axios";
+import { SET_USER_DATA_REGISTER, 
+SET_USER_DATA_CREATE_PROFILE, 
+CREATE_NEW_USER,
+GET_ONLINE,
+GET_ALL_USERS,
+ERROR_GETTING_USERS,
+GET_USER_BY_USERNAME
+ } from "../action_types/userActionTypes";
 
-import { GET_ONLINE} from "../action_types/action-types";
-import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE, CREATE_NEW_USER } from "../action_types/userActionTypes";
 
-export const GET_ALL_USERS = "GET_ALL_USERS";
-export const ERROR_GETTING_USERS = "ERROR_GETTING_USERS";
 
 
 export const getAllUsers = () => {
@@ -80,4 +84,20 @@ export const getOnline = ()=>async(dispatch)=>{
   };
 
 
+
+export const getUserByUserName = (name)=> async(dispatch)=>{
+  try {
+    const {data} = await axios(`http://localhost:3001/user/username?username=${name}`)
+    console.log(data)
+
+    dispatch({
+      type: GET_USER_BY_USERNAME,
+      payload: data
+    })
+    
+  } catch (error) {
+    window.alert(`error when searching this user by id: ${error}`)
+  }
+
+}
 

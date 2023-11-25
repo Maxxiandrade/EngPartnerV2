@@ -5,6 +5,7 @@ const getAllUsers = require('../controllers/getAllUsers');
 const postNewUser = require('../controllers/postNewUser');
 const getMyMessage = require('../controllers/getMyMessage');
 const getOnline = require('../controllers/getOnline')
+const getUserByUsername = require('../controllers/getUserByUserName');
 
 const postUser = require('../controllers/postUser');
 const getMyUser = require('../controllers/getMyUser');
@@ -12,6 +13,7 @@ const getMyUser = require('../controllers/getMyUser');
 const router = Router();
 
 router.get('/getcountries', getAllCountries)
+router.get('/user/username', getUserByUsername)
 router.get('/users',getAllUsers)
 router.get('/getonline', getOnline)
 
