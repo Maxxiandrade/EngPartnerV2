@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_ONLINE, GET_BY_ID } from "../action_types/action-types";
+import { GET_ONLINE} from "../action_types/action-types";
 import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE, CREATE_NEW_USER } from "../action_types/userActionTypes";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
@@ -79,12 +79,5 @@ export const getOnline = ()=>async(dispatch)=>{
     }
   };
 
-export const getById = (uid)=>async(dispatch)=>{
-  try {
-    const {data} = await axios.post(`http://localhost:3001/user/`, {uid})
-    dispatch({type: GET_BY_ID, payload: data})
-  } catch (error) {
-    throw Error(error);
-  }
-}
+
 

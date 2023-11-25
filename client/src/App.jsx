@@ -31,7 +31,7 @@ function App() {
       <Route path="/createuser" element={<CreateUser />} />
       <Route path="*" element={<Navigate to="/home" />} />
       <Route path='/topics' element={<TopicsChat/>}/>
-      <Route path='profile' element={<Profile/>}/>
+      <Route path='profile/:uid' element={<Profile/>}/>
     </Routes>
   );
 }

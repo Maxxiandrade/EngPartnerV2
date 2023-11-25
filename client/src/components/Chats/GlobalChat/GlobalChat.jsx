@@ -3,10 +3,10 @@ import { addDoc, collection, serverTimestamp, onSnapshot, query, where, orderBy 
 import { auth, db } from "../../../firebase-config";
 import style from './GlobalChat.module.css'
 import { useDispatch } from "react-redux";
-import { getById } from "../../../redux/actions/actions";
+import {Link} from 'react-router-dom'
 
 const GlobalChat = ({ room = "global", setRoom }) => {
-  const dispatch = useDispatch();
+
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const messageRef = collection(db, "messages");
@@ -48,12 +48,17 @@ const GlobalChat = ({ room = "global", setRoom }) => {
     setNewMessage("");
   };
 
-  const handleDetail = async (messageUid) => {
-    const uid = messageUid;
-     dispatch(getById(uid))
-  };
+
+  // podria usarse para agregar amigo
+
+  // const handleDetail = async (messageUid) => {
+  //   const uid = messageUid;
+  //    dispatch(getById(uid))
+  //    console.log(uid);
+  // };
 
   return (
+    <>
     <div className={style.chatApp}>
       <div className={style.header}>
         <h1>Global chat</h1>
@@ -61,8 +66,10 @@ const GlobalChat = ({ room = "global", setRoom }) => {
       <div className={style.messages}>
         {messages.map((message) => (
           <div className={style.message} key={message.id}>
-            <img src={message.profilePic} className={style.profilePic} onClick={() => handleDetail(message.uid)}/>
-            <span className={style.user} onClick={() => handleDetail(message.uid)}>{`${message.user}: `}</span>{message.text}
+            <Link to={`/profile/${message.uid}`}>
+            <img src={message.profilePic} className={style.profilePic}/>
+            <span className={style.user} >{`${message.user}: `}</span>{message.text}
+        </Link>
           </div>
         ))}
         <div ref={messagesEndRef} />
@@ -74,10 +81,11 @@ const GlobalChat = ({ room = "global", setRoom }) => {
           placeholder="Type your message here"
           onChange={(e) => setNewMessage(e.target.value)}
           value={newMessage}
-        />
+          />
         <button className={style.sendButton} type="submit">Send</button>
       </form>
     </div>
+          </>
   );
 };
 
