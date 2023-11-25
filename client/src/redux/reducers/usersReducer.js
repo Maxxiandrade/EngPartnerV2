@@ -1,9 +1,8 @@
-import { GET_ALL_USERS, ERROR_GETTING_USERS } from "../actions/actions";
-import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE } from "../action_types/userActionTypes";
-import { GET_ONLINE } from "../action_types/action-types";
+import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE,GET_ALL_USERS,ERROR_GETTING_USERS,GET_ONLINE,GET_USER_BY_USERNAME } from "../action_types/userActionTypes";
 
 const initialState = {
   users: [],
+  user: null,
   error: null,
   uid: '',
   email: '',
@@ -12,6 +11,7 @@ const initialState = {
   name: '',
   lastname: '',
   user: '',
+  userName: "",
   age: '',
   sex: '',
   country: '',
@@ -60,7 +60,15 @@ const usersReducer = (state = initialState, action) => {
     
       case GET_ONLINE:
         return{...state, users: action.payload}
-    default:
+
+      case GET_USER_BY_USERNAME:
+        return {
+          ...state,
+          users: [action.payload, ...state.users]
+        }
+    
+    
+        default:
       return { ...state };
   }
 };
