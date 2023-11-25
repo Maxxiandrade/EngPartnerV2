@@ -39,7 +39,7 @@ const CreateUser = () => {
     date,
     name: '',
     lastname: '',
-    user: '',
+    userName: '',
     age: age,
     sex: '',
     country: '',
@@ -86,7 +86,7 @@ const CreateUser = () => {
 
         <TextField type="text" name="lastname" label="Lastname" value={createUserInfo.lastname} onChange={handleChangeInput}/>
 
-        <TextField type="text" name="user" label="Username" value={createUserInfo.user} onChange={handleChangeInput}/>
+        <TextField type="text" name="userName" label="UserName" value={createUserInfo.user} onChange={handleChangeInput}/>
 
         <FormLabel>Gender</FormLabel>
         <RadioGroup
