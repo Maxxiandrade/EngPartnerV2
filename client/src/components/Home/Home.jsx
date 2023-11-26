@@ -15,7 +15,7 @@ import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 
 const Home = ({ setIsAuth }) => {
-  const uid = auth.currentUser.uid;
+  const uid = auth.currentUser?.uid;
   const [room, setRoom] = useState("global")
   const cookies = new Cookies();
   const handleLogOut = async () => {
