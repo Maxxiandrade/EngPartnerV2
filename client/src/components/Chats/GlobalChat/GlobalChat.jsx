@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { addDoc, collection, serverTimestamp, onSnapshot, query, where, orderBy } from 'firebase/firestore'
 import { auth, db } from "../../../firebase-config";
 import style from './GlobalChat.module.css'
+import sendIcon from '../../../assets/sendIcon.svg'
 
 const GlobalChat = ({ room = "global", setRoom }) => {
   const [newMessage, setNewMessage] = useState("");
@@ -61,15 +62,14 @@ const GlobalChat = ({ room = "global", setRoom }) => {
         ))}
         <div ref={messagesEndRef} />
       </div>
-      <br />
       <form onSubmit={handleSubmit} className={style.newMessageForm}>
         <input
           className={style.newMessageInput}
-          placeholder="Type your message here"
+          placeholder="Type a message..."
           onChange={(e) => setNewMessage(e.target.value)}
           value={newMessage}
         />
-        <button className={style.sendButton} type="submit">Send</button>
+        <button className={style.sendButton} type="submit"><img src={sendIcon} alt="Send" className={style.sendIcon}/></button>
       </form>
     </div>
   );

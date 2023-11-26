@@ -1,13 +1,18 @@
 
 .createUserContainer {
-    height: 100vh;
-    width: 90%;
+    height: 90vh;
+    width: 25%;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1em;
+    color: black;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.75);
 }
 .countriesContainer{
     border: 1px solid greenyellow;
@@ -48,4 +53,8 @@
     display: flex;
     gap: .6em;
     margin-left: 15px;
+}
+
+.h1Style{
+    font-size: 30px;
 }

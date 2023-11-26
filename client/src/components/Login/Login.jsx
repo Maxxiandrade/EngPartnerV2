@@ -81,7 +81,7 @@ const Login = ({ setIsAuth }) => {
               </button>
               <br />
               <label className={style.inputSize}>Don't have an account?</label>
-              <Link to='/createuser'><button className={style.button}>Register</button></Link>
+              <Link to='/register'><button className={style.button}>Register</button></Link>
             </form>
           </div>
         </div>
