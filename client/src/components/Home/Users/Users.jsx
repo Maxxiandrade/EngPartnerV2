@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline } from "../../../redux/actions/actions";
 
@@ -11,7 +11,6 @@ import styles from './Users.module.css'
 
 const Users = () => {
   const users = useSelector((state) => state.users.users);
-  console.log(users)
   const dispatch = useDispatch();
 
   useEffect(() => {
