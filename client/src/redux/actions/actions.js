@@ -5,7 +5,8 @@ CREATE_NEW_USER,
 GET_ONLINE,
 GET_ALL_USERS,
 ERROR_GETTING_USERS,
-GET_USER_BY_USERNAME
+GET_USER_BY_USERNAME,
+GET_MY_USER
  } from "../action_types/userActionTypes";
 
 
@@ -98,6 +99,18 @@ export const getUserByUserName = (name)=> async(dispatch)=>{
   } catch (error) {
     window.alert(`error when searching this user by id: ${error}`)
   }
-
 }
-
+export const getMyUser = (uid)=> async(dispatch)=>{
+  try {
+    const myUid = {uid:uid}
+    console.log(myUid)
+    const {data} = await axios.post('http://localhost:3001/user',myUid)
+    console.log(data)
+      dispatch({
+        type: GET_MY_USER,
+        payload: data
+      })
+  } catch (error) {
+    throw Error(error)
+  }
+}
