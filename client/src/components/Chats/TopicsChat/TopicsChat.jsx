@@ -1,35 +1,32 @@
-import { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
 
-//Component to render
-import TopicChat from "../TopicChat/TopicChat";
-const TopicsChat = () => {
-  const [room, setRoom] = useState(null);
+const TopicsChat = ({ setingValueRoom }) => {
   const roomInputRef = useRef(null);
+  const [optionRooms, setOptionRooms] = useState(['futbal', 'lenguaje', 'dogs', 'cats']);
+
+  const setValue = () => {
+    const selectedValue = document.getElementById('roomSelect').value;
+    const selectedRoom = selectedValue === 'null' ? null : selectedValue !== '' ? selectedValue : roomInputRef.current.value;
+    setingValueRoom(selectedRoom);
+  };
+
   return (
     <div>
-      {room ? (
-        <div>
-          {" "}
-          <TopicChat room={room} setRoom={setRoom} />
-        </div>
-      ) : (
-        <>
-          <div className="room">
-            <label htmlFor="">Enter topic</label>
-            <input ref={roomInputRef} />
-            <button onClick={() => setRoom(roomInputRef.current.value)}>
-              {" "}
-              Search topic chat
-            </button>
-          </div>
-          <div>
-            <Link to="/">
-              <button>Home</button>
-            </Link>
-          </div>
-        </>
-      )}
+      <div className="room">
+        <label htmlFor="roomSelect">Choose a topic</label>
+        <section>
+          <select id="roomSelect">
+            {optionRooms.map((room, index) => (
+              <option key={index} value={room}>
+                {room}
+              </option>
+            ))}
+          </select>
+        </section>
+        <button onClick={setValue}>
+          Search topic chat
+        </button>
+      </div>
     </div>
   );
 };

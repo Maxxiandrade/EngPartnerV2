@@ -38,7 +38,6 @@ function App() {
       <Route path="/home" element={<Home setIsAuth={setIsAuth}/>} />
       <Route path="/createuser" element={<CreateUser />} />
       <Route path="*" element={<Navigate to="/home" />}/>
-      <Route path='/topics' element={<TopicsChat/>}/>
       <Route path='profile/:uid' element={<Profile/>}/>
       <Route path="connect" element={<Users/>}/>
     </Routes>
