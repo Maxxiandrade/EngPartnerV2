@@ -1,7 +1,6 @@
 import style from "./Home.module.css";
 
 //Tools
-import axios from 'axios'
 import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { auth } from "../../firebase-config";
@@ -10,30 +9,23 @@ import { useState } from "react";
 
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
-import GlobalChat from "../Chats/GlobalChat/GlobalChat";
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 
 const Home = ({ setIsAuth }) => {
   const uid = auth.currentUser.uid;
-  const [room, setRoom] = useState(null)
+  const [room, setRoom] = useState("global")
   const cookies = new Cookies();
-
   const handleLogOut = async () => {
-    const uid = auth.currentUser.uid
-    axios.put('http://localhost:3001/geton',{ uid, is:"off"} )
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
   };
   const setingValueRoom =(value)=>{
     if (value == 'null') {
-      setRoom(null)
-      console.log(room)
+      setRoom("global") 
     }else{
-      setRoom(value)
-      console.log(room)
-      
+      setRoom(value)     
     } 
   }
 
@@ -61,11 +53,9 @@ const Home = ({ setIsAuth }) => {
         <TopicsChat setingValueRoom={setingValueRoom}/>
       </nav>
       <div className={style.globalChat}>
-        {room ? 
+       
         <TopicChat room={room} setRoom={setRoom}/>
-        :
-        <GlobalChat />
-        }
+       
       </div>
     </>
   );
