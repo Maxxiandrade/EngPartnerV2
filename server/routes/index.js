@@ -6,7 +6,7 @@ const postNewUser = require('../controllers/postNewUser');
 const getMyMessage = require('../controllers/getMyMessage');
 const getOnline = require('../controllers/getOnline')
 const getUserByUsername = require('../controllers/getUserByUserName');
-
+const putIs = require('../controllers/putIs');
 const postUser = require('../controllers/postUser');
 const getMyUser = require('../controllers/getMyUser');
 
@@ -23,5 +23,7 @@ router.post('/send-message', postMessage)
 router.post('/newUser',postNewUser)
 router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
+
+router.put('/geton', putIs)
 
 module.exports = router;
