@@ -86,9 +86,6 @@ const Chat = ({ room, setRoom }) => {
           <img src={sendIcon} alt="Send" className={style.sendIcon}/>
           </button>
         </form>
-        <button onClick={clearRoom} className={style.sendButton}>
-          Back
-        </button>
       </div>
     </>
   );
