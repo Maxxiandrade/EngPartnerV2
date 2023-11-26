@@ -14,6 +14,7 @@ import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 
 const Home = ({ setIsAuth }) => {
+  const uid = auth.currentUser.uid;
   const [room, setRoom] = useState(null)
   const cookies = new Cookies();
   const handleLogOut = async () => {
@@ -36,18 +37,20 @@ const Home = ({ setIsAuth }) => {
 
   return (
     <>
-    <nav className={style.nav}>
+      <nav className={style.nav}>
         <img src={logo} className={style.logo} />
         <h2 className="">Welcome, {user} !</h2>
         <div>
-          <Link to='/profile'>
-          <button className={style.profileBtn}>Your profile</button>
+          <Link to={`/profile/${uid}`}>
+            <button className={style.profileBtn}>Your profile</button>
           </Link>
-          <Link to='/premium'>
-          <button className={style.premium}>Premium</button>
+          <Link to="/premium">
+            <button className={style.premium}>Premium</button>
           </Link>
-          <button onClick={handleLogOut} className={style.signOut}>Log out</button>
-          <Link to='/connect'>
+          <button onClick={handleLogOut} className={style.signOut}>
+            Log out
+          </button>
+          <Link to="/connect">
             <button>Connect</button>
           </Link>
         </div>
@@ -60,10 +63,6 @@ const Home = ({ setIsAuth }) => {
         <GlobalChat />
         }
       </div>
-        <div className={style.container}>
-      <div className={style.users}>
-      </div>
-    </div>
     </>
   );
 };

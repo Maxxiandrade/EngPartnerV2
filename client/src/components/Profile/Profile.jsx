@@ -1,46 +1,44 @@
-import style from './Profile.module.css';
+import style from "./Profile.module.css";
 
 //Tools
-import { auth } from "../../firebase-config";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
+const Profile = () => {
+  const params = useParams();
 
-const Profile = ()=>{
+  const [profile, setProfile] = useState();
 
-    
+  useEffect(() => {
+    axios
+      .post(`http://localhost:3001/user`, { uid: params.uid })
+      .then(({ data }) => {
+        if (data) {
+          setProfile(data);
+        }
+      });
+  }, [params?.uid]);
 
-    const [profile, setProfile] = useState({
-        name: undefined,
-        lastname: undefined,
-        age: undefined,
-        sex: undefined,
-        country: undefined,
-        photo: undefined,
-        description: undefined
-    })
-
-    const user = {
-        name: auth.currentUser.displayName,
-        photo: auth.currentUser.photoURL
-    };
-
-    const handleData = (e)=>{
-
-    };
-
-    return(
+  return (
+    <div>
+      <Link to="/home">
+        <button>Home</button>
+      </Link>
+      <br />
+      {profile && (
         <>
-        <Link to='/home'>
-            <button>Home</button>
-        </Link>
-        <br />
-        <img src={user.photo} alt="Profile pic" className={style.photo}/>
-        <h1>{user.name}</h1>
-        <h2>{profile.sex}</h2>
-     
+          {profile.photo && <img src={profile.photo}></img>}
+          {profile.name && <h1>{profile.name}</h1>}
+          {profile.lastname && <h1>{profile.lastname}</h1>}
+          {profile.age && <h2>{profile.age}</h2>}
+          {profile.sex && <h3>{profile.sex}</h3>}
+          {profile.country && <h3>{profile.country}</h3>}
+          {profile.description && <p>{profile.description}</p>}
         </>
-    )
+      )}
+    </div>
+  );
 };
 
 export default Profile;

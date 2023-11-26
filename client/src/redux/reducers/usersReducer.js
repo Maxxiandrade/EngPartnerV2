@@ -57,7 +57,7 @@ const usersReducer = (state = initialState, action) => {
 
     case ERROR_GETTING_USERS:
       return { ...state, error: action.payload };
-    
+
       case GET_ONLINE:
         return{...state, users: action.payload}
 
