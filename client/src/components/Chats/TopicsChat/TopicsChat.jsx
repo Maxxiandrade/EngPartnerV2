@@ -1,4 +1,5 @@
 import {useRef } from "react";
+import style from "./TopicsChat.module.css";
 
 const TopicsChat = ({ setingValueRoom }) => {
   const roomInputRef = useRef(null);
@@ -10,11 +11,11 @@ const TopicsChat = ({ setingValueRoom }) => {
   }
 
   return (
-    <div>
-      <div className="room">
-        <label htmlFor="roomSelect">Choose a topic</label>
+      <div className={style.room}>
+        <label htmlFor="roomSelect"></label>
         <section>
-          <select id="roomSelect" onChange={handleTopic}>
+          <select id="roomSelect" onChange={handleTopic} className={style.selectStyle}>
+            <option disabled selected value="default">Select Chat</option>
             <option value="global" >Global</option>
             <option value="sports" >Sports</option>
             <option value="animals" >Animals</option>
@@ -29,7 +30,6 @@ const TopicsChat = ({ setingValueRoom }) => {
           Search topic chat
         </button> */}
       </div>
-    </div>
   );
 };
 

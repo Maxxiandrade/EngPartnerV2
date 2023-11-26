@@ -38,7 +38,6 @@ h2 {
   color: #ffffff;
   background-color: #1f2147;
   border-color: #b7caf6;
-  border-radius: 10px;
 }
 
 .profileBtn:not(:hover), .connectBtn:not(:hover), .signOut:not(:hover), .premium:not(:hover) {
