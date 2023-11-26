@@ -17,7 +17,7 @@ const Users = () => {
 
   useEffect(() => {
     dispatch(getOnline());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className={styles.connectContainer}>

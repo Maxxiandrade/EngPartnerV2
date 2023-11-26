@@ -1,0 +1,3 @@
+export const FILTER_BY_SEX = "FILTER_BY_SEX"
+export const FILTER_BY_VIP = "FILTER_BY_VIP"
+export const RESET_FILTERS = "RESET_FILTERS"
