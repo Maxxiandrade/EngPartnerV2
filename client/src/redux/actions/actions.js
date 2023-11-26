@@ -81,7 +81,9 @@ export const getOnline = ()=>async(dispatch)=>{
     } catch (error) {
       throw Error(error)
     }
-  }
+  };
+
+
 
 export const getUserByUserName = (name)=> async(dispatch)=>{
   try {
