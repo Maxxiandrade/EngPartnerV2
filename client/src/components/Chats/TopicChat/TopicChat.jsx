@@ -85,9 +85,6 @@ const Chat = ({ room, setRoom }) => {
             Send
           </button>
         </form>
-        <button onClick={clearRoom} className={style.sendButton}>
-          Back
-        </button>
       </div>
     </>
   );
