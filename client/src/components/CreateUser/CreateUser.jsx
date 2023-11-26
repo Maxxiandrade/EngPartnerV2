@@ -105,8 +105,9 @@ const CreateUser = () => {
 
 
   return (
+    <div className='mainDiv'>
     <form className={styles.createUserContainer}>
-
+    <h1 className={styles.h1Style} >Create your User</h1>
     <FormControl sx={{ m: 1, minWidth: '30%', display: 'flex', flexDirection: 'column', gap: '1em' }}>
 
         <TextField type="text" name="name" label="Name" value={createUserInfo.name} onChange={handleChangeInput}/>
@@ -174,6 +175,7 @@ const CreateUser = () => {
         </FormControl>
 
     </form>
+    </div>
   );
 };
 

@@ -117,12 +117,7 @@ const Login = ({ setIsAuth }) => {
                 Log in
               </button>
               <button onClick={signInWithGoogle} className={style.button}>
-                <img
-                  src={googleLogo}
-                  alt="Google"
-                  className={style.googleLogo}
-                />{" "}
-                Sign in with Google
+                <img src={googleLogo} alt="Google" className={style.googleLogo}/> Sign in with Google
               </button>
               <br />
               <label className={style.inputSize}>Don't have an account?</label>

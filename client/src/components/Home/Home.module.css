@@ -1,122 +1,84 @@
-.logo{
-    width: 140px;
-    height: 109px
- }
-
- .nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    background-color: #eff5fe;
-    color: #0f295c;
-   
-  }
-  
-  h2 {
-    margin-left: 10px;
-  }
-  
-  .signOut{
-    color: #b7caf6;
-    background: transparent;
-    border-color: #b7caf6;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: 10px;
-    margin-bottom: 100px;
-  }
-
-  .signOut:hover {
-    
-    transition: 1s;
-    color: #b7caf6;
-    background-color: #1f2147;
-    border-color: #b7caf6;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: 10px;
-    margin-bottom: 100px;
-    padding-right: 10px;
-    
-  }
-  .signOut:not(:hover){
-    transition: 1s;
+.logo {
+  width: 100px;
+  height: 70px;
 }
 
-.premium {
-  color: #b7caf6;
-  background: transparent;
-  border: 2px solid #b7caf6;
-  border-radius: 10px;
+.crown{
+  width: 20px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+  margin-top: -90px;
+  background-color: #6f7ee5;
+  color: #0f295c;
+}
+
+h2 {
+  margin-left: 10px;
+  color: white;
+}
+
+.profileBtn, .connectBtn, .signOut, .premium{
+  color: #4449be;
+  background: #e3ebfc;
+  border: 2px solid #4449be;
+  border-radius: 10px;
   margin-left: auto;
   margin-right: 10px;
-  margin-bottom: 100px;
+}
+
+.profileBtn:hover, .connectBtn:hover, .signOut:hover  {
+  transition: 0.5s;
+  color: #ffffff;
+  background-color: #1f2147;
+  border-color: #b7caf6;
+  border-radius: 10px;
+}
+
+.profileBtn:not(:hover), .connectBtn:not(:hover), .signOut:not(:hover), .premium:not(:hover) {
+  transition: 0.5s;
 }
 
 .premium:hover {
-  transition: 1s;
-  color: #f0e628;
-  background-color: #5a616f;
+  transition: 0.5s;
+  color: white;
+  background-color: #1f2147;
   border-color: #f0e628;
   box-shadow: 0px 0px 10px #f0e628;
 }
-.premium:not(:hover){
-    transition: 1s;
-}
-  .container {
-    background-color: #1f2147;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-end;
 
-  }
-
-  .globalChat{
-    background-color: #e3ebfc;
-  }
-
-  .topic{
-    color: #b7caf6;
-    background: transparent;
-    border-color: #b7caf6;
-    border-radius: 10px;
-  }
-
-  .topic:hover{
-    transition: 1s;
-    color: #b7caf6;
-    background-color: #353c7a;
-    border-color: #b7caf6;
-  }
-
-  .topic:not(:hover){
-    transition: 1s;
+.container {
+  background-color: #1f2147;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
 }
 
-.profileBtn{
+.topic {
   color: #b7caf6;
-    background: transparent;
-    border-color: #b7caf6;
-    border-radius: 10px;
-    margin-left: auto;
-    margin-right: 10px;
-    margin-bottom: 100px;
+  background: transparent;
+  border-color: #b7caf6;
+  border-radius: 10px;
 }
 
-.profileBtn:hover{
-  transition: 1s;
-    color: #b7caf6;
-    background-color: #1f2147;
-    border-color: #b7caf6;
-    border-radius: 10px;
+.topic:hover {
+  transition: 0.5s;
+  color: #b7caf6;
+  background-color: #353c7a;
+  border-color: #b7caf6;
 }
 
-.profileBtn:not(:hover){
-  transition: 1s;
+.topic:not(:hover) {
+  transition: 0.5s;
+}
+
+.globalChat {
+  background-color: #e3ebfc;
 }

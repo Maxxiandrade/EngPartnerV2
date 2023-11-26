@@ -1,4 +1,5 @@
 import style from "./TopicChat.module.css";
+import sendIcon from '../../../assets/sendIcon.svg'
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -77,17 +78,14 @@ const Chat = ({ room, setRoom }) => {
         <form onSubmit={handleSubmit} className={style.newMessageForm}>
           <input
             className={style.newMessageInput}
-            placeholder="Type your message here"
+            placeholder="Type a message..."
             onChange={(e) => setNewMessage(e.target.value)}
             value={newMessage}
           />
           <button className={style.sendButton} type="submit">
-            Send
+          <img src={sendIcon} alt="Send" className={style.sendIcon}/>
           </button>
         </form>
-        <button onClick={clearRoom} className={style.sendButton}>
-          Back
-        </button>
       </div>
     </>
   );
