@@ -10,6 +10,7 @@ import { useState } from "react";
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
 import crown from "../../assets/crown.svg";
+
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 
@@ -37,6 +38,9 @@ const Home = ({ setIsAuth }) => {
       <nav className={style.nav}>
       <img src={logo} className={style.logo}/>
         <div>
+          <Link to={`/profile/${uid}`}>
+            <button className={style.profileBtn}>Profile</button>
+          </Link>
           <Link to='/premium'>
             <button className={style.premium}>
             <img src={crown} alt="" className={style.crown}/>Get VIP
@@ -45,22 +49,6 @@ const Home = ({ setIsAuth }) => {
           <button onClick={handleLogOut} className={style.signOut}>Log out</button>
           <Link to='/connect'>
             <button className={style.connectBtn}>Connect</button>
-          </Link>
-        <img src={logo} className={style.logo} />
-        <h2 className="">Welcome, {user} !</h2>
-        </div>
-        <div>
-          <Link to={`/profile/${uid}`}>
-            <button className={style.profileBtn}>Your profile</button>
-          </Link>
-          <Link to="/premium">
-            <button className={style.premium}>Premium</button>
-          </Link>
-          <button onClick={handleLogOut} className={style.signOut}>
-            Log out
-          </button>
-          <Link to="/connect">
-            <button>Connect</button>
           </Link>
         </div>
         <TopicsChat setingValueRoom={setingValueRoom}/>
