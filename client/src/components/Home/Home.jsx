@@ -32,14 +32,14 @@ const Home = ({ setIsAuth }) => {
   }
 
   const user = auth.currentUser?.displayName;
-
+  const foto = auth.currentUser?.photoURL
   return (
     <>
       <nav className={style.nav}>
       <img src={logo} className={style.logo}/>
         <div>
           <Link to={`/profile/${uid}`}>
-            <button className={style.profileBtn}>Profile</button>
+            <button className={style.profileBtn}><img src={foto} className={style.profilePic} /></button>
           </Link>
           <Link to='/premium'>
             <button className={style.premium}>
