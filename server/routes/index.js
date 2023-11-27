@@ -9,6 +9,7 @@ const getUserByUsername = require('../controllers/getUserByUserName');
 const putIs = require('../controllers/putIs');
 const postUser = require('../controllers/postUser');
 const getMyUser = require('../controllers/getMyUser');
+const putUser = require('../controllers/putUser')
 
 const router = Router();
 
@@ -25,5 +26,6 @@ router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
 
 router.put('/geton', putIs)
+router.put('/edit', putUser)
 
 module.exports = router;

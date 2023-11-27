@@ -1,17 +1,24 @@
-const {db, fs} = require('../firebase-confing');
-const {doc, updateDoc} = require('firebase/firestore')
+const { db, fs } = require('../firebase-confing');
+const { doc, updateDoc, setDoc, getDocs, collection, query, where } = require('firebase/firestore');
 
+const putUser = async (req, res) => {
+  try {
+    const { name, lastname, description, uid } = req.body;
 
-const putUser = async(req,res)=>{
-try {
-    const {id} = req.params
-    const userRef = collection(fs, "users", id)
+    const usersCollectionRef = collection(fs, 'users');
+    const querySnapshot = await getDocs(query(usersCollectionRef, where('uid', '==', uid)));
+    const userDoc = querySnapshot.docs[0];
 
-    const {name, lastname, age, sex, country, photo, description} = req.body
+    await updateDoc(doc(fs, "users", uid), {
+      name: name,
+      lastname, lastname,
+      description: description
+    });
 
-} catch (error) {
-    res.status(400).json({error: error})
-}
+    res.status(200).json("Guardado exitosamente");
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
 
-module.export = putUser
+module.exports = putUser;
