@@ -12,10 +12,9 @@ export const filterBySex = (sex)=>{
     }
 } 
 
-export const filterByVip = (vip)=>{
+export const filterByVip = ()=>{
     return {
         type: FILTER_BY_VIP,
-        payload: vip
     }
 }
 

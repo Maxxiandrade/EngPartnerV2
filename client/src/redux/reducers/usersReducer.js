@@ -19,7 +19,6 @@ const initialState = {
   name: '',
   lastname: '',
   user: '',
-  userName: "",
   age: '',
   sex: '',
   country: '',
@@ -115,11 +114,8 @@ const usersReducer = (state = initialState, action) => {
         }
 
       case FILTER_BY_VIP:
-        let filteredByVip
-        
-        if(action.payload === "vip"){
-          filteredByVip = state.users.filter(user=> user.isVip === true)
-        }
+        let filteredByVip = []  
+        filteredByVip = state.users.filter(user=> user.isVip === true)
         return {
           ...state,
           users: filteredByVip,

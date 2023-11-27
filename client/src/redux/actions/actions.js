@@ -88,7 +88,7 @@ export const getOnline = ()=>async(dispatch)=>{
 
 export const getUserByUserName = (name)=> async(dispatch)=>{
   try {
-    const {data} = await axios(`http://localhost:3001/user/username?username=${name}`)
+    const {data} = await axios(`http://localhost:3001/user?user=${name}`)
     console.log(data)
 
     dispatch({

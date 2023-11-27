@@ -12,6 +12,7 @@ import styles from './Users.module.css'
 const Users = () => {
   const users = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
+  console.log(users)
 
   useEffect(() => {
     dispatch(getOnline());

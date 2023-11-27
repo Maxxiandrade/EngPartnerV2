@@ -13,7 +13,7 @@ const getMyUser = require('../controllers/getMyUser');
 const router = Router();
 
 router.get('/getcountries', getAllCountries)
-router.get('/user/username', getUserByUsername)
+router.get('/user', getUserByUsername)
 router.get('/users',getAllUsers)
 router.get('/getonline', getOnline)
 

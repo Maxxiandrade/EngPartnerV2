@@ -14,11 +14,9 @@ import { useState,} from "react";
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const countries = useSelector(state=> state.countries.countries)
-  console.log(countries)
 
   const [sexFilterValue, setSexFilterValue] = useState("");
-  const [isVipFilterValue, setIsVipFilterValue] = useState("");
+  const [isVipFilterValue, setIsVipFilterValue] = useState(false);
   const [ageValue, setAgeValue] = useState("0"); 
 
   const handleRemoveFilter = () => {
@@ -34,8 +32,10 @@ const Filters = () => {
     setSexFilterValue(event.target.value);
   };
 
-  const handleFilterByVip = (event) => {
-    setIsVipFilterValue(event.target.value);
+  const handleFilterByVip = () => {
+    setIsVipFilterValue(!isVipFilterValue);
+    
+    console.log(isVipFilterValue)
   };
 
   const applyFilters = () => {
@@ -43,15 +43,15 @@ const Filters = () => {
       dispatch(filterBySex(sexFilterValue));
     }
 
-    if (isVipFilterValue) {
-      dispatch(filterByVip(isVipFilterValue));
+    if (isVipFilterValue === true) {
+      dispatch(filterByVip());
     }
 
     if (ageValue !== "0") {
       dispatch(filterByAge(parseInt(ageValue)));
     }
 
-    setIsVipFilterValue("");
+    setIsVipFilterValue(false);
     setSexFilterValue("");
     setAgeValue("0");
   };
@@ -72,7 +72,7 @@ const Filters = () => {
         onChange={handleFilterByAge}
       />
       <span>{ageValue}</span>
-      <button value="vip" onClick={handleFilterByVip}>vip</button>
+      <button onClick={handleFilterByVip}>vip</button>
 
       <button onClick={handleRemoveFilter}>reset</button>
       <button onClick={applyFilters}>apply filters</button>

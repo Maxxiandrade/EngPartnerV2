@@ -1,14 +1,14 @@
 const { db } = require('../firebase-confing');
 
 const getUserByUsername = async (req, res) => {
-  const { username } = req.query; 
+  const { user } = req.query; 
   
-  if (!username) {
+  if (!user) {
     return res.status(400).json({ error: 'username is not being recieved' });
   }
 
   try {
-    const usersCollection = await db.collection('users').where('userName', '==', username).get();
+    const usersCollection = await db.collection('users').where('user', '==', user).get();
 
     if (usersCollection.empty) {
       return res.status(404).json({ error: 'user not found' });
