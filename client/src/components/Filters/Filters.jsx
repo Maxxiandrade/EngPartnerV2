@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 import {
   filterByAge,
@@ -17,9 +18,15 @@ const Filters = () => {
 
   const [sexFilterValue, setSexFilterValue] = useState("");
   const [isVipFilterValue, setIsVipFilterValue] = useState(false);
-  const [ageValue, setAgeValue] = useState("0"); 
+  const [areFiltersVisible, setAreFiltersVisible] = useState(false)
+  const [ageValue, setAgeValue] = useState("0");
+
+  const toggleFiltersVisibility = () => {
+    setAreFiltersVisible(!areFiltersVisible);
+  };
 
   const handleRemoveFilter = () => {
+    setAreFiltersVisible(false)
     dispatch(resetFilters());
   };
 
@@ -39,6 +46,7 @@ const Filters = () => {
   };
 
   const applyFilters = () => {
+    setAreFiltersVisible(false)
     if (sexFilterValue) {
       dispatch(filterBySex(sexFilterValue));
     }
@@ -57,26 +65,41 @@ const Filters = () => {
   };
 
   return (
-    <div className={styles.filtersContainer}>
-      <select onChange={handleFilterBySex} className={styles.selectStyles}>
-        <option value="both">both</option>
-        <option value="male">male</option>
-        <option value="female">female</option>
-      </select>
+    <>
+        <button className={styles.toggleFiltersBtn} onClick={toggleFiltersVisibility}>filtesr</button>
+      {areFiltersVisible && (
+        <div className={styles.filtersContainer}>
+          <div className={styles.filtersStylesContainer}>
 
-      <input
-        type="range"
-        min="18"
-        max="100"
-        value={ageValue}
-        onChange={handleFilterByAge}
-      />
-      <span>{ageValue}</span>
-      <button onClick={handleFilterByVip}>vip</button>
+            <div className={styles.sexAndAgeFilterContainer}>
+              
+          <select onChange={handleFilterBySex} className={styles.selectStyles}>
+            <option value="both">both</option>
+            <option value="male">male</option>
+            <option value="female">female</option>
+          </select>
 
-      <button onClick={handleRemoveFilter}>reset</button>
-      <button onClick={applyFilters}>apply filters</button>
-    </div>
+          <input
+            type="range"
+            min="18"
+            max="100"
+            value={ageValue}
+            onChange={handleFilterByAge}
+          />
+          <span>{ageValue}</span>
+
+            </div>
+
+          <button onClick={handleFilterByVip}>vip</button>
+
+          <button onClick={handleRemoveFilter}>reset</button>
+          <button onClick={applyFilters}>apply filters</button>
+          <button className={styles.filtersOutBtn} onClick={toggleFiltersVisibility}>X</button>
+
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

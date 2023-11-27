@@ -1,0 +1,27 @@
+
+.filtersContainer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    backdrop-filter: blur(6px); 
+}
+
+.filtersStylesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.filtersOutBtn {
+    margin-top: 1em;
+}
+
+@media screen and (min-width: 900px){
+    .filtersContainer{
+    }
+    .filtersStylesContainer{
+        justify-content: center;
+        align-items: center;
+    }
+
+}

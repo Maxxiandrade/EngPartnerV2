@@ -1,11 +1,11 @@
 .connectContainer {
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
-    background: rgb(22, 22, 22);
+    /* background: #000000; */
 }
 
 .usersContainer {
@@ -14,18 +14,29 @@
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
+    /* background-color: red; */
+}
+
+h3 {
+    color: #10b310;
 }
 
 .userContainer {
     display: flex;
+    max-width: 340px;
+    height: 100px;
+    max-height: 100px;
     margin-bottom: 1em ;
-    /* background-color: green; */
+    background-color: #f2f0f7;
+    border-radius: 5px;
 }
 
 .userImgContainer {
     width: 3em;
     height: 3em;
     border-radius: 50%;
+    margin: .2em;
+    justify-self: center;
     /* border: 1px solid red; */
 }
 
@@ -38,17 +49,31 @@
 }
 
 .textContainer {
+    margin-right: 1em;
     display: flex;
-    gap: 1em;
+    flex-direction: column;
     align-self: flex-start;
-    justify-self: start;
 }
 
 .textContainer p {
     display: block;
 }
 
+.nameAndVipContainer{
+    display: flex;
+    gap: 1em;
+}
+
+.restPropsContainer{
+    display: flex;
+    gap: 1em;
+}
+
 @media screen and (min-width:900px){
+    .connectContainer{
+        height: 100vh;
+        margin-left: 1em;
+    }
     .usersContainer {
         margin: 0;
     }

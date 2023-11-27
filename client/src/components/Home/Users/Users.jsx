@@ -5,7 +5,6 @@ import { getOnline } from "../../../redux/actions/actions";
 
 import defaultImg from '../../../assets/user-default-pfp.png';
 import Searchbar from "../Searchbar/Searchbar";
-import Filters from "../../Filters/Filters";
 
 import styles from './Users.module.css'
 
@@ -20,8 +19,9 @@ const Users = () => {
 
   return (
     <div className={styles.connectContainer}>
+      <div className={styles.searchbarAndFiltersContainer}>
     <Searchbar/>
-    <Filters/>
+      </div>
     <div className={styles.usersContainer}>
         <h3>Online Users</h3>
         {users.length === 0 ? ( 
@@ -33,9 +33,14 @@ const Users = () => {
                 <img src={defaultImg} alt="default image" />
               </div>
               <div className={styles.textContainer}>
+                <div className={styles.nameAndVipContainer}>
                 <p>{user.name}</p>
+                <p>vip</p>
+                </div>
+                <div className={styles.restPropsContainer}>
                 <p>{user.country}</p>
                 <p>{user.sex}</p>
+                </div>
               </div>
             </div>
           ))
