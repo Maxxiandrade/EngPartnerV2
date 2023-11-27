@@ -40,7 +40,7 @@ const CreateUser = () => {
     date,
     name: '',
     lastname: '',
-    userName: '',
+    user: '',
     age: age,
     sex: '',
     country: '',
@@ -70,8 +70,8 @@ const CreateUser = () => {
       console.log(createUserInfo);
       try {
         await uploadImageToCloudinary();
-        await dispatch(setUserDataCreateProfile(createUserInfo));
-        await dispatch(createNewUser(createUserInfo));
+         dispatch(setUserDataCreateProfile(createUserInfo));
+         dispatch(createNewUser(createUserInfo));
         navigate('/home');
       } catch (error) {
         throw Error(error)
@@ -114,7 +114,7 @@ const CreateUser = () => {
 
         <TextField type="text" name="lastname" label="Lastname" value={createUserInfo.lastname} onChange={handleChangeInput}/>
 
-        <TextField type="text" name="userName" label="UserName" value={createUserInfo.user} onChange={handleChangeInput}/>
+        <TextField type="text" name="user" label="User" value={createUserInfo.user} onChange={handleChangeInput}/>
 
         <FormLabel>Gender</FormLabel>
         <RadioGroup
