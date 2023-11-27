@@ -11,10 +11,13 @@ import { doc, setDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { db } from "../../firebase-config.js";
 import Cookies from "universal-cookie";
+import { useDispatch } from "react-redux";
+import { getMyUser } from "../../redux/actions/actions.js";
+
 
 const Login = ({ setIsAuth }) => {
   const cookies = new Cookies();
-
+  const dispatch = useDispatch();
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
@@ -29,6 +32,7 @@ const Login = ({ setIsAuth }) => {
       setIsAuth(true);
       console.log(auth);
       axios.put('http://localhost:3001/geton',{ uid, is: "on"} )
+      dispatch(getMyUser(uid))
     } catch (error) {
       throw Error(error);
     }
@@ -44,6 +48,7 @@ const Login = ({ setIsAuth }) => {
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
       axios.put('http://localhost:3001/geton',{ uid, is: "on"} )
+      dispatch(getMyUser(uid))
     } catch (error) {
       throw Error(error);
     }

@@ -70,8 +70,8 @@ const CreateUser = () => {
       console.log(createUserInfo);
       try {
         await uploadImageToCloudinary();
-        await dispatch(setUserDataCreateProfile(createUserInfo));
-        await dispatch(createNewUser(createUserInfo));
+         dispatch(setUserDataCreateProfile(createUserInfo));
+         dispatch(createNewUser(createUserInfo));
         navigate('/home');
       } catch (error) {
         throw Error(error)
