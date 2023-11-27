@@ -1,4 +1,5 @@
 import style from "./Profile.module.css";
+import logo from "../../assets/logo-EngPartner.png"
 
 //Tools
 import { useState, useEffect } from "react";
@@ -21,21 +22,23 @@ const Profile = () => {
   }, [params?.uid]);
 
   return (
-    <div>
-      <Link to="/home">
-        <button>Home</button>
-      </Link>
-      <br />
+    <div className={style.profileMainDiv}>
+      <nav className={style.profileNav}>
+        <Link to="/home">
+          <button className={style.homeBtn}><img src={logo} alt="Home" className={style.logo} /></button>
+        </Link>
+      </nav>
       {profile && (
-        <>
-          {profile.photo && <img src={profile.photo}></img>}
-          {profile.name && <h1>{profile.name}</h1>}
-          {profile.lastname && <h1>{profile.lastname}</h1>}
-          {profile.age && <h2>{profile.age}</h2>}
-          {profile.sex && <h3>{profile.sex}</h3>}
-          {profile.country && <h3>{profile.country}</h3>}
-          {profile.description && <p>{profile.description}</p>}
-        </>
+        <div className={style.profileContainer}>
+          <img src={profile.photo} alt="Profile" className={style.profilePhoto} />
+          <div className={style.profileInfo}>
+            <h1 className={style.profileName}>{profile.name} {profile.lastname} ({profile.age})</h1>
+            <br />
+            <h3 className={style.profileCountry}>{profile.country}</h3>
+            <h3 className={style.profileSex}>{profile.sex}</h3>
+            <p className={style.profileDescription}>Description: {profile.description}</p>
+          </div>
+        </div>
       )}
     </div>
   );

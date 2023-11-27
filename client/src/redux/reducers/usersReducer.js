@@ -16,7 +16,6 @@ const initialState = {
   name: '',
   lastname: '',
   user: '',
-  userName: "",
   age: '',
   sex: '',
   country: '',
