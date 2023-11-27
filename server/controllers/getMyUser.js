@@ -1,28 +1,31 @@
 const {db}=require('../firebase-confing');
 
 const getMyUser= async (req, res)=>{
+    console.log('holas');
     
     try {
         const {uid} = req.body
+        console.log(uid)
         const users = await db.collection('users').get()
         const filteredUsers =users.docs
             .map(user => {
             const userData = user.data();
             if (userData.uid === uid) {
                 const info = {
-                    uid: userData.uid,
-                    name: userData.name,
-                    lastname: userData.lastname,
-                    sex: userData.sex,
-                    user: userData.user,
-                    country: userData.country,
-                    photo: userData.photo,
-                    description: userData.description,
-                    age: userData.age
+                    uid: userData?.uid,
+                    name: userData?.name,
+                    lastname: userData?.lastname,
+                    sex: userData?.sex,
+                    user: userData?.user,
+                    country: userData?.country,
+                    photo: userData?.photo,
+                    description: userData?.description,
+                    age: userData?.age
                 };
                 res.status(200).json(info)
             }
         })
+        
         
     } catch (error) {
         res.status(404).json({error:error.message})
