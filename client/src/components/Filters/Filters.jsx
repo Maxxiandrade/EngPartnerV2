@@ -1,56 +1,91 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import {
   filterByAge,
-  filterBySex,
+  filterByFemale,
+  filterByMale,
+  filterByBoth,
   filterByVip,
   resetFilters,
 } from "../../redux/actions/filterActions";
 
-
 import styles from "./Filters.module.css";
-import { useState,} from "react";
-
 
 const Filters = () => {
   const dispatch = useDispatch();
 
-  const [sexFilterValue, setSexFilterValue] = useState("");
+  // const [sexFilterValue, setSexFilterValue] = useState("");
+  const [activeFilter, setActiveFilter] = useState(null);
   const [isVipFilterValue, setIsVipFilterValue] = useState(false);
-  const [areFiltersVisible, setAreFiltersVisible] = useState(false)
   const [ageValue, setAgeValue] = useState("0");
+
+  const [areFiltersVisible, setAreFiltersVisible] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 900) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const toggleFiltersVisibility = () => {
     setAreFiltersVisible(!areFiltersVisible);
+    setButtonClicked(true);
+    console.log(buttonClicked);
   };
 
   const handleRemoveFilter = () => {
-    setAreFiltersVisible(false)
+    setAreFiltersVisible(false);
+    setButtonClicked(!areFiltersVisible);
     dispatch(resetFilters());
   };
 
   const handleFilterByAge = (event) => {
     const value = event.target.value;
-    setAgeValue(value.toString()); 
+    setAgeValue(value.toString());
   };
 
-  const handleFilterBySex = (event) => {
-    setSexFilterValue(event.target.value);
+  const handleFilterByMale = () => {
+    if (activeFilter !== "male") {
+      setActiveFilter("male");
+    } else {
+      setActiveFilter(null);
+    }
+  };
+
+  const handleFilterByBoth = () => {
+    if (activeFilter !== "both") {
+      setActiveFilter("both");
+    }
+  };
+
+  const handleFilterByFemale = () => {
+    if (activeFilter !== "female") {
+      setActiveFilter("female");
+    } else {
+      setActiveFilter(null);
+    }
   };
 
   const handleFilterByVip = () => {
     setIsVipFilterValue(!isVipFilterValue);
-    
-    console.log(isVipFilterValue)
+
+    console.log(isVipFilterValue);
   };
 
   const applyFilters = () => {
-    setAreFiltersVisible(false)
-    if (sexFilterValue) {
-      dispatch(filterBySex(sexFilterValue));
-    }
-
     if (isVipFilterValue === true) {
       dispatch(filterByVip());
     }
@@ -59,46 +94,89 @@ const Filters = () => {
       dispatch(filterByAge(parseInt(ageValue)));
     }
 
+    if (activeFilter === 'male') {
+      dispatch(filterByMale());
+    } else if (activeFilter === 'female') {
+      dispatch(filterByFemale());
+    } else {
+      dispatch(filterByBoth());
+    }
+
     setIsVipFilterValue(false);
-    setSexFilterValue("");
     setAgeValue("0");
   };
 
   return (
     <>
-        <button className={styles.toggleFiltersBtn} onClick={toggleFiltersVisibility}>filtesr</button>
-      {areFiltersVisible && (
-        <div className={styles.filtersContainer}>
-          <div className={styles.filtersStylesContainer}>
+      {showButton && (
+        <button
+          className={styles.toggleFiltersBtn}
+          onClick={toggleFiltersVisibility}
+        >
+          Filters
+        </button>
+      )}
 
-            <div className={styles.sexAndAgeFilterContainer}>
-              
-          <select onChange={handleFilterBySex} className={styles.selectStyles}>
-            <option value="both">both</option>
-            <option value="male">male</option>
-            <option value="female">female</option>
-          </select>
-
-          <input
-            type="range"
-            min="18"
-            max="100"
-            value={ageValue}
-            onChange={handleFilterByAge}
-          />
-          <span>{ageValue}</span>
-
+      <div
+        className={`${styles.filtersContainer} ${
+          areFiltersVisible ? styles.filtersVisible : ""
+        }`}
+      >
+        <div className={styles.filtersStylesContainer}>
+          <div className={styles.sexAndAgeFilterContainer}>
+            <div className={styles.sexBtnsContainer}>
+              <p>select a gender</p>
+              <button
+                onClick={handleFilterByMale}
+                style={{
+                  fontWeight: activeFilter === "male" ? "bold" : "normal",
+                }}
+              >
+                Male
+              </button>
+              <button
+                onClick={handleFilterByBoth}
+                style={{
+                  fontWeight: activeFilter === "both" ? "bold" : "normal",
+                }}
+              >
+                Both
+              </button>
+              <button
+                onClick={handleFilterByFemale}
+                style={{
+                  fontWeight: activeFilter === "female" ? "bold" : "normal",
+                }}
+              >
+                Female
+              </button>
             </div>
+
+            <input
+              type="range"
+              min="18"
+              max="100"
+              value={ageValue}
+              onChange={handleFilterByAge}
+            />
+            <span>{ageValue}</span>
+          </div>
 
           <button onClick={handleFilterByVip}>vip</button>
 
-          <button onClick={handleRemoveFilter}>reset</button>
-          <button onClick={applyFilters}>apply filters</button>
-          <button className={styles.filtersOutBtn} onClick={toggleFiltersVisibility}>X</button>
-
+          <div className={styles.resetAndApplyBtnsContainer}>
+            <button onClick={handleRemoveFilter}>reset</button>
+            <button onClick={applyFilters}>apply filters</button>
           </div>
+
+          <button
+            className={styles.filtersOutBtn}
+            onClick={toggleFiltersVisibility}
+          >
+            X
+          </button>
         </div>
-      )}
+      </div>
     </>
   );
 };

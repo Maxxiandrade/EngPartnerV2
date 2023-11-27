@@ -1,16 +1,23 @@
-import { FILTER_BY_SEX,
+import { FILTER_BY_MALE,
+FILTER_BY_BOTH,
+FILTER_BY_FEMALE,
 FILTER_BY_VIP,
 RESET_FILTERS,
 FILTER_BY_AGE,
 FILTER_BY_COUNTRY
 } from "../action_types/filterActionTypes";
 
-export const filterBySex = (sex)=>{
-    return {
-        type: FILTER_BY_SEX,
-        payload:sex
-    }
-} 
+export const filterByMale = () => ({
+    type: FILTER_BY_MALE,
+  });
+  
+  export const filterByBoth = () => ({
+    type: FILTER_BY_BOTH,
+  });
+  
+  export const filterByFemale = () => ({
+    type: FILTER_BY_FEMALE,
+  });
 
 export const filterByVip = ()=>{
     return {

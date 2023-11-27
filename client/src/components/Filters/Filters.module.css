@@ -1,5 +1,11 @@
 
 .filtersContainer {
+    display: none;
+
+}
+
+.filtersVisible{
+    display: block;
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -9,6 +15,15 @@
 .filtersStylesContainer {
     display: flex;
     flex-direction: column;
+    gap: 1em;
+}
+
+.sexBtnsContainer{
+    
+}
+
+.resetAndApplyBtnsContainer{
+    display: flex;
     gap: 1em;
 }
 

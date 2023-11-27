@@ -1,4 +1,4 @@
-import { FILTER_BY_AGE, FILTER_BY_SEX, FILTER_BY_VIP, RESET_FILTERS } from "../action_types/filterActionTypes";
+import { FILTER_BY_AGE,  FILTER_BY_VIP, RESET_FILTERS, FILTER_BY_MALE,FILTER_BY_BOTH,FILTER_BY_FEMALE } from "../action_types/filterActionTypes";
 
 import { SET_USER_DATA_REGISTER,
    SET_USER_DATA_CREATE_PROFILE,
@@ -27,6 +27,9 @@ const initialState = {
   friends: {},
   isVip: false,
   isOn: false,
+
+  //filters
+  genderFilter: 'both',
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -95,23 +98,24 @@ const usersReducer = (state = initialState, action) => {
         }
 
       //filters for searching users
-      case FILTER_BY_SEX:
-        let filteredBySex
-        if(action.payload === "male"){
-          filteredBySex = state.allUsers.filter(user=> user.sex === action.payload)
-        } else if(action.payload === "female"){
-          filteredBySex = state.allUsers.filter(user => user.sex === action.payload)
-        } else {
-          return {
-            ...state,
-            users: state.allUsers
-          }
-        }
-
-        return {
-          ...state,
-          users: filteredBySex,
-        }
+      case FILTER_BY_MALE:
+      return {
+        ...state,
+        genderFilter: 'male',
+        users: state.allUsers.filter(user => user.sex === 'male'), 
+      };
+    case FILTER_BY_BOTH:
+      return {
+        ...state,
+        genderFilter: 'both',
+        users: state.allUsers, 
+      };
+    case FILTER_BY_FEMALE:
+      return {
+        ...state,
+        genderFilter: 'female',
+        users: state.allUsers.filter(user => user.sex === 'female'), // Filtra por género femenino
+      };
 
       case FILTER_BY_VIP:
         let filteredByVip = []  
