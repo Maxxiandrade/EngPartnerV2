@@ -19,9 +19,11 @@ const Users = () => {
 
   return (
     <div className={styles.connectContainer}>
-    <Searchbar/>
-      <div className={styles.usersContainer}>
-      <h3>Online Users</h3>
+      <nav className={styles.nav}/>
+        <Searchbar/>
+      <nav/>
+        <h3>Online Users</h3>
+        <div className={styles.usersContainer}>
         { users.map((user) => (
             <div         
             className={styles.userContainer} 
@@ -33,7 +35,6 @@ const Users = () => {
               <p>{user.name}</p>
               <p>{user.country}</p>
               <p>{user.sex}</p>
-
               </div>
             </div>
           ))}
