@@ -50,6 +50,7 @@ const Chat = ({ room, setRoom }) => {
       createdAt: serverTimestamp(),
       user: user.user,
       profilePic:user.photo,
+      uid: user.uid,
       room,
     });
     setNewMessage("");
@@ -58,7 +59,7 @@ const Chat = ({ room, setRoom }) => {
     <>
       <div className={style.chatApp}>
         <div className={style.header}>
-          <h1>{room.toUpperCase()} chat:</h1>
+          <h1>{room.toUpperCase()}</h1>
         </div>
         <div className={style.messages}>
           {messages.map((message) => (

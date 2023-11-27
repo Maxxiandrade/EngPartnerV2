@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline } from "../../../redux/actions/actions";
 
-import defaultImg from '../../../assets/user-default-pfp.png';
+import defaultImg from '../../../assets/user-default-pfp.png'
+
 import Searchbar from "../Searchbar/Searchbar";
 
 import styles from './Users.module.css'
@@ -19,6 +20,7 @@ const Users = () => {
 
   return (
     <div className={styles.connectContainer}>
+<<<<<<< HEAD
       <div className={styles.searchbarAndFiltersContainer}>
     <Searchbar/>
       </div>
@@ -29,10 +31,22 @@ const Users = () => {
         ) : (
           users.map((user) => (
             <div className={styles.userContainer} key={user.id}>
+=======
+      <nav className={styles.nav}/>
+        <Searchbar/>
+      <nav/>
+        <h3>Online Users</h3>
+        <div className={styles.usersContainer}>
+        { users.map((user) => (
+            <div         
+            className={styles.userContainer} 
+            key={user.id}>
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
               <div className={styles.userImgContainer}>
-                <img src={defaultImg} alt="default image" />
+                <img src={typeof user.photo === 'string' ? user.photo: defaultImg} alt="default image" />
               </div>
               <div className={styles.textContainer}>
+<<<<<<< HEAD
                 <div className={styles.nameAndVipContainer}>
                 <p>{user.name}</p>
                 <p>vip</p>
@@ -41,6 +55,11 @@ const Users = () => {
                 <p>{user.country}</p>
                 <p>{user.sex}</p>
                 </div>
+=======
+              <p>{user.name}</p>
+              <p>{user.country}</p>
+              <p>{user.sex}</p>
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
               </div>
             </div>
           ))

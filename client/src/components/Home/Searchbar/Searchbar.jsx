@@ -21,7 +21,7 @@ const Searchbar = ()=>{
         }
     }
     return (
-        <nav className={styles.connectContainer}>
+        <nav className={styles.nav}>
                 <input 
                 type="search" 
                 placeholder="EngPartner ID"

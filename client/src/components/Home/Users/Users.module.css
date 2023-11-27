@@ -1,13 +1,22 @@
 .connectContainer {
+<<<<<<< HEAD
     /* height: 100vh; */
+=======
+    display: flex;
+    height: 100vh;
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
     width: 100%;
     margin: 0 auto;
-    display: flex;
     flex-direction: column;
+<<<<<<< HEAD
     /* justify-content: center; */
     /* background: #000000; */
+=======
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
 }
-
+.nav{
+    align-items: center;
+}
 .usersContainer {
     display: flex;
     flex-direction: column;
@@ -27,17 +36,23 @@ h3 {
     height: 100px;
     max-height: 100px;
     margin-bottom: 1em ;
+<<<<<<< HEAD
     background-color: #f2f0f7;
     border-radius: 5px;
+=======
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
 }
 
 .userImgContainer {
     width: 3em;
     height: 3em;
     border-radius: 50%;
+<<<<<<< HEAD
     margin: .2em;
     justify-self: center;
     /* border: 1px solid red; */
+=======
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
 }
 
 .userContainer img {
@@ -58,6 +73,7 @@ h3 {
 .textContainer p {
     display: block;
 }
+<<<<<<< HEAD
 
 .nameAndVipContainer{
     display: flex;
@@ -78,3 +94,5 @@ h3 {
         margin: 0;
     }
 }
+=======
+>>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02

@@ -1,15 +1,18 @@
-.connectContainer {
-    display: flex;
-    width: 100%;
-    /* margin-top: 1em; */
-}
 
-.connectContainer input {
-    width: 70%;
+.nav {
+    width: 100%;
+    display: flex;
+    padding: 10px 20px;
+    background-color: #6f7ee5;
+    color: #0f295c;
+  } 
+.nav input {
+
+    width: 100%;
     max-width: 470px;
 }
 
-.connectContainer button {
+.nav button {
     width: 30%;
     max-width: 200px;
 }
