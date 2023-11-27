@@ -13,8 +13,10 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase-config";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Chat = ({ room, setRoom }) => {
+  const user = useSelector(state=> state.users)
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -46,15 +48,11 @@ const Chat = ({ room, setRoom }) => {
     await addDoc(messageRef, {
       text: newMessage,
       createdAt: serverTimestamp(),
-      user: auth.currentUser.displayName,
-      profilePic: auth.currentUser.photoURL,
+      user: user.user,
+      profilePic:user.photo,
       room,
     });
     setNewMessage("");
-  };
-
-  const clearRoom = () => {
-    setRoom(null);
   };
   return (
     <>

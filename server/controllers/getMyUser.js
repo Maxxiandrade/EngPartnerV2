@@ -22,7 +22,6 @@ const getMyUser= async (req, res)=>{
                     description: userData?.description,
                     age: userData?.age
                 };
-                console.log(info)
                 res.status(200).json(info)
             }
         })
