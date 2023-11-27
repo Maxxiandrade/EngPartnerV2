@@ -6,7 +6,8 @@ GET_ONLINE,
 GET_ALL_USERS,
 ERROR_GETTING_USERS,
 GET_USER_BY_USERNAME,
-GET_MY_USER
+GET_MY_USER,
+EDIT_USER
  } from "../action_types/userActionTypes";
 
 
@@ -110,6 +111,14 @@ export const getMyUser = (uid)=> async(dispatch)=>{
         type: GET_MY_USER,
         payload: data
       })
+  } catch (error) {
+    throw Error(error)
+  }
+};
+
+export const editUser = ({uid, name, lastname, description})=>async(dispatch)=>{
+  try {
+    axios.put("http://localhost:3001/edit", {uid, name, lastname, description})
   } catch (error) {
     throw Error(error)
   }
