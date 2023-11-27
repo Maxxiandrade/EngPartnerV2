@@ -21,6 +21,7 @@ import { Navigate } from 'react-router-dom';
 
 const Home = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users.name);
+  const photo = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
 
