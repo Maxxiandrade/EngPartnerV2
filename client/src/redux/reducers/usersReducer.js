@@ -15,7 +15,7 @@ const initialState = {
   date: null,
   name: '',
   lastname: '',
-  user: "",
+  user: '',
   age: '',
   sex: '',
   country: '',
