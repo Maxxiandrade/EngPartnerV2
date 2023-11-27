@@ -1,4 +1,4 @@
-import { FILTER_BY_SEX, FILTER_BY_VIP, RESET_FILTERS } from "../action_types/filterActionTypes";
+import { FILTER_BY_AGE, FILTER_BY_SEX, FILTER_BY_VIP, RESET_FILTERS } from "../action_types/filterActionTypes";
 import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE,GET_ALL_USERS,ERROR_GETTING_USERS,GET_ONLINE,GET_USER_BY_USERNAME } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -102,6 +102,15 @@ const usersReducer = (state = initialState, action) => {
         return {
           ...state,
           users: filteredByVip,
+        }
+
+      case FILTER_BY_AGE:
+        let filterByAge 
+
+        filterByAge = state.users.filter(user=> user.age === action.payload)
+        return {
+          ...state,
+          users: filterByAge
         }
 
         case RESET_FILTERS:

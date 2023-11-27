@@ -23,23 +23,24 @@ const Users = () => {
     <div className={styles.connectContainer}>
     <Searchbar/>
     <Filters/>
-      <div className={styles.usersContainer}>
-      <h3>Online Users</h3>
-        { users.map((user) => (
-            <div         
-            className={styles.userContainer} 
-            key={user.id}>
+    <div className={styles.usersContainer}>
+        <h3>Online Users</h3>
+        {users.length === 0 ? ( 
+          <p>Users not found</p>
+        ) : (
+          users.map((user) => (
+            <div className={styles.userContainer} key={user.id}>
               <div className={styles.userImgContainer}>
                 <img src={defaultImg} alt="default image" />
               </div>
               <div className={styles.textContainer}>
-              <p>{user.name}</p>
-              <p>{user.country}</p>
-              <p>{user.sex}</p>
-
+                <p>{user.name}</p>
+                <p>{user.country}</p>
+                <p>{user.sex}</p>
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

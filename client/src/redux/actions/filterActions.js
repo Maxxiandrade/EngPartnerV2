@@ -1,6 +1,7 @@
 import { FILTER_BY_SEX,
 FILTER_BY_VIP,
-RESET_FILTERS
+RESET_FILTERS,
+FILTER_BY_AGE
 } from "../action_types/filterActionTypes";
 
 export const filterBySex = (sex)=>{
@@ -14,6 +15,13 @@ export const filterByVip = (vip)=>{
     return {
         type: FILTER_BY_VIP,
         payload: vip
+    }
+}
+
+export const filterByAge = (age)=>{
+    return{
+        type: FILTER_BY_AGE,
+        payload: age
     }
 }
 

@@ -1,3 +1,5 @@
 export const FILTER_BY_SEX = "FILTER_BY_SEX"
 export const FILTER_BY_VIP = "FILTER_BY_VIP"
 export const RESET_FILTERS = "RESET_FILTERS"
+export const FILTER_BY_AGE = "FILTER_BY_AGE"
+export const FILTER_BY_COUNTRY = "FILTER_BY_COUNTRY"
