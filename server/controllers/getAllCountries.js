@@ -13,7 +13,8 @@ const getAllCountries = async (req, res) => {
             }
             allCountries.push(country)
         })
-        res.status(200).json(allCountries)
+        const sortedCountries = [...allCountries].sort((a, b) => a.country.localeCompare(b.country))
+        res.status(200).json(sortedCountries)
     }
     catch {
         res.status(404).send('Dont work')

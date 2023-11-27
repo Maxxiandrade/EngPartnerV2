@@ -1,11 +1,9 @@
 const {db}=require('../firebase-confing');
 
 const getMyUser= async (req, res)=>{
-    console.log('holas');
     
     try {
         const {uid} = req.body
-        console.log(uid)
         const users = await db.collection('users').get()
         const filteredUsers =users.docs
             .map(user => {
