@@ -7,10 +7,9 @@ import {
   resetFilters,
 } from "../../redux/actions/filterActions";
 
-import { getAllCountries } from "../../redux/actions/countriesActions";
 
 import styles from "./Filters.module.css";
-import { useState, useEffect } from "react";
+import { useState,} from "react";
 
 
 const Filters = () => {
@@ -21,19 +20,6 @@ const Filters = () => {
   const [sexFilterValue, setSexFilterValue] = useState("");
   const [isVipFilterValue, setIsVipFilterValue] = useState("");
   const [ageValue, setAgeValue] = useState("0"); 
-
-  useEffect(() => {
-    dispatch(getAllCountries());
-  }, [dispatch]);
-
-  const handleCountryChange = (event) => {
-    const selectedCountry = event.target.value;
-    // Aquí podrías despachar una acción para filtrar por el país seleccionado
-    // Por ejemplo, podrías tener una acción llamada filterByCountry en tus acciones de filtro
-    // y la llamarías con dispatch(filterByCountry(selectedCountry)) 
-    // para aplicar el filtro por país seleccionado
-    console.log(`Selected country: ${selectedCountry}`);
-  };
 
   const handleRemoveFilter = () => {
     dispatch(resetFilters());
@@ -87,12 +73,6 @@ const Filters = () => {
       />
       <span>{ageValue}</span>
       <button value="vip" onClick={handleFilterByVip}>vip</button>
-
-      <select onChange={handleCountryChange} className={styles.selectStyles}>
-        {countries.map((country) => (
-          <option>{country.country} <img src={country.flag}/></option>
-        ))}
-      </select>
 
       <button onClick={handleRemoveFilter}>reset</button>
       <button onClick={applyFilters}>apply filters</button>

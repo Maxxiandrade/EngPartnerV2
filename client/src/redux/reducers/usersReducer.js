@@ -1,4 +1,5 @@
 import { FILTER_BY_AGE, FILTER_BY_SEX, FILTER_BY_VIP, RESET_FILTERS } from "../action_types/filterActionTypes";
+
 import { SET_USER_DATA_REGISTER,
    SET_USER_DATA_CREATE_PROFILE,
    GET_ALL_USERS,
@@ -113,7 +114,6 @@ const usersReducer = (state = initialState, action) => {
           users: filteredBySex,
         }
 
-        //the vip filter it's the only one that its going to acced to the users state
       case FILTER_BY_VIP:
         let filteredByVip
         
