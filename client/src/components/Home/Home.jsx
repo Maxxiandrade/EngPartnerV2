@@ -21,9 +21,10 @@ import { Navigate } from 'react-router-dom';
 
 const Home = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users.name);
-  const photo = useSelector((state) => state.users.photo);
+  const userPhoto = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
+  const photo = auth.currentUser?.photoURL;
 
   const [room, setRoom] = useState("global");
   const cookies = new Cookies();
@@ -62,13 +63,15 @@ const Home = ({ setIsAuth }) => {
     {uid ? (
     <div className={style.homeMainDiv}>
       <nav className={style.nav}>
-      <img src={logo} className={style.logo}/>
+        <Link to="/home">
+          <button className={style.homeBtn}><img src={logo} alt="Home" className={style.logo} /></button>
+        </Link>
       <div className={style.homeH2Div}>
         <h2 className={style.homeH2}>Welcome, {user} !</h2>
       </div>
-        <div>
+        <div className={style.navBtns}>
           <Link to={`/profile/${uid}`}>
-            <button className={style.profileBtn}>Profile</button>
+            <img src={userPhoto} alt="" className={style.userPhoto} />
           </Link>
           <Link to='/connect'>
             <button className={style.connectBtn}>Connect</button>

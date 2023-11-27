@@ -1,5 +1,73 @@
-.photo{
-    height: 100px;
-    width: 100px;
-    border-radius: 100px;
+.profileMainDiv {
+  width: 100%;
+  height: 100vh;
+  color: white;
+  text-shadow: -1.5px -1.5px 0 rgba(0, 0, 0, 0.301),
+    1.5px -1.5px 0 rgba(0, 0, 0, 0.301), -1.5px 1.5px 0 rgba(0, 0, 0, 0.301),
+    1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
+}
+
+.profileContainer {
+  display: flex;
+  margin: 20px;
+}
+
+.profileInfo {
+  border: solid 2px black;
+  margin: 10px;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 2px solid #3b5998;
+  background-color: #edf8ff60;
+}
+.profilePhoto {
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  margin: 20px;
+}
+
+.profileName {
+  font-size: 25px;
+  margin: 5px 0;
+  padding: 20px;
+}
+
+.profileCountry,
+.profileSex {
+  font-size: 20px;
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.profileDescription {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.profileNav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #6f7ee5;
+  color: #0f295c;
+}
+
+.homeBtn {
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.homeBtn:hover {
+  border: solid 1px;
+}
+
+.logo {
+  width: 100px;
+  height: 70px;
 }
