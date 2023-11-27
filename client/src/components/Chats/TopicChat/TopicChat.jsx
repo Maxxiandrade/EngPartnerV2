@@ -50,6 +50,7 @@ const Chat = ({ room, setRoom }) => {
       createdAt: serverTimestamp(),
       user: user.user,
       profilePic:user.photo,
+      uid: user.uid,
       room,
     });
     setNewMessage("");
