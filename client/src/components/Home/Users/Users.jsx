@@ -1,18 +1,16 @@
 // eslint-disable-next-line no-unused-vars
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline } from "../../../redux/actions/actions";
 
-import defaultImg from '../../../assets/user-default-pfp.png'
-
-import Searchbar from "../searchbar/searchbar";
+import defaultImg from '../../../assets/user-default-pfp.png';
+import Searchbar from "../Searchbar/Searchbar";
 import Filters from "../../Filters/Filters";
 
 import styles from './Users.module.css'
 
 const Users = () => {
   const users = useSelector((state) => state.users.users);
-  console.log(users)
   const dispatch = useDispatch();
 
   useEffect(() => {

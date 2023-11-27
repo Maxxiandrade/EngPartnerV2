@@ -1,33 +1,35 @@
-import { useState, useRef, useEffect } from "react";
+import {useRef } from "react";
+import style from "./TopicsChat.module.css";
 
 const TopicsChat = ({ setingValueRoom }) => {
   const roomInputRef = useRef(null);
-  const [optionRooms, setOptionRooms] = useState(['futbal', 'lenguaje', 'dogs', 'cats']);
 
-  const setValue = () => {
-    const selectedValue = document.getElementById('roomSelect').value;
-    const selectedRoom = selectedValue === 'null' ? null : selectedValue !== '' ? selectedValue : roomInputRef.current.value;
+  const handleTopic = (e)=>{
+    const topic = e.target.value
+    const selectedRoom = topic === 'null' ? null : topic !== '' ? topic : roomInputRef.current.value;
     setingValueRoom(selectedRoom);
-  };
+  }
 
   return (
-    <div>
-      <div className="room">
-        <label htmlFor="roomSelect">Choose a topic</label>
+      <div className={style.room}>
+        <label htmlFor="roomSelect"></label>
         <section>
-          <select id="roomSelect">
-            {optionRooms.map((room, index) => (
-              <option key={index} value={room}>
-                {room}
-              </option>
-            ))}
+          <select id="roomSelect" onChange={handleTopic} className={style.selectStyle}>
+            <option disabled selected value="default">Select Chat</option>
+            <option value="global" >Global</option>
+            <option value="sports" >Sports</option>
+            <option value="animals" >Animals</option>
+            <option value="food" >Food</option>
+            <option value="tech" >Tech</option>
           </select>
         </section>
+        
+        
+        {/* funcion premium
         <button onClick={setValue}>
           Search topic chat
-        </button>
+        </button> */}
       </div>
-    </div>
   );
 };
 

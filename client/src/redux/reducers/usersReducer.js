@@ -1,10 +1,15 @@
 import { FILTER_BY_AGE, FILTER_BY_SEX, FILTER_BY_VIP, RESET_FILTERS } from "../action_types/filterActionTypes";
-import { SET_USER_DATA_REGISTER, SET_USER_DATA_CREATE_PROFILE,GET_ALL_USERS,ERROR_GETTING_USERS,GET_ONLINE,GET_USER_BY_USERNAME } from "../action_types/userActionTypes";
+import { SET_USER_DATA_REGISTER,
+   SET_USER_DATA_CREATE_PROFILE,
+   GET_ALL_USERS,
+   ERROR_GETTING_USERS,
+   GET_ONLINE,
+   GET_USER_BY_USERNAME, 
+   GET_MY_USER} from "../action_types/userActionTypes";
 
 const initialState = {
   allUsers: [],
   users: [],
-  user: null,
   error: null,
   uid: '',
   email: '',
@@ -33,6 +38,22 @@ const usersReducer = (state = initialState, action) => {
         allUsers: action.payload
       };
 
+    case GET_MY_USER:
+      console.log('holas reducer')
+      return{
+        ...state,
+        uid: action.payload.uid,
+        name: action.payload.name,
+        lastname: action.payload.lastname,
+        sex: action.payload.sex,
+        user: action.payload.user,
+        country: action.payload.country,
+        photo: action.payload.photo,
+        description: action.payload.description,
+        age: action.payload.age
+        
+      }
+
     case SET_USER_DATA_REGISTER:
       return {
         ...state,
@@ -60,7 +81,7 @@ const usersReducer = (state = initialState, action) => {
 
     case ERROR_GETTING_USERS:
       return { ...state, error: action.payload };
-    
+
       case GET_ONLINE:
         return{...state, 
           users: action.payload,

@@ -1,7 +1,5 @@
-
 import { useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
 
 import { getUserByUserName } from '../../../redux/actions/actions';
 
@@ -10,7 +8,6 @@ import styles from './searchbar.module.css'
 const Searchbar = ()=>{
     const [userName, setUserName] = useState("")
     const dispatch = useDispatch()
-    const navigate = useNavigate()
 
     const user = useSelector(state => state.users.user)
     console.log(user)
