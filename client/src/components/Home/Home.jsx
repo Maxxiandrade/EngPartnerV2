@@ -17,7 +17,10 @@ import crown from "../../assets/crown.svg";
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 
+import { Navigate } from 'react-router-dom';
+
 const Home = ({ setIsAuth }) => {
+  const user = useSelector((state) => state.users.name);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
 
@@ -41,18 +44,19 @@ const Home = ({ setIsAuth }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await dispatch(getMyUser(uid));
-      // Ahora, el estado debería estar actualizado
-    };
-
-    fetchData();
-  }, [dispatch, uid]);
-
-  // Acceder a la propiedad name del estado
-  const user = useSelector((state) => state.users.name);
+    console.log(uid)
+    if ( uid === undefined) {
+      signOut(auth);
+      setIsAuth(false);
+    }
+    dispatch(getMyUser(uid));
+    console.log('holas')
+  }, [uid, dispatch]);
 
   return (
+
+  <>
+    {uid ? (
     <div className={style.homeMainDiv}>
       <nav className={style.nav}>
       <img src={logo} className={style.logo}/>
@@ -79,7 +83,13 @@ const Home = ({ setIsAuth }) => {
         <TopicChat room={room} setRoom={setRoom} />
       </div>
     </div>
+      ) : (
+        <Navigate to="/" replace={true} />
+      )}
+    </>
+    
   );
 };
+
 
 export default Home;

@@ -3,9 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline } from "../../../redux/actions/actions";
 
-import defaultImg from '../../../assets/user-default-pfp.png'
-
-import Searchbar from "../searchbar/searchbar";
+import defaultImg from '../../../assets/user-default-pfp.png';
+import Searchbar from "../Searchbar/Searchbar";
 
 import styles from './Users.module.css'
 
