@@ -60,21 +60,24 @@ const Chat = ({ room, setRoom }) => {
     <>
       <div className={style.chatApp}>
         <div className={style.header}>
-          <h1>You're now in room: {room.toUpperCase()}</h1>
+          <h1>{room.toUpperCase()} chat:</h1>
         </div>
         <div className={style.messages}>
           {messages.map((message) => (
             <div className={style.message} key={message.id}>
               <Link to={`/profile/${message.uid}`}>
                 <img src={message.profilePic} className={style.profilePic} />
-                <span className={style.user}>{`${message.user}: `}</span>
-                {message.text}
               </Link>
+              <Link to={`/profile/${message.uid}`}>
+                <span className={style.user}>{`${message.user}: `}</span>
+              </Link>
+              <div className={style.textDiv}>
+              {message.text}
+              </div>
             </div>
           ))}
           <div ref={messagesEndRef} />
         </div>
-        <br />
         <form onSubmit={handleSubmit} className={style.newMessageForm}>
           <input
             className={style.newMessageInput}

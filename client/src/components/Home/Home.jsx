@@ -7,7 +7,8 @@ import { auth } from "../../firebase-config";
 import { Link } from "react-router-dom";
 import { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getMyUser} from '../../redux/actions/actions'
+import {getMyUser} from '../../redux/actions/actions';
+import axios from 'axios';
 
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
@@ -24,7 +25,9 @@ const Home = ({ setIsAuth }) => {
   const cookies = new Cookies();
   
   const handleLogOut = async () => {
-    signOut(auth);
+    const uid = auth.currentUser.uid
+    axios.put('http://localhost:3001/geton',{ uid, is:"off"} )
+    await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
   };
@@ -50,12 +53,18 @@ const Home = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users.name);
 
   return (
-    <>
+    <div className={style.homeMainDiv}>
       <nav className={style.nav}>
       <img src={logo} className={style.logo}/>
+      <div className={style.homeH2Div}>
+        <h2 className={style.homeH2}>Welcome, {user} !</h2>
+      </div>
         <div>
           <Link to={`/profile/${uid}`}>
             <button className={style.profileBtn}>Profile</button>
+          </Link>
+          <Link to='/connect'>
+            <button className={style.connectBtn}>Connect</button>
           </Link>
           <Link to='/premium'>
             <button className={style.premium}>
@@ -63,17 +72,13 @@ const Home = ({ setIsAuth }) => {
             </button>
           </Link>
           <button onClick={handleLogOut} className={style.signOut}>Log out</button>
-          <Link to='/connect'>
-            <button className={style.connectBtn}>Connect</button>
-          </Link>
         </div>
-        <TopicsChat setingValueRoom={setingValueRoom} />
+        <TopicsChat setingValueRoom={setingValueRoom}/>
       </nav>
-      <h2 className="">Welcome, {user} !</h2>
       <div className={style.globalChat}>
         <TopicChat room={room} setRoom={setRoom} />
       </div>
-    </>
+    </div>
   );
 };
 
