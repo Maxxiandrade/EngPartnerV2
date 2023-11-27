@@ -3,7 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline } from "../../../redux/actions/actions";
 
-import defaultImg from '../../../assets/user-default-pfp.png';
+import defaultImg from '../../../assets/user-default-pfp.png'
+
 import Searchbar from "../Searchbar/Searchbar";
 
 import styles from './Users.module.css'
@@ -26,7 +27,7 @@ const Users = () => {
             className={styles.userContainer} 
             key={user.id}>
               <div className={styles.userImgContainer}>
-                <img src={defaultImg} alt="default image" />
+                <img src={typeof user.photo === 'string' ? user.photo: defaultImg} alt="default image" />
               </div>
               <div className={styles.textContainer}>
               <p>{user.name}</p>

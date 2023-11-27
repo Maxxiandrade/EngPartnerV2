@@ -4,8 +4,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    background: rgb(22, 22, 22);
+
 }
 
 .usersContainer {
@@ -19,14 +18,12 @@
 .userContainer {
     display: flex;
     margin-bottom: 1em ;
-    /* background-color: green; */
 }
 
 .userImgContainer {
     width: 3em;
     height: 3em;
     border-radius: 50%;
-    /* border: 1px solid red; */
 }
 
 .userContainer img {
