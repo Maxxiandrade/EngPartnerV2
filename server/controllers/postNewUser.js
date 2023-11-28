@@ -3,9 +3,9 @@ const { db } = require('../firebase-confing');
 const postNewUser = async (req, res) => {
     try {
         
-        const { uid, name, lastname, age, isVip,sex,country, user } = req.body;
+        const { uid,mail, name, lastname, age, isVip,sex,country, user } = req.body;
 
-        const result = await createUser(uid, name, lastname, age, isVip,sex,country, user);
+        const result = await createUser(uid,mail,name, lastname, age, isVip,sex,country, user);
 
         res.status(200).json(result)
     } catch (error) {
@@ -13,11 +13,12 @@ const postNewUser = async (req, res) => {
     }
 }
 
-const createUser= async (uid, name, lastname, age, isVip,sex,country, user)=>{
+const createUser= async (uid,mail, name,lastname, age, isVip,sex,country, user)=>{
 
     try {
         const newUser= await db.collection('users').add({
             uid,
+            mail,
             name, 
             lastname, 
             age, 

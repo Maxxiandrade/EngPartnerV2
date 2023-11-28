@@ -11,6 +11,7 @@ const getMyUser= async (req, res)=>{
             if (userData.uid === uid) {
                 const info = {
                     uid: userData?.uid,
+                    mail:userData?.mail,
                     name: userData?.name,
                     lastname: userData?.lastname,
                     sex: userData?.sex,
