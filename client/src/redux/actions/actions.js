@@ -127,9 +127,17 @@ export const getMyUser = (uid)=> async(dispatch)=>{
   }
 };
 
-export const editUser = ({uid, name, lastname, description})=>async(dispatch)=>{
+export const editUser = ({uid, name, lastname, description})=>async()=>{
   try {
     axios.put("http://localhost:3001/edit", {uid, name, lastname, description})
+  } catch (error) {
+    throw Error(error)
+  }
+}
+
+export const handleUser = ({uid, friendId, action})=>async()=>{
+  try {
+    axios.put("http://localhost:3001/friend", {uid, friendId, action})
   } catch (error) {
     throw Error(error)
   }

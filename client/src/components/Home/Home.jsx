@@ -24,7 +24,6 @@ const Home = ({ setIsAuth }) => {
   const userPhoto = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
-  const localStorageUID = localStorage.getItem('uid');
   const photo = auth.currentUser?.photoURL;
 
   const [room, setRoom] = useState("global");
@@ -33,9 +32,8 @@ const Home = ({ setIsAuth }) => {
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
     axios.put('http://localhost:3001/geton',{ uid, is:"off"} )
-    cookies.remove("auth-token");
-    localStorage.removeItem("uid");
     await signOut(auth);
+    cookies.remove("auth-token");
     setIsAuth(false);
     dispatch(clearUserDataInLogout());
   };
@@ -51,18 +49,19 @@ const Home = ({ setIsAuth }) => {
   };
 
   useEffect(() => {
-    if (!localStorageUID) {
+    console.log(uid)
+    if ( uid === undefined) {
       signOut(auth);
       setIsAuth(false);
     }
-    dispatch(getMyUser(localStorageUID));
+    dispatch(getMyUser(uid));
     console.log('holas')
   }, [uid, dispatch]);
 
   return (
 
   <>
-    {localStorageUID? (
+    {uid ? (
     <div className={style.homeMainDiv}>
       <nav className={style.nav}>
         <Link to="/home">
