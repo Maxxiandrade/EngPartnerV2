@@ -27,7 +27,8 @@ const Profile = () => {
     lastname: "",
     description:""
   });
-  const isFriend = friendList.some((friend)=> friend === params.uid)
+
+  const [isFriend, setisFriend] = useState(friendList.some((friend)=> friend === params.uid))
 
   useEffect(() => {
     console.log(friendList) 
@@ -39,7 +40,7 @@ const Profile = () => {
           setProfile(data);
         }
       });
-  }, [params?.uid]);
+  }, [params?.uid, friendList, isFriend]);
 
 
   const handleEdit = ()=>{
@@ -61,11 +62,13 @@ const Profile = () => {
 
   const addFriend=(e)=>{
     friend.action = e.target.value
+    setisFriend(true)
     dispatch(handleUser(friend))
   }
 
   const removeFriend = (e)=>{
     friend.action = e.target.value
+    setisFriend(false)
     dispatch(handleUser(friend))
   }
 
@@ -131,8 +134,7 @@ const Profile = () => {
         <div className={style.profileContainer}>
           <img src={profile.photo} alt="Profile" className={style.profilePhoto} />
           <div className={style.profileInfo}>
-            {!isFriend && <button onClick={addFriend} value={'add'}>Add friend</button>}
-            {isFriend && <button onClick={removeFriend} value={'remove'}>Remove friend</button>}
+            {!isFriend ? <button onClick={addFriend} value={'add'}>Add friend</button> : <button onClick={removeFriend} value={'remove'}>Remove friend</button>}
             <h1 className={style.profileName}>{profile.name} {profile.lastname} ({profile.age})</h1>
             <br />
             <h3 className={style.profileCountry}>{profile.country}</h3>
