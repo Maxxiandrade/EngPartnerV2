@@ -2,9 +2,9 @@
   width: 100%;
   height: 100vh;
   color: white;
-  text-shadow: -1.5px -1.5px 0 rgba(0, 0, 0, 0.301),
-    1.5px -1.5px 0 rgba(0, 0, 0, 0.301), -1.5px 1.5px 0 rgba(0, 0, 0, 0.301),
-    1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
+  text-shadow: -1.5px -1.5px 0 black,
+    1.5px -1.5px  black, -1.5px 1.5px  black,
+    1.5px 1.5px  black;
 }
 
 .profileContainer {
@@ -19,6 +19,7 @@
   overflow: hidden;
   border: 2px solid #3b5998;
   background-color: #edf8ff60;
+  width: 4000px;
 }
 .profilePhoto {
   width: 10%;
@@ -28,7 +29,7 @@
 }
 
 .profileName {
-  font-size: 25px;
+  font-size: 45px;
   margin: 5px 0;
   padding: 20px;
 }
@@ -46,6 +47,8 @@
   margin-top: 10px;
   padding-left: 20px;
   padding-right: 20px;
+  text-shadow: none;
+  font: bold
 }
 
 .profileNav {
@@ -70,4 +73,16 @@
 .logo {
   width: 100px;
   height: 70px;
+}
+
+.profileSex{
+  color: white;
+}
+
+.profileCountry{
+  color: white;
+}
+
+.edit{
+  right: 104%;
 }

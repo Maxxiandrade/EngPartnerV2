@@ -36,11 +36,16 @@ const Chat = ({ room, setRoom }) => {
         fetchedMessages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(fetchedMessages);
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+     
     });
 
     return () => unSubscribe();
   }, [room]);
+
+  useEffect(()=>{
+    const scroll = ()=> {messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });}
+    scroll()
+  },[messages])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
