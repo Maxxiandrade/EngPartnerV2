@@ -65,13 +65,12 @@ const Profile = () => {
          
           <img src={profile.photo} alt="Profile" className={style.profilePhoto} />
           <div className={style.profileInfo}>
-          <button onClick={handleEdit}>Edit</button>
-          <h1>hola</h1>
           <h1 className={style.profileName}>{profile.name} {profile.lastname} ({profile.age})</h1>
-            <br />
             <h3 className={style.profileCountry}>{profile.country}</h3>
             <h3 className={style.profileSex}>{profile.sex}</h3>
+            <br />
             <p className={style.profileDescription}>Description: {profile.description}</p>
+          <button onClick={handleEdit} className={style.edit}>Edit</button>
           {edit && <><button onClick={finishEdit}>Done</button>
           <div>
              <h1>Edit Mode</h1>
