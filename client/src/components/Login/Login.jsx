@@ -21,9 +21,10 @@ const Login = ({ setIsAuth }) => {
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      const { displayName, photoURL, uid } = result.user;
+      const { displayName, photoURL, uid, email } = result.user;
       const userRef = doc(db, "users", uid);
       await setDoc(userRef, {
+        email,
         name: displayName,
         photo: photoURL,
         uid: uid,
