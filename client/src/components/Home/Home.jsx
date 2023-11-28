@@ -13,10 +13,9 @@ import axios from 'axios';
 //Renders
 import logo from "../../assets/logo-EngPartner.png";
 import crown from "../../assets/crown.svg";
-
+import Friends from "./Friends/Friends";
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
-
 import { Navigate } from 'react-router-dom';
 
 const Home = ({ setIsAuth }) => {
@@ -51,6 +50,7 @@ const Home = ({ setIsAuth }) => {
   };
 
   useEffect(() => {
+    console.log(uid)
     if (!localStorageUID) {
       signOut(auth);
       setIsAuth(false);
@@ -62,7 +62,7 @@ const Home = ({ setIsAuth }) => {
   return (
 
   <>
-    {localStorageUID? (
+    {localStorageUID ? (
     <div className={style.homeMainDiv}>
       <nav className={style.nav}>
         <Link to="/home">
@@ -89,6 +89,7 @@ const Home = ({ setIsAuth }) => {
       </nav>
       <div className={style.globalChat}>
         <TopicChat room={room} setRoom={setRoom} />
+        <Friends/>
       </div>
     </div>
       ) : (

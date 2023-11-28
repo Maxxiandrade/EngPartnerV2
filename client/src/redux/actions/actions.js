@@ -8,7 +8,8 @@ GET_USER_BY_USERNAME,
 GET_MY_USER,
 SET_USER_DATA_GOOGLE_ACCOUNT,
 CLEAR_USER_DATA_IN_LOGOUT,
-EDIT_USER
+EDIT_USER,
+GET_FRIENDS
  } from "../action_types/userActionTypes";
 
 
@@ -127,9 +128,30 @@ export const getMyUser = (uid)=> async(dispatch)=>{
   }
 };
 
-export const editUser = ({uid, name, lastname, description})=>async(dispatch)=>{
+export const editUser = ({uid, name, lastname, description})=>async()=>{
   try {
     axios.put("http://localhost:3001/edit", {uid, name, lastname, description})
+  } catch (error) {
+    throw Error(error)
+  }
+}
+
+export const handleUser = ({uid, friendId, action})=>async()=>{
+  try {
+    axios.put("http://localhost:3001/friend", {uid, friendId, action})
+  } catch (error) {
+    throw Error(error)
+  }
+};
+
+export const getFriends = (uid)=>async(dispatch)=>{
+  try {
+    
+    const {data} = await axios.get(`http://localhost:3001/friends?uid=${uid}`)
+    dispatch({
+      type:GET_FRIENDS,
+      payload: data
+    })
   } catch (error) {
     throw Error(error)
   }
