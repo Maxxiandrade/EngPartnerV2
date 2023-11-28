@@ -177,12 +177,14 @@ const Filters = () => {
             <button onClick={applyFilters}>Search</button>
           </div>
 
-          <button
-            className={styles.filtersOutBtn}
-            onClick={toggleFiltersVisibility}
-          >
-            X
-          </button>
+          {showButton && (
+      <button
+        className={styles.filtersOutBtn}
+        onClick={toggleFiltersVisibility}
+      >
+        X
+      </button>
+    )}
         </div>
       </div>
     </>
