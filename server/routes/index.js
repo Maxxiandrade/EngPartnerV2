@@ -10,7 +10,7 @@ const putIs = require('../controllers/putIs');
 const postUser = require('../controllers/postUser');
 const getMyUser = require('../controllers/getMyUser');
 const putUser = require('../controllers/putUser')
-
+const postPremium= require('../controllers/postPremium')
 const router = Router();
 
 router.get('/getcountries', getAllCountries)
@@ -27,5 +27,8 @@ router.post('/createuser', postUser)
 
 router.put('/geton', putIs)
 router.put('/edit', putUser)
+
+// route Premium
+router.post('/newPremium',postPremium)
 
 module.exports = router;

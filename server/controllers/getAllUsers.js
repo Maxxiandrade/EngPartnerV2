@@ -5,7 +5,6 @@ const {db} = require('../firebase-confing')
 const Users = async (req, res) => {
     try {
       const usersCollection = await db.collection('users').get();
-        console.log(usersCollection)
       const usersData = usersCollection.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
