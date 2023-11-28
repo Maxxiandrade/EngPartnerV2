@@ -44,6 +44,7 @@ const Login = ({ setIsAuth }) => {
           })
         );
 
+        localStorage.setItem('uid', auth?.currentUser?.uid);
         cookies.set('auth-token', result.user.refreshToken);
         setIsAuth(true);
         console.log(result.user);
@@ -55,14 +56,13 @@ const Login = ({ setIsAuth }) => {
       }else{
         // Si el usuario no estaba registrado con google antes
         //Crea en el estado global, las variables que ya vienen dentro de su cuenta de Google.
-        dispatch(
-          setUserDataGoogleAccount({
+        dispatch(setUserDataGoogleAccount({
             email: email,
             photo: photoURL,
             uid: uid,
-          })
-        );
+          }));
     
+        localStorage.setItem('uid', auth?.currentUser?.uid);
         cookies.set('auth-token', result.user.refreshToken);
         setIsAuth(true);
         console.log(result.user);
@@ -83,6 +83,7 @@ const Login = ({ setIsAuth }) => {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const uid = result.user.uid
+      localStorage.setItem('uid', auth?.currentUser?.uid);
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
       axios.put('http://localhost:3001/geton',{ uid, is: "on"} )

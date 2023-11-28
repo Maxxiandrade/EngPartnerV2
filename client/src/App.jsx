@@ -10,7 +10,7 @@ import Users from "./components/Home/Users/Users";
 import Premium from "./components/Premium/Premium";
 
 //Tools
-import { useState} from "react";
+import { useEffect, useState} from "react";
 import Cookies from 'universal-cookie';
 import { Routes, Route, Navigate } from "react-router-dom";
 import {Cloudinary} from "@cloudinary/url-gen";
@@ -21,6 +21,10 @@ function App() {
   const cld = new Cloudinary({cloud: {cloudName: 'engpartnercloudinary'}})
   const cookies = new Cookies()
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"))
+
+  useEffect(() => {
+    console.log(isAuth);
+  }, [isAuth])
 
   if (!isAuth) {
     return (
