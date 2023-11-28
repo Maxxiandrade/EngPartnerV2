@@ -1,11 +1,17 @@
 
 .nav {
-    width: 100%;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
     display: flex;
     padding: 10px 20px;
-    background-color: #6f7ee5;
     color: #0f295c;
   } 
+
+.inputAndBtnContainer {
+    display: flex;
+    width: 100%;
+}
 .nav input {
 
     width: 100%;
@@ -15,4 +21,15 @@
 .nav button {
     width: 30%;
     max-width: 200px;
+}
+
+@media screen and (min-width: 900px){
+    .nav{
+        margin: 0;
+        height: 40px;
+        max-width: 1000px;
+    }
+    .nav input {
+        max-width: none;
+    }
 }

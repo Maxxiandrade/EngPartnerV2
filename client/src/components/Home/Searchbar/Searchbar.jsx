@@ -22,13 +22,17 @@ const Searchbar = ()=>{
     }
     return (
         <nav className={styles.nav}>
-                <input 
+            <div className={styles.inputAndBtnContainer}>
+            <input 
                 type="search" 
                 placeholder="EngPartner ID"
                 value={userName}
                 onChange={(event)=> setUserName(event.target.value)}
                 />
                 <button onClick={handleSearch}>Search</button>
+                
+            </div>
+
                 <Filters/>
         </nav>
     )

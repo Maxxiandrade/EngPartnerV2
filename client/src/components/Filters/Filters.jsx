@@ -86,6 +86,8 @@ const Filters = () => {
   };
 
   const applyFilters = () => {
+    setAreFiltersVisible(false);
+    setButtonClicked(!areFiltersVisible);
     if (isVipFilterValue === true) {
       dispatch(filterByVip());
     }
@@ -123,10 +125,12 @@ const Filters = () => {
         }`}
       >
         <div className={styles.filtersStylesContainer}>
-          <div className={styles.sexAndAgeFilterContainer}>
             <div className={styles.sexBtnsContainer}>
               <p>select a gender</p>
+
+              <div className={styles.buttonsSexContainer}>
               <button
+              className={styles.sexBtns}
                 onClick={handleFilterByMale}
                 style={{
                   fontWeight: activeFilter === "male" ? "bold" : "normal",
@@ -134,7 +138,7 @@ const Filters = () => {
               >
                 Male
               </button>
-              <button
+              <button className={styles.sexBtns}
                 onClick={handleFilterByBoth}
                 style={{
                   fontWeight: activeFilter === "both" ? "bold" : "normal",
@@ -142,7 +146,7 @@ const Filters = () => {
               >
                 Both
               </button>
-              <button
+              <button className={styles.sexBtns}
                 onClick={handleFilterByFemale}
                 style={{
                   fontWeight: activeFilter === "female" ? "bold" : "normal",
@@ -150,7 +154,11 @@ const Filters = () => {
               >
                 Female
               </button>
+
+              </div>
+              
             </div>
+            <div className={styles.sexAndAgeFilterContainer}>
 
             <input
               type="range"
@@ -160,13 +168,13 @@ const Filters = () => {
               onChange={handleFilterByAge}
             />
             <span>{ageValue}</span>
+          <button onClick={handleFilterByVip}>vip</button>
           </div>
 
-          <button onClick={handleFilterByVip}>vip</button>
 
           <div className={styles.resetAndApplyBtnsContainer}>
             <button onClick={handleRemoveFilter}>reset</button>
-            <button onClick={applyFilters}>apply filters</button>
+            <button onClick={applyFilters}>Search</button>
           </div>
 
           <button

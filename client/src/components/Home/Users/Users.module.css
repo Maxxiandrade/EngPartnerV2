@@ -1,18 +1,5 @@
 .connectContainer {
-<<<<<<< HEAD
-    /* height: 100vh; */
-=======
-    display: flex;
-    height: 100vh;
->>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
-    width: 100%;
-    margin: 0 auto;
-    flex-direction: column;
-<<<<<<< HEAD
-    /* justify-content: center; */
-    /* background: #000000; */
-=======
->>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
+    position: relative;
 }
 .nav{
     align-items: center;
@@ -23,7 +10,7 @@
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
-    /* background-color: red; */
+    /* align-self: flex-start; */
 }
 
 h3 {
@@ -32,27 +19,20 @@ h3 {
 
 .userContainer {
     display: flex;
-    max-width: 340px;
+    max-width: 360px;
     height: 100px;
     max-height: 100px;
     margin-bottom: 1em ;
-<<<<<<< HEAD
     background-color: #f2f0f7;
     border-radius: 5px;
-=======
->>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
 }
 
 .userImgContainer {
     width: 3em;
     height: 3em;
     border-radius: 50%;
-<<<<<<< HEAD
     margin: .2em;
     justify-self: center;
-    /* border: 1px solid red; */
-=======
->>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
 }
 
 .userContainer img {
@@ -73,7 +53,6 @@ h3 {
 .textContainer p {
     display: block;
 }
-<<<<<<< HEAD
 
 .nameAndVipContainer{
     display: flex;
@@ -87,12 +66,17 @@ h3 {
 
 @media screen and (min-width:900px){
     .connectContainer{
-        height: 100vh;
-        margin-left: 1em;
     }
     .usersContainer {
-        margin: 0;
+        margin-left: 1.2em;
+    }
+    .userContainer {
+        display: flex;
+        max-width: 460px;
+        height: 100px;
+        max-height: 100px;
+        margin-bottom: 1em ;
+        background-color: #f2f0f7;
+        border-radius: 5px;
     }
 }
-=======
->>>>>>> ab278fa5768ab1991b5326926b52d845e7a0ad02
