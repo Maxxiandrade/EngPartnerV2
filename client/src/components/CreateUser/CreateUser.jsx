@@ -51,7 +51,7 @@ const CreateUser = ( {setIsAuth} ) => {
     country: '',
     description: '',
     photo: photoGoogleAccount ? photoGoogleAccount : '',
-    friends: {},
+    friends: [],
     isVip: false,
     isOn: false,
     isAdmin: false
