@@ -26,13 +26,15 @@ const putIs = async(req,res)=>{
                 break;}
             case ("premium"):{
                 await updateDoc(doc(fs, 'users', userDoc.id), {
-                    isVip: true    
+                    isVip: true,
+                    timeIsVip: new Date(),  
                 });
                 res.status(200).json("Ok")
                 break;}
             case ("notPremium"):{
                 await updateDoc(doc(fs, 'users', userDoc.id), {
-                    isVip: false           
+                    isVip: false,
+                    timeIsVip:null     
                 });
                 res.status(200).json("Ok")
                 break;
