@@ -7,7 +7,8 @@ import { SET_USER_DATA_REGISTER,
    GET_USER_BY_USERNAME, 
    GET_MY_USER,
   SET_USER_DATA_GOOGLE_ACCOUNT,
-CLEAR_USER_DATA_IN_LOGOUT} from "../action_types/userActionTypes";
+CLEAR_USER_DATA_IN_LOGOUT,
+GET_FRIENDS} from "../action_types/userActionTypes";
 
 const initialState = {
   allUsers: [],
@@ -177,11 +178,11 @@ const usersReducer = (state = initialState, action) => {
             users: state.allUsers
           
           }
-
-
-
-    
-    
+        case GET_FRIENDS:
+          return{
+            ...state,
+            friends: action.payload
+          }
         default:
       return { ...state };
   }

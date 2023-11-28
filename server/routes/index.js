@@ -11,7 +11,8 @@ const postUser = require('../controllers/postUser');
 const getMyUser = require('../controllers/getMyUser');
 const putUser = require('../controllers/putUser')
 const postPremium= require('../controllers/postPremium')
-const putFriend = require('../controllers/putFriend')
+const putFriend = require('../controllers/putFriend');
+const getFriends = require('../controllers/getFriends');
 
 
 const router = Router();
@@ -20,7 +21,7 @@ router.get('/getcountries', getAllCountries)
 router.get('/user', getUserByUsername)
 router.get('/users',getAllUsers)
 router.get('/getonline', getOnline)
-
+router.get('/friends', getFriends)
 
 router.post('/user', getMyUser)
 router.post('/send-message', postMessage)
