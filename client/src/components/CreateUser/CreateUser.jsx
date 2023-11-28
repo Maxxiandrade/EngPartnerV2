@@ -198,7 +198,6 @@ const CreateUser = ( {setIsAuth} ) => {
         </LocalizationProvider>
         {errors.date && <span className='registerErrors'>{errors.date}</span>}
 
-
         <FormLabel>Gender</FormLabel>
         <RadioGroup
           row

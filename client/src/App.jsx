@@ -5,9 +5,9 @@ import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import CreateUser from "./components/CreateUser/CreateUser";
 import Home from "./components/Home/Home";
-import TopicsChat from "./components/Chats/TopicsChat/TopicsChat";
 import Profile from "./components/Profile/Profile";
 import Users from "./components/Home/Users/Users";
+import Premium from "./components/Premium/Premium";
 
 //Tools
 import { useState} from "react";
@@ -39,6 +39,7 @@ function App() {
       <Route path="*" element={<Navigate to="/home" />}/>
       <Route path='profile/:uid' element={<Profile/>}/>
       <Route path="connect" element={<Users/>}/>
+      <Route path="/premium" element={<Premium/>}/>
     </Routes>
   );
 }
