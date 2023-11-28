@@ -1,12 +1,13 @@
 import axios from "axios";
-import { SET_USER_DATA_REGISTER, 
-SET_USER_DATA_CREATE_PROFILE, 
+import { SET_USER_DATA_REGISTER,
 CREATE_NEW_USER,
 GET_ONLINE,
 GET_ALL_USERS,
 ERROR_GETTING_USERS,
 GET_USER_BY_USERNAME,
 GET_MY_USER,
+SET_USER_DATA_GOOGLE_ACCOUNT,
+CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER
  } from "../action_types/userActionTypes";
 
@@ -45,20 +46,30 @@ export const setUserDataRegister = (userData) => {
   }
 }
 
-export const setUserDataCreateProfile = (userData) => {
+export const setUserDataGoogleAccount = (googleData) => {
   return async function (dispatch) {
     try {
       dispatch({
-        type: SET_USER_DATA_CREATE_PROFILE,
-        payload: userData
+        type: SET_USER_DATA_GOOGLE_ACCOUNT,
+        payload: googleData
       });
-      console.log(userData);
     } catch (error) {
       throw Error(error)
     }
   }
 }
 
+export const clearUserDataInLogout = () => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: CLEAR_USER_DATA_IN_LOGOUT
+      });
+    } catch (error) {
+      throw Error(error)
+    }
+  }
+}
 export const createNewUser = (userData) => {
   return async function (dispatch) {
     try {

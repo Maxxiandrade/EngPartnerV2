@@ -5,37 +5,74 @@ import style from "./Login.module.css";
 
 //Tools
 import axios from 'axios'
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, provider } from "../../firebase-config.js";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { db } from "../../firebase-config.js";
 import Cookies from "universal-cookie";
+import { setUserDataGoogleAccount, getMyUser } from "../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
-import { getMyUser } from "../../redux/actions/actions.js";
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 const Login = ({ setIsAuth }) => {
   const cookies = new Cookies();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const signInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const { displayName, photoURL, uid, email } = result.user;
-      const userRef = doc(db, "users", uid);
-      await setDoc(userRef, {
-        email,
-        name: displayName,
-        photo: photoURL,
-        uid: uid,
-      });
-      cookies.set("auth-token", result.user.refreshToken);
-      setIsAuth(true);
-      console.log(auth);
-      axios.put('http://localhost:3001/geton',{ uid, is: "on"} )
-      dispatch(getMyUser(uid))
+      
+  
+      // Verificar si el usuario ya está registrado con la misma uid
+      const existingUserRef = doc(db, 'users', uid);
+      const existingUserDoc = await getDoc(existingUserRef);
+  
+      if (existingUserDoc.exists()) {
+        // Si el usuario ya está registrado con google
+        console.log('El usuario ya está registrado.');
+        
+        dispatch(
+          setUserDataGoogleAccount({
+            email: email,
+            photo: photoURL,
+            uid: uid,
+          })
+        );
+
+        cookies.set('auth-token', result.user.refreshToken);
+        setIsAuth(true);
+        console.log(result.user);
+    
+        dispatch(getMyUser(uid))
+        await axios.put('http://localhost:3001/geton', { uid, is: 'on' });
+        navigate('/home');
+
+      }else{
+        // Si el usuario no estaba registrado con google antes
+        //Crea en el estado global, las variables que ya vienen dentro de su cuenta de Google.
+        dispatch(
+          setUserDataGoogleAccount({
+            email: email,
+            photo: photoURL,
+            uid: uid,
+          })
+        );
+    
+        cookies.set('auth-token', result.user.refreshToken);
+        setIsAuth(true);
+        console.log(result.user);
+    
+        axios.put('http://localhost:3001/geton', { uid, is: 'on' });
+        navigate('/createuser');
+      }
+      
     } catch (error) {
-      throw Error(error);
+      throw new Error(error);
     }
   };
 
@@ -54,7 +91,8 @@ const Login = ({ setIsAuth }) => {
       throw Error(error);
     }
   };
-
+  
+  
   return (
     <>
       <div className={style.backgroundImg}>
@@ -127,7 +165,7 @@ const Login = ({ setIsAuth }) => {
               </button>
               <br />
               <label className={style.inputSize}>Don't have an account?</label>
-              <Link to="/register">
+              <Link to="/createuser">
                 <button className={style.button}>Register</button>
               </Link>
             </form>

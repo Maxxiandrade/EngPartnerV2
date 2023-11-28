@@ -1,12 +1,13 @@
 import { FILTER_BY_AGE,  FILTER_BY_VIP, RESET_FILTERS, FILTER_BY_MALE,FILTER_BY_BOTH,FILTER_BY_FEMALE } from "../action_types/filterActionTypes";
 
 import { SET_USER_DATA_REGISTER,
-   SET_USER_DATA_CREATE_PROFILE,
    GET_ALL_USERS,
    ERROR_GETTING_USERS,
    GET_ONLINE,
    GET_USER_BY_USERNAME, 
-   GET_MY_USER} from "../action_types/userActionTypes";
+   GET_MY_USER,
+  SET_USER_DATA_GOOGLE_ACCOUNT,
+CLEAR_USER_DATA_IN_LOGOUT} from "../action_types/userActionTypes";
 
 const initialState = {
   allUsers: [],
@@ -27,7 +28,10 @@ const initialState = {
   friends: {},
   isVip: false,
   isOn: false,
-
+  isAdmin: false,
+  emailGoogleAccount: '',
+  photoGoogleAccount: '',
+  uidGoogleAccount: '',
   //filters
   genderFilter: 'both',
 };
@@ -46,6 +50,7 @@ const usersReducer = (state = initialState, action) => {
       return{
         ...state,
         uid: action.payload.uid,
+        email: action.payload.email,
         name: action.payload.name,
         lastname: action.payload.lastname,
         sex: action.payload.sex,
@@ -53,22 +58,20 @@ const usersReducer = (state = initialState, action) => {
         country: action.payload.country,
         photo: action.payload.photo,
         description: action.payload.description,
-        age: action.payload.age
-        
+        age: action.payload.age,
+        date: action.payload.date,
+        friends: action.payload.friends,
+        isVip: action.payload.isVip,
+        isAdmin: action.payload.isAdmin,
+        isOn: action.payload.isOn
       }
 
     case SET_USER_DATA_REGISTER:
       return {
         ...state,
-        email: action.payload.email,
-        password: action.payload.password,
         uid: action.payload.uid,
-        date: action.payload.date
-      }
-
-    case SET_USER_DATA_CREATE_PROFILE:
-      return {
-        ...state,
+        email: action.payload.email,
+        date: action.payload.date,
         name: action.payload.name,
         lastname: action.payload.lastname,
         user: action.payload.user,
@@ -79,7 +82,41 @@ const usersReducer = (state = initialState, action) => {
         photo: action.payload.photo,
         friends: action.payload.friends,
         isVip: action.payload.isVip,
-        isOn: action.payload.isOn
+        isOn: action.payload.isOn,
+        isAdmin: action.payload.isAdmin
+      };
+      
+
+    case SET_USER_DATA_GOOGLE_ACCOUNT:
+      return {
+        ...state,
+        emailGoogleAccount: action.payload.email,
+        photoGoogleAccount: action.payload.photo,
+        uidGoogleAccount: action.payload.uid
+      }
+
+    case CLEAR_USER_DATA_IN_LOGOUT:
+      return {
+        ...state,
+        uid: '',
+        email: '',
+        password: '',
+        date: null,
+        name: '',
+        lastname: '',
+        user: '',
+        age: '',
+        sex: '',
+        country: '',
+        description: '',
+        photo: '',
+        friends: {},
+        isVip: false,
+        isOn: false,
+        isAdmin: false,
+        emailGoogleAccount: '',
+        photoGoogleAccount: '',
+        uidGoogleAccount: '',
       }
 
     case ERROR_GETTING_USERS:

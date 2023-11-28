@@ -26,8 +26,7 @@ function App() {
     return (
       <Routes>
         <Route path="/" element={<Login setIsAuth={setIsAuth} />} />
-        <Route path="/register" element={<Register setIsAuth={setIsAuth}/>} />
-        <Route path="/createuser" element={<CreateUser />} />
+        <Route path="/createuser" element={<CreateUser setIsAuth={setIsAuth} />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     );

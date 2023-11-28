@@ -109,7 +109,7 @@ const Register = ({ setIsAuth }) => {
                         Register
                     </Button>
                     {registred && <>
-                        <p className='p'>Registration succefull! Now create your profile.</p>
+                        <p className='p'>Registration succesfull! Now create your profile.</p>
                         <div className='createUserDiv'>
                             <button className='createUserBtn'>
                                 <Link to="/createuser">Create EngPartner profile</Link>
