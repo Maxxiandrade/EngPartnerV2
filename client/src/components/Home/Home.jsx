@@ -7,7 +7,7 @@ import { auth } from "../../firebase-config";
 import { Link } from "react-router-dom";
 import { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getMyUser} from '../../redux/actions/actions';
+import {getMyUser, clearUserDataInLogout} from '../../redux/actions/actions';
 import axios from 'axios';
 
 //Renders
@@ -35,6 +35,7 @@ const Home = ({ setIsAuth }) => {
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
+    dispatch(clearUserDataInLogout());
   };
 
 
