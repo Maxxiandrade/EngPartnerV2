@@ -1,61 +1,69 @@
 const {db}=require('../firebase-confing');
+const axios= require('axios')
 
-//Cambiado por Vicen, con el codigo anterior no funcionaba, daba errores y crasheaba el backend:
-/* node:internal/errors:490
-    ErrorCaptureStackTrace(err);
-Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client */
+const isVipExpired = async (uid) => {
+    try {
+        console.log(uid)
+        const userSnapshot = await db.collection('users').where('uid', '==', uid).get();
+        const userData = userSnapshot.docs[0].data(); 
+        const { timeIsVip } = userData;
+        if (!timeIsVip) {
+            return true;
+        }
+        const startDate = timeIsVip.toDate();
+        const currentDate = new Date();
+    
 
+        const timeDifference = currentDate - startDate;
+        const daysDifference = timeDifference / (1000 * 60 * 60 * 24);
+        const isExpired = daysDifference >= 30;
+        return isExpired;
+    } catch (error) {
+        console.error("Error al verificar la expiración de la membresía VIP:", error);
+        return false;
+    }
+}
+const fitrueorFalse = async(userData,uid)=>{
+    if(userData.isVip === true){
+        if( await isVipExpired(uid)){
+             await axios.put('http://localhost:3001/geton',{ uid, is:"notPremium"} )
+        }
+    }
+}
 
 const getMyUser = async (req, res) => {
     try {
         const { uid } = req.body;
-        const users = await db.collection('users').get();
-
-        let userInfo;  // Variable para almacenar la información del usuario
-
-        users.docs.forEach(user => {
-            const userData = user.data();
-            if (userData.uid === uid) {
-                userInfo = {
-                    uid: userData?.uid,
-                    email: userData?.email,
-                    name: userData?.name,
-                    lastname: userData?.lastname,
-                    sex: userData?.sex,
-                    user: userData?.user,
-                    country: userData?.country,
-                    photo: userData?.photo,
-                    description: userData?.description,
-                    age: userData?.age,
-                    date: userData?.date,
-                    friends: userData?.friends,
-                    isVip: userData?.isVip,
-                    isAdmin: userData?.isAdmin,
-                    isOn: userData?.isOn
-                };
-            }
-        });
-
-        if (userInfo) {
-            // Si se encontró la información del usuario, enviarla como respuesta
-            res.status(200).json(userInfo);
-        } else {
-            // Si no se encontró el usuario, enviar una respuesta indicando que no se encontró
+        const userSnapshot = await db.collection('users').where('uid', '==', uid).get();
+        
+        if (userSnapshot.empty) {
             res.status(404).json({ error: 'Usuario no encontrado' });
+            return;
         }
+        const userData = userSnapshot.docs[0].data();
+        await fitrueorFalse(userData, uid)
+        
+        const userInfo = {
+            uid: userData?.uid,
+            email: userData?.email,
+            name: userData?.name,
+            lastname: userData?.lastname,
+            sex: userData?.sex,
+            user: userData?.user,
+            country: userData?.country,
+            photo: userData?.photo,
+            description: userData?.description,
+            age: userData?.age,
+            date: userData?.date,
+            friends: userData?.friends,
+            isVip: userData?.isVip,
+            isAdmin: userData?.isAdmin,
+            isOn: userData?.isOn
+        }; 
+        res.status(200).json(userInfo);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-};
+}
 
-// const getMyUser =async (req, res)=>{
-//     try {
-//         const {uid}=req.body
-//         const result= await myUser(uid)
-//         res.status(200).json(result)
-        
-//     } catch (error) {
-//         res.status(404).send('Dont User')
-//     }
-// }
 module.exports=getMyUser;
