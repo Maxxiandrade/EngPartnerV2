@@ -12,32 +12,38 @@ import styles from './Users.module.css'
 const Users = () => {
   const users = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
+  console.log(users)
 
   useEffect(() => {
     dispatch(getOnline());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className={styles.connectContainer}>
-      <nav className={styles.nav}/>
-        <Searchbar/>
-      <nav/>
+    <Searchbar/>
+    <div className={styles.usersContainer}>
         <h3>Online Users</h3>
-        <div className={styles.usersContainer}>
-        { users.map((user) => (
-            <div         
-            className={styles.userContainer} 
-            key={user.id}>
+        {users.length === 0 ? ( 
+          <p>Users not found</p>
+        ) : (
+          users.map((user) => (
+            <div className={styles.userContainer} key={user.id}>
               <div className={styles.userImgContainer}>
                 <img src={typeof user.photo === 'string' ? user.photo: defaultImg} alt="default image" />
               </div>
               <div className={styles.textContainer}>
-              <p>{user.name}</p>
-              <p>{user.country}</p>
-              <p>{user.sex}</p>
+                <div className={styles.nameAndVipContainer}>
+                <p>{user.name}</p>
+                <p>vip</p>
+                </div>
+                <div className={styles.restPropsContainer}>
+                <p>{user.country}</p>
+                <p>{user.sex}</p>
+                </div>
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserByUserName } from '../../../redux/actions/actions';
 
 import styles from './searchbar.module.css'
+import Filters from '../../Filters/Filters';
 
 const Searchbar = ()=>{
     const [userName, setUserName] = useState("")
@@ -21,13 +22,18 @@ const Searchbar = ()=>{
     }
     return (
         <nav className={styles.nav}>
-                <input 
+            <div className={styles.inputAndBtnContainer}>
+            <input 
                 type="search" 
                 placeholder="EngPartner ID"
                 value={userName}
                 onChange={(event)=> setUserName(event.target.value)}
                 />
                 <button onClick={handleSearch}>Search</button>
+                
+            </div>
+
+                <Filters/>
         </nav>
     )
 }

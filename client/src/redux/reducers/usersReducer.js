@@ -1,3 +1,5 @@
+import { FILTER_BY_AGE,  FILTER_BY_VIP, RESET_FILTERS, FILTER_BY_MALE,FILTER_BY_BOTH,FILTER_BY_FEMALE } from "../action_types/filterActionTypes";
+
 import { SET_USER_DATA_REGISTER,
    SET_USER_DATA_CREATE_PROFILE,
    GET_ALL_USERS,
@@ -7,6 +9,7 @@ import { SET_USER_DATA_REGISTER,
    GET_MY_USER} from "../action_types/userActionTypes";
 
 const initialState = {
+  allUsers: [],
   users: [],
   error: null,
   uid: '',
@@ -24,6 +27,9 @@ const initialState = {
   friends: {},
   isVip: false,
   isOn: false,
+
+  //filters
+  genderFilter: 'both',
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -32,6 +38,7 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
+        allUsers: action.payload
       };
 
     case GET_MY_USER:
@@ -79,13 +86,63 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, error: action.payload };
 
       case GET_ONLINE:
-        return{...state, users: action.payload}
+        return{...state, 
+          users: action.payload,
+          allUsers: action.payload
+        }
 
       case GET_USER_BY_USERNAME:
         return {
           ...state,
           users: [action.payload, ...state.users]
         }
+
+      //filters for searching users
+      case FILTER_BY_MALE:
+      return {
+        ...state,
+        genderFilter: 'male',
+        users: state.allUsers.filter(user => user.sex === 'male'), 
+      };
+    case FILTER_BY_BOTH:
+      return {
+        ...state,
+        genderFilter: 'both',
+        users: state.allUsers, 
+      };
+    case FILTER_BY_FEMALE:
+      return {
+        ...state,
+        genderFilter: 'female',
+        users: state.allUsers.filter(user => user.sex === 'female'), // Filtra por género femenino
+      };
+
+      case FILTER_BY_VIP:
+        let filteredByVip = []  
+        filteredByVip = state.users.filter(user=> user.isVip === true)
+        return {
+          ...state,
+          users: filteredByVip,
+        }
+
+      case FILTER_BY_AGE:
+        let filterByAge 
+
+        filterByAge = state.users.filter(user=> user.age === action.payload)
+        return {
+          ...state,
+          users: filterByAge
+        }
+
+        case RESET_FILTERS:
+          return {
+            ...state,
+            users: state.allUsers
+          
+          }
+
+
+
     
     
         default:
