@@ -3,17 +3,18 @@
   flex-direction: column;
   align-items: center;
   font-family: sans-serif;
-  width: 35%;
+  width: 80%;
+  height: 100%;
   margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
   border: 2px solid #3b5998;
-  background-color: #edf8ff;
+  background-color: #F0F8FF;
   
 }
 
 .header {
-  background-color: #E3EBFC;
+  background-color: #f0f8ff;
   color: #FD2621;
   width: 100%;
   font-size: 8px;
@@ -22,7 +23,7 @@
 }
 
 .messages {
-  background-color: #E3EBFC;
+  background-color: #F0F8FF;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -39,11 +40,11 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  max-width: 90%;
+  max-width: 95%;
 }
 
 .user {
-  display: inline;
+  display: flex;
   text-shadow: --1.5px -1.5px 0  black,  
       1.5px -1.5px 0  black,
      -1.5px 1.5px 0  black,
@@ -52,6 +53,8 @@
   margin-right: 10px;
   color: #535cd8;
   cursor: pointer;
+  align-items: center;
+  padding-top: 1px;
 }
 
 .user:hover{
@@ -105,7 +108,16 @@
 }
 
 .textDiv{
-  width: 85%;
+  width: 80%;
   word-wrap: break-word; 
   white-space: pre-wrap;
+}
+
+.verify{
+  width: 25px;
+  padding-right: 3px;
+}
+.verifyDiv{
+  display: flex;
+  height: auto;
 }

@@ -1,18 +1,21 @@
 import style from "./Home.module.css";
+import logo from "../../assets/logo.png";
+import crown from "../../assets/svg/crown.svg";
+import connect from "../../assets/svg/connect.svg";
+import logOut from "../../assets/svg/logout.svg";
+
 
 //Tools
 import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { auth } from "../../firebase-config";
 import { Link } from "react-router-dom";
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {getMyUser, clearUserDataInLogout} from '../../redux/actions/actions';
+import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
 import axios from 'axios';
 
 //Renders
-import logo from "../../assets/logo-EngPartner.png";
-import crown from "../../assets/crown.svg";
 import Friends from "./Friends/Friends";
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
@@ -27,10 +30,10 @@ const Home = ({ setIsAuth }) => {
 
   const [room, setRoom] = useState("global");
   const cookies = new Cookies();
-  
+
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
-    axios.put('http://localhost:3001/geton',{ uid, is:"off"} )
+    axios.put('http://localhost:3001/geton', { uid, is: "off" })
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
@@ -49,7 +52,7 @@ const Home = ({ setIsAuth }) => {
 
   useEffect(() => {
     console.log(uid)
-    if ( uid === undefined) {
+    if (uid === undefined) {
       signOut(auth);
       setIsAuth(false);
     }
@@ -58,43 +61,44 @@ const Home = ({ setIsAuth }) => {
   }, [uid, dispatch]);
 
   return (
-
-  <>
-    {uid ? (
-    <div className={style.homeMainDiv}>
-      <nav className={style.nav}>
-        <Link to="/home">
-          <button className={style.homeBtn}><img src={logo} alt="Home" className={style.logo} /></button>
-        </Link>
-      <div className={style.homeH2Div}>
-        <h2 className={style.homeH2}>Welcome, {user} !</h2>
-      </div>
-        <div className={style.navBtns}>
-          <Link to={`/profile/${uid}`}>
-            <img src={userPhoto} alt="" className={style.userPhoto} />
-          </Link>
-          <Link to='/connect'>
-            <button className={style.connectBtn}>Connect</button>
-          </Link>
-          <Link to='/premium'>
-            <button className={style.premium}>
-            <img src={crown} alt="" className={style.crown}/>Get VIP
-            </button>
-          </Link>
-          <button onClick={handleLogOut} className={style.signOut}>Log out</button>
+    <>
+      {uid ? (
+        <div className={style.homeMainDiv}>
+          <nav className={style.nav}>
+            <Link to="/home">
+              <img src={logo} alt="Home" className={style.logo} />
+            </Link>
+            <div>
+              <TopicsChat setingValueRoom={setingValueRoom} />
+            </div>
+            <div className={style.navBtns}>
+              <Link to='/connect'>
+                <button className={style.connectBtn}><img src={connect} alt="connect" className={style.icon} /></button>
+              </Link>
+              <Link to='/premium'>
+                <button className={style.premium}>
+                  <img src={crown} alt="" className={style.icon} />
+                </button>
+              </Link>
+              <button onClick={handleLogOut} className={style.signOut}><img src={logOut} alt="logout" className={style.icon} /></button>
+              <Link to={`/profile/${uid}`}>
+                <img src={userPhoto} alt="" className={style.userPhoto} />
+              </Link>
+            </div>
+          </nav>
+          <body className={style.homeBody}>
+            <div className={style.globalChat}>
+              <TopicChat room={room} setRoom={setRoom} />
+            </div>
+            <div className={style.friendsComp}>
+              <Friends />
+            </div>
+          </body>
         </div>
-        <TopicsChat setingValueRoom={setingValueRoom}/>
-      </nav>
-      <div className={style.globalChat}>
-        <TopicChat room={room} setRoom={setRoom} />
-        <Friends/>
-      </div>
-    </div>
       ) : (
         <Navigate to="/" replace={true} />
       )}
     </>
-    
   );
 };
 
