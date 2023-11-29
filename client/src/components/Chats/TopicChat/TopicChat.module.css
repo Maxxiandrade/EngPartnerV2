@@ -36,6 +36,7 @@
 }
 
 .message {
+  position: relative;
   color: black;
   display: flex;
   align-items: center;
@@ -108,16 +109,11 @@
 }
 
 .textDiv{
-  width: 80%;
-  word-wrap: break-word; 
-  white-space: pre-wrap;
+  display: flex;
+  gap: 100%;
+  width: 85%;
 }
 
-.verify{
-  width: 25px;
-  padding-right: 3px;
-}
-.verifyDiv{
-  display: flex;
-  height: auto;
+.reportOption {
+  position: relative;
 }

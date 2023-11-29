@@ -1,6 +1,8 @@
 import style from "./TopicChat.module.css";
 import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
+import sendIcon from '../../../assets/sendIcon.svg'
+import ReportOption from "../ReportOption/ReportOption";
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -23,9 +25,29 @@ const Chat = ({ room, setRoom }) => {
   const user = useSelector(state => state.users)
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [messageOptions, setMessageOptions] = useState({})
+  const [lastClickedMessageId, setLastClickedMessageId] = useState(null)
+  const optionsRef = useRef(null)
+
 
   const messageRef = collection(db, "messages");
   const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+
+    const handleClickOutsideOptions = (event) => {
+      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
+        setMessageOptions({});
+        setLastClickedMessageId(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutsideOptions);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutsideOptions);
+    };
+  }, []);
 
   useEffect(() => {
     const queryMessages = query(
@@ -34,17 +56,27 @@ const Chat = ({ room, setRoom }) => {
       orderBy("createdAt")
     );
 
+    
+
     const unSubscribe = onSnapshot(queryMessages, (snapshot) => {
       const fetchedMessages = [];
+      const initialOptions = {}
       snapshot.forEach((doc) => {
         fetchedMessages.push({ ...doc.data(), id: doc.id });
+        initialOptions[doc.id] = false
       });
       setMessages(fetchedMessages);
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      setMessageOptions(initialOptions)
+     
     });
 
     return () => unSubscribe();
   }, [room]);
+
+  useEffect(()=>{
+    const scroll = ()=> {messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });}
+    scroll()
+  },[messages])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,6 +91,15 @@ const Chat = ({ room, setRoom }) => {
       room,
     });
     setNewMessage("");
+  };
+
+  const handleOptionsClick = (messageId) => {
+    setMessageOptions({
+      ...messageOptions,
+      [messageId]: !messageOptions[messageId]
+    })
+    setLastClickedMessageId(messageId)
+    console.log(messageId)
   };
   return (
     <>
@@ -81,7 +122,13 @@ const Chat = ({ room, setRoom }) => {
                 </span>
               </Link>
               <div className={style.textDiv}>
-                {message.text}
+              {message.text}
+              <div className={style.reportOption} onClick={()=> handleOptionsClick(message.id)} ref={optionsRef}>
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+                {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption/>}
+                </div>
               </div>
             </div>
           ))}

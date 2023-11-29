@@ -25,10 +25,7 @@ const TopicsChat = ({ setingValueRoom }) => {
         </section>
         
         
-        {/* funcion premium
-        <button onClick={setValue}>
-          Search topic chat
-        </button> */}
+        
       </div>
   );
 };

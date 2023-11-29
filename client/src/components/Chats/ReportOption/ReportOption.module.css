@@ -1,0 +1,10 @@
+
+.reportMessage {
+    position: absolute;
+    bottom: 20%;
+    left: 60%;
+}
+
+.reportMessage p {
+    font-size: .8em;
+}
