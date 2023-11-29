@@ -62,11 +62,16 @@ const Chat = ({ room, setRoom }) => {
       });
       setMessages(fetchedMessages);
       setMessageOptions(initialOptions)
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+     
     });
 
     return () => unSubscribe();
   }, [room]);
+
+  useEffect(()=>{
+    const scroll = ()=> {messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });}
+    scroll()
+  },[messages])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
