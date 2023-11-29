@@ -112,11 +112,11 @@ const Chat = ({ room, setRoom }) => {
                 <span className={style.user}>{`${message.user}: `}</span>
               </Link>
               <div className={style.textDiv}>
-              {message.text}
-              <div className={style.reportOption} onClick={()=> handleOptionsClick(message.id)} ref={optionsRef}>
-                <img src={report} alt="" className={style.report}/>
-                {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption/>}
-                </div>
+              <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
+        {message.text}
+        <img src={report} alt="" className={style.report} />
+      </span>
+      {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption />}
               </div>
             </div>
           ))}

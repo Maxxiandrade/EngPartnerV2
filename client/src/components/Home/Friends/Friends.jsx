@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getFriends, getOnline } from "../../../redux/actions/actions";
+import { getFriends } from "../../../redux/actions/actions";
 import {useSelector, useDispatch } from "react-redux";
 import style from './Friends.module.css'
 
@@ -12,7 +12,7 @@ const Friends = ()=>{
       if(uid){
       dispatch(getFriends(uid));}
       console.log(friends);
-    }, [dispatch]);
+    }, [dispatch, friends]);
     
   
     return(
