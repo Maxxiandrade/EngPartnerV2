@@ -15,14 +15,14 @@ import 'firebase/compat/auth';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCPpyik8XGBmAaUvbkt7PjxU35Qc5hLqWk",
-  authDomain: "engpartner-aa0ce.firebaseapp.com",
-  projectId: "engpartner-aa0ce",
-  storageBucket: "engpartner-aa0ce.appspot.com",
-  messagingSenderId: "1063143272771",
-  appId: "1:1063143272771:web:288baf241344440c957ff6",
-  measurementId: "G-3W9M81JPD8",
-  databaseURL: "https://engpartner-aa0ce-default-rtdb.firebaseio.com"
+  apiKey: "AIzaSyAZI3-8cgScCQe5Cjzn7u_pqdhxhDflN2o",
+  authDomain: "engpartner-v3.firebaseapp.com",
+  projectId: "engpartner-v3",
+  storageBucket: "engpartner-v3.appspot.com",
+  messagingSenderId: "575982856759",
+  appId: "1:575982856759:web:5c0c9ae4fc4b234509edb2",
+  measurementId: "G-YBXBVZ811M",
+  databaseURL: 'https://engpartner-v3-default-rtdb.firebaseio.com/'
 };
 
 // Initialize Firebase
