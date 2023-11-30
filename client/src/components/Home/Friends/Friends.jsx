@@ -19,12 +19,13 @@ const Friends = ()=>{
     return(
         <div className={style.friendContainer}>
             <h1 className={style.txt}>Friends:</h1>
-            {friends?.map((friend)=>(
+            {friends?.length === 0 ? <p className={style.txt}>Your frind list is empty</p> : friends?.map((friend)=>(
                 <>
                 <p className={style.txt} key={friend.uid}> 
                     <img src={friend.photo} alt="" className={style.photo}/>
                     {friend.user} 
-                    {friend.isOn ? <span> 🟢 </span> : <span> 🔴</span> }</p>
+                    {friend.isOn ? <span> 🟢 </span> : <span> 🔴</span> }
+                </p>
                 </>
             )
             )}
