@@ -9,6 +9,7 @@ const {getFirestore} = require('firebase/firestore')
 const firebaseConfig = {
   apiKey: "AIzaSyCPpyik8XGBmAaUvbkt7PjxU35Qc5hLqWk",
   authDomain: "engpartner-aa0ce.firebaseapp.com",
+  databaseURL: "https://engpartner-aa0ce-default-rtdb.firebaseio.com",
   projectId: "engpartner-aa0ce",
   storageBucket: "engpartner-aa0ce.appspot.com",
   messagingSenderId: "1063143272771",
@@ -20,10 +21,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Configura el SDK Admin para trabajar con Firestore en el backend
-const serviceAccount = require('./engpartner-v3-firebase-adminsdk-bbo8u-aceb2f66b4.json'); // Reemplaza con la ruta correcta
+const serviceAccount = require('./engpartner-aa0ce-firebase-adminsdk-db0qc-d7c9c6132c.json'); // Reemplaza con la ruta correcta
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://engpartner-v3-default-rtdb.firebaseio.com/' // Reemplaza con la URL correcta de tu base de datos
+  databaseURL: 'https://engpartner-aa0ce-default-rtdb.firebaseio.com' // Reemplaza con la URL correcta de tu base de datos
 });
 
 const db = admin.firestore();
