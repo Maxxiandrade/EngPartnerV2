@@ -57,7 +57,7 @@ const Home = ({ setIsAuth }) => {
     }
     dispatch(getMyUser(localStorageUID));
     console.log('holas')
-  }, [uid, dispatch]);
+  }, [uid]);
 
   return (
 
