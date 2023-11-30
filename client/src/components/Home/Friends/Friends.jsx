@@ -7,6 +7,7 @@ import style from './Friends.module.css'
 const Friends = ()=>{
     const dispatch = useDispatch();
     const friends = useSelector((state)=>state.users.friends)
+    
     useEffect(() => {
       const uid = localStorage.getItem("uid")
       if(uid){
