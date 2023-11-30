@@ -1,22 +1,9 @@
 .logo {
-  width: 100px;
-  height: 70px;
+  width: 32px;
 }
 
-.homeBtn {
-  background-color: transparent;
-  margin-left: auto;
-  margin-right: 10px;
-}
-
-.homeBtn:hover{
-  border: solid 1px ;
-}
-
-.crown{
-  width: 30px;
-  height: 15px;
-  margin-right: 5px;
+.icon {
+  width: 22px;
 }
 
 .nav {
@@ -24,33 +11,30 @@
   align-items: center;
   justify-content: space-between;
   padding: 10px 20px;
-  background-color: #6f7ee5;
+  background-color: #031525;
   color: #0f295c;
+  border-bottom: solid 0.5px #30363d;
 }
 
-h2 {
-  margin-left: 10px;
-  color: white;
-}
-
-.connectBtn, .signOut, .premium{
-  color: #4449be;
-  background: #e3ebfc;
-  border: 2px solid #4449be;
+.connectBtn,
+.signOut,
+.premium {
+  background: transparent;
+  border: solid 0.5px #30363d;
   border-radius: 10px;
-  margin-left: auto;
   margin-right: 10px;
 }
 
-.connectBtn:hover{
+.connectBtn:hover {
   transition: 0.5s;
-  color: #ffffff;
   background-color: #1f2147;
-  border-color: #b7caf6;
+  border-color: #00bfc7;
   box-shadow: 0px 0px 10px #ffffff;
 }
 
-.connectBtn:not(:hover), .signOut:not(:hover), .premium:not(:hover) {
+.connectBtn:not(:hover),
+.signOut:not(:hover),
+.premium:not(:hover) {
   transition: 0.5s;
 }
 
@@ -58,7 +42,7 @@ h2 {
   transition: 0.5s;
   color: white;
   background-color: #1f2147;
-  border-color: #f0e628;
+  border-color: yellow;
   box-shadow: 0px 0px 10px #f0e628;
 }
 
@@ -66,79 +50,51 @@ h2 {
   transition: 0.5s;
   color: white;
   background-color: #1f2147;
-  border-color: #f06128;
+  border-color: red;
   box-shadow: 0px 0px 10px rgb(255, 0, 0);
 }
 
-.container {
-  background-color: #1f2147;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-}
-
-.topic {
-  color: #b7caf6;
-  background: transparent;
-  border-color: #b7caf6;
-  border-radius: 10px;
-}
-
-.topic:hover {
-  transition: 0.5s;
-  color: #b7caf6;
-  background-color: #353c7a;
-  border-color: #b7caf6;
-}
-
-.topic:not(:hover) {
-  transition: 0.5s;
-}
-
 .globalChat {
-  background-color: #adc1f4;
-  padding-top: 5%;
+  background-color: #031525;
+  display: flex;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 60%;
+  height: 600px;
 }
 
-.homeMainDiv{
-  width: 100%;
-  height: 100vh;
+.friendsComp {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 30%;
 }
 
-.homeH2Div{
-  background-color: #6F7EE5;
-}
-
-.homeH2{
-  color: #00C5CA;
-  text-shadow: -1.5px -1.5px 0 rgba(0, 0, 0, 0.301),
-    1.5px -1.5px 0 rgba(0, 0, 0, 0.301), -1.5px 1.5px 0 rgba(0, 0, 0, 0.301),
-    1.5px 1.5px 0 rgba(0, 0, 0, 0.301);
-}
-
-.userPhoto{
-  display: inline;
-  width: 38px;
-  height: 38px;
-  border-radius: 50px;
-  border: 2px solid #4449be;
-  margin-left: 1px;
-  margin-right: 10px;
+.homeBody {
   align-items: center;
-  margin-bottom: -13px;
+  justify-content: space-evenly;
 }
 
-.userPhoto:hover{
+.homeMainDiv {
+  background-color: #031525;
+}
+
+.userPhoto {
+  display: inline;
+  width: 45px;
+  border-radius: 10px;
+  border: solid 0.5px #30363d;
+  align-items: center;
+  margin-bottom: -14px;
+}
+
+.userPhoto:hover {
   transition: 0.5s;
-  color: white;
   background-color: #1f2147;
-  border-color: #b7caf6;
+  border-color: white;
   box-shadow: 0px 0px 10px #ffffff;
 }
 
-.navBtns{
+.navBtns {
   justify-content: space-between;
   align-items: center;
-  height: auto;
 }
