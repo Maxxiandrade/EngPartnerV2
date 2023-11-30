@@ -12,7 +12,7 @@ const Friends = ()=>{
       if(uid){
       dispatch(getFriends(uid));}
       console.log(friends);
-    }, [dispatch, friends]);
+    }, []);
     
   
     return(

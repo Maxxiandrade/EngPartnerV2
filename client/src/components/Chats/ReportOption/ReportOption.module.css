@@ -3,11 +3,27 @@
     position: absolute;
     bottom: 20%;
     left: 60%;
+    background-color: red;
 }
 
 .reportMessage p {
     font-size: .8em;
     background-color: red;
-    border: 10% black
+    border: 10% black;
+    position: relative;
+    padding-right: 5px;
 }
 
+.room:after {
+    font-size: 18px;
+    color: #4449be;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.select{
+    cursor: pointer;
+}
