@@ -9,6 +9,7 @@ const {getFirestore} = require('firebase/firestore')
 const firebaseConfig = {
   apiKey: "AIzaSyCPpyik8XGBmAaUvbkt7PjxU35Qc5hLqWk",
   authDomain: "engpartner-aa0ce.firebaseapp.com",
+  databaseURL: "https://engpartner-aa0ce-default-rtdb.firebaseio.com",
   projectId: "engpartner-aa0ce",
   storageBucket: "engpartner-aa0ce.appspot.com",
   messagingSenderId: "1063143272771",

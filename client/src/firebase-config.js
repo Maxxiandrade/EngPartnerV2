@@ -17,12 +17,13 @@ import 'firebase/compat/auth';
 const firebaseConfig = {
   apiKey: "AIzaSyCPpyik8XGBmAaUvbkt7PjxU35Qc5hLqWk",
   authDomain: "engpartner-aa0ce.firebaseapp.com",
+  databaseURL: "https://engpartner-aa0ce-default-rtdb.firebaseio.com",
   projectId: "engpartner-aa0ce",
   storageBucket: "engpartner-aa0ce.appspot.com",
   messagingSenderId: "1063143272771",
   appId: "1:1063143272771:web:288baf241344440c957ff6",
   measurementId: "G-3W9M81JPD8",
-  databaseURL: "https://engpartner-aa0ce-default-rtdb.firebaseio.com"
+  databaseURL: 'https://engpartner-aa0ce-default-rtdb.firebaseio.com'
 };
 
 // Initialize Firebase

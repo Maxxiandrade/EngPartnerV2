@@ -3,6 +3,7 @@ import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
 import sendIcon from '../../../assets/sendIcon.svg'
 import ReportOption from "../ReportOption/ReportOption";
+import report from "../../../assets/exclamation.svg"
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -122,13 +123,11 @@ const Chat = ({ room, setRoom }) => {
                 </span>
               </Link>
               <div className={style.textDiv}>
-              {message.text}
-              <div className={style.reportOption} onClick={()=> handleOptionsClick(message.id)} ref={optionsRef}>
-                <span className="dot">.</span>
-                <span className="dot">.</span>
-                <span className="dot">.</span>
-                {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption/>}
-                </div>
+              <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
+        {message.text}
+        <img src={report} alt="" className={style.report} />
+      </span>
+      {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption />}
               </div>
             </div>
           ))}

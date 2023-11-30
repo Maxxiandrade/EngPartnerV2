@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { getFriends, getOnline } from "../../../redux/actions/actions";
-import { useSelector, useDispatch } from "react-redux";
+import { getFriends } from "../../../redux/actions/actions";
+import {useSelector, useDispatch } from "react-redux";
 import style from './Friends.module.css'
 import offline from '../../../assets/svg/offline.svg'
 import online from '../../../assets/svg/online.svg'
@@ -8,17 +8,17 @@ import online from '../../../assets/svg/online.svg'
 
 const Friends = () => {
     const dispatch = useDispatch();
-    const friends = useSelector((state) => state.users.friends)
+    const friends = useSelector((state)=>state.users.friends)
+    
     useEffect(() => {
-        const uid = localStorage.getItem("uid")
-        if (uid) {
-            dispatch(getFriends(uid));
-        }
-        console.log(friends);
-    }, [dispatch]);
-
-
-    return (
+      const uid = localStorage.getItem("uid")
+      if(uid){
+      dispatch(getFriends(uid));}
+      console.log(friends);
+    }, []);
+    
+  
+    return(
         <div className={style.friendContainer}>
             <div className={style.txtH1}><h1>Friends:</h1></div>
             {friends.map((friend) => (
