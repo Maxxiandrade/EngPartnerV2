@@ -4,7 +4,7 @@ const {updateDoc, doc, arrayUnion, arrayRemove} = require('firebase/firestore')
 const putFriend = async(req,res)=>{
     try {
     const {uid, friendId, action} = req.body
-    const usersRef =  doc(fs, 'users', uid);
+    const usersRef =  doc(db, 'users', uid);
     if(action === 'add'){
         await updateDoc(usersRef, {
             friends: arrayUnion(friendId)
