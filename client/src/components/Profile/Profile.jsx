@@ -14,6 +14,7 @@ const Profile = () => {
   const friendList = useSelector((state)=>state.users.friends)
   const dispatch = useDispatch();
   const params = useParams();
+  const [isFriend, setisFriend] = useState(friendList.some((friend)=> friend.id == params.uid))
   const [edit, setEdit] = useState(false)
   const [aux, setAux] = useState(false)
   const friend = {
@@ -27,10 +28,10 @@ const Profile = () => {
     lastname: "",
     description:""
   });
-
-  const [isFriend, setisFriend] = useState(friendList.some((friend)=> friend === params.uid))
+  
 
   useEffect(() => {
+    console.log(params.uid) 
     console.log(friendList) 
     console.log(isFriend) 
     axios
