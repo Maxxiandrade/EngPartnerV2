@@ -19,9 +19,8 @@ const Friends = ()=>{
     return(
         <div className={style.friendContainer}>
             <h1 className={style.txt}>Friends:</h1>
-            {friends.map((friend)=>(
+            {friends?.map((friend)=>(
                 <>
-                
                 <p className={style.txt} key={friend.uid}> 
                     <img src={friend.photo} alt="" className={style.photo}/>
                     {friend.user} 
