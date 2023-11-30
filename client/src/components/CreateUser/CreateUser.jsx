@@ -63,9 +63,15 @@ const CreateUser = ( {setIsAuth} ) => {
   const [errorUsername, setErrorUsername] = useState({
     user: false
   })
+  const [errorEmail, setErrorEmail] = useState({
+    email: false
+  })
 
 
     const handleChangeInput = (event) => {
+      if(event.target.name === 'email'){
+        handleChangeEmail(event)
+      }
       if(event.target.name === "user"){
         handleChangeUser(event)
       }
@@ -95,6 +101,8 @@ const CreateUser = ( {setIsAuth} ) => {
             ...createUserInfo,
             [event.target.name]: event.target.value
           }))
+      }else if (event.target.value.includes(' ')){
+        return
       }else{
           const taken = await usernameTaken(event.target.value);
           if (taken) {
@@ -118,10 +126,48 @@ const CreateUser = ( {setIsAuth} ) => {
 
       }}, 1000)
 
+    const handleChangeEmail = useDebounce(async(event) => {
+          const taken = await emailTaken(event.target.value);
+          if (taken) {
+            setErrorEmail({
+              ...errorEmail,
+              email: 'The email is already taken by another user'
+            })
+          }else{
+            return(
+              setErrorEmail({
+                ...errorEmail,
+                email: false
+              }),
+              setCreateUserInfo({
+                ...createUserInfo,
+                [event.target.name]: event.target.value,
+              })
+            )
+          }
+    }, 1000)
+
   const usernameTaken = async (searchValue) => {
     try {
         const isTaken = await allUsers?.filter((user) => {
-            return user.user === searchValue
+            return user.user.toLowerCase().trim() === searchValue.toLowerCase().trim()
+        })
+        
+        if(isTaken.length > 0){
+            console.log('true, ya existe', isTaken);
+            return true
+        }
+        console.log('false, no existe');
+        return false
+    } catch (error) {
+        throw Error(error)
+    }
+  }
+
+  const emailTaken = async (searchValue) => {
+    try {
+        const isTaken = await allUsers?.filter((user) => {
+            return user.email.toLowerCase().trim() === searchValue.toLowerCase().trim()
         })
         
         if(isTaken.length > 0){
@@ -137,7 +183,13 @@ const CreateUser = ( {setIsAuth} ) => {
 
     const uploadImageCloudinary = async (file) => {
       const formData = new FormData();
-      formData.append("file", file);
+
+      if(file===''){
+        formData.append("file", 'https://as2.ftcdn.net/jpg/00/64/67/27/220_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg');
+      }else{
+        formData.append("file", file);
+      }
+
       formData.append("upload_preset", "vkblr6a8");
 
       try {
@@ -249,7 +301,8 @@ const CreateUser = ( {setIsAuth} ) => {
 
         {!emailGoogleAccount && 
           <>
-            <TextField name='email' value={createUserInfo.email} onChange={handleChangeInput} type='email' className='inputRegisterEmail' error={errors.email ? true : false} autoFocus required label="Email" />
+            <TextField name='email' value={createUserInfo.email} onChange={handleChangeInput} type='email' className='inputRegisterEmail' error={errors.email || errorEmail.email ? true : false} autoFocus required label="Email" />
+            {errorEmail.email && <span className='registerErrors'>{errorEmail.email}</span>}
             {errors.email && <span className='registerErrors'>{errors.email}</span>}
 
             <TextField name='password' value={createUserInfo.password} onChange={handleChangeInput} type='password' className='inputRegisterPass' error={errors.password ? true : false} required label="Password" />
@@ -285,6 +338,7 @@ const CreateUser = ( {setIsAuth} ) => {
           <FormControlLabel value="female" control={<Radio />} label="Female" />
           <FormControlLabel value="other" control={<Radio />} label="Other" />
         </RadioGroup>
+        {errors.sex && <span className='registerErrors'>{errors.sex}</span>}
 
         <label htmlFor="country">Select your country:</label>
         <Select
@@ -322,6 +376,7 @@ const CreateUser = ( {setIsAuth} ) => {
             </div>
           </div>
         )}
+        {createUserInfo.country==='' && <span className='registerErrors'>{"Please select your country"}</span>}
 
         {!photoGoogleAccount &&
         <>
@@ -331,8 +386,18 @@ const CreateUser = ( {setIsAuth} ) => {
         }
         
         <TextField type="text" name="description" label="Description" value={createUserInfo.description} onChange={handleChangeInput} />
+        {errors.description && <span className='registerErrors'>{errors.description}</span>}
 
-        <Button type="submit" variant="contained" onClick={handleSubmit}>SAVE PROFILE</Button>
+        {emailGoogleAccount
+        ?
+        <Button type="submit" variant="contained" onClick={handleSubmit}
+        disabled={Object.keys(errors).length > 1 || createUserInfo.country === '' || errorUsername.user === true || errorEmail.email === true}
+        >SAVE PROFILE</Button>
+        :
+        <Button type="submit" variant="contained" onClick={handleSubmit}
+        disabled={Object.keys(errors).length > 0 || createUserInfo.country === '' || errorUsername.user === true || errorEmail.email === true}
+        >SAVE PROFILE</Button>
+        }
 
         </FormControl>
 

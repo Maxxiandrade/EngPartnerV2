@@ -66,6 +66,9 @@ export const validation = (values) => {
     if(!values.user){
         errors.user = 'User is required';
     }
+    if(values.user.includes(' ')){
+        errors.user = 'User cannot contain spaces';        
+    }
     if(values.user.length > 20){
         errors.user = 'User must be less than 20 characters long';
     }
@@ -77,6 +80,14 @@ export const validation = (values) => {
         if(!isOver18(values.date)){
             errors.date = 'Must be 18 years or older';
         }
+    }
+
+    if(values.sex===''){
+        errors.sex = 'Please select a sex';
+    }
+
+    if(values.description.length > 300){
+        errors.description = 'Description must be less than 200 characters long';
     }
         
 
