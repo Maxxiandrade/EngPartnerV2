@@ -1,6 +1,5 @@
 .room {
   position: relative;
-  padding-right: 5px;
 }
 
 .room:after {
