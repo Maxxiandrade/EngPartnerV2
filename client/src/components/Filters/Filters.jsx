@@ -18,7 +18,9 @@ const Filters = () => {
   // const [sexFilterValue, setSexFilterValue] = useState("");
   const [activeFilter, setActiveFilter] = useState(null);
   const [isVipFilterValue, setIsVipFilterValue] = useState(false);
+  console.log(isVipFilterValue)
   const [ageValue, setAgeValue] = useState("0");
+  console.log(ageValue)
 
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -33,6 +35,7 @@ const Filters = () => {
       }
     };
 
+    handleResize()
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -93,6 +96,7 @@ const Filters = () => {
     }
 
     if (ageValue !== "0") {
+      console.log(ageValue)
       dispatch(filterByAge(parseInt(ageValue)));
     }
 
