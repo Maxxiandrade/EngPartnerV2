@@ -13,8 +13,6 @@ import { db } from "../../firebase-config.js";
 import Cookies from "universal-cookie";
 import { setUserDataGoogleAccount, getMyUser } from "../../redux/actions/actions.js";
 import { useDispatch } from "react-redux";
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 
 const Login = ({ setIsAuth }) => {
@@ -94,7 +92,9 @@ const Login = ({ setIsAuth }) => {
       throw Error(error);
     }
   };
-
+  
+  
+  
 
   return (
     <>

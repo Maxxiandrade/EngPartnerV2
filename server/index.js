@@ -1,8 +1,9 @@
-const PORT = 3001
 const express = require('express')
+// require('dotenv').config
+const port = process.env.PORT || 3001
 
 const server = require('./app')
 
-server.listen(PORT,()=>{
-    console.log(`server listening on port: ${PORT}`)
+server.listen(port,()=>{
+    console.log(`server listening on port: ${port}`)
 })

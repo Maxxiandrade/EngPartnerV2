@@ -1,7 +1,10 @@
 import style from "./TopicChat.module.css";
 import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecc72c0376e2a1a788743dda60a8f525b28e6b8e
 import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/exclamation.svg"
 
