@@ -20,7 +20,7 @@ import Friends from "./Friends/Friends";
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 import { Navigate } from 'react-router-dom';
-import PrivateChat from "../Chats/PrivateChat/PrivateChat";
+
 
 const Home = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users.name);
