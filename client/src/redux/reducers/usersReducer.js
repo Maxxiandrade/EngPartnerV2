@@ -8,7 +8,8 @@ import { SET_USER_DATA_REGISTER,
    GET_MY_USER,
   SET_USER_DATA_GOOGLE_ACCOUNT,
 CLEAR_USER_DATA_IN_LOGOUT,
-GET_FRIENDS} from "../action_types/userActionTypes";
+GET_FRIENDS,
+CHANGE_USER} from "../action_types/userActionTypes";
 
 const initialState = {
   allUsers: [],
@@ -35,6 +36,8 @@ const initialState = {
   uidGoogleAccount: '',
   //filters
   genderFilter: 'both',
+  userChat:{},
+  chatId:null
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -182,6 +185,12 @@ const usersReducer = (state = initialState, action) => {
           return{
             ...state,
             friends: action.payload
+          }
+        case CHANGE_USER:
+          return{
+            ...state,
+            userChat: action.payload,
+            chatId: state.uid > action.payload.uid ? state.uid + action.payload.uid : action.payload.uid + state.uid 
           }
         default:
       return { ...state };

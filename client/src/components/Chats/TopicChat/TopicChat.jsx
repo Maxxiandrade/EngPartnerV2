@@ -1,7 +1,7 @@
 import style from "./TopicChat.module.css";
 import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
-import sendIcon from '../../../assets/sendIcon.svg'
+
 import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/exclamation.svg"
 

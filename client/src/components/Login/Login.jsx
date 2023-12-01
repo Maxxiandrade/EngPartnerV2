@@ -7,7 +7,7 @@ import style from "./Login.module.css";
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
 import { auth, provider } from "../../firebase-config.js";
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { db } from "../../firebase-config.js";
 import Cookies from "universal-cookie";
@@ -70,7 +70,7 @@ const Login = ({ setIsAuth }) => {
         axios.put('http://localhost:3001/geton', { uid, is: 'on' });
         navigate('/createuser');
       }
-
+      await setDoc(doc(db, "userChats", uid),{})
     } catch (error) {
       throw new Error(error);
     }
@@ -88,6 +88,8 @@ const Login = ({ setIsAuth }) => {
       setIsAuth(true);
       axios.put('http://localhost:3001/geton', { uid, is: "on" })
       dispatch(getMyUser(uid))
+
+      await setDoc(doc(db, "userChats", uid),{})
     } catch (error) {
       throw Error(error);
     }
