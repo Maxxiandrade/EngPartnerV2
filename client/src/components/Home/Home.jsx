@@ -21,6 +21,7 @@ import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 import { Navigate } from 'react-router-dom';
 
+
 const Home = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users.name);
   const userPhoto = useSelector((state) => state.users.photo);
@@ -75,27 +76,31 @@ const Home = ({ setIsAuth }) => {
             </div>
             <div className={style.navBtns}>
               <Link to='/connect'>
-                <button className={style.connectBtn}><img src={connect} alt="connect" className={style.icon} /></button>
+                <button className={style.connectBtn}>
+                  <img src={connect} alt="connect" className={style.icon} />
+                </button>
               </Link>
               <Link to='/premium'>
                 <button className={style.premium}>
                   <img src={crown} alt="" className={style.icon} />
                 </button>
               </Link>
-              <button onClick={handleLogOut} className={style.signOut}><img src={logOut} alt="logout" className={style.icon} /></button>
+              <button onClick={handleLogOut} className={style.signOut}>
+                <img src={logOut} alt="logout" className={style.icon} />
+              </button>
               <Link to={`/profile/${uid}`}>
                 <img src={userPhoto} alt="" className={style.userPhoto} />
               </Link>
             </div>
           </nav>
-          <body className={style.homeBody}>
+          <div className={style.homeComponentsDiv}>
             <div className={style.globalChat}>
               <TopicChat room={room} setRoom={setRoom} />
             </div>
             <div className={style.friendsComp}>
               <Friends />
             </div>
-          </body>
+          </div>
         </div>
       ) : (
         <Navigate to="/" replace={true} />

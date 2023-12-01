@@ -5,6 +5,7 @@ import { getOnline } from "../../../redux/actions/actions";
 
 import defaultImg from "../../../assets/user-default-pfp.png";
 
+import PrivateChat from "../../Chats/PrivateChat/PrivateChat"
 import Searchbar from "../Searchbar/Searchbar";
 
 import styles from "./Users.module.css";
@@ -67,6 +68,7 @@ const Users = () => {
           ))
         )}
       </div>
+      <PrivateChat/>
     </div>
   );
 };
