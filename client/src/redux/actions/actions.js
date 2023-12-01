@@ -9,7 +9,8 @@ GET_MY_USER,
 SET_USER_DATA_GOOGLE_ACCOUNT,
 CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
-GET_FRIENDS
+GET_FRIENDS,
+CHANGE_USER
  } from "../action_types/userActionTypes";
 
 
@@ -151,4 +152,11 @@ export const getFriends = (uid)=>async(dispatch)=>{
   } catch (error) {
     throw Error(error)
   }
+};
+
+export const chatReducer = (id)=>(dispatch)=>{
+      dispatch({
+        type: CHANGE_USER,
+        payload: id
+      })
 }

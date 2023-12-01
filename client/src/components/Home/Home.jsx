@@ -21,6 +21,7 @@ import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 import { Navigate } from 'react-router-dom';
 
+
 const Home = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users.name);
   const userPhoto = useSelector((state) => state.users.photo);
