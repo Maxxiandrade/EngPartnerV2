@@ -20,7 +20,7 @@ const Friends = () => {
   
     return(
         <div className={style.friendContainer}>
-            <h1 className={style.txt}>Friends:</h1>
+     
             
             <div className={style.txtH1}><h1>Friends:</h1></div>
             {friends?.length === 0 ? <p className={style.txt}>Your frind list is empty</p> : friends?.map((friend)=>(
