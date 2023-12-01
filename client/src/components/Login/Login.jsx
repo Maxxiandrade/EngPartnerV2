@@ -1,6 +1,6 @@
 //Visuals
 import logo from "../../assets/logo.png";
-import googleLogo from "../../assets/googleLogo.svg";
+import googleLogo from "../../assets/svg/googleLogo.svg";
 import style from "./Login.module.css";
 
 //Tools
@@ -24,16 +24,16 @@ const Login = ({ setIsAuth }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const { displayName, photoURL, uid, email } = result.user;
-      
-  
+
+
       // Verificar si el usuario ya está registrado con la misma uid
       const existingUserRef = doc(db, 'users', uid);
       const existingUserDoc = await getDoc(existingUserRef);
-  
+
       if (existingUserDoc.exists()) {
         // Si el usuario ya está registrado con google
         console.log('El usuario ya está registrado.');
-        
+
         dispatch(
           setUserDataGoogleAccount({
             email: email,
@@ -46,29 +46,29 @@ const Login = ({ setIsAuth }) => {
         cookies.set('auth-token', result.user.refreshToken);
         setIsAuth(true);
         console.log(result.user);
-    
+
         dispatch(getMyUser(uid))
         await axios.put('http://localhost:3001/geton', { uid, is: 'on' });
         navigate('/home');
 
-      }else{
+      } else {
         // Si el usuario no estaba registrado con google antes
         //Crea en el estado global, las variables que ya vienen dentro de su cuenta de Google.
         dispatch(setUserDataGoogleAccount({
-            email: email,
-            photo: photoURL,
-            uid: uid,
-          }));
-    
+          email: email,
+          photo: photoURL,
+          uid: uid,
+        }));
+
         localStorage.setItem('uid', auth?.currentUser?.uid);
         cookies.set('auth-token', result.user.refreshToken);
         setIsAuth(true);
         console.log(result.user);
-    
+
         axios.put('http://localhost:3001/geton', { uid, is: 'on' });
         navigate('/createuser');
       }
-      
+
     } catch (error) {
       throw new Error(error);
     }
@@ -84,7 +84,7 @@ const Login = ({ setIsAuth }) => {
       localStorage.setItem('uid', auth?.currentUser?.uid);
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
-      axios.put('http://localhost:3001/geton',{ uid, is: "on"} )
+      axios.put('http://localhost:3001/geton', { uid, is: "on" })
       dispatch(getMyUser(uid))
     } catch (error) {
       throw Error(error);
@@ -93,6 +93,7 @@ const Login = ({ setIsAuth }) => {
   
   
   
+
   return (
     <>
       <div className={style.backgroundImg}>
@@ -161,7 +162,7 @@ const Login = ({ setIsAuth }) => {
                 Log in
               </button>
               <button onClick={signInWithGoogle} className={style.button}>
-                <img src={googleLogo} alt="Google" className={style.googleLogo}/> Sign in with Google
+                <img src={googleLogo} alt="Google" className={style.googleLogo} /> Sign in with Google
               </button>
               <br />
               <label className={style.inputSize}>Don't have an account?</label>

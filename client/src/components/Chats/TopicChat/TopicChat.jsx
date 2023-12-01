@@ -1,4 +1,6 @@
 import style from "./TopicChat.module.css";
+import sendIcon from '../../../assets/svg/sendIcon.svg'
+import verify from '../../../assets/svg/verify.svg'
 import sendIcon from '../../../assets/sendIcon.svg'
 import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/exclamation.svg"
@@ -18,7 +20,10 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Chat = ({ room, setRoom }) => {
-  const user = useSelector(state=> state.users)
+
+  const isVip = useSelector(state => state.users.isVip)
+
+  const user = useSelector(state => state.users)
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [messageOptions, setMessageOptions] = useState({})
@@ -81,8 +86,9 @@ const Chat = ({ room, setRoom }) => {
       text: newMessage,
       createdAt: serverTimestamp(),
       user: user.user,
-      profilePic:user.photo,
+      profilePic: user.photo,
       uid: user.uid,
+      isVip: user.isVip,
       room,
     });
     setNewMessage("");
@@ -109,7 +115,12 @@ const Chat = ({ room, setRoom }) => {
                 <img src={message.profilePic} className={style.profilePic} />
               </Link>
               <Link to={`/profile/${message.uid}`}>
-                <span className={style.user}>{`${message.user}: `}</span>
+                <span className={style.user}>
+                  <div className={style.verifyDiv}>
+                    {message.isVip ? <img src={verify} className={style.verify} /> : ''}
+                  </div>
+                  {`${message.user}:`}
+                </span>
               </Link>
               <div className={style.textDiv}>
               <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
@@ -130,7 +141,7 @@ const Chat = ({ room, setRoom }) => {
             value={newMessage}
           />
           <button className={style.sendButton} type="submit">
-          <img src={sendIcon} alt="Send" className={style.sendIcon}/>
+            <img src={sendIcon} alt="Send" className={style.sendIcon} />
           </button>
         </form>
       </div>
