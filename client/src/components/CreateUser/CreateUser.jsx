@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreateUser.module.css";
 import { getAllCountries } from "../../redux/actions/countriesActions";
-import { createNewUser, setUserDataRegister } from "../../redux/actions/actions";
+import { createNewUser, setUserDataRegister, getAllUsers } from "../../redux/actions/actions";
 import { TextField } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -22,6 +22,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { auth } from '../../firebase-config'
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import Cookies from 'universal-cookie'
+import useDebounce from "../../customHooks/useDebounce";
 
 const CreateUser = ( {setIsAuth} ) => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const CreateUser = ( {setIsAuth} ) => {
   const [registred, setRegistred] = useState(false)
 
   const countries = useSelector((state) => state.countries.countries);
+  const allUsers = useSelector((state) => state.users.allUsers);
 
   const uidGoogleAccount = useSelector((state) => state.users.uidGoogleAccount);
   const emailGoogleAccount = useSelector((state) => state.users.emailGoogleAccount);
@@ -58,9 +60,28 @@ const CreateUser = ( {setIsAuth} ) => {
   });
   
   const [errors, setErrors] = useState({})
+  const [errorUsername, setErrorUsername] = useState({
+    user: false
+  })
+  const [errorEmail, setErrorEmail] = useState({
+    email: false
+  })
 
 
     const handleChangeInput = (event) => {
+      if(event.target.name === 'email'){
+        handleChangeEmail(event)
+      }
+      if(event.target.name === "user"){
+        handleChangeUser(event)
+      }
+      if(event.target.name === "photo"){
+        handleChangeImage(event)
+      }
+      setErrors(validation({
+        ...createUserInfo,
+        [event.target.name]: event.target.value
+      }))
       setCreateUserInfo({
         ...createUserInfo,
         [event.target.name]: event.target.value,
@@ -74,9 +95,101 @@ const CreateUser = ( {setIsAuth} ) => {
       })
     }
 
+    const handleChangeUser = useDebounce(async(event) => {
+      if (event.target.value === '') {
+          setErrors(validation({
+            ...createUserInfo,
+            [event.target.name]: event.target.value
+          }))
+      }else if (event.target.value.includes(' ')){
+        return
+      }else{
+          const taken = await usernameTaken(event.target.value);
+          if (taken) {
+            setErrorUsername({
+              ...errorUsername,
+              user: 'The username is already taken by another user'
+            })
+          }else{
+            return(
+              setErrorUsername({
+                ...errorUsername,
+                user: false
+              }),
+              setCreateUserInfo({
+                ...createUserInfo,
+                [event.target.name]: event.target.value,
+              })
+            )
+            
+          }
+
+      }}, 1000)
+
+    const handleChangeEmail = useDebounce(async(event) => {
+          const taken = await emailTaken(event.target.value);
+          if (taken) {
+            setErrorEmail({
+              ...errorEmail,
+              email: 'The email is already taken by another user'
+            })
+          }else{
+            return(
+              setErrorEmail({
+                ...errorEmail,
+                email: false
+              }),
+              setCreateUserInfo({
+                ...createUserInfo,
+                [event.target.name]: event.target.value,
+              })
+            )
+          }
+    }, 1000)
+
+  const usernameTaken = async (searchValue) => {
+    try {
+        const isTaken = await allUsers?.filter((user) => {
+            return user.user.toLowerCase().trim() === searchValue.toLowerCase().trim()
+        })
+        
+        if(isTaken.length > 0){
+            console.log('true, ya existe', isTaken);
+            return true
+        }
+        console.log('false, no existe');
+        return false
+    } catch (error) {
+        throw Error(error)
+    }
+  }
+
+  const emailTaken = async (searchValue) => {
+    try {
+        const isTaken = await allUsers?.filter((user) => {
+            return user.email.toLowerCase().trim() === searchValue.toLowerCase().trim()
+        })
+        
+        if(isTaken.length > 0){
+            console.log('true, ya existe', isTaken);
+            return true
+        }
+        console.log('false, no existe');
+        return false
+    } catch (error) {
+        throw Error(error)
+    }
+  }
+
     const uploadImageCloudinary = async (file) => {
       const formData = new FormData();
-      formData.append("file", file);
+
+      if(file===''){
+        formData.append("file", 'https://as2.ftcdn.net/jpg/00/64/67/27/220_F_64672736_U5kpdGs9keUll8CRQ3p3YaEv2M6qkVY5.jpg');
+      }else{
+        formData.append("file", file);
+      }
+
       formData.append("upload_preset", "vkblr6a8");
 
       try {
@@ -145,13 +258,23 @@ const CreateUser = ( {setIsAuth} ) => {
         
 
       } catch (error) {
-        throw Error(error)
+        // Maneja el error específico de Firebase
+        if (error.code === 'auth/email-already-in-use') {
+          console.error('Error: El correo electrónico ya está en uso');
+          alert('El correo electrónico ya está en uso. Por favor, utiliza otro correo electrónico.');
+        } else {
+          console.error('Ocurrio este error al registrar usuario:', error);
+          alert('Hubo un error al registrar el usuario. Por favor, inténtalo de nuevo.');
+        }
       }
     }
 
   useEffect(() => {
     if(countries.length === 0){
         dispatch(getAllCountries());
+    }
+    if(allUsers.length === 0){
+        dispatch(getAllUsers());
     }
     const getAge = () => {
       const birthDate = new Date(createUserInfo.date);
@@ -167,7 +290,7 @@ const CreateUser = ( {setIsAuth} ) => {
     }
     
     getAge()
-  }, [countries, selectedCountry, createUserInfo.date, uidGoogleAccount, emailGoogleAccount, photoGoogleAccount, createUserInfo.photo]);
+  }, [countries, selectedCountry, createUserInfo.date, uidGoogleAccount, emailGoogleAccount, photoGoogleAccount, createUserInfo.photo, allUsers]);
 
 
   return (
@@ -178,7 +301,8 @@ const CreateUser = ( {setIsAuth} ) => {
 
         {!emailGoogleAccount && 
           <>
-            <TextField name='email' value={createUserInfo.email} onChange={handleChangeInput} type='email' className='inputRegisterEmail' error={errors.email ? true : false} autoFocus required label="Email" />
+            <TextField name='email' value={createUserInfo.email} onChange={handleChangeInput} type='email' className='inputRegisterEmail' error={errors.email || errorEmail.email ? true : false} autoFocus required label="Email" />
+            {errorEmail.email && <span className='registerErrors'>{errorEmail.email}</span>}
             {errors.email && <span className='registerErrors'>{errors.email}</span>}
 
             <TextField name='password' value={createUserInfo.password} onChange={handleChangeInput} type='password' className='inputRegisterPass' error={errors.password ? true : false} required label="Password" />
@@ -186,11 +310,15 @@ const CreateUser = ( {setIsAuth} ) => {
           </>
         }
 
-        <TextField type="text" name="name" label="Name" value={createUserInfo.name} onChange={handleChangeInput}/>
+        <TextField type="text" name="name" label="Name" value={createUserInfo.name} onChange={handleChangeInput} required className='inputRegisterName' error={errors.name ? true : false} />
+        {errors.name && <span className='registerErrors'>{errors.name}</span>}
         
-        <TextField type="text" name="lastname" label="Lastname" value={createUserInfo.lastname} onChange={handleChangeInput}/>
+        <TextField type="text" name="lastname" label="Lastname" value={createUserInfo.lastname} onChange={handleChangeInput} required className='inputRegisterLastname' error={errors.lastname ? true : false}/>
+        {errors.lastname && <span className='registerErrors'>{errors.lastname}</span>}
 
-        <TextField type="text" name="user" label="Username" value={createUserInfo.user} onChange={handleChangeInput}/>
+        <TextField type="text" name="user" label="Username" value={createUserInfo.user} onChange={handleChangeInput} required className='inputRegisterUser' error={errorUsername.user || errors.user ? true : false}/>
+        {errorUsername.user && <span className='registerErrors'>{errorUsername.user}</span>}
+        {errors.user && <span className='registerErrors'>{errors.user}</span>}
 
 
         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -210,6 +338,7 @@ const CreateUser = ( {setIsAuth} ) => {
           <FormControlLabel value="female" control={<Radio />} label="Female" />
           <FormControlLabel value="other" control={<Radio />} label="Other" />
         </RadioGroup>
+        {errors.sex && <span className='registerErrors'>{errors.sex}</span>}
 
         <label htmlFor="country">Select your country:</label>
         <Select
@@ -247,6 +376,7 @@ const CreateUser = ( {setIsAuth} ) => {
             </div>
           </div>
         )}
+        {createUserInfo.country==='' && <span className='registerErrors'>{"Please select your country"}</span>}
 
         {!photoGoogleAccount &&
         <>
@@ -256,8 +386,18 @@ const CreateUser = ( {setIsAuth} ) => {
         }
         
         <TextField type="text" name="description" label="Description" value={createUserInfo.description} onChange={handleChangeInput} />
+        {errors.description && <span className='registerErrors'>{errors.description}</span>}
 
-        <Button type="submit" variant="contained" onClick={handleSubmit}>SAVE PROFILE</Button>
+        {emailGoogleAccount
+        ?
+        <Button type="submit" variant="contained" onClick={handleSubmit}
+        disabled={Object.keys(errors).length > 1 || createUserInfo.country === '' || errorUsername.user === true || errorEmail.email === true}
+        >SAVE PROFILE</Button>
+        :
+        <Button type="submit" variant="contained" onClick={handleSubmit}
+        disabled={Object.keys(errors).length > 0 || createUserInfo.country === '' || errorUsername.user === true || errorEmail.email === true}
+        >SAVE PROFILE</Button>
+        }
 
         </FormControl>
 
