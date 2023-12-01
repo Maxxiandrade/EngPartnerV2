@@ -16,6 +16,11 @@
   border-bottom: solid 0.5px #30363d;
 }
 
+.navBtns {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .connectBtn,
 .signOut,
 .premium {
@@ -54,28 +59,33 @@
   box-shadow: 0px 0px 10px rgb(255, 0, 0);
 }
 
+.homeComponentsDiv{
+  display: flex;
+  justify-content: space-around;
+  max-height: 80%;
+}
+
 .globalChat {
   background-color: #031525;
   display: flex;
   padding: 20px;
   box-sizing: border-box;
   width: 60%;
-  height: 600px;
+  max-height: 100%;
 }
 
 .friendsComp {
   padding: 20px;
   box-sizing: border-box;
-  width: 30%;
-}
-
-.homeBody {
-  align-items: center;
-  justify-content: space-evenly;
+  width: 20%;
+  max-height: 100%;
 }
 
 .homeMainDiv {
   background-color: #031525;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .userPhoto {
@@ -92,9 +102,4 @@
   background-color: #1f2147;
   border-color: white;
   box-shadow: 0px 0px 10px #ffffff;
-}
-
-.navBtns {
-  justify-content: space-between;
-  align-items: center;
 }
