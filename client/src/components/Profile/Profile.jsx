@@ -95,7 +95,7 @@ const Profile = ({ setIsAuth }) => {
     dispatch(clearUserDataInLogout());
   }
 
-  if (user.uid === params.uid) return (
+  if (localStorage.getItem("uid") === params.uid) return (
     <div className={style.profileMainDiv}>
       <nav className={style.nav}>
         <Link to="/home">
