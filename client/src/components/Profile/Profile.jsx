@@ -18,9 +18,10 @@ import { editUser, handleUser } from "../../redux/actions/actions";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
-import { API_URL } from "../../../../server/firebase-confing";
+import { API_URL } from "../../firebase-config";
 
 const Profile = ({ setIsAuth }) => {
+  console.log('fuera useffect', API_URL);
   const user = useSelector((state) => state.users)
   const uid = useSelector((state) => state.users.uid)
   const photo = useSelector((state) => state.users.photo)
@@ -55,6 +56,8 @@ const Profile = ({ setIsAuth }) => {
           setProfile(data);
         }
       });
+
+      console.log('dentro useffect',API_URL)
   }, [params?.uid, friendList, isFriend]);
 
   const handleEdit = () => {
