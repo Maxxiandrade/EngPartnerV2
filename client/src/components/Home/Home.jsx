@@ -75,6 +75,9 @@ const Home = ({ setIsAuth }) => {
               <TopicsChat setingValueRoom={setingValueRoom} />
             </div>
             <div className={style.navBtns}>
+            <Link to='/messages'>
+              <button>Chats</button>
+              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
@@ -91,6 +94,7 @@ const Home = ({ setIsAuth }) => {
               <Link to={`/profile/${uid}`}>
                 <img src={userPhoto} alt="" className={style.userPhoto} />
               </Link>
+              
             </div>
           </nav>
           <div className={style.homeComponentsDiv}>

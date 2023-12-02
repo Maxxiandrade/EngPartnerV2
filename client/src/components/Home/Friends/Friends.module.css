@@ -1,4 +1,5 @@
 .friendContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items:flex-start;
@@ -62,4 +63,18 @@
 
 .onlineOffline {
   width: 25px;
+}
+
+.astronaut{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.txt{
+  color: #371A46;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
 }
