@@ -21,6 +21,11 @@ const Friends = () => {
   
     return(
         <div className={style.friendContainer}>
+<<<<<<< HEAD
+     
+            
+=======
+>>>>>>> bd6a6c95a6b2b91538b32682959ff66c51c0c461
             <div className={style.txtH1}><h1>Friends:</h1></div>
             {friends?.length === 0 ? <p className={style.txt}>It seems to be no one around here, try connecting with someone!<img src={astronaut} alt="" className={style.astronaut}/></p> : friends?.map((friend)=>(
                 <>

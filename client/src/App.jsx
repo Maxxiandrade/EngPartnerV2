@@ -14,6 +14,7 @@ import { useEffect, useState} from "react";
 import Cookies from 'universal-cookie';
 import { Routes, Route, Navigate } from "react-router-dom";
 import {Cloudinary} from "@cloudinary/url-gen";
+import PrivateChat from "./components/Chats/PrivateChat/PrivateChat";
 
 
 
@@ -44,6 +45,7 @@ function App() {
       <Route path='profile/:uid' element={<Profile setIsAuth={setIsAuth}/>}/>
       <Route path="connect" element={<Users/>}/>
       <Route path="/premium" element={<Premium/>}/>
+      <Route path="/messages" element={<PrivateChat/>}/>
     </Routes>
   );
 }

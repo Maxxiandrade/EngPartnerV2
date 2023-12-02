@@ -68,7 +68,6 @@ const Users = () => {
           ))
         )}
       </div>
-      <PrivateChat/>
     </div>
   );
 };
