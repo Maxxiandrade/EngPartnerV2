@@ -18,10 +18,8 @@ import { editUser, handleUser } from "../../redux/actions/actions";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
-import { API_URL } from "../../firebase-config";
 
 const Profile = ({ setIsAuth }) => {
-  console.log('fuera useffect', API_URL);
   const user = useSelector((state) => state.users)
   const uid = useSelector((state) => state.users.uid)
   const photo = useSelector((state) => state.users.photo)
@@ -49,15 +47,13 @@ const Profile = ({ setIsAuth }) => {
     console.log(friendList)
     console.log(isFriend)
     axios
-      .post(`${API_URL}/user`, { uid: params.uid })
+      .post(`http://localhost:3001/user`, { uid: params.uid })
       .then(({ data }) => {
         if (data) {
           console.log(data);
           setProfile(data);
         }
       });
-
-      console.log('dentro useffect',API_URL)
   }, [params?.uid, friendList, isFriend]);
 
   const handleEdit = () => {
