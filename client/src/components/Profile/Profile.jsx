@@ -18,6 +18,7 @@ import { editUser, handleUser } from "../../redux/actions/actions";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
+import { API_URL } from "../../../../server/firebase-confing";
 
 const Profile = ({ setIsAuth }) => {
   const user = useSelector((state) => state.users)
@@ -47,7 +48,7 @@ const Profile = ({ setIsAuth }) => {
     console.log(friendList)
     console.log(isFriend)
     axios
-      .post(`http://localhost:3001/user`, { uid: params.uid })
+      .post(`${API_URL}/user`, { uid: params.uid })
       .then(({ data }) => {
         if (data) {
           console.log(data);
