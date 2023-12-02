@@ -1,5 +1,4 @@
 import { FILTER_BY_MALE,
-FILTER_BY_BOTH,
 FILTER_BY_FEMALE,
 FILTER_BY_VIP,
 RESET_FILTERS,
@@ -9,10 +8,6 @@ FILTER_BY_COUNTRY
 
 export const filterByMale = () => ({
     type: FILTER_BY_MALE,
-  });
-  
-  export const filterByBoth = () => ({
-    type: FILTER_BY_BOTH,
   });
   
   export const filterByFemale = () => ({
@@ -26,6 +21,7 @@ export const filterByVip = ()=>{
 }
 
 export const filterByAge = (age)=>{
+    console.log(typeof(age))
     return{
         type: FILTER_BY_AGE,
         payload: age

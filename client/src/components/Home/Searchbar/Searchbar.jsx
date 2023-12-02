@@ -10,9 +10,6 @@ const Searchbar = ()=>{
     const [userName, setUserName] = useState("")
     const dispatch = useDispatch()
 
-    const user = useSelector(state => state.users.user)
-    console.log(user)
-
     const handleSearch = ()=>{
         if(userName === ""){
             window.alert("you need to type a userId")

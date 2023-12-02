@@ -1,4 +1,3 @@
-export const FILTER_BY_BOTH = "FILTER_BY_BOTH"
 export const FILTER_BY_MALE = "FILTER_BY_MALE"
 export const FILTER_BY_FEMALE = "FILTER_BY_FEMALE"
 export const FILTER_BY_VIP = "FILTER_BY_VIP"
