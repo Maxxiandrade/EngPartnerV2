@@ -9,14 +9,14 @@ const {getFirestore} = require('firebase/firestore')
 
 // Tu configuración de Firebase
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  databaseURL: process.env.DATABASE_URL,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.measurementId
+  apiKey: "AIzaSyCPpyik8XGBmAaUvbkt7PjxU35Qc5hLqWk",
+  authDomain: "engpartner-aa0ce.firebaseapp.com",
+  databaseURL: "https://engpartner-aa0ce-default-rtdb.firebaseio.com",
+  projectId: "engpartner-aa0ce",
+  storageBucket: "engpartner-aa0ce.appspot.com",
+  messagingSenderId: "1063143272771",
+  appId: "1:1063143272771:web:288baf241344440c957ff6",
+  measurementId: "G-3W9M81JPD8"
 };
 
 // Inicializa Firebase
