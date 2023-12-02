@@ -1,43 +1,51 @@
-import { FILTER_BY_AGE,  FILTER_BY_VIP, RESET_FILTERS, FILTER_BY_MALE,FILTER_BY_BOTH,FILTER_BY_FEMALE } from "../action_types/filterActionTypes";
+import {
+  FILTER_BY_AGE,
+  FILTER_BY_VIP,
+  RESET_FILTERS,
+  FILTER_BY_MALE,
+  FILTER_BY_FEMALE,
+} from "../action_types/filterActionTypes";
 
-import { SET_USER_DATA_REGISTER,
-   GET_ALL_USERS,
-   ERROR_GETTING_USERS,
-   GET_ONLINE,
-   GET_USER_BY_USERNAME, 
-   GET_MY_USER,
+import {
+  SET_USER_DATA_REGISTER,
+  GET_ALL_USERS,
+  ERROR_GETTING_USERS,
+  GET_ONLINE,
+  GET_USER_BY_USERNAME,
+  GET_MY_USER,
   SET_USER_DATA_GOOGLE_ACCOUNT,
-CLEAR_USER_DATA_IN_LOGOUT,
-GET_FRIENDS,
-CHANGE_USER} from "../action_types/userActionTypes";
+  CLEAR_USER_DATA_IN_LOGOUT,
+  GET_FRIENDS,
+  CHANGE_USER,
+} from "../action_types/userActionTypes";
 
 const initialState = {
   allUsers: [],
   users: [],
   error: null,
-  uid: '',
-  email: '',
-  password: '',
+  uid: "",
+  email: "",
+  password: "",
   date: null,
-  name: '',
-  lastname: '',
-  user: '',
-  age: '',
-  sex: '',
-  country: '',
-  description: '',
-  photo: '',
+  name: "",
+  lastname: "",
+  user: "",
+  age: "",
+  sex: "",
+  country: "",
+  description: "",
+  photo: "",
   friends: [],
   isVip: false,
   isOn: false,
   isAdmin: false,
-  emailGoogleAccount: '',
-  photoGoogleAccount: '',
-  uidGoogleAccount: '',
+  emailGoogleAccount: "",
+  photoGoogleAccount: "",
+  uidGoogleAccount: "",
   //filters
-  genderFilter: 'both',
-  userChat:{},
-  chatId:null
+  genderFilter: "both",
+  userChat: {},
+  chatId: null,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -46,12 +54,12 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
-        allUsers: action.payload
+        allUsers: action.payload,
       };
 
     case GET_MY_USER:
-      console.log('holas reducer')
-      return{
+      console.log("holas reducer");
+      return {
         ...state,
         uid: action.payload.uid,
         email: action.payload.email,
@@ -67,8 +75,8 @@ const usersReducer = (state = initialState, action) => {
         friends: action.payload.friends,
         isVip: action.payload.isVip,
         isAdmin: action.payload.isAdmin,
-        isOn: action.payload.isOn
-      }
+        isOn: action.payload.isOn,
+      };
 
     case SET_USER_DATA_REGISTER:
       return {
@@ -87,112 +95,108 @@ const usersReducer = (state = initialState, action) => {
         friends: action.payload.friends,
         isVip: action.payload.isVip,
         isOn: action.payload.isOn,
-        isAdmin: action.payload.isAdmin
+        isAdmin: action.payload.isAdmin,
       };
-      
 
     case SET_USER_DATA_GOOGLE_ACCOUNT:
       return {
         ...state,
         emailGoogleAccount: action.payload.email,
         photoGoogleAccount: action.payload.photo,
-        uidGoogleAccount: action.payload.uid
-      }
+        uidGoogleAccount: action.payload.uid,
+      };
 
     case CLEAR_USER_DATA_IN_LOGOUT:
       return {
         ...state,
-        uid: '',
-        email: '',
-        password: '',
+        uid: "",
+        email: "",
+        password: "",
         date: null,
-        name: '',
-        lastname: '',
-        user: '',
-        age: '',
-        sex: '',
-        country: '',
-        description: '',
-        photo: '',
+        name: "",
+        lastname: "",
+        user: "",
+        age: "",
+        sex: "",
+        country: "",
+        description: "",
+        photo: "",
         friends: [],
         isVip: false,
         isOn: false,
         isAdmin: false,
-        emailGoogleAccount: '',
-        photoGoogleAccount: '',
-        uidGoogleAccount: '',
-      }
+        emailGoogleAccount: "",
+        photoGoogleAccount: "",
+        uidGoogleAccount: "",
+      };
 
     case ERROR_GETTING_USERS:
       return { ...state, error: action.payload };
 
-      case GET_ONLINE:
-        return{...state, 
-          users: action.payload,
-          allUsers: action.payload
-        }
+    case GET_ONLINE:
+      return { ...state, users: action.payload, allUsers: action.payload };
 
-      case GET_USER_BY_USERNAME:
-        return {
-          ...state,
-          users: [action.payload, ...state.users]
-        }
-
-      //filters for searching users
-      case FILTER_BY_MALE:
+    case GET_USER_BY_USERNAME:
       return {
         ...state,
-        genderFilter: 'male',
-        users: state.allUsers.filter(user => user.sex === 'male'), 
+        users: [action.payload, ...state.users],
       };
-    case FILTER_BY_BOTH:
+
+    //filters for searching users
+    case FILTER_BY_MALE:
+      const maleResults = state.allUsers.filter((user) => user.sex === "male")
       return {
         ...state,
-        genderFilter: 'both',
-        users: state.allUsers, 
+        genderFilter: "male",
+        users: maleResults,
       };
+
     case FILTER_BY_FEMALE:
+      const femaledResults = state.allUsers.filter((user) => user.sex === "female")
       return {
         ...state,
-        genderFilter: 'female',
-        users: state.allUsers.filter(user => user.sex === 'female'), // Filtra por género femenino
+        genderFilter: "female",
+        users: femaledResults,
       };
 
-      case FILTER_BY_VIP:
-        let filteredByVip = []  
-        filteredByVip = state.users.filter(user=> user.isVip === true)
-        return {
-          ...state,
-          users: filteredByVip,
-        }
+    case FILTER_BY_VIP:
+      let filteredVip
+      filteredVip = state.users.filter((user) => user.isVip === true)
+      console.log(filteredVip)
+      return {
+        ...state,
+        users: filteredVip,
+      };
 
-      case FILTER_BY_AGE:
-        let filterByAge 
+    case FILTER_BY_AGE:
+      const age = action.payload;
+      const ageFiltered = state.users.filter((user) => user.age === age);
+      console.log(ageFiltered)
+      return {
+        ...state,
+        users: ageFiltered,
+      };
 
-        filterByAge = state.users.filter(user=> user.age === action.payload)
-        return {
-          ...state,
-          users: filterByAge
-        }
-
-        case RESET_FILTERS:
-          return {
-            ...state,
-            users: state.allUsers
-          
-          }
-        case GET_FRIENDS:
-          return{
-            ...state,
-            friends: action.payload
-          }
-        case CHANGE_USER:
-          return{
-            ...state,
-            userChat: action.payload,
-            chatId: state.uid > action.payload.uid ? state.uid + action.payload.uid : action.payload.uid + state.uid 
-          }
-        default:
+    case RESET_FILTERS:
+      return {
+        ...state,
+        users: state.allUsers,
+      };
+    case GET_FRIENDS:
+      return {
+        ...state,
+        friends: action.payload,
+      };
+    case CHANGE_USER:
+      return {
+        ...state,
+        userChat: action.payload,
+        chatId:
+          state.uid > action.payload.uid
+            ? state.uid + action.payload.uid
+            : action.payload.uid + state.uid,
+      };
+    default:
       return { ...state };
   }
 };

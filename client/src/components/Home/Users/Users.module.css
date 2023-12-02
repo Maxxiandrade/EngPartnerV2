@@ -1,4 +1,5 @@
 .connectContainer {
+    height: 100vh;
     position: relative;
 }
 .nav{

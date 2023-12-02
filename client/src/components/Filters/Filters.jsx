@@ -5,7 +5,6 @@ import {
   filterByAge,
   filterByFemale,
   filterByMale,
-  filterByBoth,
   filterByVip,
   resetFilters,
 } from "../../redux/actions/filterActions";
@@ -14,13 +13,13 @@ import styles from "./Filters.module.css";
 
 const Filters = () => {
   const dispatch = useDispatch();
+  const users = useSelector((state) => state.users.users);
+  console.log(users)
 
   // const [sexFilterValue, setSexFilterValue] = useState("");
   const [activeFilter, setActiveFilter] = useState(null);
   const [isVipFilterValue, setIsVipFilterValue] = useState(false);
-  console.log(isVipFilterValue)
   const [ageValue, setAgeValue] = useState("0");
-  console.log(ageValue)
 
   const [areFiltersVisible, setAreFiltersVisible] = useState(false);
   const [showButton, setShowButton] = useState(true);
@@ -61,52 +60,57 @@ const Filters = () => {
   };
 
   const handleFilterByMale = () => {
-    if (activeFilter !== "male") {
-      setActiveFilter("male");
-    } else {
-      setActiveFilter(null);
-    }
+    setActiveFilter("male")
   };
 
-  const handleFilterByBoth = () => {
-    if (activeFilter !== "both") {
-      setActiveFilter("both");
-    }
-  };
 
   const handleFilterByFemale = () => {
-    if (activeFilter !== "female") {
-      setActiveFilter("female");
-    } else {
-      setActiveFilter(null);
-    }
+    setActiveFilter("female")
   };
 
   const handleFilterByVip = () => {
     setIsVipFilterValue(!isVipFilterValue);
 
-    console.log(isVipFilterValue);
+    // console.log(isVipFilterValue);
   };
 
   const applyFilters = () => {
     setAreFiltersVisible(false);
     setButtonClicked(!areFiltersVisible);
-    if (isVipFilterValue === true) {
-      dispatch(filterByVip());
+    
+    if(ageValue !== "0"){
+      dispatch(filterByAge(+ageValue))
+    }
+    if(isVipFilterValue){
+      dispatch(filterByVip())
     }
 
-    if (ageValue !== "0") {
-      console.log(ageValue)
-      dispatch(filterByAge(parseInt(ageValue)));
+
+    if(activeFilter === "male"){
+      dispatch(filterByMale(activeFilter))
+      if (isVipFilterValue === true) {
+        dispatch(filterByVip())
+      }
+      if (ageValue !== "0") {
+        dispatch(filterByAge(+ageValue));
+      } 
+      setActiveFilter(null)
     }
 
-    if (activeFilter === 'male') {
-      dispatch(filterByMale());
-    } else if (activeFilter === 'female') {
-      dispatch(filterByFemale());
-    } else {
-      dispatch(filterByBoth());
+    if(activeFilter === "female"){
+      dispatch(filterByFemale(activeFilter))
+      if (isVipFilterValue === true) {
+        dispatch(filterByVip())
+      }
+      if (ageValue !== "0") {
+        dispatch(filterByAge(+ageValue));
+      } 
+      setActiveFilter(null)
+
     }
+    
+     
+
 
     setIsVipFilterValue(false);
     setAgeValue("0");
@@ -142,14 +146,7 @@ const Filters = () => {
               >
                 Male
               </button>
-              <button className={styles.sexBtns}
-                onClick={handleFilterByBoth}
-                style={{
-                  fontWeight: activeFilter === "both" ? "bold" : "normal",
-                }}
-              >
-                Both
-              </button>
+
               <button className={styles.sexBtns}
                 onClick={handleFilterByFemale}
                 style={{
@@ -172,7 +169,8 @@ const Filters = () => {
               onChange={handleFilterByAge}
             />
             <span>{ageValue}</span>
-          <button onClick={handleFilterByVip}>vip</button>
+          <button onClick={handleFilterByVip}
+          className={`${styles.vipButton} ${isVipFilterValue ? styles.vipActive : ''}`}>vip</button>
           </div>
 
 

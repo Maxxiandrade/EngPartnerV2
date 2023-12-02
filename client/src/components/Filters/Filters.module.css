@@ -29,7 +29,7 @@
 
 .buttonsSexContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .sexBtnsContainer p {
@@ -64,6 +64,15 @@
     margin-top: 1em;
     align-self: center;
 }
+
+.vipButton {
+    background-color: #f9f9f9;
+  }
+  
+  .vipActive {
+    background-color: yellow;
+    /* Otros estilos si es necesario cuando isVipFilterValue es true */
+  }
 
 @media screen and (min-width: 900px){
     .filtersContainer{
