@@ -10,8 +10,10 @@ SET_USER_DATA_GOOGLE_ACCOUNT,
 CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
 GET_FRIENDS,
-CHANGE_USER
+CHANGE_USER,
+CREATE_ROOM
  } from "../action_types/userActionTypes";
+
 
 
 
@@ -159,4 +161,13 @@ export const chatReducer = (id)=>(dispatch)=>{
         type: CHANGE_USER,
         payload: id
       })
+}
+
+export const CreateRoom= (obj)=> async(dispatch)=>{
+  console.log(obj);
+  await axios.post(`http://localhost:3001/createRoom`,obj)
+  dispatch({
+    type: CREATE_ROOM,
+    payload: obj
+  })
 }

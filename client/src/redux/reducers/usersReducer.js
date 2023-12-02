@@ -17,6 +17,7 @@ import {
   CLEAR_USER_DATA_IN_LOGOUT,
   GET_FRIENDS,
   CHANGE_USER,
+  CREATE_ROOM
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -36,6 +37,7 @@ const initialState = {
   description: "",
   photo: "",
   friends: [],
+  rooms:[],
   isVip: false,
   isOn: false,
   isAdmin: false,
@@ -76,6 +78,7 @@ const usersReducer = (state = initialState, action) => {
         isVip: action.payload.isVip,
         isAdmin: action.payload.isAdmin,
         isOn: action.payload.isOn,
+        rooms:action.payload.rooms,
       };
 
     case SET_USER_DATA_REGISTER:
@@ -196,6 +199,11 @@ const usersReducer = (state = initialState, action) => {
             ? state.uid + action.payload.uid
             : action.payload.uid + state.uid,
       };
+    case CREATE_ROOM:
+      return{
+        ...state,
+        rooms:[... state.rooms, action.payload.nameGroup]
+      }
     default:
       return { ...state };
   }
