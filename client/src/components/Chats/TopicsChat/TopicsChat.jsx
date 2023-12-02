@@ -1,10 +1,14 @@
 import {useRef } from "react";
 import style from "./TopicsChat.module.css";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const TopicsChat = ({ setingValueRoom }) => {
   const roomInputRef = useRef(null);
-
-  const handleTopic = (e)=>{
+  const country = useSelector(state=> state.users.country)
+  console.log(country);
+  const [rooms,setRooms]= useState(['Global','Sport','Animals',"Food",'Tech',country])
+    const handleTopic = (e)=>{
     const topic = e.target.value
     const selectedRoom = topic === 'null' ? null : topic !== '' ? topic : roomInputRef.current.value;
     setingValueRoom(selectedRoom);
@@ -16,16 +20,11 @@ const TopicsChat = ({ setingValueRoom }) => {
         <section>
           <select id="roomSelect" onChange={handleTopic} className={style.selectStyle}>
             <option disabled selected value="default">Select Chat</option>
-            <option value="global" >Global</option>
-            <option value="sports" >Sports</option>
-            <option value="animals" >Animals</option>
-            <option value="food" >Food</option>
-            <option value="tech" >Tech</option>
+            {rooms.map(room=>{
+              return <option value={room.toLowerCase()} key={room}> {room} </option>
+              })}
           </select>
         </section>
-        
-        
-        
       </div>
   );
 };

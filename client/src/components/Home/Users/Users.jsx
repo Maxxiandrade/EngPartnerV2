@@ -5,6 +5,7 @@ import { getOnline } from "../../../redux/actions/actions";
 
 import defaultImg from "../../../assets/user-default-pfp.png";
 
+import PrivateChat from "../../Chats/PrivateChat/PrivateChat"
 import Searchbar from "../Searchbar/Searchbar";
 
 import styles from "./Users.module.css";
@@ -22,7 +23,7 @@ const Users = () => {
     <div className={styles.connectContainer}>
       <Searchbar />
       <div className={styles.usersContainer}>
-        <h3>Online Users</h3>
+        <h3>Find new friends</h3>
         {users.length === 0 ? (
           <p>Users not found</p>
         ) : (
@@ -67,6 +68,7 @@ const Users = () => {
           ))
         )}
       </div>
+      <PrivateChat/>
     </div>
   );
 };

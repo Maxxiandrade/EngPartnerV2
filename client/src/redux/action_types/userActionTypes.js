@@ -10,3 +10,4 @@ export const CLEAR_USER_DATA_IN_LOGOUT = "CLEAR_USER_DATA_IN_LOGOUT";
 export const EDIT_USER = "EDIT_USER";
 export const HANDLE_FRIEND = "HANDLE_FRIEND";
 export const GET_FRIENDS = "GET_FRIENDS";
+export const CHANGE_USER = "CHANGE_USER";
