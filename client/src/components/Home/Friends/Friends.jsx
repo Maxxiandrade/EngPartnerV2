@@ -4,6 +4,7 @@ import {useSelector, useDispatch } from "react-redux";
 import style from './Friends.module.css'
 import offline from '../../../assets/svg/offline.svg'
 import online from '../../../assets/svg/online.svg'
+import astronaut from '../../../assets/astronaut.png'
 
 
 const Friends = () => {
@@ -20,10 +21,13 @@ const Friends = () => {
   
     return(
         <div className={style.friendContainer}>
+<<<<<<< HEAD
      
             
+=======
+>>>>>>> bd6a6c95a6b2b91538b32682959ff66c51c0c461
             <div className={style.txtH1}><h1>Friends:</h1></div>
-            {friends?.length === 0 ? <p className={style.txt}>Your frind list is empty</p> : friends?.map((friend)=>(
+            {friends?.length === 0 ? <p className={style.txt}>It seems to be no one around here, try connecting with someone!<img src={astronaut} alt="" className={style.astronaut}/></p> : friends?.map((friend)=>(
                 <>
                     <div className={style.container} key={friend.uid}>
                         <div className={style.userName}>
