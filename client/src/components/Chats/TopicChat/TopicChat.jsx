@@ -134,6 +134,7 @@ const Chat = ({ room, setRoom }) => {
           ))}
           <div ref={messagesEndRef} />
         </div>
+        <div className={style.newMessageFormDiv}>
         <form onSubmit={handleSubmit} className={style.newMessageForm}>
           <input
             className={style.newMessageInput}
@@ -145,6 +146,7 @@ const Chat = ({ room, setRoom }) => {
             <img src={sendIcon} alt="Send" className={style.sendIcon} />
           </button>
         </form>
+        </div>
       </div>
     </>
   );
