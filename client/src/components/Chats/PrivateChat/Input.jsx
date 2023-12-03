@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { Timestamp, arrayUnion, doc, updateDoc, serverTimestamp } from 'firebase/firestore'
 import {db} from '../../../firebase-config'
 import {v4 as uuid} from "uuid"
+import sendIcon from "../../../assets/svg/sendIcon.svg"
 
 
 const Input = () => {
@@ -38,14 +39,14 @@ const Input = () => {
   }
   return (
     <div className={style.inputComp}>
-        <input type="text" placeholder='Type something..' className={style.input} onChange={e=>setText(e.target.value)} value={text}/>
+        <input type="text" placeholder='Type a message...' className={style.input} onChange={e=>setText(e.target.value)} value={text}/>
         <div className={style.send}>
             <img src={attach} alt="" className={style.sendImg} />
             <input type="file"  style={{display:"none"}} id='file' onChange={e=>setImg(e.target.files[0])}/>
             <label htmlFor="file">
                 <img src={img} alt=""  className={style.sendImg}/>
             </label>
-            <button className={style.sendButton} onClick={handleSend}>Send</button>
+            <button className={style.sendButton} onClick={handleSend}><img src={sendIcon} alt="send" className={style.sendIcon}/></button>
         </div>
     </div>
   )

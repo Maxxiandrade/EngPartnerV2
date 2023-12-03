@@ -4,8 +4,11 @@ import Sidebar from "./Sidebar";
 
 const PrivateChat = ()=>{
     return(
-        <div className={style.home}>   
-            <div className={style.container}>
+        <div className={style.home}>
+            <nav>
+                
+            </nav>
+           <div className={style.container}>
                 <Sidebar/>
                 <Chat/>
             </div>

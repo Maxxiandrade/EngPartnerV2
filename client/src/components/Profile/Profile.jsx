@@ -7,6 +7,7 @@ import pencil from "../../assets/svg/pencil.svg"
 import tick from "../../assets/svg/tick.svg"
 import addUser from "../../assets/svg/addUser.svg"
 import deleteUser from "../../assets/svg/deleteUser.svg"
+import chat from "../../assets/svg/chat.svg"
 
 //Tools
 import { useState, useEffect } from "react";
@@ -102,6 +103,9 @@ const Profile = ({ setIsAuth }) => {
           <img src={logo} alt="Home" className={style.logo} />
         </Link>
         <div className={style.navBtns}>
+          <Link to='/messages'>
+            <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
+          </Link>
           <Link to='/connect'>
             <button className={style.connectBtn}>
               <img src={connect} alt="connect" className={style.icon} />
