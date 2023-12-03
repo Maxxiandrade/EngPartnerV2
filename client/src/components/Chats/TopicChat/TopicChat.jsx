@@ -114,6 +114,10 @@ const Chat = ({ room, setRoom }) => {
               <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
                 {message.text}
               </span>
+              <hr />
+              <span>
+                {message.translatedText?.en}
+              </span>
               </div>
               <div>
                 <img src={report} alt="" className={style.report} />
