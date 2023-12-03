@@ -22,7 +22,7 @@ function Premiun() {
   useEffect(() => {
     dispatch(getMyUser(uid));
   }, [])
-  
+
     return (
       <div>
       <nav className={style.nav}>
@@ -30,12 +30,15 @@ function Premiun() {
           <button className={style.homeBtn}><img src={logo} alt="Home" className={style.logo} /></button>
         </Link>
       </nav>
+      <div className={style.containerPremium}>
       <Elements stripe={stripePromise}>
             <AnnualPremium key="annual" isVip={isVip} uid={uid} />
       </Elements>
       <Elements stripe={stripePromise}>
            <MonthPremium key="month" isVip={isVip} uid={uid}  />
       </Elements>
+      </div>
+      
       </div>
     )
 }

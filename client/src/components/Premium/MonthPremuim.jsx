@@ -32,7 +32,7 @@ const handleSubmit = async (e) => {
  return( 
     <div className={style.conainer_form}>
     <form onSubmit={handleSubmit} >
-    <h3>PAY FOR UNE MONTH</h3>
+    <h3>Monthly Premium</h3>
         <img src="https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2015/05/ShutUpAndTakeMyMoney.jpg" alt="" width="300px" />
         <p>$7,99</p>
          <CardElement/>
