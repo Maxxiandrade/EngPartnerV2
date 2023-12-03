@@ -10,13 +10,9 @@ const Navbar = () => {
 
   return (
     <div className={style.navbar}>
-        <span className={style.engpartner}>EngPartner</span>
-        <div className="userdiv">
+        <div className={style.userdiv}>
             <img src={photo} alt="" className={style.img}/>
-            <span>{user}</span>
-            <Link to='/home'>
-            <button className={style.button}>Home</button>
-            </Link>
+            <span className={style.userName}>{user}</span>
         </div>
     </div>
   )

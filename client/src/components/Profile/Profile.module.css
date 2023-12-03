@@ -1,9 +1,9 @@
 .logo {
-  width: 32px;
+  width: 40px;
 }
 
 .icon {
-  width: 22px;
+  width: 25px;
 }
 
 .iconBtn{
@@ -27,7 +27,8 @@
 
 .connectBtn,
 .signOut,
-.premium {
+.premium,
+.chatBtn  {
   background: transparent;
   border: solid 0.5px #30363d;
   border-radius: 10px;
@@ -43,7 +44,8 @@
 
 .connectBtn:not(:hover),
 .signOut:not(:hover),
-.premium:not(:hover) {
+.premium:not(:hover),
+.chatBtn:not(:hover) {
   transition: 0.5s;
 }
 
@@ -63,9 +65,17 @@
   box-shadow: 0px 0px 10px rgb(255, 0, 0);
 }
 
+.chatBtn:hover {
+  transition: 0.5s;
+  color: white;
+  background-color: #1f2147;
+  border-color: rgb(21, 255, 0);
+  box-shadow: 0px 0px 10px #49f028;
+}
+
 .userPhoto {
   display: inline;
-  width: 45px;
+  width: 49px;
   border-radius: 10px;
   border: solid 0.5px #30363d;
   align-items: center;
