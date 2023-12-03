@@ -10,7 +10,8 @@ SET_USER_DATA_GOOGLE_ACCOUNT,
 CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
 GET_FRIENDS,
-CHANGE_USER
+CHANGE_USER,
+SELECT_REPORT
  } from "../action_types/userActionTypes";
 
 
@@ -160,3 +161,18 @@ export const chatReducer = (id)=>(dispatch)=>{
         payload: id
       })
 }
+
+export const submitReport = (reportData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/reports', reportData);
+      console.log('Report submitted successfully', response.data);
+      dispatch({
+        type: SELECT_REPORT,
+        payload: response.data
+      })
+    } catch (error) {
+      console.error('Error submitting report', error);
+    }
+  };
+};
