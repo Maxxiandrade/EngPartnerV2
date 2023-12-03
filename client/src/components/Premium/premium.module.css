@@ -101,3 +101,120 @@
   border-radius: 15px;
   padding: 10px;
 }
+.logo {
+  width: 40px;
+}
+
+.icon {
+  width: 25px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #031525;
+  color: #0f295c;
+  border-bottom: solid 0.5px #30363d;
+}
+
+.navBtns {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.connectBtn,
+.signOut,
+.premium,
+.chatBtn {
+  background: transparent;
+  border: solid 0.5px #30363d;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.connectBtn:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: #00bfc7;
+  box-shadow: 0px 0px 10px #ffffff;
+}
+
+.connectBtn:not(:hover),
+.signOut:not(:hover),
+.premium:not(:hover), 
+.chatBtn:not(:hover){
+  transition: 0.5s;
+}
+
+.premium:hover {
+  transition: 0.5s;
+  color: white;
+  background-color: #1f2147;
+  border-color: yellow;
+  box-shadow: 0px 0px 10px #f0e628;
+}
+
+.signOut:hover {
+  transition: 0.5s;
+  color: white;
+  background-color: #1f2147;
+  border-color: red;
+  box-shadow: 0px 0px 10px rgb(255, 0, 0);
+}
+
+.chatBtn:hover {
+  transition: 0.5s;
+  color: white;
+  background-color: #1f2147;
+  border-color: rgb(21, 255, 0);
+  box-shadow: 0px 0px 10px #49f028;
+}
+
+.homeComponentsDiv{
+  display: flex;
+  justify-content: space-around;
+  max-height: 80%;
+  min-height: 80%;
+}
+
+.globalChat {
+  background-color: #031525;
+  display: flex;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 60%;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.friendsComp {
+  padding: 20px;
+  box-sizing: border-box;
+  width: 20%;
+  max-height: 100%;
+}
+
+.homeMainDiv {
+  background-color: #031525;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.userPhoto {
+  display: inline;
+  width: 49px;  
+  border-radius: 10px;
+  border: solid 0.5px #30363d;
+  align-items: center;
+  margin-bottom: -14px;
+}
+
+.userPhoto:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: white;
+  box-shadow: 0px 0px 10px #ffffff;
+}
