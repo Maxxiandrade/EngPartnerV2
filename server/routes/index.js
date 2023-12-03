@@ -11,16 +11,13 @@ const getOnline = require('../controllers/getOnline')
 const getUserByUsername = require('../controllers/getUserByUserName');
 const getMyUser = require('../controllers/getMyUser');
 const getFriends = require('../controllers/getFriends');
-<<<<<<< HEAD
 const postReport = require('../controllers/postReport');
-=======
 const getAllCountries= require('../controllers/getAllCountries')
 const getAllUsers = require('../controllers/getAllUsers');
 //put
 const putIs = require('../controllers/putIs');
 const putFriend = require('../controllers/putFriend');
 const putUser = require('../controllers/putUser')
->>>>>>> f1defa3a0730660109374caa519cfe753c0c488e
 
 const getReported = require('../controllers/getReported')
 
@@ -39,11 +36,8 @@ router.post('/send-message', postMessage)
 router.post('/newUser',postNewUser)
 router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
-<<<<<<< HEAD
 router.post('/reports', postReport)
-=======
 router.post('/createRoom',postCreateRoom)
->>>>>>> f1defa3a0730660109374caa519cfe753c0c488e
 
 router.put('/geton', putIs)
 router.put('/edit', putUser)
