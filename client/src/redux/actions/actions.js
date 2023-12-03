@@ -164,7 +164,7 @@ export const chatReducer = (id)=>(dispatch)=>{
 
 export const getReported = ()=>async(dispatch)=>{
   try{
-      const {data} = axios.get('http://localhost:3001/reported')
+      const {data} = await axios.get('http://localhost:3001/reported')
       dispatch({
         type: GET_REPORTED,
         payload: data
