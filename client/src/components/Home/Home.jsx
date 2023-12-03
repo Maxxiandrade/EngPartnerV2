@@ -24,6 +24,7 @@ import { Navigate } from 'react-router-dom';
 
 
 const Home = ({ setIsAuth }) => {
+  const admin = useSelector((state)=>state.users.isAdmin)
   const user = useSelector((state) => state.users.name);
   const userPhoto = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
@@ -56,6 +57,7 @@ const Home = ({ setIsAuth }) => {
 
   useEffect(() => {
     console.log(uid)
+    console.log("is admin" + " " + admin)
     if (!localStorageUID) {
       signOut(auth);
       setIsAuth(false);
@@ -64,8 +66,56 @@ const Home = ({ setIsAuth }) => {
     console.log('holas')
   }, [uid]);
 
-  return (
-    <>
+  if(admin){
+    return(<>
+    {localStorageUID ? (
+        <div className={style.homeMainDiv}>
+          <nav className={style.nav}>
+            <Link to="/home">
+              <img src={logo} alt="Home" className={style.logo} />
+            </Link>
+            <div>
+              <Link to="/admin">
+              <h1>Admin panel</h1>
+              </Link>
+              <TopicsChat setingValueRoom={setingValueRoom} />
+            </div>
+            <div className={style.navBtns}>
+            <Link to='/messages'>
+              <button>Chats</button>
+              </Link>
+              <Link to='/connect'>
+                <button className={style.connectBtn}>
+                  <img src={connect} alt="connect" className={style.icon} />
+                </button>
+              </Link>
+              <Link to='/premium'>
+                <button className={style.premium}>
+                  <img src={crown} alt="" className={style.icon} />
+                </button>
+              </Link>
+              <button onClick={handleLogOut} className={style.signOut}>
+                <img src={logOut} alt="logout" className={style.icon} />
+              </button>
+              <Link to={`/profile/${uid}`}>
+                <img src={userPhoto} alt="" className={style.userPhoto} />
+              </Link>
+              
+            </div>
+          </nav>
+          <div className={style.homeComponentsDiv}>
+            <div className={style.globalChat}>
+              <TopicChat room={room} setRoom={setRoom} />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Navigate to="/" replace={true} />
+      )}
+    </>
+    )
+  }else return (
+     <>
       {localStorageUID ? (
         <div className={style.homeMainDiv}>
           <nav className={style.nav}>
@@ -102,9 +152,7 @@ const Home = ({ setIsAuth }) => {
             <div className={style.globalChat}>
               <TopicChat room={room} setRoom={setRoom} />
             </div>
-            <div className={style.friendsComp}>
-              <Friends />
-            </div>
+           
           </div>
         </div>
       ) : (

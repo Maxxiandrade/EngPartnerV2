@@ -17,6 +17,7 @@ import {
   CLEAR_USER_DATA_IN_LOGOUT,
   GET_FRIENDS,
   CHANGE_USER,
+  GET_REPORTED
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -46,6 +47,7 @@ const initialState = {
   genderFilter: "both",
   userChat: {},
   chatId: null,
+  reported:[]
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -196,6 +198,11 @@ const usersReducer = (state = initialState, action) => {
             ? state.uid + action.payload.uid
             : action.payload.uid + state.uid,
       };
+    case GET_REPORTED:
+      return{
+        ...state,
+        reported: action.payload
+      }
     default:
       return { ...state };
   }

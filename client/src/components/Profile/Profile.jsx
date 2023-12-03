@@ -44,9 +44,7 @@ const Profile = ({ setIsAuth }) => {
   });
 
   useEffect(() => {
-    console.log(params.uid)
-    console.log(friendList)
-    console.log(isFriend)
+ 
     axios
       .post(`http://localhost:3001/user`, { uid: params.uid })
       .then(({ data }) => {
