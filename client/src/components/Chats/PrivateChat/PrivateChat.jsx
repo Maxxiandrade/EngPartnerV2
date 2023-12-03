@@ -1,7 +1,7 @@
 import style from "./PrivateChat.module.css";
 import Chat from "./Chat";
 import Sidebar from "./Sidebar";
-
+import Friends from "../../Home/Friends/Friends";
 const PrivateChat = ()=>{
     return(
         <div className={style.home}>
@@ -11,6 +11,9 @@ const PrivateChat = ()=>{
            <div className={style.container}>
                 <Sidebar/>
                 <Chat/>
+            </div>
+            <div className={style.friendsComp}>
+              <Friends />
             </div>
         </div>
     )
