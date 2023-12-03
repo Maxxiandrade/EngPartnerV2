@@ -3,6 +3,7 @@ import logo from "../../assets/logo.png";
 import crown from "../../assets/svg/crown.svg";
 import connect from "../../assets/svg/connect.svg";
 import logOut from "../../assets/svg/logout.svg";
+import chat from "../../assets/svg/chat.svg"
 
 
 //Tools
@@ -126,8 +127,8 @@ const Home = ({ setIsAuth }) => {
             </div>
             <div className={style.navBtns}>
             <Link to='/messages'>
-              <button>Chats</button>
-              </Link>
+              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
+            </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
