@@ -46,7 +46,6 @@ const Home = ({ setIsAuth }) => {
   };
 
 
-  const foto = auth.currentUser?.photoURL
   const setingValueRoom = (value) => {
     if (value === 'null') {
       setRoom("global");
