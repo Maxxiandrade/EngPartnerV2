@@ -49,9 +49,9 @@ function App() {
       <Route path="*" element={<Navigate to="/home" />}/>
       <Route path='profile/:uid' element={<Profile setIsAuth={setIsAuth}/>}/>
       <Route path="connect" element={<Users/>}/>
-      <Route path="/premium" element={<Premium/>}/>
-      <Route path="/messages" element={<PrivateChat/>}/>
-      <Route path="/CreateRoom" element={<CreateNewRooms/>}/>
+      <Route path="/premium" element={<Premium setIsAuth={setIsAuth}/>}/>
+      <Route path="/messages" element={<PrivateChat setIsAuth={setIsAuth}/>}/>
+      <Route path="/CreateRoom" element={<CreateNewRooms setIsAuth={setIsAuth}/>}/>
     </Routes>
   );
 }
