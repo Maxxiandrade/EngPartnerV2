@@ -36,6 +36,7 @@ const initialState = {
   description: "",
   photo: "",
   friends: [],
+  reports: [],
   isVip: false,
   isOn: false,
   isAdmin: false,

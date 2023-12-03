@@ -8,11 +8,11 @@ const ReportOption = ()=>{
   return(
     <div className={style.reportMessage}>
         <option disabled selected value="default" className={style.selectStyle}>Select Chat</option>
-            <option value="global" >Innapropriate Content</option>
-            <option value="sports" >Spam</option>
-            <option value="animals" >Harassment Behavior</option>
-            <option value="food" >Misleading or false content</option>
-            <option value="tech" >Fake identity</option>
+            <option className={style.optionStyle} value="innapropriateContent" >Innapropriate Content</option>
+            <option className={style.optionStyle} value="spam" >Spam</option>
+            <option className={style.optionStyle} value="HarrassmentBehavior" >Harassment Behavior</option>
+            <option className={style.optionStyle} value="misleadingOfFalseContent" >Misleading or false content</option>
+            <option className={style.optionStyle} value="fakeIdentity">Fake identity</option>
   </div>
   )
 }

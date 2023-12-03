@@ -13,6 +13,7 @@ const putUser = require('../controllers/putUser')
 const postPremium= require('../controllers/postPremium')
 const putFriend = require('../controllers/putFriend');
 const getFriends = require('../controllers/getFriends');
+const postReport = require('../controllers/postReport');
 
 
 const router = Router();
@@ -28,6 +29,7 @@ router.post('/send-message', postMessage)
 router.post('/newUser',postNewUser)
 router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
+router.post('/reports', postReport)
 
 router.put('/geton', putIs)
 router.put('/edit', putUser)
