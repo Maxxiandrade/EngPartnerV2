@@ -3,6 +3,7 @@ import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
 import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/exclamation.svg"
+import AdminSvg from'../../../assets/svg/admin-verify.svg'
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -73,6 +74,7 @@ const Chat = ({ room, setRoom }) => {
       profilePic: user.photo,
       uid: user.uid,
       isVip: user.isVip,
+      isAdmin:user.isAdmin,
       room,
     });
     setNewMessage("");
@@ -101,7 +103,9 @@ const Chat = ({ room, setRoom }) => {
               <Link to={`/profile/${message.uid}`}>
                 <span className={style.user}>
                   <div className={style.verifyDiv}>
-                    {message.isVip ? <img src={verify} className={style.verify} /> : ''}
+                    {message.isAdmin ? <img src={AdminSvg} className={style.AdminSvg} /> :
+                    message.isVip ? <img src={verify} className={style.verify} /> : ''
+                    }
                   </div>
                   {`${message.user}:`}
                 </span>

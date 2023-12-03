@@ -11,8 +11,11 @@ CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
 GET_FRIENDS,
 CHANGE_USER,
-SELECT_REPORT
+SELECT_REPORT,
+CREATE_ROOM,
+GET_REPORTED
  } from "../action_types/userActionTypes";
+
 
 
 
@@ -134,7 +137,7 @@ export const editUser = ({uid, name, lastname, description})=>async()=>{
   }
 }
 
-export const handleUser = ({uid, friendId, action})=>async()=>{
+export const handleUser = ({uid, friendId}, action)=>async()=>{
   try {
     axios.put("http://localhost:3001/friend", {uid, friendId, action})
   } catch (error) {
@@ -176,3 +179,23 @@ export const submitReport = (reportData) => {
     }
   };
 };
+
+export const CreateRoom= (obj)=> async(dispatch)=>{
+  console.log(obj);
+  await axios.post(`http://localhost:3001/createRoom`,obj)
+  dispatch({
+    type: CREATE_ROOM,
+    payload: obj
+  })
+}
+export const getReported = ()=>async(dispatch)=>{
+  try{
+      const {data} = await axios.get('http://localhost:3001/reported')
+      dispatch({
+        type: GET_REPORTED,
+        payload: data
+      })
+    }catch(error){
+      throw Error(error)
+    }
+}

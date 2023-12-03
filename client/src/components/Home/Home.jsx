@@ -3,6 +3,9 @@ import logo from "../../assets/logo.png";
 import crown from "../../assets/svg/crown.svg";
 import connect from "../../assets/svg/connect.svg";
 import logOut from "../../assets/svg/logout.svg";
+import chat from "../../assets/svg/chat.svg"
+import group from "../../assets/svg/group.svg"
+import report from "../../assets/svg/report.svg"
 
 
 //Tools
@@ -23,6 +26,7 @@ import { Navigate } from 'react-router-dom';
 
 
 const Home = ({ setIsAuth }) => {
+  const admin = useSelector((state)=>state.users.isAdmin)
   const user = useSelector((state) => state.users.name);
   const userPhoto = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
@@ -44,7 +48,6 @@ const Home = ({ setIsAuth }) => {
   };
 
 
-  const foto = auth.currentUser?.photoURL
   const setingValueRoom = (value) => {
     if (value === 'null') {
       setRoom("global");
@@ -55,6 +58,7 @@ const Home = ({ setIsAuth }) => {
 
   useEffect(() => {
     console.log(uid)
+    console.log("is admin" + " " + admin)
     if (!localStorageUID) {
       signOut(auth);
       setIsAuth(false);
@@ -63,8 +67,58 @@ const Home = ({ setIsAuth }) => {
     console.log('holas')
   }, [uid]);
 
-  return (
-    <>
+  if(admin){
+    return(<>
+    {localStorageUID ? (
+        <div className={style.homeMainDiv}>
+          <nav className={style.nav}>
+            <Link to="/home">
+              <img src={logo} alt="Home" className={style.logo} />
+            </Link>
+            <div>
+              <TopicsChat setingValueRoom={setingValueRoom} />
+            </div>
+            <div className={style.navBtns}>
+              <Link to="/admin">
+              <button className={style.adminBtn}><img src={report} alt="admin" className={style.icon} /></button>
+              </Link>
+            <Link to='/messages'>
+              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
+            </Link>
+              <Link to='/CreateRoom'>
+              <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
+              </Link>
+              <Link to='/connect'>
+                <button className={style.connectBtn}>
+                  <img src={connect} alt="connect" className={style.icon} />
+                </button>
+              </Link>
+              <Link to='/premium'>
+                <button className={style.premium}>
+                  <img src={crown} alt="" className={style.icon} />
+                </button>
+              </Link>
+              <button onClick={handleLogOut} className={style.signOut}>
+                <img src={logOut} alt="logout" className={style.icon} />
+              </button>
+              <Link to={`/profile/${uid}`}>
+                <img src={userPhoto} alt="" className={style.userPhoto} />
+              </Link>
+            </div>
+          </nav>
+          <div className={style.homeComponentsDiv}>
+            <div className={style.globalChat}>
+              <TopicChat room={room} setRoom={setRoom} />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <Navigate to="/" replace={true} />
+      )}
+    </>
+    )
+  }else return (
+     <>
       {localStorageUID ? (
         <div className={style.homeMainDiv}>
           <nav className={style.nav}>
@@ -76,7 +130,12 @@ const Home = ({ setIsAuth }) => {
             </div>
             <div className={style.navBtns}>
             <Link to='/messages'>
-              <button>Chats</button>
+              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
+            </Link>
+            <Link to='/CreateRoom'>
+                <button className={style.premium}>
+                 Create Group
+                </button>
               </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
@@ -101,9 +160,7 @@ const Home = ({ setIsAuth }) => {
             <div className={style.globalChat}>
               <TopicChat room={room} setRoom={setRoom} />
             </div>
-            <div className={style.friendsComp}>
-              <Friends />
-            </div>
+           
           </div>
         </div>
       ) : (
