@@ -22,7 +22,7 @@ import MonthPremium from "./MonthPremuim";
 const stripePromise = loadStripe("pk_test_51OFi4pDa4OdRCPg7S1mBe55Usd8TeiSRRVlUiw6q3vJT7cHD7pdJqY5mdRaFBrmLMF9717TAW7Qg1GNXXfiTxzgF00K8IQSPkR");
 
 
-function Premiun() {
+function Premiun({setIsAuth}) {
   const dispatch = useDispatch();
   const userPhoto = useSelector((state) => state.users.photo);
   const uid = useSelector((state) => state.users.uid);
