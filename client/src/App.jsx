@@ -21,7 +21,7 @@ import { useSelector } from "react-redux";
 
 
 function App() {
-
+  const admin = useSelector((state)=>state.users.isVip)
   const cld = new Cloudinary({cloud: {cloudName: 'engpartnercloudinary'}})
   const cookies = new Cookies()
   const [isAuth, setIsAuth] = useState(cookies.get("auth-token"))
