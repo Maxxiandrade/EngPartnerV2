@@ -84,6 +84,11 @@ const Home = ({ setIsAuth }) => {
             <Link to='/messages'>
               <button>Chats</button>
               </Link>
+              <Link to='/CreateRoom'>
+              <button className={style.premium}>
+                 Create Group
+                </button>
+              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
@@ -100,6 +105,7 @@ const Home = ({ setIsAuth }) => {
               <Link to={`/profile/${uid}`}>
                 <img src={userPhoto} alt="" className={style.userPhoto} />
               </Link>
+              
               
             </div>
           </nav>

@@ -11,8 +11,10 @@ CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
 GET_FRIENDS,
 CHANGE_USER,
+CREATE_ROOM,
 GET_REPORTED
  } from "../action_types/userActionTypes";
+
 
 
 
@@ -162,6 +164,14 @@ export const chatReducer = (id)=>(dispatch)=>{
       })
 }
 
+export const CreateRoom= (obj)=> async(dispatch)=>{
+  console.log(obj);
+  await axios.post(`http://localhost:3001/createRoom`,obj)
+  dispatch({
+    type: CREATE_ROOM,
+    payload: obj
+  })
+}
 export const getReported = ()=>async(dispatch)=>{
   try{
       const {data} = await axios.get('http://localhost:3001/reported')

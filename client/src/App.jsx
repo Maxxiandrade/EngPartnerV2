@@ -16,6 +16,7 @@ import Cookies from 'universal-cookie';
 import { Routes, Route, Navigate } from "react-router-dom";
 import {Cloudinary} from "@cloudinary/url-gen";
 import PrivateChat from "./components/Chats/PrivateChat/PrivateChat";
+import CreateNewRooms from "./components/CreateNewRooms/CreateNewRooms";
 import { useSelector } from "react-redux";
 
 
@@ -50,6 +51,7 @@ function App() {
       <Route path="connect" element={<Users/>}/>
       <Route path="/premium" element={<Premium/>}/>
       <Route path="/messages" element={<PrivateChat/>}/>
+      <Route path="/CreateRoom" element={<CreateNewRooms/>}/>
     </Routes>
   );
 }

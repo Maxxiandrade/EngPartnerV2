@@ -59,6 +59,7 @@ const getMyUser = async (req, res) => {
             isVip: userData?.isVip,
             isAdmin: userData?.isAdmin,
             isOn: userData?.isOn,
+            rooms:userData?.rooms,
             reports: userData?.reports
         }; 
         res.status(200).json(userInfo);
