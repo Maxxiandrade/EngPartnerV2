@@ -1,0 +1,45 @@
+/* Admin.module.css */
+
+.adminContainer {
+    color: red;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    width: 80%;
+    margin: 20px auto;
+  }
+  
+  .reportTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .reportTable th,
+  .reportTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  .reportTable th {
+    background-color: #f2f2f2;
+  }
+  
+  .reportTable td {
+    text-align: left;
+  }
+  
+  .reportTable td:first-child {
+    width: 20%; /* Ajusta el ancho de la columna Usuario */
+  }
+  
+  .reportTable td table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .reportTable td table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    width: 50%; /* Ajusta el ancho de las columnas Tipo de Reporte y Reporte */
+  }

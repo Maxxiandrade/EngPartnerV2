@@ -17,7 +17,8 @@ import {
   CLEAR_USER_DATA_IN_LOGOUT,
   GET_FRIENDS,
   CHANGE_USER,
-  CREATE_ROOM
+  CREATE_ROOM,
+  GET_REPORTED
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -48,6 +49,7 @@ const initialState = {
   genderFilter: "both",
   userChat: {},
   chatId: null,
+  reported:[]
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -203,6 +205,11 @@ const usersReducer = (state = initialState, action) => {
       return{
         ...state,
         rooms:[... state.rooms, action.payload.nameGroup]
+      }
+    case GET_REPORTED:
+      return{
+        ...state,
+        reported: action.payload
       }
     default:
       return { ...state };

@@ -18,6 +18,7 @@ const putIs = require('../controllers/putIs');
 const putFriend = require('../controllers/putFriend');
 const putUser = require('../controllers/putUser')
 
+const getReported = require('../controllers/getReported')
 
 const router = Router();
 
@@ -26,6 +27,8 @@ router.get('/user', getUserByUsername)
 router.get('/users',getAllUsers)
 router.get('/getonline', getOnline)
 router.get('/friends', getFriends)
+router.get('/reported', getReported)
+
 
 router.post('/user', getMyUser)
 router.post('/send-message', postMessage)

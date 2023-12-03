@@ -12,3 +12,4 @@ export const HANDLE_FRIEND = "HANDLE_FRIEND";
 export const GET_FRIENDS = "GET_FRIENDS";
 export const CHANGE_USER = "CHANGE_USER";
 export const CREATE_ROOM ="CREATE_ROOM";
+export const GET_REPORTED = "GET_REPORTED";

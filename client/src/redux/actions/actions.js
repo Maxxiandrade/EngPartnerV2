@@ -11,7 +11,8 @@ CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
 GET_FRIENDS,
 CHANGE_USER,
-CREATE_ROOM
+CREATE_ROOM,
+GET_REPORTED
  } from "../action_types/userActionTypes";
 
 
@@ -170,4 +171,15 @@ export const CreateRoom= (obj)=> async(dispatch)=>{
     type: CREATE_ROOM,
     payload: obj
   })
+}
+export const getReported = ()=>async(dispatch)=>{
+  try{
+      const {data} = await axios.get('http://localhost:3001/reported')
+      dispatch({
+        type: GET_REPORTED,
+        payload: data
+      })
+    }catch(error){
+      throw Error(error)
+    }
 }
