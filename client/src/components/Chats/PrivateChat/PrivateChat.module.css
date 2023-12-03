@@ -1,27 +1,27 @@
 .home {
   background-color: #031525;
-  height: 100vh;
-  width: 100vw;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
 }
 
 .container {
+  margin-top: 5%;
   border: 1px solid white;
   border-radius: 10px;
-  width: 65%;
-  max-width: 65%;
-  height: 80%;
-  max-height: 80%;
+  width: 60%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
   display: flex;
   overflow: hidden;
+
   .sidebar {
     flex: 1;
     background-color: #0e1a33;
-    border-right: solid 0.5px #FFFFFF;
+    border-right: solid 0.5px #ffffff;
     .navbar {
-      border-bottom: solid 0.5px #FFFFFF;
+      border-bottom: solid 0.5px #ffffff;
       display: flex;
       align-items: center;
       background-color: #172a54;
@@ -115,8 +115,8 @@
 .chatInfo {
   height: 50px;
   background-color: #172a54;
-  border-left: solid 0.5px #FFFFFF;
-  border-bottom: solid 0.5px #FFFFFF;
+  border-left: solid 0.5px #ffffff;
+  border-bottom: solid 0.5px #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +126,7 @@
 }
 
 .messages {
-  background-color: #DFF0FF;
+  background-color: #dff0ff;
   padding: 10px;
   height: calc(100% - 160px);
   overflow: scroll;
@@ -222,26 +222,137 @@
 }
 
 .messageSend {
-    margin-right: 5px;
+  margin-right: 5px;
   width: 100%;
   max-width: 100%;
   word-wrap: break-word;
 }
 
-<<<<<<< HEAD
 .friendsComp {
-    padding: 20px;
-    box-sizing: border-box;
-    width: 20%;
-    height: 80%;
-    max-height: 100%;
-  }
+  margin-top: 5%;
+  box-sizing: border-box;
+  width: 20%;
+  height: 100%;
+  min-height: 100%;
+  max-height: 100%;
+}
 
-=======
 .pSend {
   color: white;
   background-color: #6e8ef7;
   padding: 10px 20px;
   border-radius: 10px 0px 10px 10px;
 }
->>>>>>> main
+
+/* -------------------------------NAVBAR------------------------------------------------ */
+
+.logo {
+  width: 40px;
+}
+
+.icon {
+  width: 25px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #031525;
+  color: #0f295c;
+  border-bottom: solid 0.5px #30363d;
+}
+
+.navBtns {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.connectBtn,
+.signOut,
+.premium,
+.chatBtn,
+.adminBtn,
+.groupBtn {
+  background: transparent;
+  border: solid 0.5px #30363d;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.connectBtn:not(:hover),
+.signOut:not(:hover),
+.premium:not(:hover), 
+.chatBtn:not(:hover),
+.adminBtn:not(:hover),
+.groupBtn:not(:hover){
+  transition: 0.5s;
+}
+
+.adminBtn:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: red;
+  box-shadow: 0px 0px 10px rgb(255, 0, 0);
+}
+
+.chatBtn:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: rgb(21, 255, 0);
+  box-shadow: 0px 0px 10px #49f028;
+}
+
+.groupBtn:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: rgb(132, 0, 255);
+  box-shadow: 0px 0px 10px #b128f0;
+}
+
+.connectBtn:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: #00bfc7;
+  box-shadow: 0px 0px 10px #ffffff;
+}
+
+.premium:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: yellow;
+  box-shadow: 0px 0px 10px #f0e628;
+}
+
+.signOut:hover{
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: grey;
+  box-shadow: 0px 0px 10px #8f8f8f;
+}
+
+.userPhoto {
+  display: inline;
+  width: 49px;
+  border-radius: 10px;
+  border: solid 0.5px #30363d;
+  align-items: center;
+  margin-bottom: -14px;
+}
+
+.userPhoto:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: white;
+  box-shadow: 0px 0px 10px #ffffff;
+}
+
+.componentsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 80%;
+  max-height: 80%;
+  min-height: 80%;
+}
