@@ -132,6 +132,10 @@
   width: 25px;
   padding-right: 2px;
 }
+.AdminSvg{
+  width: 25px;
+  padding-right: 6px;
+}
 
 .messageFormDiv{
   position: absolute;
