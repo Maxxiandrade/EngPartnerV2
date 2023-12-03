@@ -4,6 +4,8 @@ import crown from "../../assets/svg/crown.svg";
 import connect from "../../assets/svg/connect.svg";
 import logOut from "../../assets/svg/logout.svg";
 import chat from "../../assets/svg/chat.svg"
+import group from "../../assets/svg/group.svg"
+import report from "../../assets/svg/report.svg"
 
 
 //Tools
@@ -74,19 +76,17 @@ const Home = ({ setIsAuth }) => {
               <img src={logo} alt="Home" className={style.logo} />
             </Link>
             <div>
-              <Link to="/admin">
-              <h1>Admin panel</h1>
-              </Link>
               <TopicsChat setingValueRoom={setingValueRoom} />
             </div>
             <div className={style.navBtns}>
-            <Link to='/messages'>
-              <button>Chats</button>
+              <Link to="/admin">
+              <button className={style.adminBtn}><img src={report} alt="admin" className={style.icon} /></button>
               </Link>
+            <Link to='/messages'>
+              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
+            </Link>
               <Link to='/CreateRoom'>
-              <button className={style.premium}>
-                 Create Group
-                </button>
+              <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
               </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
@@ -104,8 +104,6 @@ const Home = ({ setIsAuth }) => {
               <Link to={`/profile/${uid}`}>
                 <img src={userPhoto} alt="" className={style.userPhoto} />
               </Link>
-              
-              
             </div>
           </nav>
           <div className={style.homeComponentsDiv}>
@@ -134,6 +132,11 @@ const Home = ({ setIsAuth }) => {
             <Link to='/messages'>
               <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
             </Link>
+            <Link to='/CreateRoom'>
+                <button className={style.premium}>
+                 Create Group
+                </button>
+              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
