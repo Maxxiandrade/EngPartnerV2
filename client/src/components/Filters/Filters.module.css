@@ -34,6 +34,9 @@
 
 .sexBtnsContainer p {
     color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 1.8em;
+    font-weight: 500;
     margin: 0;
     margin-top: 1em;
 }
@@ -66,11 +69,11 @@
 }
 
 .vipButton {
-    background-color: #f9f9f9;
   }
   
   .vipActive {
-    background-color: yellow;
+    background-color: rgb(207, 207, 24);
+    color: #000;
     /* Otros estilos si es necesario cuando isVipFilterValue es true */
   }
 
@@ -83,8 +86,13 @@
         align-items: center;
         position: absolute;
         width: 40%;
-        top: 10%;
-        left: 60%;
+        max-width: 550px;
+        top: 25%;
+        right: 20%;
+
+        background-color: #dff0ff;
+        height: 40%;
+        border-radius: 10px;
     }
     .filtersStylesContainer {
         display: flex;
