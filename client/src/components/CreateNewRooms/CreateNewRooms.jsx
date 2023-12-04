@@ -12,7 +12,7 @@ const CreateNewRooms = () => {
   const [members, setMembers] = useState([]);
   const [groupName, setGroupName] = useState(''); // Nuevo estado para el nombre del grupo
   const friends = useSelector((state) => state.users.friends);
-  const uid = useSelector((state) => state.users.uid);
+  const uid = localStorage.getItem("uid");
   useEffect(() => {
     const uid = localStorage.getItem('uid');
     if (uid) {

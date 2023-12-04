@@ -19,7 +19,9 @@ import {
   CHANGE_USER,
   SELECT_REPORT,
   CREATE_ROOM,
-  GET_REPORTED
+  GET_REPORTED,
+  UPDATE_USER_LANGUAGE,
+  UPDATE_USER_READ_LANGUAGE
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -44,6 +46,8 @@ const initialState = {
   isVip: false,
   isOn: false,
   isAdmin: false,
+  language: "",
+  languageRead: "",
   emailGoogleAccount: "",
   photoGoogleAccount: "",
   uidGoogleAccount: "",
@@ -83,6 +87,9 @@ const usersReducer = (state = initialState, action) => {
         isAdmin: action.payload.isAdmin,
         isOn: action.payload.isOn,
         rooms:action.payload.rooms,
+        reports: action.payload.reports,
+        language: action.payload.language,
+        languageRead: action.payload.languageRead,
       };
 
     case SET_USER_DATA_REGISTER:
@@ -221,6 +228,21 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         reported: action.payload
       }
+
+      case UPDATE_USER_LANGUAGE:
+      return{
+        ...state,
+        language: action.payload
+      }
+
+      case UPDATE_USER_READ_LANGUAGE:
+      return{
+        ...state,
+        languageRead: action.payload
+      }
+
+
+
     default:
       return { ...state };
   }

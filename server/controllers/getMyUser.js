@@ -60,7 +60,9 @@ const getMyUser = async (req, res) => {
             isAdmin: userData?.isAdmin,
             isOn: userData?.isOn,
             rooms:userData?.rooms,
-            reports: userData?.reports
+            reports: userData?.reports,
+            language: userData?.language,
+            languageRead: userData?.languageRead
         }; 
         res.status(200).json(userInfo);
     } catch (error) {

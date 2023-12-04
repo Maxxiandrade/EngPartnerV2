@@ -11,7 +11,7 @@ const Search = ()=>{
     const [user, setUser] = useState(null);
     const [err, setErr] = useState(false)
 
-    const uid = useSelector((state)=>state.users.uid)
+    const uid = localStorage.getItem("uid");
     const photo = useSelector((state)=>state.users.photo)
     const currentUser = useSelector((state)=>state.users.user)
 
@@ -83,6 +83,7 @@ const Search = ()=>{
         }
 
     }
+    
 
     return(
         <div className={style.search}>

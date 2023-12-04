@@ -22,7 +22,8 @@ import { useSelector } from "react-redux";
 const Chat = ({ room, setRoom }) => {
 
   const isVip = useSelector(state => state.users.isVip)
-
+  const language = localStorage.getItem('language')
+  const languageRead = localStorage.getItem('languageRead')
   const user = useSelector(state => state.users)
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -88,6 +89,7 @@ const Chat = ({ room, setRoom }) => {
     setLastClickedMessageId(messageId)
     console.log(messageId)
   };
+  
   return (
     <>
       <div className={style.chatApp}>
@@ -112,11 +114,11 @@ const Chat = ({ room, setRoom }) => {
               </Link>
               <div className={style.textDiv}>
               <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
-                {message.text}
+                {message.translatedText[language]} {/* mensaje en lengua original */}
               </span>
               <hr />
               <span>
-                {message.translatedText?.en}
+                {message.translatedText[languageRead]} {/* mensaje traducido */}
               </span>
               </div>
               <div>

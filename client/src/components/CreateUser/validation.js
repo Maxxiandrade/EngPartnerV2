@@ -90,7 +90,13 @@ export const validation = (values) => {
         errors.description = 'Description must be less than 200 characters long';
     }
         
+    if(values.language===''){
+        errors.language = 'Please select a language';
+    }
 
+    if(values.languageRead===''){
+        errors.languageRead = 'Please select a reading language';
+    }
 
     return errors;
 }

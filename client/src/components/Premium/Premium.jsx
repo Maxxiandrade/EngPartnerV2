@@ -31,7 +31,7 @@ const stripePromise = loadStripe("pk_test_51OFi4pDa4OdRCPg7S1mBe55Usd8TeiSRRVlUi
 function Premiun({ setIsAuth }) {
   const dispatch = useDispatch();
   const userPhoto = useSelector((state) => state.users.photo);
-  const uid = useSelector((state) => state.users.uid);
+  const uid = localStorage.getItem("uid");
   const isVip = useSelector((state) => state.users.isVip);
   const cookies = new Cookies();
 
