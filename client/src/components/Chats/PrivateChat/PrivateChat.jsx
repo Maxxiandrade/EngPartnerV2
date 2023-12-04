@@ -23,7 +23,10 @@ import Friends from "../../Home/Friends/Friends";
 
 
 const PrivateChat = ({ setIsAuth }) => {
+  const vip = useSelector(state => state.users.isVip)
 
+
+  const [colum,setColumn]= useState(false)
     const uid = localStorage.getItem("uid");
     const admin = useSelector((state) => state.users.isAdmin);
     const userPhoto = useSelector((state) => state.users.photo);
@@ -48,19 +51,13 @@ const PrivateChat = ({ setIsAuth }) => {
     return (
         <div className={style.home}>
             <nav className={style.nav}>
-                <Link to="/home">
-                    <img src={logo} alt="Home" className={style.logo} />
-                </Link>
-                <div className={style.navBtns}>
-              <Link to="/admin">
-              <button className={style.adminBtn}><img src={report} alt="admin" className={style.icon} /></button>
-              </Link>
+            <Link to="/home">
+              <img src={logo} alt="Home" className={style.logo} />
+            </Link>
+            <div className={style.navBtns}>
             <Link to='/messages'>
               <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
             </Link>
-              <Link to='/CreateRoom'>
-              <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
-              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
@@ -71,14 +68,36 @@ const PrivateChat = ({ setIsAuth }) => {
                   <img src={crown} alt="" className={style.icon} />
                 </button>
               </Link>
-              <button onClick={handleLogOut} className={style.signOut}>
-                <img src={logOut} alt="logout" className={style.icon} />
-              </button>
-              <Link to={`/profile/${uid}`}>
-                <img src={userPhoto} alt="" className={style.userPhoto} />
-              </Link>
+              <img src={userPhoto} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
+                {colum ?
+                  <ul className={style.column}>
+                  <li className={style.li}>
+                    <Link to={`/profile/${uid}`}>
+                      <div className={style.dropDownDiv}>
+                      <img src={userPhoto} alt="" className={style.userPhoto2} />
+                      <span className={style.dropDownSpan}>Profile</span>
+                      </div>
+                    </Link>
+                  </li>
+                  {vip?
+                  <li className={style.li}>
+                    <Link to='/CreateRoom'>
+                      <div className={style.dropDownDiv}>
+                    <img src={group} alt="group" className={style.icon} />
+                        <span className={style.dropDownSpan}>Create Room</span>
+                    </div>
+                    </Link>
+                  </li>:""}                  
+                  <li className={style.li}>
+                    <div className={style.dropDownDiv} onClick={handleLogOut}>
+                    <img src={logOut} alt="logout" className={style.icon} />
+                        <span className={style.dropDownSpan}><b>Logout</b></span>
+                    </div>
+                  </li>
+                </ul>: ''}
+              
             </div>
-            </nav>
+          </nav>
             <div className={style.componentsDiv}>
                 <div className={style.container}>
                     <Sidebar />

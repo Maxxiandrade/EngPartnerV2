@@ -16,6 +16,7 @@ import { clearUserDataInLogout } from '../../redux/actions/actions';
 import axios from 'axios';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
@@ -34,6 +35,9 @@ function Premiun({ setIsAuth }) {
   const uid = localStorage.getItem("uid");
   const isVip = useSelector((state) => state.users.isVip);
   const cookies = new Cookies();
+  const vip = useSelector(state => state.users.isVip)
+  const admin = useSelector((state)=>state.users.isAdmin)
+  const [colum,setColumn]= useState(false)
 
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
@@ -44,7 +48,6 @@ function Premiun({ setIsAuth }) {
     setIsAuth(false);
     dispatch(clearUserDataInLogout());
   };
-console.log(userPhoto);
   
   useEffect(() => {
     dispatch(getMyUser(uid));
@@ -53,37 +56,53 @@ console.log(userPhoto);
   return (
     <div className={style.premiumMainDiv}>
       <nav className={style.nav}>
-        <Link to="/home">
-          <img src={logo} alt="Home" className={style.logo} />
-        </Link>
-        <div className={style.navBtns}>
-          <Link to="/admin">
-            <button className={style.adminBtn}><img src={report} alt="admin" className={style.icon} /></button>
-          </Link>
-          <Link to='/messages'>
-          <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
-          </Link>
-          <Link to='/CreateRoom'>
-          <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
-          </Link>
-          <Link to='/connect'>
-            <button className={style.connectBtn}>
-              <img src={connect} alt="connect" className={style.icon} />
-            </button>
-          </Link>
-          <Link to='/premium'>
-            <button className={style.premium}>
-              <img src={crown} alt="" className={style.icon} />
-            </button>
-          </Link>
-          <button onClick={handleLogOut} className={style.signOut}>
-            <img src={logOut} alt="logout" className={style.icon} />
-          </button>
-          <Link to={`/profile/${uid}`}>
-            <img src={userPhoto} alt="" className={style.userPhoto} />
-          </Link>
-        </div>
-      </nav>
+            <Link to="/home">
+              <img src={logo} alt="Home" className={style.logo} />
+            </Link>
+            <div className={style.navBtns}>
+            <Link to='/messages'>
+              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
+            </Link>
+              <Link to='/connect'>
+                <button className={style.connectBtn}>
+                  <img src={connect} alt="connect" className={style.icon} />
+                </button>
+              </Link>
+              <Link to='/premium'>
+                <button className={style.premium}>
+                  <img src={crown} alt="" className={style.icon} />
+                </button>
+              </Link>
+              <img src={userPhoto} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
+                {colum ?
+                  <ul className={style.column}>
+                  <li className={style.li}>
+                    <Link to={`/profile/${uid}`}>
+                      <div className={style.dropDownDiv}>
+                      <img src={userPhoto} alt="" className={style.userPhoto2} />
+                      <span className={style.dropDownSpan}>Profile</span>
+                      </div>
+                    </Link>
+                  </li>
+                  {vip?
+                  <li className={style.li}>
+                    <Link to='/CreateRoom'>
+                      <div className={style.dropDownDiv}>
+                    <img src={group} alt="group" className={style.icon} />
+                        <span className={style.dropDownSpan}>Create Room</span>
+                    </div>
+                    </Link>
+                  </li>:""}                  
+                  <li className={style.li}>
+                    <div className={style.dropDownDiv} onClick={handleLogOut}>
+                    <img src={logOut} alt="logout" className={style.icon} />
+                        <span className={style.dropDownSpan}><b>Logout</b></span>
+                    </div>
+                  </li>
+                </ul>: ''}
+              
+            </div>
+          </nav>
         <div className={style.introPremiumDiv}>
           <h3 className={style.introH3}>Unlock a premium experience with our <img src={verify} className={style.iconVerify} /> VIP membership!
           </h3>

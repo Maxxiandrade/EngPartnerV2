@@ -4,6 +4,7 @@ import style from './Admin.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { getReported, getMyUser } from '../../../redux/actions/actions';
 import axios from 'axios';
+import logo from "../../../assets/logo.png"
 
 const Admin = () => {
     const uid = localStorage.getItem("uid");
@@ -34,9 +35,9 @@ const Admin = () => {
     return isAdmin ? (
         <div className={style.adminContainer}>
             <Link to="/home">
-                <button>Home</button>
+                <img src={logo} alt="home" className={style.logo}/>
             </Link>
-            <h1>Admin panel</h1>
+            <h1 className={style.adminH1}>Admin panel</h1>
             <div>
                 <table className={style.reportTable}>
                     <thead>
