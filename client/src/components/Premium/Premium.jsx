@@ -20,7 +20,6 @@ import { Link } from "react-router-dom";
 
 import AnnualPremium from "./AnnualPremium";
 import MonthPremium from "./MonthPremuim";
-import logo from "../../assets/logo-EngPartner.png";
 import { useEffect } from "react";
 import { getMyUser } from "../../redux/actions/actions";
 
