@@ -27,7 +27,7 @@ import { Navigate } from 'react-router-dom';
 
 const Home = ({ setIsAuth }) => {
   const admin = useSelector((state)=>state.users.isAdmin)
-  const user = useSelector((state) => state.users.name);
+  const [colum,setColumn]= useState(false)
   const userPhoto = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
@@ -79,15 +79,9 @@ const Home = ({ setIsAuth }) => {
               <TopicsChat setingValueRoom={setingValueRoom} />
             </div>
             <div className={style.navBtns}>
-              <Link to="/admin">
-              <button className={style.adminBtn}><img src={report} alt="admin" className={style.icon} /></button>
-              </Link>
             <Link to='/messages'>
               <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
             </Link>
-              <Link to='/CreateRoom'>
-              <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
-              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
@@ -98,12 +92,31 @@ const Home = ({ setIsAuth }) => {
                   <img src={crown} alt="" className={style.icon} />
                 </button>
               </Link>
-              <button onClick={handleLogOut} className={style.signOut}>
-                <img src={logOut} alt="logout" className={style.icon} />
-              </button>
-              <Link to={`/profile/${uid}`}>
-                <img src={userPhoto} alt="" className={style.userPhoto} />
-              </Link>
+              <img src={userPhoto} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
+                {colum ?
+                  <ul className={style.column}>
+                  <li>
+                    <Link to="/admin">
+                    <span>Admin</span>
+                    <img src={report} alt="admin" className={style.icon}/>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/CreateRoom'>
+                    <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
+                    </Link>
+                  </li>
+                  <li>
+                  <button onClick={handleLogOut} className={style.signOut}>
+                    <img src={logOut} alt="logout" className={style.icon} />
+                  </button>
+                  </li>
+                  <li>
+                    <Link to={`/profile/${uid}`}>
+                      <img src={userPhoto} alt="" className={style.userPhoto} />
+                    </Link>
+                  </li>
+                </ul>: ''}
             </div>
           </nav>
           <div className={style.homeComponentsDiv}>
