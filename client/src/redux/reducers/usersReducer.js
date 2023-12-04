@@ -110,6 +110,9 @@ const usersReducer = (state = initialState, action) => {
         isVip: action.payload.isVip,
         isOn: action.payload.isOn,
         isAdmin: action.payload.isAdmin,
+        language: action.payload.language,
+        languageRead: action.payload.languageRead,
+        rooms: action.payload.rooms
       };
 
     case SET_USER_DATA_GOOGLE_ACCOUNT:
@@ -139,6 +142,9 @@ const usersReducer = (state = initialState, action) => {
         isVip: false,
         isOn: false,
         isAdmin: false,
+        language: "",
+        languageRead: "",
+        rooms: [],
         emailGoogleAccount: "",
         photoGoogleAccount: "",
         uidGoogleAccount: "",
