@@ -1,21 +1,24 @@
 import React from 'react'
 import style from './PrivateChat.module.css'
 import M from '../../../assets/M.jpg'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef } from 'react'
-
 
 const Message = ({ message }) => {
   const ref = useRef()
   const user = useSelector((state) => state.users.userChat)
-  const uid = useSelector((state) => state.users.uid)
+  const uid = localStorage.getItem("uid");
   const photo = useSelector((state) => state.users.photo)
+  const dispatch = useDispatch();
 
   useEffect(() => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
     console.log(message);
   }, [message]);
 
+  useEffect(() => {
+    dispatch(getMyUser(uid));
+  })
   console.log(message);
   return (
     <div className={style.messageContainer} ref={ref}>

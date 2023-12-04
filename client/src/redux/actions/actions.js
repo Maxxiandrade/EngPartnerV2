@@ -13,7 +13,9 @@ GET_FRIENDS,
 CHANGE_USER,
 SELECT_REPORT,
 CREATE_ROOM,
-GET_REPORTED
+GET_REPORTED,
+UPDATE_USER_LANGUAGE,
+UPDATE_USER_READ_LANGUAGE
  } from "../action_types/userActionTypes";
 
 
@@ -119,6 +121,8 @@ export const getMyUser = (uid)=> async(dispatch)=>{
     const myUid = {uid:uid}
     console.log(myUid)
     const {data} = await axios.post('http://localhost:3001/user',myUid)
+    localStorage.setItem("language", data.language)
+    localStorage.setItem("languageRead", data.languageRead)
     console.log(data)
       dispatch({
         type: GET_MY_USER,
@@ -128,6 +132,44 @@ export const getMyUser = (uid)=> async(dispatch)=>{
     throw Error(error)
   }
 };
+
+export const updateUserLanguage = async ({uid, language}) => {
+  try {
+    await axios.put("http://localhost:3001/language", {uid, language})
+    localStorage.setItem("language", language)
+    return async function (dispatch) {
+      try {
+        dispatch({
+          type: UPDATE_USER_LANGUAGE,
+          payload: language
+        });
+      } catch (error) {
+        throw Error(error)
+      }
+    }
+  } catch (error) {
+    throw Error(error)
+  }
+}
+
+export const updateUserReadLanguage = async ({uid, languageRead}) => {
+  try {
+    await axios.put("http://localhost:3001/languageRead", {uid, languageRead})
+    localStorage.setItem("languageRead", languageRead)
+    return async function (dispatch) {
+      try {
+        dispatch({
+          type: UPDATE_USER_READ_LANGUAGE,
+          payload: languageRead
+        });
+      } catch (error) {
+        throw Error(error)
+      }
+    }
+  } catch (error) {
+    throw Error(error)
+  }
+}
 
 export const editUser = ({uid, name, lastname, description})=>async()=>{
   try {

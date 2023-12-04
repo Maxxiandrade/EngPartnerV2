@@ -11,7 +11,7 @@ import { chatReducer } from '../../../redux/actions/actions';
 const Chats = () => {
     const dispatch = useDispatch();
     const [chats, setChats] = useState([])
-    const uid = useSelector((state)=>state.users.uid)
+    const uid = localStorage.getItem("uid");
     const uC = useSelector((state)=>state.users.userChat)
     const Ci = useSelector((state)=>state.users.chatId)
 

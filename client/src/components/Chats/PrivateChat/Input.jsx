@@ -12,7 +12,7 @@ import sendIcon from "../../../assets/svg/sendIcon.svg"
 
 const Input = () => {
   const [text, setText] = useState("")
-  const uid = useSelector((state)=>state.users.uid)
+  const uid = localStorage.getItem("uid");
   const user = useSelector((state)=>state.users.userChat)
   const userChat = user.uid
   const chatId = useSelector((state)=>state.users.chatId)

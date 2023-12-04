@@ -56,7 +56,9 @@ const CreateUser = ( {setIsAuth} ) => {
     friends: [],
     isVip: false,
     isOn: false,
-    isAdmin: false
+    isAdmin: false,
+    language: '',
+    languageRead: '',
   });
   
   const [errors, setErrors] = useState({})
@@ -341,6 +343,8 @@ const CreateUser = ( {setIsAuth} ) => {
         {errors.sex && <span className='registerErrors'>{errors.sex}</span>}
 
         <label htmlFor="country">Select your country:</label>
+        {createUserInfo.country==='' && <span className='registerErrors'>{"Please select your country"}</span>}
+
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -376,7 +380,50 @@ const CreateUser = ( {setIsAuth} ) => {
             </div>
           </div>
         )}
-        {createUserInfo.country==='' && <span className='registerErrors'>{"Please select your country"}</span>}
+
+        <label htmlFor="language">Select your languaje:</label>
+        {errors.language && <span className='registerErrors'>{errors.language}</span>}
+        <Select
+          name="language"
+          value={createUserInfo.language}
+          onChange={handleChangeInput}
+        >
+          <MenuItem value={'en'}>English 🇬🇧</MenuItem>
+          <MenuItem value={'es'}>Spanish 🇪🇸</MenuItem>
+          <MenuItem value={'fr'}>French 🇫🇷</MenuItem>
+          <MenuItem value={'it'}>Italian 🇮🇹</MenuItem>
+          <MenuItem value={'de'}>German 🇩🇪</MenuItem>
+          <MenuItem value={'nl'}>Dutch (Holland) 🇳🇱</MenuItem>
+          <MenuItem value={'pt'}>Portuguese 🇵🇹</MenuItem>
+          <MenuItem value={'ru'}>Russian 🇷🇺</MenuItem>
+          <MenuItem value={'zh'}>Chinese (Simplified) 🇨🇳</MenuItem>
+          <MenuItem value={'zh-TW'}>Chinese (Traditional) 🇨🇳</MenuItem>
+          <MenuItem value={'ko'}>Korean 🇰🇷</MenuItem>
+          <MenuItem value={'gn'}>Guarani 🇵🇾</MenuItem>
+          <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
+        </Select>
+
+        <label htmlFor="languageRead">Select the language you want to read:</label>
+        {errors.languageRead && <span className='registerErrors'>{errors.languageRead}</span>}
+        <Select
+          name="languageRead"
+          value={createUserInfo.languageRead}
+          onChange={handleChangeInput}
+        >
+          <MenuItem value={'en'}>English 🇬🇧</MenuItem>
+          <MenuItem value={'es'}>Spanish 🇪🇸</MenuItem>
+          <MenuItem value={'fr'}>French 🇫🇷</MenuItem>
+          <MenuItem value={'it'}>Italian 🇮🇹</MenuItem>
+          <MenuItem value={'de'}>German 🇩🇪</MenuItem>
+          <MenuItem value={'nl'}>Dutch (Holland) 🇳🇱</MenuItem>
+          <MenuItem value={'pt'}>Portuguese 🇵🇹</MenuItem>
+          <MenuItem value={'ru'}>Russian 🇷🇺</MenuItem>
+          <MenuItem value={'zh'}>Chinese (Simplified) 🇨🇳</MenuItem>
+          <MenuItem value={'zh-TW'}>Chinese (Traditional) 🇨🇳</MenuItem>
+          <MenuItem value={'ko'}>Korean 🇰🇷</MenuItem>
+          <MenuItem value={'gn'}>Guarani 🇵🇾</MenuItem>
+          <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
+        </Select>
 
         {!photoGoogleAccount &&
         <>

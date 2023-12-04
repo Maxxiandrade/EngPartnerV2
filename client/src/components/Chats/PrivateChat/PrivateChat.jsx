@@ -25,8 +25,9 @@ import Friends from "../../Home/Friends/Friends";
 const PrivateChat = ({ setIsAuth }) => {
   const vip = useSelector(state => state.users.isVip)
 
+
   const [colum,setColumn]= useState(false)
-    const uid = useSelector((state) => state.users.uid);
+    const uid = localStorage.getItem("uid");
     const admin = useSelector((state) => state.users.isAdmin);
     const userPhoto = useSelector((state) => state.users.photo);
 
@@ -42,6 +43,10 @@ const PrivateChat = ({ setIsAuth }) => {
         setIsAuth(false);
         dispatch(clearUserDataInLogout());
     };
+
+    useEffect(() => {
+      dispatch(getMyUser(uid));
+    }, []);
 
     return (
         <div className={style.home}>

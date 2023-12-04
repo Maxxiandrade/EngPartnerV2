@@ -19,7 +19,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { editUser, handleUser } from "../../redux/actions/actions";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
-import { getMyUser, clearUserDataInLogout } from "../../redux/actions/actions";
+import { getMyUser, clearUserDataInLogout, updateUserLanguage, updateUserReadLanguage } from "../../redux/actions/actions";
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from "@mui/material";
+
 
 const Profile = ({ setIsAuth }) => {
 
@@ -33,6 +35,8 @@ const Profile = ({ setIsAuth }) => {
 
   const localStorageUID = localStorage.getItem('uid');
   const user = useSelector((state) => state.users);
+  const language = localStorage.getItem('language');
+  const languageRead = localStorage.getItem('languageRead');
   const uid = useSelector((state) => state.users.uid);
   const photo = useSelector((state) => state.users.photo);
   const friendList = useSelector((state) => state.users.friends);
@@ -68,6 +72,10 @@ const Profile = ({ setIsAuth }) => {
         console.log(user);
       });
   }, [params?.uid, friendList, isFriend]);
+
+  useEffect(() => {
+      dispatch(getMyUser(localStorageUID))
+  }, []);
 
   const handleEdit = () => {
     if (!aux) {
@@ -182,6 +190,56 @@ const Profile = ({ setIsAuth }) => {
                   {profile.description}
                 </p>
               </div>
+
+              <FormControl>
+                <label htmlFor="language">Your selected language:</label>
+                <Select
+                  name="language"
+                  defaultValue={language}
+                  onChange={(e) => {
+                    updateUserLanguage({uid: localStorageUID, language: e.target.value})
+                  }}
+                >
+                  <MenuItem value={'en'}>English 🇬🇧</MenuItem>
+                  <MenuItem value={'es'}>Spanish 🇪🇸</MenuItem>
+                  <MenuItem value={'fr'}>French 🇫🇷</MenuItem>
+                  <MenuItem value={'it'}>Italian 🇮🇹</MenuItem>
+                  <MenuItem value={'de'}>German 🇩🇪</MenuItem>
+                  <MenuItem value={'nl'}>Dutch (Holland) 🇳🇱</MenuItem>
+                  <MenuItem value={'pt'}>Portuguese 🇵🇹</MenuItem>
+                  <MenuItem value={'ru'}>Russian 🇷🇺</MenuItem>
+                  <MenuItem value={'zh'}>Chinese (Simplified) 🇨🇳</MenuItem>
+                  <MenuItem value={'zh-TW'}>Chinese (Traditional) 🇨🇳</MenuItem>
+                  <MenuItem value={'ko'}>Korean 🇰🇷</MenuItem>
+                  <MenuItem value={'gn'}>Guarani 🇵🇾</MenuItem>
+                  <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
+                </Select>
+
+                <label htmlFor="languageRead" style={{ marginTop: "50px" }}>Your reading language:</label>
+                <Select
+                  name="languageRead"
+                  defaultValue={languageRead}
+                  onChange={(e) => {
+
+                    updateUserReadLanguage({uid: localStorageUID, languageRead: e.target.value})
+                  }}
+                >
+                  <MenuItem value={'en'}>English 🇬🇧</MenuItem>
+                  <MenuItem value={'es'}>Spanish 🇪🇸</MenuItem>
+                  <MenuItem value={'fr'}>French 🇫🇷</MenuItem>
+                  <MenuItem value={'it'}>Italian 🇮🇹</MenuItem>
+                  <MenuItem value={'de'}>German 🇩🇪</MenuItem>
+                  <MenuItem value={'nl'}>Dutch (Holland) 🇳🇱</MenuItem>
+                  <MenuItem value={'pt'}>Portuguese 🇵🇹</MenuItem>
+                  <MenuItem value={'ru'}>Russian 🇷🇺</MenuItem>
+                  <MenuItem value={'zh'}>Chinese (Simplified) 🇨🇳</MenuItem>
+                  <MenuItem value={'zh-TW'}>Chinese (Traditional) 🇨🇳</MenuItem>
+                  <MenuItem value={'ko'}>Korean 🇰🇷</MenuItem>
+                  <MenuItem value={'gn'}>Guarani 🇵🇾</MenuItem>
+                  <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
+                </Select>
+              </FormControl>
+
               <button onClick={handleEdit} className={style.edit}>
                 <img src={pencil} alt="Edit" className={style.iconBtn} />
               </button>

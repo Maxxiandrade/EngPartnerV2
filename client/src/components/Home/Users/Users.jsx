@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOnline } from "../../../redux/actions/actions";
+import { getOnline, getMyUser } from "../../../redux/actions/actions";
 
 import defaultImg from "../../../assets/user-default-pfp.png";
 
@@ -11,11 +11,13 @@ import styles from "./Users.module.css";
 
 const Users = () => {
   const users = useSelector((state) => state.users.users);
+  const uid = localStorage.getItem("uid");
   const dispatch = useDispatch();
   console.log(users);
 
   useEffect(() => {
     dispatch(getOnline());
+    dispatch(getMyUser(uid));
   }, []);
 
   return (
