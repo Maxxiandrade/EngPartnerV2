@@ -1,3 +1,4 @@
+/* --------------------------NAVBAR---------------------------------- */
 .logo {
   width: 40px;
 }
@@ -24,38 +25,26 @@
 .connectBtn,
 .signOut,
 .premium,
-.chatBtn {
+.chatBtn,
+.adminBtn,
+.groupBtn {
   background: transparent;
   border: solid 0.5px #30363d;
   border-radius: 10px;
   margin-right: 10px;
-}
-
-.connectBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: #00bfc7;
-  box-shadow: 0px 0px 10px #ffffff;
 }
 
 .connectBtn:not(:hover),
 .signOut:not(:hover),
 .premium:not(:hover),
-.chatBtn:not(:hover) {
+.chatBtn:not(:hover),
+.adminBtn:not(:hover),
+.groupBtn:not(:hover) {
   transition: 0.5s;
 }
 
-.premium:hover {
+.adminBtn:hover {
   transition: 0.5s;
-  color: white;
-  background-color: #1f2147;
-  border-color: yellow;
-  box-shadow: 0px 0px 10px #f0e628;
-}
-
-.signOut:hover {
-  transition: 0.5s;
-  color: white;
   background-color: #1f2147;
   border-color: red;
   box-shadow: 0px 0px 10px rgb(255, 0, 0);
@@ -63,75 +52,16 @@
 
 .chatBtn:hover {
   transition: 0.5s;
-  color: white;
   background-color: #1f2147;
   border-color: rgb(21, 255, 0);
   box-shadow: 0px 0px 10px #49f028;
 }
 
-/* ------------------------------------------------------------------------------- */
-
-.premiumMainDiv {
-  background-color: #031525;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
-.premiumCoponentsDiv {
-  display: flex;
-  justify-content: center;
-  max-height: 80%;
-  min-height: 80%;
-}
-
-.cardsDiv{
-    background-color: transparent;
-}
-
-/* ------------------------------------------------------------------------------ */
-
-.conainer_form {
-  width: 400px;
-  display: flex;
-  justify-content: center;
-  background-color: transparent;
-  margin: 3% 5% 0 5%;
-  border: 2px solid #32b1fe;
-  border-radius: 15px;
-  padding: 10px;
-}
-.logo {
-  width: 40px;
-}
-
-.icon {
-  width: 25px;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #031525;
-  color: #0f295c;
-  border-bottom: solid 0.5px #30363d;
-}
-
-.navBtns {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.connectBtn,
-.signOut,
-.premium,
-.chatBtn {
-  background: transparent;
-  border: solid 0.5px #30363d;
-  border-radius: 10px;
-  margin-right: 10px;
+.groupBtn:hover {
+  transition: 0.5s;
+  background-color: #1f2147;
+  border-color: rgb(132, 0, 255);
+  box-shadow: 0px 0px 10px #b128f0;
 }
 
 .connectBtn:hover {
@@ -141,16 +71,8 @@
   box-shadow: 0px 0px 10px #ffffff;
 }
 
-.connectBtn:not(:hover),
-.signOut:not(:hover),
-.premium:not(:hover), 
-.chatBtn:not(:hover){
-  transition: 0.5s;
-}
-
 .premium:hover {
   transition: 0.5s;
-  color: white;
   background-color: #1f2147;
   border-color: yellow;
   box-shadow: 0px 0px 10px #f0e628;
@@ -158,54 +80,14 @@
 
 .signOut:hover {
   transition: 0.5s;
-  color: white;
   background-color: #1f2147;
-  border-color: red;
-  box-shadow: 0px 0px 10px rgb(255, 0, 0);
-}
-
-.chatBtn:hover {
-  transition: 0.5s;
-  color: white;
-  background-color: #1f2147;
-  border-color: rgb(21, 255, 0);
-  box-shadow: 0px 0px 10px #49f028;
-}
-
-.homeComponentsDiv{
-  display: flex;
-  justify-content: space-around;
-  max-height: 80%;
-  min-height: 80%;
-}
-
-.globalChat {
-  background-color: #031525;
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  width: 60%;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.friendsComp {
-  padding: 20px;
-  box-sizing: border-box;
-  width: 20%;
-  max-height: 100%;
-}
-
-.homeMainDiv {
-  background-color: #031525;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  border-color: grey;
+  box-shadow: 0px 0px 10px #8f8f8f;
 }
 
 .userPhoto {
   display: inline;
-  width: 49px;  
+  width: 49px;
   border-radius: 10px;
   border: solid 0.5px #30363d;
   align-items: center;
@@ -217,4 +99,111 @@
   background-color: #1f2147;
   border-color: white;
   box-shadow: 0px 0px 10px #ffffff;
+}
+
+/* -------------------------------------------------------------------------- */
+
+.premiumMainDiv {
+  background-color: #031525;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.premiumCoponentsDiv {
+  display: flex;
+  justify-content: center;
+  padding-top: 2%;
+  width: 100%;
+  max-height: 70%;
+  min-height: 70%;
+}
+
+.introPremiumDiv{
+  width: 100%;
+  background-color: #0896ef80;
+}
+
+.introH3{
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+}
+
+.iconVerify{
+  width: 22px;
+  margin-bottom: -3px;
+}
+
+.conainer_form {
+  background-color: #dff0ff;
+  display: flex;
+  margin: 0 3% 0 3%;
+  min-height: 90%;
+  width: 20%;
+  border: solid 2px #32b1fe;
+  border-radius: 10px;
+  box-shadow: 4px 4px 8px rgb(122, 204, 255, 0.5)
+}
+
+.paymentForm {
+  padding: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.discount{
+  position: absolute;
+  font-weight: bold;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 2px;
+  background-color: #32B1FE;
+  color: yellow;
+  border-radius: 0px 8px 0px 8px ;
+}
+
+.formTitle {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333  ;
+}
+
+.price {
+  font-size: 1.5em;
+  color: #031525;
+  font-weight: bold;
+}
+
+.cardElement {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.buyButton {
+  background-color: #32b1fe;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.buyButton:hover {
+  background-color: #007bb5;
+}
+
+.buyButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
