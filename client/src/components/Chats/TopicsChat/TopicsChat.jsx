@@ -8,7 +8,7 @@ const TopicsChat = ({ setingValueRoom }) => {
   const country = useSelector(state=> state.users.country)
   const Myrooms =useSelector(state=> state.users.rooms)
   console.log(country);
-  const [rooms,setRooms]= useState(['Global','Sport','Animals',"Food",'Tech',country , ...Myrooms ])
+  const [rooms,setRooms]= useState(['Global','Sport','Animals',"Food",'Tech',country ])
     const handleTopic = (e)=>{
     const topic = e.target.value
     const selectedRoom = topic === 'null' ? null : topic !== '' ? topic : roomInputRef.current.value;
