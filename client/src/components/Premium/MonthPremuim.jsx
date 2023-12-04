@@ -1,6 +1,8 @@
 import {CardElement, useStripe, useElements} from "@stripe/react-stripe-js";
 import axios from "axios";
 import style from "./premium.module.css";
+import premiumMonth from "../../assets/premiumMonth.png"
+
 
 const MonthPremium=({isVip,uid})=>{
 
@@ -31,16 +33,12 @@ const handleSubmit = async (e) => {
 }
  return( 
     <div className={style.conainer_form}>
-    <form onSubmit={handleSubmit} >
-    <h3>Monthly Premium</h3>
-        <img src="https://d15shllkswkct0.cloudfront.net/wp-content/blogs.dir/1/files/2015/05/ShutUpAndTakeMyMoney.jpg" alt="" width="300px" />
-        <p>$7,99</p>
-         <CardElement/>
-        <button 
-        disabled={isVip}
-        >
-            BUY
-        </button>
+    <form onSubmit={handleSubmit} className={style.paymentForm}>
+    <h3 className={style.formTitle}>Monthly Subscription</h3>
+        <img src={premiumMonth} alt="" width="300px" height="269px"/>
+        <p className={style.price}>$7,99</p>
+         <CardElement className={style.cardElement}/>
+        <button disabled={isVip} className={style.buyButton}>BUY</button>
     </form>
 
     </div>
