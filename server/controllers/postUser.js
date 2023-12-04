@@ -33,7 +33,8 @@ const postUser = async (req, res) => {
             isOn,
             isVip,
             isAdmin,
-            friends
+            friends,
+            reports:[]
         });
 
         res.status(200).json('ok');

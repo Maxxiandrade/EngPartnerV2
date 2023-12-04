@@ -17,6 +17,9 @@ import {
   CLEAR_USER_DATA_IN_LOGOUT,
   GET_FRIENDS,
   CHANGE_USER,
+  SELECT_REPORT,
+  CREATE_ROOM,
+  GET_REPORTED
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -36,6 +39,8 @@ const initialState = {
   description: "",
   photo: "",
   friends: [],
+  reports: [],
+  rooms:[],
   isVip: false,
   isOn: false,
   isAdmin: false,
@@ -46,6 +51,7 @@ const initialState = {
   genderFilter: "both",
   userChat: {},
   chatId: null,
+  reported:[]
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -76,6 +82,7 @@ const usersReducer = (state = initialState, action) => {
         isVip: action.payload.isVip,
         isAdmin: action.payload.isAdmin,
         isOn: action.payload.isOn,
+        rooms:action.payload.rooms,
       };
 
     case SET_USER_DATA_REGISTER:
@@ -196,6 +203,24 @@ const usersReducer = (state = initialState, action) => {
             ? state.uid + action.payload.uid
             : action.payload.uid + state.uid,
       };
+
+      //report options
+    case SELECT_REPORT:
+      return{
+        ...state,
+        reports: action.payload
+      }
+    
+      case CREATE_ROOM:
+      return{
+        ...state,
+        rooms:[... state.rooms, action.payload.nameGroup]
+      }
+    case GET_REPORTED:
+      return{
+        ...state,
+        reported: action.payload
+      }
     default:
       return { ...state };
   }

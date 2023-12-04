@@ -10,8 +10,12 @@ SET_USER_DATA_GOOGLE_ACCOUNT,
 CLEAR_USER_DATA_IN_LOGOUT,
 EDIT_USER,
 GET_FRIENDS,
-CHANGE_USER
+CHANGE_USER,
+SELECT_REPORT,
+CREATE_ROOM,
+GET_REPORTED
  } from "../action_types/userActionTypes";
+
 
 
 
@@ -133,7 +137,7 @@ export const editUser = ({uid, name, lastname, description})=>async()=>{
   }
 }
 
-export const handleUser = ({uid, friendId, action})=>async()=>{
+export const handleUser = ({uid, friendId}, action)=>async()=>{
   try {
     axios.put("http://localhost:3001/friend", {uid, friendId, action})
   } catch (error) {
@@ -159,4 +163,39 @@ export const chatReducer = (id)=>(dispatch)=>{
         type: CHANGE_USER,
         payload: id
       })
+}
+
+export const submitReport = (reportData) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post('http://localhost:3001/reports', reportData);
+      console.log('Report submitted successfully', response.data);
+      dispatch({
+        type: SELECT_REPORT,
+        payload: response.data
+      })
+    } catch (error) {
+      console.error('Error submitting report', error);
+    }
+  };
+};
+
+export const CreateRoom= (obj)=> async(dispatch)=>{
+  console.log(obj);
+  await axios.post(`http://localhost:3001/createRoom`,obj)
+  dispatch({
+    type: CREATE_ROOM,
+    payload: obj
+  })
+}
+export const getReported = ()=>async(dispatch)=>{
+  try{
+      const {data} = await axios.get('http://localhost:3001/reported')
+      dispatch({
+        type: GET_REPORTED,
+        payload: data
+      })
+    }catch(error){
+      throw Error(error)
+    }
 }

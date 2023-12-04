@@ -90,9 +90,6 @@
 .sendButton {
   border: 1px solid #4449BE;
   background: #DFF0FF;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
   margin-right: 10px;
 }
 
@@ -134,6 +131,10 @@
 .verify{
   width: 25px;
   padding-right: 2px;
+}
+.AdminSvg{
+  width: 25px;
+  padding-right: 6px;
 }
 
 .messageFormDiv{

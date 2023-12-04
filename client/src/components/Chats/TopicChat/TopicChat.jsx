@@ -3,6 +3,7 @@ import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
 import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/exclamation.svg"
+import AdminSvg from'../../../assets/svg/admin-verify.svg'
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -33,21 +34,6 @@ const Chat = ({ room, setRoom }) => {
   const messageRef = collection(db, "messages");
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-
-    const handleClickOutsideOptions = (event) => {
-      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-        setMessageOptions({});
-        setLastClickedMessageId(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutsideOptions);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutsideOptions);
-    };
-  }, []);
 
   useEffect(() => {
     const queryMessages = query(
@@ -88,6 +74,7 @@ const Chat = ({ room, setRoom }) => {
       profilePic: user.photo,
       uid: user.uid,
       isVip: user.isVip,
+      isAdmin:user.isAdmin,
       room,
     });
     setNewMessage("");
@@ -116,7 +103,9 @@ const Chat = ({ room, setRoom }) => {
               <Link to={`/profile/${message.uid}`}>
                 <span className={style.user}>
                   <div className={style.verifyDiv}>
-                    {message.isVip ? <img src={verify} className={style.verify} /> : ''}
+                    {message.isAdmin ? <img src={AdminSvg} className={style.AdminSvg} /> :
+                    message.isVip ? <img src={verify} className={style.verify} /> : ''
+                    }
                   </div>
                   {`${message.user}:`}
                 </span>
@@ -125,10 +114,18 @@ const Chat = ({ room, setRoom }) => {
               <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
                 {message.text}
               </span>
+              <hr />
+              <span>
+                {message.translatedText?.en}
+              </span>
               </div>
               <div>
                 <img src={report} alt="" className={style.report} />
-              {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption />}
+              {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption 
+              messageId={message.id}
+              message={message.text}
+              user={message.user}
+              setLastClickedMessageId={setLastClickedMessageId}/>}
               </div>
             </div>
           ))}
