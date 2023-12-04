@@ -37,26 +37,18 @@ const Users = () => {
               <div className={styles.textContainer}>
                 <div className={styles.nameAndVipContainer}>
                   <p>{user.name}</p>
-                  <p>{user.age}</p>
+                  <p className={styles.age}>{user.age}</p>
                 </div>
                 <div className={styles.restPropsContainer}>
                   <p>{user.country}</p>
                   <p>{user.sex}</p>
-                  <div>
+                  <div className={styles.isOnContainerrr}>
                     {user.isOn ? (
-                      <span
-                        role="img"
-                        aria-label="Online"
-                        style={{ color: "green" }}
-                      >
+                      < span className={styles.spannn}>
                         🟢
                       </span>
                     ) : (
-                      <span
-                        role="img"
-                        aria-label="Offline"
-                        style={{ color: "red" }}
-                      >
+                      <span className={styles.spannn}>
                         🔴
                       </span>
                     )}
