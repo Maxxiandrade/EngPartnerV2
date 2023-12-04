@@ -114,11 +114,12 @@ const Chat = ({ room, setRoom }) => {
               </Link>
               <div className={style.textDiv}>
               <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
-                {message.translatedText[language]} {/* mensaje en lengua original */}
+                
+                {message.translatedText?.[language] ? message.translatedText?.[language] : message.text} {/* mensaje en lengua original */}
               </span>
               <hr />
               <span>
-                {message.translatedText[languageRead]} {/* mensaje traducido */}
+                {message.translatedText?.[languageRead] ? message.translatedText?.[languageRead] : message.text} {/* mensaje traducido */}
               </span>
               </div>
               <div>
