@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Navigate, Link } from 'react-router-dom';
 import style from './Admin.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getReported } from '../../../redux/actions/actions';
+import { getReported, getMyUser } from '../../../redux/actions/actions';
 import axios from 'axios';
+import logo from "../../../assets/logo.png"
 
 const Admin = () => {
+    const uid = localStorage.getItem("uid");
     const isAdmin = useSelector((state) => state.users.isAdmin);
     const dispatch = useDispatch()
     const reportedUsers = useSelector((state)=> state.users.reported)
     const [usersToRender, setUsersToRender] = useState([]); 
 
     useEffect(() => {
+        dispatch(getMyUser(uid));
         dispatch(getReported());
         const fetchUsers = async () => {
             const usersData = [];
@@ -32,9 +35,9 @@ const Admin = () => {
     return isAdmin ? (
         <div className={style.adminContainer}>
             <Link to="/home">
-                <button>Home</button>
+                <img src={logo} alt="home" className={style.logo}/>
             </Link>
-            <h1>Admin panel</h1>
+            <h1 className={style.adminH1}>Admin panel</h1>
             <div>
                 <table className={style.reportTable}>
                     <thead>

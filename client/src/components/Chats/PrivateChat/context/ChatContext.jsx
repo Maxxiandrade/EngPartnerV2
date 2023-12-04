@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 export const ChatContext = createContext();
 
 export const ChatContextProvider = ({children})=>{
-    const uid = useSelector((state)=>state.users.uid);
+    const uid = localStorage.getItem("uid");
 
     const INITIAL_STATE = {
         chatId:"null",
