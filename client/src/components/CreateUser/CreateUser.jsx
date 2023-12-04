@@ -59,6 +59,7 @@ const CreateUser = ( {setIsAuth} ) => {
     isAdmin: false,
     language: '',
     languageRead: '',
+    rooms: []
   });
   
   const [errors, setErrors] = useState({})

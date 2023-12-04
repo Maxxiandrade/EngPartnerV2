@@ -4,7 +4,7 @@ const {addDoc, collection, setDoc, getDoc, doc} = require('firebase/firestore')
 const postUser = async (req, res) => {
     try {
         const { uid, email, name, lastname, age, date, sex, country, photo, description, isOn, isVip, isAdmin, user, friends, language,
-        languageRead } = req.body;
+        languageRead, rooms } = req.body;
 
         // Obtener una referencia a la colección 'users'
         const usersCollection = collection(fs, 'users');
@@ -37,7 +37,8 @@ const postUser = async (req, res) => {
             friends,
             language,
             languageRead,
-            reports:[]
+            reports:[],
+            rooms
         });
 
         res.status(200).json('ok');
