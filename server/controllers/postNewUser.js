@@ -28,7 +28,8 @@ const createUser= async (uid,mail, name,lastname, age, isVip,sex,country, user, 
             user,
             language,
             languageRead,
-            timestamp: new Date()
+            timestamp: new Date(),
+            rooms:[]
         })
         return  newUser
         
