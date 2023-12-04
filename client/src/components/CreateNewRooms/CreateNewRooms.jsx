@@ -68,6 +68,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
       console.log(newGroup);
 
       await axios.post(`http://localhost:3001/createRoom`, newGroup)
+      dispatch(getMyUser(uid))
       setMembers([]);
       setGroupName('');
     } else {
