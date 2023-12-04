@@ -333,6 +333,7 @@
 }
 
 .userPhoto {
+  cursor: pointer;
   display: inline;
   width: 49px;
   border-radius: 10px;
