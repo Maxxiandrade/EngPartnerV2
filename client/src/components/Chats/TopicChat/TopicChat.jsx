@@ -34,21 +34,6 @@ const Chat = ({ room, setRoom }) => {
   const messageRef = collection(db, "messages");
   const messagesEndRef = useRef(null);
 
-  useEffect(() => {
-
-    const handleClickOutsideOptions = (event) => {
-      if (optionsRef.current && !optionsRef.current.contains(event.target)) {
-        setMessageOptions({});
-        setLastClickedMessageId(null);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutsideOptions);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutsideOptions);
-    };
-  }, []);
 
   useEffect(() => {
     const queryMessages = query(
@@ -129,10 +114,18 @@ const Chat = ({ room, setRoom }) => {
               <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
                 {message.text}
               </span>
+              <hr />
+              <span>
+                {message.translatedText?.en}
+              </span>
               </div>
               <div>
                 <img src={report} alt="" className={style.report} />
-              {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption />}
+              {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption 
+              messageId={message.id}
+              message={message.text}
+              user={message.user}
+              setLastClickedMessageId={setLastClickedMessageId}/>}
               </div>
             </div>
           ))}

@@ -2,28 +2,14 @@
 .reportMessage {
     position: absolute;
     bottom: 20%;
-    left: 60%;
-    background-color: red;
+    left: 70%;
 }
 
-.reportMessage p {
-    font-size: .8em;
-    background-color: red;
-    border: 10% black;
-    position: relative;
-    padding-right: 5px;
-}
-
-.room:after {
-    font-size: 18px;
-    color: #4449be;
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-.select{
+.optionStyle{
     cursor: pointer;
+    background-color: white;
+}
+
+.optionStyle:hover{
+    background-color: rgb(180, 177, 177);
 }

@@ -11,6 +11,7 @@ const getOnline = require('../controllers/getOnline')
 const getUserByUsername = require('../controllers/getUserByUserName');
 const getMyUser = require('../controllers/getMyUser');
 const getFriends = require('../controllers/getFriends');
+const postReport = require('../controllers/postReport');
 const getAllCountries= require('../controllers/getAllCountries')
 const getAllUsers = require('../controllers/getAllUsers');
 //put
@@ -35,6 +36,7 @@ router.post('/send-message', postMessage)
 router.post('/newUser',postNewUser)
 router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
+router.post('/reports', postReport)
 router.post('/createRoom',postCreateRoom)
 
 router.put('/geton', putIs)

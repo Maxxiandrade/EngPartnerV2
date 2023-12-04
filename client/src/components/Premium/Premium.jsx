@@ -17,10 +17,13 @@ import axios from 'axios';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useSelector, useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom";
 
 import AnnualPremium from "./AnnualPremium";
 import MonthPremium from "./MonthPremuim";
+import { useEffect } from "react";
+import { getMyUser } from "../../redux/actions/actions";
 
 const stripePromise = loadStripe("pk_test_51OFi4pDa4OdRCPg7S1mBe55Usd8TeiSRRVlUiw6q3vJT7cHD7pdJqY5mdRaFBrmLMF9717TAW7Qg1GNXXfiTxzgF00K8IQSPkR");
 
@@ -42,6 +45,10 @@ function Premiun({ setIsAuth }) {
     dispatch(clearUserDataInLogout());
   };
 console.log(userPhoto);
+  
+  useEffect(() => {
+    dispatch(getMyUser(uid));
+  }, [])
 
   return (
     <div className={style.premiumMainDiv}>
