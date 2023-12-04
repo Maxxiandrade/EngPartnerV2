@@ -1,11 +1,11 @@
-const { db } = require('../firebase-confing');
-const { updateDoc, arrayUnion } = require('firebase/firestore');
+const { db, fs } = require('../firebase-confing');
+const { updateDoc, arrayUnion, doc } = require('firebase/firestore');
 
 const reportUser = async (req, res) => {
     try {
         const { user, reportData } = req.body;
 
-        const userDocRef = db.collection('users').doc(user);
+        const userDocRef = doc(fs, 'users', user)
 
         await updateDoc(userDocRef, {
             reports: arrayUnion(reportData)
