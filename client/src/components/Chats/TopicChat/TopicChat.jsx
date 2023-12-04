@@ -113,17 +113,14 @@ const Chat = ({ room, setRoom }) => {
                 </span>
               </Link>
               <div className={style.textDiv}>
-              <span onClick={() => handleOptionsClick(message.id)} ref={optionsRef}>
-                
                 {message.translatedText?.[language] ? message.translatedText?.[language] : message.text} {/* mensaje en lengua original */}
-              </span>
               <hr />
               <span>
                 {message.translatedText?.[languageRead] ? message.translatedText?.[languageRead] : message.text} {/* mensaje traducido */}
               </span>
               </div>
               <div>
-                <img src={report} alt="" className={style.report} />
+                <img src={report} alt="" className={style.report} onClick={() => handleOptionsClick(message.id)} ref={optionsRef}/>
               {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption 
               messageId={message.id}
               message={message.text}
