@@ -134,7 +134,7 @@ const Filters = () => {
       >
         <div className={styles.filtersStylesContainer}>
             <div className={styles.sexBtnsContainer}>
-              <p>select a gender</p>
+              <p>Select a gender</p>
 
               <div className={styles.buttonsSexContainer}>
               <button
@@ -161,7 +161,7 @@ const Filters = () => {
             </div>
             <div className={styles.sexAndAgeFilterContainer}>
 
-            <input
+            <input 
               type="range"
               min="18"
               max="100"
