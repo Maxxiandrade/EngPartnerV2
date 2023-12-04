@@ -356,3 +356,51 @@
   max-height: 80%;
   min-height: 80%;
 }
+
+.column{
+  z-index: 1000;
+  position: absolute;
+  top:4.5rem;
+  right: 1rem;
+  width: 125px;
+  padding: 15px;
+  border-radius: 15px ;
+  border: 1px solid lightgrey;
+  background-color: #031525;
+}
+.column::before{
+  content: '';
+  position: absolute;
+  top: -0.7rem;
+  right: 1.1rem;
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  background-color: #031525;
+  border-left: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
+}
+.li{
+  list-style: none;
+}
+
+.dropDownDiv{
+  display: flex;
+  color: #AFB8C1;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: solid 0.5px #30363d;
+  cursor: pointer;
+}
+.dropDownSpan{
+  margin-left: 3px;
+}
+
+.divLogout{
+  cursor: pointer;
+}
+.userPhoto2{
+  width: 25px;
+  border-radius: 10px;
+  border: solid 0.5px #30363d;
+}
