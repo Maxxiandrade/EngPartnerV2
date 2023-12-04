@@ -3,6 +3,7 @@ import style from './PrivateChat.module.css'
 import M from '../../../assets/M.jpg'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef } from 'react'
+import { getMyUser } from '../../../redux/actions/actions'
 
 const Message = ({ message }) => {
   const ref = useRef()
