@@ -1,6 +1,6 @@
 import {useRef } from "react";
 import style from "./TopicsChat.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const TopicsChat = ({ setingValueRoom }) => {
@@ -13,7 +13,7 @@ const TopicsChat = ({ setingValueRoom }) => {
     const topic = e.target.value
     const selectedRoom = topic === 'null' ? null : topic !== '' ? topic : roomInputRef.current.value;
     setingValueRoom(selectedRoom);
-  }
+  }  
 
   return (
       <div className={style.room}>
