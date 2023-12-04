@@ -6,7 +6,6 @@
   width: 25px;
   height: 25px;
 }
-
 .nav {
   display: flex;
   align-items: center;
@@ -22,19 +21,19 @@
   align-items: center;
 }
 
-.column{
+.column {
   z-index: 1000;
   position: absolute;
-  top:4.5rem;
+  top: 4.5rem;
   right: 1rem;
   width: 125px;
   padding: 15px;
-  border-radius: 15px ;
+  border-radius: 15px;
   border: 1px solid lightgrey;
   background-color: #031525;
 }
-.column::before{
-  content: '';
+.column::before {
+  content: "";
   position: absolute;
   top: -0.7rem;
   right: 1.1rem;
@@ -45,26 +44,26 @@
   border-left: 1px solid lightgrey;
   border-top: 1px solid lightgrey;
 }
-.li{
+.li {
   list-style: none;
 }
 
-.dropDownDiv{
+.dropDownDiv {
   display: flex;
-  color: #AFB8C1;
+  color: #afb8c1;
   margin-bottom: 10px;
   padding-bottom: 5px;
   border-bottom: solid 0.5px #30363d;
   cursor: pointer;
 }
-.dropDownSpan{
+.dropDownSpan {
   margin-left: 3px;
 }
 
-.divLogout{
+.divLogout {
   cursor: pointer;
 }
-.userPhoto2{
+.userPhoto2 {
   width: 25px;
   border-radius: 10px;
   border: solid 0.5px #30363d;
@@ -85,10 +84,10 @@
 .column:not(:hover),
 .connectBtn:not(:hover),
 .signOut:not(:hover),
-.premium:not(:hover), 
+.premium:not(:hover),
 .chatBtn:not(:hover),
 .adminBtn:not(:hover),
-.groupBtn:not(:hover){
+.groupBtn:not(:hover) {
   transition: 0.5s;
 }
 .adminBtn:hover {
@@ -132,41 +131,17 @@
   box-shadow: 0px 0px 10px #f0e628;
 }
 
-.signOut:hover{
+.signOut:hover {
   transition: 0.5s;
   background-color: #1f2147;
   border-color: grey;
   box-shadow: 0px 0px 10px #8f8f8f;
 }
 
-.homeComponentsDiv{
-  display: flex;
-  justify-content: space-around;
-  max-height: 80%;
-  min-height: 80%;
-}
-
-.globalChat {
-  background-color: #031525;
-  display: flex;
-  padding: 20px;
-  box-sizing: border-box;
-  width: 60%;
-  max-height: 100%;
-  max-width: 100%;
-}
-
-.homeMainDiv {
-  background-color: #031525;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-
 .userPhoto {
   cursor: pointer;
   display: inline;
-  width: 49px;  
+  width: 49px;
   border-radius: 10px;
   border: solid 0.5px #30363d;
   align-items: center;
@@ -178,4 +153,110 @@
   background-color: #1f2147;
   border-color: white;
   box-shadow: 0px 0px 10px #ffffff;
+}
+
+/* ----------------------------------------------------------------- */
+.createNewRoomsDiv {
+  background-color: #031525;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.photo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.groupCreateContainer {
+  margin: auto;
+  position: relative;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 15px;
+  border: 2px solid #005ea6;
+  background-color: #dff0ff;
+  height: 100%;
+  max-height: 80%;
+  width: 35%;
+  color: black;
+}
+
+.inputDiv {
+    margin: auto;
+    display: flex;
+}
+
+.inputRoomName {
+    color: black;
+    margin: auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.inputRoomName:focus {
+  outline: none;
+  border-color: #2196f3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.7);
+}
+
+.txtH1 {
+  color: #fd2621;
+  width: 100%;
+  text-align: center;
+  text-shadow: 1px 1px 1px #7c7c7c;
+}
+.txt{
+    color: #031525;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 3%;
+  margin-left: 10%;
+}
+
+.userName {
+    text-shadow: --1.5px -1.5px 0 black, 1.5px -1.5px 0 black,
+    -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;
+  font-weight: bold;
+  padding-top: 1px;
+  color: #535cd8;
+  display: flex;
+  align-items: center;
+}
+.nameDiv{
+    display: flex;
+  align-items: center;
+}
+
+.addBtn,
+.createBtn{
+    background-color: #031525;
+    color: #79cbff;
+    border: 1px solid #79cbff;    
+}
+
+.addBtn:hover,
+.createBtn:hover{
+    color: white;
+    transition: 0.3s;
+}
+
+.btnDiv{  
+  margin-left: auto;
+  margin-right: 10%;
+}
+.createBtnDiv{
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
 }

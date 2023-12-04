@@ -26,8 +26,9 @@ import { Navigate } from 'react-router-dom';
 
 
 const Home = ({ setIsAuth }) => {
+  const vip = useSelector(state => state.users.isVip)
   const admin = useSelector((state)=>state.users.isAdmin)
-  const user = useSelector((state) => state.users.name);
+  const [colum,setColumn]= useState(false)
   const userPhoto = useSelector((state) => state.users.photo);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
@@ -67,6 +68,7 @@ const Home = ({ setIsAuth }) => {
     console.log('holas')
   }, [uid]);
 
+  console.log(vip)
   if(admin){
     return(<>
     {localStorageUID ? (
@@ -79,15 +81,9 @@ const Home = ({ setIsAuth }) => {
               <TopicsChat setingValueRoom={setingValueRoom} />
             </div>
             <div className={style.navBtns}>
-              <Link to="/admin">
-              <button className={style.adminBtn}><img src={report} alt="admin" className={style.icon} /></button>
-              </Link>
             <Link to='/messages'>
               <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
             </Link>
-              <Link to='/CreateRoom'>
-              <button className={style.groupBtn}><img src={group} alt="group" className={style.icon} /></button>
-              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
@@ -98,12 +94,40 @@ const Home = ({ setIsAuth }) => {
                   <img src={crown} alt="" className={style.icon} />
                 </button>
               </Link>
-              <button onClick={handleLogOut} className={style.signOut}>
-                <img src={logOut} alt="logout" className={style.icon} />
-              </button>
-              <Link to={`/profile/${uid}`}>
-                <img src={userPhoto} alt="" className={style.userPhoto} />
-              </Link>
+              <img src={userPhoto} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
+                {colum ?
+                  <ul className={style.column}>
+                  <li className={style.li}>
+                    <Link to={`/profile/${uid}`}>
+                      <div className={style.dropDownDiv}>
+                      <img src={userPhoto} alt="" className={style.userPhoto2} />
+                      <span className={style.dropDownSpan}>Profile</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className={style.li}>
+                    <Link to="/admin">
+                      <div className={style.dropDownDiv}>
+                        <img src={report} alt="admin" className={style.icon}/>
+                        <span className={style.dropDownSpan}>Admin Panel</span>
+                      </div>
+                    </Link>
+                  </li>
+                  <li className={style.li}>
+                    <Link to='/CreateRoom'>
+                      <div className={style.dropDownDiv}>
+                    <img src={group} alt="group" className={style.icon} />
+                        <span className={style.dropDownSpan}>Create Room</span>
+                    </div>
+                    </Link>
+                  </li>
+                  <li className={style.li}>
+                    <div className={style.dropDownDiv} onClick={handleLogOut}>
+                    <img src={logOut} alt="logout" className={style.icon} />
+                        <span className={style.dropDownSpan}><b>Logout</b></span>
+                    </div>
+                  </li>
+                </ul>: ''}
             </div>
           </nav>
           <div className={style.homeComponentsDiv}>
@@ -132,11 +156,6 @@ const Home = ({ setIsAuth }) => {
             <Link to='/messages'>
               <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
             </Link>
-            <Link to='/CreateRoom'>
-                <button className={style.premium}>
-                 Create Group
-                </button>
-              </Link>
               <Link to='/connect'>
                 <button className={style.connectBtn}>
                   <img src={connect} alt="connect" className={style.icon} />
@@ -147,12 +166,33 @@ const Home = ({ setIsAuth }) => {
                   <img src={crown} alt="" className={style.icon} />
                 </button>
               </Link>
-              <button onClick={handleLogOut} className={style.signOut}>
-                <img src={logOut} alt="logout" className={style.icon} />
-              </button>
-              <Link to={`/profile/${uid}`}>
-                <img src={userPhoto} alt="" className={style.userPhoto} />
-              </Link>
+              <img src={userPhoto} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
+                {colum ?
+                  <ul className={style.column}>
+                  <li className={style.li}>
+                    <Link to={`/profile/${uid}`}>
+                      <div className={style.dropDownDiv}>
+                      <img src={userPhoto} alt="" className={style.userPhoto2} />
+                      <span className={style.dropDownSpan}>Profile</span>
+                      </div>
+                    </Link>
+                  </li>
+                  {vip?
+                  <li className={style.li}>
+                    <Link to='/CreateRoom'>
+                      <div className={style.dropDownDiv}>
+                    <img src={group} alt="group" className={style.icon} />
+                        <span className={style.dropDownSpan}>Create Room</span>
+                    </div>
+                    </Link>
+                  </li>:""}                  
+                  <li className={style.li}>
+                    <div className={style.dropDownDiv} onClick={handleLogOut}>
+                    <img src={logOut} alt="logout" className={style.icon} />
+                        <span className={style.dropDownSpan}><b>Logout</b></span>
+                    </div>
+                  </li>
+                </ul>: ''}
               
             </div>
           </nav>
