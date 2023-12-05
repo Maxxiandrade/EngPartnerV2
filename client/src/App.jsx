@@ -9,6 +9,7 @@ import Profile from "./components/Profile/Profile";
 import Users from "./components/Home/Users/Users";
 import Premium from "./components/Premium/Premium";
 import Admin from "./components/Home/Admin/Admin"
+import Navbar from "./components/Navbar/Navbar";
 
 //Tools
 import { useEffect, useState} from "react";
