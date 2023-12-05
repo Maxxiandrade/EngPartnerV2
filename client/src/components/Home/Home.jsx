@@ -27,7 +27,7 @@ import { API_URL } from "../../firebase-config";
 
 
 const Home = ({ setIsAuth }) => {
-  console.log('Entorno:', API_URL);
+  console.log(`Entorno: ${import.meta.env.MODE}, URL del back a que apunta: ${API_URL}`);
   const vip = useSelector(state => state.users.isVip)
   const admin = useSelector((state)=>state.users.isAdmin)
   const [colum,setColumn]= useState(false)
