@@ -17,6 +17,7 @@ GET_REPORTED,
 UPDATE_USER_LANGUAGE,
 UPDATE_USER_READ_LANGUAGE,
 SET_VIP,
+ADD_ROOM,
  } from "../action_types/userActionTypes";
 
 
@@ -83,6 +84,19 @@ export const setVip = (value) => {
       dispatch({
         type: SET_VIP,
         payload: value
+      });
+    } catch (error) {
+      throw Error(error)
+    }
+  }  
+}
+
+export const addRoom = (room) => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: ADD_ROOM,
+        payload: room
       });
     } catch (error) {
       throw Error(error)

@@ -8,14 +8,20 @@ import chat from "../../assets/svg/chat.svg"
 import group from "../../assets/svg/group.svg"
 import report from "../../assets/svg/report.svg"
 import verify from '../../assets/svg/verify.svg'
+import { List, ListItem, IconButton, ListItemText, ListItemAvatar, Avatar, Divider } from '@mui/material';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
+import Swal from 'sweetalert2';
 
 
 import { useEffect, useState } from "react";
-import { getFriends, getMyUser } from "../../redux/actions/actions";
+import { getFriends, getMyUser, addRoom } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { auth } from "../../firebase-config";
 import { CreateRoom } from "../../redux/actions/actions";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import axios from "axios";
 import { signOut } from "firebase/auth";
@@ -29,13 +35,12 @@ const CreateNewRooms = ({ setIsAuth }) => {
   const userPhoto = useSelector((state) => state.users.photo);
   const [colum, setColumn] = useState(false)
 
-
-
   const dispatch = useDispatch();
   const [members, setMembers] = useState([]);
   const [groupName, setGroupName] = useState(''); // Nuevo estado para el nombre del grupo
   const friends = useSelector((state) => state.users.friends);
   const uid = localStorage.getItem("uid");
+  const rooms = useSelector((state) => state.users.rooms);
   useEffect(() => {
     const uid = localStorage.getItem('uid');
     if (uid) {
@@ -61,22 +66,46 @@ const CreateNewRooms = ({ setIsAuth }) => {
 
   const handleCreateRoom = async () => {
     if (members.length > 0 && groupName.trim() !== '') {
-      const newGroup = {
-        nameGroup: groupName,
-        members: [...members, { id: uid }],
-      };
-      console.log(newGroup);
+      Swal.fire({
+        title: `Create the room "${groupName}"?`,
+        text: `You will create a new room with ${members.length} members: ${members?.map((member) => member.name).join(', ')}`,
+        icon: "warning",
+        confirmButtonText: "Create",
+        confirmButtonColor: "#39b300",
+        showCancelButton: true,
+        cancelButtonText: "Cancel",
+        cancelButtonColor: "#d33",
+        toast: true,
+      }).then(async (result) => {
+        if (result.isConfirmed) {
 
-      await axios.post(`http://localhost:3001/createRoom`, newGroup)
-      dispatch(getMyUser(uid))
-      setMembers([]);
-      setGroupName('');
+          const newGroup = {
+            nameGroup: groupName,
+            members: [...members, { id: uid }],
+          };    
+          
+          await axios.post(`http://localhost:3001/createRoom`, newGroup)
+          dispatch(addRoom(groupName));
+          Swal.fire({
+            title: `New room created successfully, start a new conversation!`,
+            icon: "success",
+            toast: true,
+            timer: 4000,
+            showConfirmButton: false,
+            showCloseButton: true,
+            timerProgressBar: true,
+          })
+          setMembers([]);
+          setGroupName('');
+        }
+      })
+      
     } else {
       console.log('Debe ingresar al menos un miembro y un nombre de grupo.');
     }
   };
 
-
+  
   const cookies = new Cookies();
 
   const handleLogOut = async () => {
@@ -89,9 +118,13 @@ const CreateNewRooms = ({ setIsAuth }) => {
     dispatch(clearUserDataInLogout());
   };
 
-
-
-
+  function generate(element) {
+    return [0, 1, 2].map((value) =>
+      React.cloneElement(element, {
+        key: value,
+      }),
+    );
+  }
 
   return (
     <div className={style.createNewRoomsDiv}>
@@ -163,8 +196,8 @@ const CreateNewRooms = ({ setIsAuth }) => {
             <div className={style.container} key={friend.uid}>
               <div className={style.userName}>
                 <div className={style.nameDiv}>
-                  <img src={friend.photo} alt="" className={style.photo} />
-                  {friend.user}
+                  <img src={friend?.photo} alt="" className={style.photo} />
+                  {friend?.user}
                 </div>
                 <div className={style.btnDiv}>
                   <button onClick={() => handleFriendClick(friend)} className={style.addBtn}>
@@ -178,6 +211,43 @@ const CreateNewRooms = ({ setIsAuth }) => {
         <div className={style.createBtnDiv}>
         <button onClick={handleCreateRoom} className={style.createBtn}>Create Room</button>
         </div>
+
+
+      <div style={{textAlign: 'center'}}>
+      <Divider />
+        <h2 style={{margin: '0px', marginTop: '10px'}}>My rooms</h2>
+        <List dense={true} sx={{ width: '80%', margin: '0px auto'}}>
+            {rooms?.map((room) => (
+              <>
+              <ListItem 
+                    secondaryAction={
+                      <IconButton edge="end" aria-label="delete">
+                        <DeleteIcon />
+                      </IconButton>
+                    }
+                    sx={{
+                      '&:hover': {
+                        backgroundColor: 'rgba(0, 0, 0, 0.08)',
+                      },
+                      cursor: 'pointer',
+                    }}
+                  >
+                    <ListItemAvatar>
+                      <Avatar sx={{ bgcolor: '#252b80' }}>
+                        <GroupsOutlinedIcon sx={{ color: 'white', backgroundColor: '#252b80' }} />
+                      </Avatar>
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={room}
+                    />
+                  </ListItem>
+              </>
+            ))}
+          </List>
+      </div>
+        
+            
+
       </aside>
     </div>
   );
