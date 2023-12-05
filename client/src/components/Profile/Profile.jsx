@@ -1,34 +1,26 @@
+//STYLES
 import style from "./Profile.module.css";
-import logo from "../../assets/logo.png";
-import crown from "../../assets/svg/crown.svg";
-import connect from "../../assets/svg/connect.svg";
-import logOut from "../../assets/svg/logout.svg";
 import pencil from "../../assets/svg/pencil.svg";
 import tick from "../../assets/svg/tick.svg";
 import addUser from "../../assets/svg/addUser.svg";
 import deleteUser from "../../assets/svg/deleteUser.svg";
-import chat from "../../assets/svg/chat.svg";
-import group from "../../assets/svg/group.svg"
 import Swal from 'sweetalert2';
 
 //Tools
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser, handleUser, setEditProfile } from "../../redux/actions/actions";
-import { auth, API_URL } from "../../firebase-config";
-import { signOut } from "firebase/auth";
-import { getMyUser, clearUserDataInLogout, updateUserLanguage, updateUserReadLanguage } from "../../redux/actions/actions";
+import { API_URL } from "../../firebase-config";
+import { getMyUser, updateUserLanguage, updateUserReadLanguage } from "../../redux/actions/actions";
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from "@mui/material";
 
+// RENDERS
+import Navbar from "../Navbar/Navbar";
 
 const Profile = ({ setIsAuth }) => {
-
-  const vip = useSelector(state => state.users.isVip)
-  const admin = useSelector((state)=>state.users.isAdmin)
-  const [colum,setColumn]= useState(false)
 
   const name = useSelector((state) => state.users.name);
   const lastname = useSelector((state) => state.users.lastname);
@@ -40,7 +32,6 @@ const Profile = ({ setIsAuth }) => {
   const language = localStorage.getItem('language');
   const languageRead = localStorage.getItem('languageRead');
   const uid = useSelector((state) => state.users.uid);
-  const photo = useSelector((state) => state.users.photo);
   const friendList = useSelector((state) => state.users.friends);
   const dispatch = useDispatch();
   const params = useParams();
@@ -76,7 +67,7 @@ const Profile = ({ setIsAuth }) => {
   }, [params?.uid, friendList, isFriend]);
 
   useEffect(() => {
-      dispatch(getMyUser(localStorageUID))
+    dispatch(getMyUser(localStorageUID))
   }, []);
 
   const handleEdit = () => {
@@ -148,68 +139,10 @@ const Profile = ({ setIsAuth }) => {
     });
   };
 
-  const handleLogOut = async () => {
-    axios.put(`${API_URL}/geton`, { uid, is: "off" });
-    cookies.remove("auth-token");
-    localStorage.removeItem("uid");
-    await signOut(auth);
-    setIsAuth(false);
-    dispatch(clearUserDataInLogout());
-  };
-
-  console.log(friendList);
-
   if (localStorage.getItem("uid") === params.uid)
     return (
       <div className={style.profileMainDiv}>
-        <nav className={style.nav}>
-            <Link to="/home">
-              <img src={logo} alt="Home" className={style.logo} />
-            </Link>
-            <div className={style.navBtns}>
-            <Link to='/messages'>
-              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
-            </Link>
-              <Link to='/connect'>
-                <button className={style.connectBtn}>
-                  <img src={connect} alt="connect" className={style.icon} />
-                </button>
-              </Link>
-              <Link to='/premium'>
-                <button className={style.premium}>
-                  <img src={crown} alt="" className={style.icon} />
-                </button>
-              </Link>
-              <img src={photo} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
-                {colum ?
-                  <ul className={style.column}>
-                  <li className={style.li}>
-                    <Link to={`/profile/${uid}`}>
-                      <div className={style.dropDownDiv}>
-                      <img src={photo} alt="" className={style.userPhoto2} />
-                      <span className={style.dropDownSpan}>Profile</span>
-                      </div>
-                    </Link>
-                  </li>
-                  {vip?
-                  <li className={style.li}>
-                    <Link to='/CreateRoom'>
-                      <div className={style.dropDownDiv}>
-                    <img src={group} alt="group" className={style.icon} />
-                        <span className={style.dropDownSpan}>Create Room</span>
-                    </div>
-                    </Link>
-                  </li>:""}
-                  <li className={style.li}>
-                    <div className={style.dropDownDiv} onClick={handleLogOut}>
-                    <img src={logOut} alt="logout" className={style.icon} />
-                        <span className={style.dropDownSpan}><b>Logout</b></span>
-                    </div>
-                  </li>
-                </ul>: ''}
-              
-            </div>
-          </nav>
+        <Navbar setIsAuth={setIsAuth} />
         {profile && (
           <div className={style.profileContainer}>
             <div className={style.photoDiv}>
@@ -231,14 +164,13 @@ const Profile = ({ setIsAuth }) => {
                   {description}
                 </p>
               </div>
-
               <FormControl>
                 <label htmlFor="language">Your selected language:</label>
                 <Select
                   name="language"
                   defaultValue={language}
                   onChange={(e) => {
-                    updateUserLanguage({uid: localStorageUID, language: e.target.value})
+                    updateUserLanguage({ uid: localStorageUID, language: e.target.value })
                   }}
                 >
                   <MenuItem value={'en'}>English 🇬🇧</MenuItem>
@@ -262,7 +194,7 @@ const Profile = ({ setIsAuth }) => {
                   defaultValue={languageRead}
                   onChange={(e) => {
 
-                    updateUserReadLanguage({uid: localStorageUID, languageRead: e.target.value})
+                    updateUserReadLanguage({ uid: localStorageUID, languageRead: e.target.value })
                   }}
                 >
                   <MenuItem value={'en'}>English 🇬🇧</MenuItem>
@@ -280,7 +212,6 @@ const Profile = ({ setIsAuth }) => {
                   <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
                 </Select>
               </FormControl>
-
               <button onClick={handleEdit} className={style.edit}>
                 <img src={pencil} alt="Edit" className={style.iconBtn} />
               </button>
@@ -327,53 +258,7 @@ const Profile = ({ setIsAuth }) => {
 
   return (
     <div className={style.profileMainDiv}>
-      <nav className={style.nav}>
-            <Link to="/home">
-              <img src={logo} alt="Home" className={style.logo} />
-            </Link>
-            <div className={style.navBtns}>
-            <Link to='/messages'>
-              <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
-            </Link>
-              <Link to='/connect'>
-                <button className={style.connectBtn}>
-                  <img src={connect} alt="connect" className={style.icon} />
-                </button>
-              </Link>
-              <Link to='/premium'>
-                <button className={style.premium}>
-                  <img src={crown} alt="" className={style.icon} />
-                </button>
-              </Link>
-              <img src={photo} alt="" className={style.userPhoto} onClick={()=>setColumn(!colum)} />
-                {colum ?
-                  <ul className={style.column}>
-                  <li className={style.li}>
-                    <Link to={`/profile/${uid}`}>
-                      <div className={style.dropDownDiv}>
-                      <img src={photo} alt="" className={style.userPhoto2} />
-                      <span className={style.dropDownSpan}>Profile</span>
-                      </div>
-                    </Link>
-                  </li>
-                  {vip?
-                  <li className={style.li}>
-                    <Link to='/CreateRoom'>
-                      <div className={style.dropDownDiv}>
-                    <img src={group} alt="group" className={style.icon} />
-                        <span className={style.dropDownSpan}>Create Room</span>
-                    </div>
-                    </Link>
-                  </li>:""}
-                  <li className={style.li}>
-                    <div className={style.dropDownDiv} onClick={handleLogOut}>
-                    <img src={logOut} alt="logout" className={style.icon} />
-                        <span className={style.dropDownSpan}><b>Logout</b></span>
-                    </div>
-                  </li>
-                </ul>: ''}
-            </div>
-          </nav>
+      <Navbar setIsAuth={setIsAuth} />
       {profile && (
         <div className={style.profileContainer}>
           <div className={style.photoDiv}>
