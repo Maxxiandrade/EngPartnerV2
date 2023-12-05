@@ -2,6 +2,7 @@ import {CardElement, useStripe, useElements} from "@stripe/react-stripe-js";
 import axios from "axios";
 import style from "./premium.module.css";
 import premiumMonth from "../../assets/premiumMonth.png"
+import { API_URL } from "../../firebase-config";
 
 
 const MonthPremium=({isVip,uid})=>{
@@ -19,7 +20,7 @@ const handleSubmit = async (e) => {
         console.log(uid)
         const {id}= paymentMethod  
         try {
-            const {data}=await axios.post('http://localhost:3001/newPremium',{
+            const {data}=await axios.post(`${API_URL}/newPremium`,{
                 id,
                 amount:799,
                 description: 'pay for month',

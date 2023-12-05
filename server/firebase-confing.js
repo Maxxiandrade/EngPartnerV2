@@ -29,8 +29,10 @@ admin.initializeApp({
   databaseURL: process.env.DATABASE_URL,
 });
 
+const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://eng-partner-v2-server.vercel.app';
+
 const db = admin.firestore();
 const fs = getFirestore(app)
 
 // Exporta los módulos que necesitas
-module.exports = {db, fs};
+module.exports = {db, fs, API_URL};

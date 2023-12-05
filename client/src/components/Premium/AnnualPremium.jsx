@@ -2,6 +2,7 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import style from "./premium.module.css";
 import premiumAnnual from "../../assets/premiumAnnual.png"
+import { API_URL } from "../../firebase-config";
 
 const AnnualPremium = ({ isVip, uid }) => {
 
@@ -19,7 +20,7 @@ const AnnualPremium = ({ isVip, uid }) => {
             console.log(paymentMethod)
             const { id } = paymentMethod
             try {
-                const { data } = await axios.post('http://localhost:3001/newPremium', {
+                const { data } = await axios.post(`${API_URL}/newPremium`, {
                     id,
                     amount: 6699,
                     description: 'pay for month',

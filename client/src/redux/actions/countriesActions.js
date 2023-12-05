@@ -1,11 +1,12 @@
 import { GET_ALL_COUNTRIES,
 } from "../action_types/countriesActionTypes";
+import { API_URL } from "../../firebase-config";
 
 import axios from 'axios'
 
 export const getAllCountries = ()=> async (dispatch)=>{
     try {
-        const response = await axios("http://localhost:3001/getcountries")
+        const response = await axios(`${API_URL}/getcountries`)
         const countriesData = response.data
         // console.log(countriesData)
 
