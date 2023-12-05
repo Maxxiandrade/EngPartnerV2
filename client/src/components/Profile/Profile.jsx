@@ -9,6 +9,7 @@ import addUser from "../../assets/svg/addUser.svg";
 import deleteUser from "../../assets/svg/deleteUser.svg";
 import chat from "../../assets/svg/chat.svg";
 import group from "../../assets/svg/group.svg"
+import Swal from 'sweetalert2';
 
 //Tools
 import { useState, useEffect } from "react";
@@ -96,15 +97,45 @@ const Profile = ({ setIsAuth }) => {
   };
 
   const addFriend = (e) => {
-    console.log(localStorageUID);
+    console.log(friend);
     setisFriend(true);
     dispatch(handleUser(friend, "add"));
+    Swal.fire({
+      title: `${profile.name} has been added to your friend list!`,
+      text: `(${profile.user})`,
+      icon: "success",
+      toast: true,
+      timer: 3000,
+      showConfirmButton: false,
+      showCloseButton: true,
+    });
   };
 
   const removeFriend = (e) => {
-    friend.action = e.target.value;
-    setisFriend(false);
-    dispatch(handleUser(friend, "remove"));
+
+    Swal.fire({
+      title: `Are you sure you want to remove ${profile.name} from your friend list?`,
+      icon: "warning",
+      confirmButtonText: "Delete friend",
+      confirmButtonColor: "#3085d6",
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      cancelButtonColor: "#d33",
+      toast: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        friend.action = e.target.value;
+        setisFriend(false);
+        dispatch(handleUser(friend, "remove"));
+        Swal.fire({
+          title: `${profile.name} has been deleted from your friend list.`,
+          icon: "success",
+          toast: true,
+          timer: 3000,
+          showConfirmButton: false,
+        });
+      }
+    });
   };
 
   const handleLogOut = async () => {
