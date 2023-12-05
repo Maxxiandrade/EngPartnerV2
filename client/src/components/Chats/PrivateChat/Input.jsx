@@ -17,7 +17,8 @@ const Input = () => {
   const userChat = user.uid
   const chatId = useSelector((state)=>state.users.chatId)
 
-  const handleSend = async()=>{
+  const handleSend = async(e)=>{
+    e.preven
       if(chatId)
       await updateDoc(doc(db,"chats", chatId),{
         messages: arrayUnion({
