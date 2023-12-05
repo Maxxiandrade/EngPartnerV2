@@ -66,7 +66,7 @@ function Premiun({ setIsAuth }) {
     }).then( async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.put('http://localhost:3001/geton',{ uid: uid, is:"notPremium"} )
+          await axios.put(`${API_URL}/geton`,{ uid: uid, is:"notPremium"} )
           dispatch(setVip(false))
           console.log("premium sacado");
           Swal.fire({
