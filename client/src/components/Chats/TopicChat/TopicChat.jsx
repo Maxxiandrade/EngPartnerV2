@@ -4,6 +4,7 @@ import verify from '../../../assets/svg/verify.svg'
 import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/exclamation.svg"
 import AdminSvg from'../../../assets/svg/admin-verify.svg'
+import TopicsChat from "../TopicsChat/TopicsChat";
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -19,9 +20,18 @@ import { auth, db } from "../../../firebase-config";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const Chat = ({ room, setRoom }) => {
+const Chat = () => {
 
-  const isVip = useSelector(state => state.users.isVip)
+  const [room, setRoom] = useState("global");
+
+  const setingValueRoom = (value) => {
+    if (value === 'null') {
+      setRoom("global");
+    } else {
+      setRoom(value);
+    }
+  };
+
   const language = localStorage.getItem('language')
   const languageRead = localStorage.getItem('languageRead')
   const user = useSelector(state => state.users)
@@ -44,7 +54,6 @@ const Chat = ({ room, setRoom }) => {
     );
 
     
-
     const unSubscribe = onSnapshot(queryMessages, (snapshot) => {
       const fetchedMessages = [];
       const initialOptions = {}
@@ -94,7 +103,8 @@ const Chat = ({ room, setRoom }) => {
     <>
       <div className={style.chatApp}>
         <div className={style.header}>
-          <h1>{room.toUpperCase()}</h1>
+
+      <TopicsChat setingValueRoom={setingValueRoom} />
         </div>
         <div className={style.messages}>
           {messages.map((message) => (
