@@ -13,7 +13,7 @@ import report from "../../assets/svg/report.svg";
 import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
 import { auth } from "../../firebase-config";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
@@ -29,13 +29,12 @@ const Navbar = ({ setIsAuth }) => {
     const [colum, setColumn] = useState(false)
     const userPhoto = useSelector((state) => state.users.photo);
     const dispatch = useDispatch();
-    const uid = auth.currentUser?.uid;
+    const uid = localStorage.getItem("uid");
     const localStorageUID = localStorage.getItem('uid');
     const cookies = new Cookies();
 
 
     const handleLogOut = async () => {
-        const uid = auth.currentUser.uid
         axios.put(`${API_URL}/geton`, { uid, is: "off" })
         cookies.remove("auth-token");
         localStorage.removeItem("uid");
