@@ -23,7 +23,8 @@ import {
   UPDATE_USER_LANGUAGE,
   UPDATE_USER_READ_LANGUAGE,
   SET_VIP,
-  ADD_ROOM
+  ADD_ROOM,
+  SET_EDIT_PROFILE,
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -162,6 +163,14 @@ const usersReducer = (state = initialState, action) => {
       return {
         ...state,
         rooms: [...state.rooms, action.payload]
+      }
+
+    case SET_EDIT_PROFILE:
+      return {
+        ...state,
+        name: action.payload?.name,
+        lastname: action.payload?.lastname,
+        description: action.payload?.description,
       }
       
     case ERROR_GETTING_USERS:

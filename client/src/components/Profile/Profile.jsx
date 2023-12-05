@@ -17,7 +17,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
-import { editUser, handleUser } from "../../redux/actions/actions";
+import { editUser, handleUser, setEditProfile } from "../../redux/actions/actions";
 import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { getMyUser, clearUserDataInLogout, updateUserLanguage, updateUserReadLanguage } from "../../redux/actions/actions";
@@ -30,9 +30,10 @@ const Profile = ({ setIsAuth }) => {
   const admin = useSelector((state)=>state.users.isAdmin)
   const [colum,setColumn]= useState(false)
 
-
-
-
+  const name = useSelector((state) => state.users.name);
+  const lastname = useSelector((state) => state.users.lastname);
+  const description = useSelector((state) => state.users.description);
+  const age = useSelector((state) => state.users.age);
 
   const localStorageUID = localStorage.getItem('uid');
   const user = useSelector((state) => state.users);
@@ -56,9 +57,9 @@ const Profile = ({ setIsAuth }) => {
   const [profile, setProfile] = useState();
   const [changes, setChanges] = useState({
     uid: params.uid,
-    name: "",
-    lastname: "",
-    description: "",
+    name: user?.name,
+    lastname: user?.lastname,
+    description: user?.description,
   });
 
   useEffect(() => {
@@ -91,9 +92,18 @@ const Profile = ({ setIsAuth }) => {
     });
   };
 
-  const finishEdit = () => {
+  const finishEdit = async () => {
     dispatch(editUser(changes));
+    dispatch(setEditProfile(changes))
     setEdit(false);
+    Swal.fire({
+      title: `Your profile has been updated successfully!`,
+      icon: "success",
+      toast: true,
+      timer: 3500,
+      showConfirmButton: false,
+      showCloseButton: true,
+    })
   };
 
   const addFriend = (e) => {
@@ -117,10 +127,10 @@ const Profile = ({ setIsAuth }) => {
       title: `Are you sure you want to remove ${profile.name} from your friend list?`,
       icon: "warning",
       confirmButtonText: "Delete friend",
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
       showCancelButton: true,
       cancelButtonText: "Cancel",
-      cancelButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
       toast: true,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -212,13 +222,13 @@ const Profile = ({ setIsAuth }) => {
             <div className={style.profileInfo}>
               <div className={style.infoDiv}>
                 <h1 className={style.profileName}>
-                  {profile.name} {profile.lastname} ({profile.age})
+                  {name} {lastname} ({age})
                 </h1>
                 <h3 className={style.profileCountry}>{profile.country}</h3>
                 <h3 className={style.profileSex}>{profile.sex}</h3>
                 <p className={style.profileDescription1}>Description:</p>
                 <p className={style.profileDescription2}>
-                  {profile.description}
+                  {description}
                 </p>
               </div>
 

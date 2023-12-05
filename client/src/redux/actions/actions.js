@@ -18,6 +18,7 @@ UPDATE_USER_LANGUAGE,
 UPDATE_USER_READ_LANGUAGE,
 SET_VIP,
 ADD_ROOM,
+SET_EDIT_PROFILE,
  } from "../action_types/userActionTypes";
 
 
@@ -97,6 +98,19 @@ export const addRoom = (room) => {
       dispatch({
         type: ADD_ROOM,
         payload: room
+      });
+    } catch (error) {
+      throw Error(error)
+    }
+  }  
+}
+
+export const setEditProfile = (values) => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: SET_EDIT_PROFILE,
+        payload: values
       });
     } catch (error) {
       throw Error(error)

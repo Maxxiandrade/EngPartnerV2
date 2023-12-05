@@ -14,7 +14,8 @@ const Friends = () => {
     useEffect(() => {
       const uid = localStorage.getItem("uid")
       if(uid){
-      dispatch(getFriends(uid));}
+        dispatch(getFriends(uid));
+      }
       console.log(friends);
     }, []);
     

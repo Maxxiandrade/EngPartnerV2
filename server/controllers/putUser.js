@@ -11,7 +11,7 @@ const putUser = async (req, res) => {
 
     await updateDoc(doc(fs, "users", uid), {
       name: name,
-      lastname, lastname,
+      lastname: lastname,
       description: description
     });
 
