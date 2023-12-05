@@ -39,10 +39,6 @@ const AnnualPremium=({isVip,uid})=>{
                         showConfirmButton: false,
                         timer: 4000, // 4 segundos
                         showCloseButton: true,
-                    }).then(() => {
-                        setTimeout(() => {
-                            dispatch(getMyUser(localStorage.getItem("uid")))
-                        }, 1000);
                     })
                 }
                 console.log(data);
