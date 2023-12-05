@@ -7,18 +7,8 @@ import online from '../../../assets/svg/online.svg'
 import astronaut from '../../../assets/astronaut.png'
 
 
-const Friends = () => {
+const Friends = ( {friends} ) => {
     const dispatch = useDispatch();
-    const friends = useSelector((state)=>state.users.friends)
-    
-    useEffect(() => {
-      const uid = localStorage.getItem("uid")
-      if(uid){
-        dispatch(getFriends(uid));
-      }
-      console.log(friends);
-    }, []);
-    
   
     return(
         <div className={style.friendContainer}>
