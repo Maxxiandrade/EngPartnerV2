@@ -1,5 +1,7 @@
 const {db}=require('../firebase-confing');
+const {API_URL}=require('../firebase-confing');
 const axios= require('axios')
+
 
 const isVipExpired = async (uid) => {
     try {
@@ -26,7 +28,7 @@ const isVipExpired = async (uid) => {
 const fitrueorFalse = async(userData,uid)=>{
     if(userData.isVip === true){
         if( await isVipExpired(uid)){
-             await axios.put('http://localhost:3001/geton',{ uid, is:"notPremium"} )
+             await axios.put(`${API_URL}/geton`,{ uid, is:"notPremium"} )
         }
     }
 }

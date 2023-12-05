@@ -23,9 +23,11 @@ import Friends from "./Friends/Friends";
 import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 import { Navigate } from 'react-router-dom';
+import { API_URL } from "../../firebase-config";
 
 
 const Home = ({ setIsAuth }) => {
+  console.log('Entorno:', API_URL);
   const vip = useSelector(state => state.users.isVip)
   const admin = useSelector((state)=>state.users.isAdmin)
   const [colum,setColumn]= useState(false)
@@ -40,7 +42,7 @@ const Home = ({ setIsAuth }) => {
 
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
-    axios.put('http://localhost:3001/geton',{ uid, is:"off"} )
+    axios.put(`${API_URL}/geton`,{ uid, is:"off"} )
     cookies.remove("auth-token");
     localStorage.removeItem("uid");
     await signOut(auth);

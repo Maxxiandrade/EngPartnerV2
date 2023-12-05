@@ -20,6 +20,7 @@ import axios from 'axios';
 import Chat from "./Chat";
 import Sidebar from "./Sidebar";
 import Friends from "../../Home/Friends/Friends";
+import { API_URL } from "../../../firebase-config";
 
 
 const PrivateChat = ({ setIsAuth }) => {
@@ -36,7 +37,7 @@ const PrivateChat = ({ setIsAuth }) => {
     const cookies = new Cookies();
 
     const handleLogOut = async () => {
-        axios.put('http://localhost:3001/geton', { uid, is: "off" })
+        axios.put(`${API_URL}/geton`, { uid, is: "off" })
         cookies.remove("auth-token");
         localStorage.removeItem("uid");
         await signOut(auth);

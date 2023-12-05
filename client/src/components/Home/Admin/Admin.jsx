@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getReported, getMyUser } from '../../../redux/actions/actions';
 import axios from 'axios';
 import logo from "../../../assets/logo.png"
+import { API_URL } from '../../../firebase-config';
 
 const Admin = () => {
     const uid = localStorage.getItem("uid");
@@ -20,7 +21,7 @@ const Admin = () => {
             const usersData = [];
             for (const user of reportedUsers) {
                 try {
-                    const { data } = await axios.post(`http://localhost:3001/user`, { uid: user });
+                    const { data } = await axios.post(`${API_URL}/user`, { uid: user });
                     usersData.push(data);
                 } catch (error) {
                     console.error('Error fetching user:', error);

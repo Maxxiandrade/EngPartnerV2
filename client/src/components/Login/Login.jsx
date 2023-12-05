@@ -6,7 +6,7 @@ import style from "./Login.module.css";
 //Tools
 import axios from 'axios'
 import { Link, useNavigate } from "react-router-dom";
-import { auth, provider } from "../../firebase-config.js";
+import { auth, provider, API_URL } from "../../firebase-config.js";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { db } from "../../firebase-config.js";
@@ -48,7 +48,7 @@ const Login = ({ setIsAuth }) => {
         console.log(result.user);
 
         dispatch(getMyUser(uid))
-        await axios.put('http://localhost:3001/geton', { uid, is: 'on' });
+        await axios.put(`${API_URL}/geton`, { uid, is: 'on' });
         navigate('/home');
 
       } else {
@@ -65,7 +65,7 @@ const Login = ({ setIsAuth }) => {
         setIsAuth(true);
         console.log(result.user);
 
-        axios.put('http://localhost:3001/geton', { uid, is: 'on' });
+        axios.put(`${API_URL}/geton`, { uid, is: 'on' });
         navigate('/createuser');
       }
       await setDoc(doc(db, "userChats", uid),{})
@@ -84,7 +84,7 @@ const Login = ({ setIsAuth }) => {
       localStorage.setItem('uid', auth?.currentUser?.uid);
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
-      axios.put('http://localhost:3001/geton', { uid, is: "on" })
+      axios.put(`${API_URL}/geton`, { uid, is: "on" })
       dispatch(getMyUser(uid))
 
       await setDoc(doc(db, "userChats", uid),{})

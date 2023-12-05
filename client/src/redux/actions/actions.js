@@ -19,13 +19,13 @@ UPDATE_USER_READ_LANGUAGE
  } from "../action_types/userActionTypes";
 
 
-
+import { API_URL } from "../../firebase-config";
 
 
 export const getAllUsers = () => {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get("http://localhost:3001/users");
+      const { data } = await axios.get(`${API_URL}/users`);
       if (data) {
         dispatch({ type: GET_ALL_USERS, payload: data });
       } else {
@@ -77,7 +77,7 @@ export const clearUserDataInLogout = () => {
 export const createNewUser = (userData) => {
   return async function (dispatch) {
     try {
-      const response = await axios.post("http://localhost:3001/createuser", userData);
+      const response = await axios.post(`${API_URL}/createuser`, userData);
       dispatch({
         type: CREATE_NEW_USER,
         payload: response
@@ -91,7 +91,7 @@ export const createNewUser = (userData) => {
 
 export const getOnline = ()=>async(dispatch)=>{
     try {
-      const {data} = await axios.get('http://localhost:3001/getonline')
+      const {data} = await axios.get(`${API_URL}/getonline`)
       if(data){
         dispatch({type: GET_ONLINE, payload: data})
       }
@@ -104,7 +104,7 @@ export const getOnline = ()=>async(dispatch)=>{
 
 export const getUserByUserName = (name)=> async(dispatch)=>{
   try {
-    const {data} = await axios(`http://localhost:3001/user?user=${name}`)
+    const {data} = await axios(`${API_URL}/user?user=${name}`)
     console.log(data)
 
     dispatch({
@@ -120,7 +120,7 @@ export const getMyUser = (uid)=> async(dispatch)=>{
   try {
     const myUid = {uid:uid}
     console.log(myUid)
-    const {data} = await axios.post('http://localhost:3001/user',myUid)
+    const {data} = await axios.post(`${API_URL}/user`,myUid)
     localStorage.setItem("language", data.language)
     localStorage.setItem("languageRead", data.languageRead)
     console.log(data)
@@ -135,7 +135,7 @@ export const getMyUser = (uid)=> async(dispatch)=>{
 
 export const updateUserLanguage = async ({uid, language}) => {
   try {
-    await axios.put("http://localhost:3001/language", {uid, language})
+    await axios.put(`${API_URL}/language`, {uid, language})
     localStorage.setItem("language", language)
     return async function (dispatch) {
       try {
@@ -154,7 +154,7 @@ export const updateUserLanguage = async ({uid, language}) => {
 
 export const updateUserReadLanguage = async ({uid, languageRead}) => {
   try {
-    await axios.put("http://localhost:3001/languageRead", {uid, languageRead})
+    await axios.put(`${API_URL}/languageRead`, {uid, languageRead})
     localStorage.setItem("languageRead", languageRead)
     return async function (dispatch) {
       try {
@@ -173,7 +173,7 @@ export const updateUserReadLanguage = async ({uid, languageRead}) => {
 
 export const editUser = ({uid, name, lastname, description})=>async()=>{
   try {
-    axios.put("http://localhost:3001/edit", {uid, name, lastname, description})
+    axios.put(`${API_URL}/edit`, {uid, name, lastname, description})
   } catch (error) {
     throw Error(error)
   }
@@ -181,7 +181,7 @@ export const editUser = ({uid, name, lastname, description})=>async()=>{
 
 export const handleUser = ({uid, friendId}, action)=>async()=>{
   try {
-    axios.put("http://localhost:3001/friend", {uid, friendId, action})
+    axios.put(`${API_URL}/friend`, {uid, friendId, action})
   } catch (error) {
     throw Error(error)
   }
@@ -190,7 +190,7 @@ export const handleUser = ({uid, friendId}, action)=>async()=>{
 export const getFriends = (uid)=>async(dispatch)=>{
   try {
     
-    const {data} = await axios.get(`http://localhost:3001/friends?uid=${uid}`)
+    const {data} = await axios.get(`${API_URL}/friends?uid=${uid}`)
     dispatch({
       type:GET_FRIENDS,
       payload: data
@@ -210,7 +210,7 @@ export const chatReducer = (id)=>(dispatch)=>{
 export const submitReport = (reportData) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post('http://localhost:3001/reports', reportData);
+      const response = await axios.post(`${API_URL}/reports`, reportData);
       console.log('Report submitted successfully', response.data);
       dispatch({
         type: SELECT_REPORT,
@@ -224,7 +224,7 @@ export const submitReport = (reportData) => {
 
 export const CreateRoom= (obj)=> async(dispatch)=>{
   console.log(obj);
-  await axios.post(`http://localhost:3001/createRoom`,obj)
+  await axios.post(`${API_URL}/createRoom`,obj)
   dispatch({
     type: CREATE_ROOM,
     payload: obj
@@ -232,7 +232,7 @@ export const CreateRoom= (obj)=> async(dispatch)=>{
 }
 export const getReported = ()=>async(dispatch)=>{
   try{
-      const {data} = await axios.get('http://localhost:3001/reported')
+      const {data} = await axios.get(`${API_URL}/reported`)
       dispatch({
         type: GET_REPORTED,
         payload: data
