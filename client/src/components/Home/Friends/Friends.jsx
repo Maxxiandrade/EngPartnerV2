@@ -1,35 +1,38 @@
 import { useEffect } from "react";
 import { getFriends } from "../../../redux/actions/actions";
-import {useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import style from './Friends.module.css'
 import offline from '../../../assets/svg/offline.svg'
 import online from '../../../assets/svg/online.svg'
 import astronaut from '../../../assets/astronaut.png'
+import { Link } from "react-router-dom";
 
 
 const Friends = () => {
     const dispatch = useDispatch();
-    const friends = useSelector((state)=>state.users.friends)
-    
+    const friends = useSelector((state) => state.users.friends)
+
     useEffect(() => {
-      const uid = localStorage.getItem("uid")
-      if(uid){
-        dispatch(getFriends(uid));
-      }
-      console.log(friends);
+        const uid = localStorage.getItem("uid")
+        if (uid) {
+            dispatch(getFriends(uid));
+        }
+        console.log(friends);
     }, []);
-    
-  
-    return(
+
+
+    return (
         <div className={style.friendContainer}>
             <div className={style.txtH1}><h1>Friends:</h1></div>
-            {friends?.length === 0 ? <p className={style.txt}>It seems to be no one around here, try connecting with someone!<img src={astronaut} alt="" className={style.astronaut}/></p> : friends?.map((friend)=>(
+            {friends?.length === 0 ? <p className={style.txt}>It seems to be no one around here, try connecting with someone!<img src={astronaut} alt="" className={style.astronaut} /></p> : friends?.map((friend) => (
                 <>
                     <div className={style.container} key={friend.uid}>
-                        <div className={style.userName}>
-                            <img src={friend?.photo} alt="" className={style.photo} />
-                            {friend?.user}
-                        </div>
+                        <Link to={`/profile/${friend.id}`}>
+                            <div className={style.userName}>
+                                <img src={friend?.photo} alt="" className={style.photo} />
+                                {friend?.user}
+                            </div>
+                        </Link>
                         <div className={style.onOff}>
                             {friend?.isOn ?
                                 (<img src={online} alt='🟢' className={style.onlineOffline} />) :
