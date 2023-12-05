@@ -15,7 +15,8 @@ SELECT_REPORT,
 CREATE_ROOM,
 GET_REPORTED,
 UPDATE_USER_LANGUAGE,
-UPDATE_USER_READ_LANGUAGE
+UPDATE_USER_READ_LANGUAGE,
+SET_VIP,
  } from "../action_types/userActionTypes";
 
 
@@ -50,6 +51,7 @@ export const setUserDataRegister = (userData) => {
   }
 }
 
+
 export const setUserDataGoogleAccount = (googleData) => {
   return async function (dispatch) {
     try {
@@ -74,6 +76,20 @@ export const clearUserDataInLogout = () => {
     }
   }
 }
+
+export const setVip = (value) => {
+  return async function (dispatch) {
+    try {
+      dispatch({
+        type: SET_VIP,
+        payload: value
+      });
+    } catch (error) {
+      throw Error(error)
+    }
+  }  
+}
+
 export const createNewUser = (userData) => {
   return async function (dispatch) {
     try {

@@ -2,12 +2,17 @@ import {CardElement, useStripe, useElements} from "@stripe/react-stripe-js";
 import axios from "axios";
 import style from "./premium.module.css";
 import premiumMonth from "../../assets/premiumMonth.png"
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+import { useDispatch } from "react-redux";
+import { setVip, getMyUser } from "../../redux/actions/actions";
 
 
 const MonthPremium=({isVip,uid})=>{
 
-const stripe  = useStripe()
-const elements = useElements()
+    const dispatch = useDispatch()
+    const stripe  = useStripe()
+    const elements = useElements()
 
 const handleSubmit = async (e) => {
     e.preventDefault()
@@ -19,12 +24,28 @@ const handleSubmit = async (e) => {
         console.log(uid)
         const {id}= paymentMethod  
         try {
-            const {data}=await axios.post('http://localhost:3001/newPremium',{
+            const {data} = await axios.post('http://localhost:3001/newPremium',{
                 id,
                 amount:799,
                 description: 'pay for month',
                 uid
             })
+
+            if(data){
+                dispatch(setVip(true));
+                Swal.fire({
+                    icon: 'success',
+                    title: '1 month Premium subscribed successfully!',
+                    text: 'Hurraa! Thank you and welcome to the premium experience!',
+                    showConfirmButton: false,
+                    timer: 4000, // 4 segundos
+                    showCloseButton: true,
+                  }).then(() => {
+                    setTimeout(() => {
+                        dispatch(getMyUser(localStorage.getItem("uid")))
+                    }, 1000);
+                  })
+            }
         } catch (error) {
             console.log(error);
         }      

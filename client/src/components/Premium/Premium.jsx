@@ -7,6 +7,10 @@ import chat from "../../assets/svg/chat.svg"
 import group from "../../assets/svg/group.svg"
 import report from "../../assets/svg/report.svg"
 import verify from '../../assets/svg/verify.svg'
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
  
 
 import { signOut } from "firebase/auth";
@@ -24,7 +28,7 @@ import { Link } from "react-router-dom";
 import AnnualPremium from "./AnnualPremium";
 import MonthPremium from "./MonthPremuim";
 import { useEffect } from "react";
-import { getMyUser } from "../../redux/actions/actions";
+import { getMyUser, setVip } from "../../redux/actions/actions";
 
 const stripePromise = loadStripe("pk_test_51OFi4pDa4OdRCPg7S1mBe55Usd8TeiSRRVlUiw6q3vJT7cHD7pdJqY5mdRaFBrmLMF9717TAW7Qg1GNXXfiTxzgF00K8IQSPkR");
 
@@ -32,10 +36,11 @@ const stripePromise = loadStripe("pk_test_51OFi4pDa4OdRCPg7S1mBe55Usd8TeiSRRVlUi
 function Premiun({ setIsAuth }) {
   const dispatch = useDispatch();
   const userPhoto = useSelector((state) => state.users.photo);
+  const name = useSelector((state) => state.users.name);
   const uid = localStorage.getItem("uid");
   const isVip = useSelector((state) => state.users.isVip);
+  const vip = useSelector((state) => state.users.isVip);
   const cookies = new Cookies();
-  const vip = useSelector(state => state.users.isVip)
   const admin = useSelector((state)=>state.users.isAdmin)
   const [colum,setColumn]= useState(false)
 
@@ -48,10 +53,42 @@ function Premiun({ setIsAuth }) {
     setIsAuth(false);
     dispatch(clearUserDataInLogout());
   };
-  
-  useEffect(() => {
-    dispatch(getMyUser(uid));
-  }, [])
+
+  const handleUnsuscribe = async () => {
+    Swal.fire({
+      title: "Are you sure you want to unsuscribe?",
+      text: "We will miss you :(",
+      icon: "warning",
+      showCancelButton: true,
+      cancelButtonColor: "#3085d6",
+      confirmButtonColor: "#d33",
+      confirmButtonText: "Unsuscribe"
+    }).then( async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.put('http://localhost:3001/geton',{ uid: uid, is:"notPremium"} )
+          dispatch(setVip(false))
+          console.log("premium sacado");
+          Swal.fire({
+            title: "Subscription deleted!",
+            text: "You unsuscribed successfully.",
+            icon: "success",
+            confirmButtonColor: "#39b300",
+            timer: 3000
+          });
+          dispatch(getMyUser(uid))
+        } catch (error) {
+          throw Error(error);
+        }
+      }
+    });
+
+    
+  }
+
+  useEffect(()=>{
+    dispatch(getMyUser(uid))
+  },[])
 
   return (
     <div className={style.premiumMainDiv}>
@@ -104,10 +141,18 @@ function Premiun({ setIsAuth }) {
             </div>
           </nav>
         <div className={style.introPremiumDiv}>
-          <h3 className={style.introH3}>Unlock a premium experience with our <img src={verify} className={style.iconVerify} /> VIP membership!
-          </h3>
+          {vip ? 
+          <h3 className={style.introH3}>Welcome to the VIP experience, {name} <img src={verify} className={style.iconVerify} />! Check out the features that will enhance your EngPartner experience!</h3>
+          :
+          <h3 className={style.introH3}>Unlock a premium experience with our <img src={verify} className={style.iconVerify} /> VIP membership!</h3>
+          }
+
+          {vip ?
+          <p className={style.introH3}>Go enjoy our 'CREATE ROOM' special feature! You cant test it by clicking your Profile Pic {'>'} 'Create Room' </p>
+          :
           <p className={style.introH3}>Get exclusive access to features that will enhance your EngPartner experience.
           You can choose between our monthly or annual subscription.</p>
+          }
         </div>
       <div className={style.premiumCoponentsDiv}>
         <Elements stripe={stripePromise}>
@@ -117,6 +162,9 @@ function Premiun({ setIsAuth }) {
           <AnnualPremium key="annual" isVip={isVip} uid={uid} />
         </Elements>
       </div>
+
+        {isVip && <Button variant="contained" color="error" sx={{ width: "20%", margin: '0 auto', marginTop: '30px' }}
+          onClick={handleUnsuscribe}>Unsuscribe</Button>}
     </div>
   )
 }
