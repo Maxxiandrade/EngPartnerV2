@@ -21,15 +21,8 @@ const Home = ({ setIsAuth }) => {
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
   const localStorageUID = localStorage.getItem('uid');
-  const [room, setRoom] = useState("global");
 
-  const setingValueRoom = (value) => {
-    if (value === 'null') {
-      setRoom("global");
-    } else {
-      setRoom(value);
-    }
-  };
+
 
   useEffect(() => {
     console.log(uid)
@@ -48,7 +41,8 @@ const Home = ({ setIsAuth }) => {
           <Navbar setIsAuth={setIsAuth}/>
           <div className={style.homeComponentsDiv}>
             <div className={style.globalChat}>
-              <TopicChat room={room} setRoom={setRoom} />
+              <TopicChat/>
+             
             </div>
            
           </div>
@@ -60,9 +54,6 @@ const Home = ({ setIsAuth }) => {
   );
 };
 
-{/* <div>
-<TopicsChat setingValueRoom={setingValueRoom} />
-</div> */}
 
 
 export default Home;
