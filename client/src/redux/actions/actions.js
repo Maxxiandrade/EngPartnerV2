@@ -19,6 +19,7 @@ UPDATE_USER_READ_LANGUAGE,
 SET_VIP,
 ADD_ROOM,
 SET_EDIT_PROFILE,
+DELETE_ROOM
  } from "../action_types/userActionTypes";
 
 
@@ -284,4 +285,13 @@ export const getReported = ()=>async(dispatch)=>{
     }catch(error){
       throw Error(error)
     }
+}
+
+export const putDeleteRoom =(obj)=> async(dispatch)=>{
+  const {data} = await axios.put(`${API_URL}/deleteRoom`,obj)
+  dispatch({
+    type:DELETE_ROOM,
+    payload:obj.room,
+  })
+
 }

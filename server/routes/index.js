@@ -5,13 +5,13 @@ const postMessage	=require('../controllers/postMessage');
 const postPremium= require('../controllers/postPremium')
 const postNewUser = require('../controllers/postNewUser');
 const postUser = require('../controllers/postUser');
+const postReport = require('../controllers/postReport');
 //get
 const getMyMessage = require('../controllers/getMyMessage');
 const getOnline = require('../controllers/getOnline')
 const getUserByUsername = require('../controllers/getUserByUserName');
 const getMyUser = require('../controllers/getMyUser');
 const getFriends = require('../controllers/getFriends');
-const postReport = require('../controllers/postReport');
 const getAllCountries= require('../controllers/getAllCountries')
 const getAllUsers = require('../controllers/getAllUsers');
 //put
@@ -20,6 +20,7 @@ const putFriend = require('../controllers/putFriend');
 const putUser = require('../controllers/putUser')
 const putLanguage = require('../controllers/putLanguage');
 const putLanguageRead = require('../controllers/putLanguageRead');
+const putMyRooms= require('../controllers/putMyRooms')
 
 const getReported = require('../controllers/getReported')
 
@@ -46,6 +47,7 @@ router.put('/edit', putUser)
 router.put('/friend', putFriend)
 router.put('/language', putLanguage)
 router.put('/languageread', putLanguageRead)
+router.put('/deleteRoom',putMyRooms)
 
 router.post('/newPremium',postPremium)
 // route Premium

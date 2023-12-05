@@ -8,8 +8,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Swal from 'sweetalert2';
 
 // TOOLS
+import { API_URL } from '../../firebase-config';
 import { useEffect, useState } from "react";
-import { getFriends, getMyUser, addRoom } from "../../redux/actions/actions";
+import { getFriends, getMyUser, addRoom, putDeleteRoom } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 
@@ -20,10 +21,7 @@ import Navbar from "../Navbar/Navbar";
 
 
 const CreateNewRooms = ({ setIsAuth }) => {
-  const vip = useSelector(state => state.users.isVip)
-  const admin = useSelector((state) => state.users.isAdmin)
-  const userPhoto = useSelector((state) => state.users.photo);
-  const [colum, setColumn] = useState(false)
+
 
   const dispatch = useDispatch();
   const [members, setMembers] = useState([]);
@@ -94,7 +92,14 @@ const CreateNewRooms = ({ setIsAuth }) => {
       console.log('You must enter at least one member and one group name.');
     }
   };
-
+  const DeleteRoms=(room)=>{
+    const obj ={
+      room,
+      uid,
+    }
+    dispatch(putDeleteRoom(obj))
+   
+  }
   function generate(element) {
     return [0, 1, 2].map((value) =>
       React.cloneElement(element, {
@@ -151,7 +156,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
               <>
                 <ListItem
                   secondaryAction={
-                    <IconButton edge="end" aria-label="delete">
+                    <IconButton onClick={()=>DeleteRoms(room)} edge="end" aria-label="delete">
                       <DeleteIcon />
                     </IconButton>
                   }

@@ -25,6 +25,7 @@ import {
   SET_VIP,
   ADD_ROOM,
   SET_EDIT_PROFILE,
+  DELETE_ROOM
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -269,8 +270,12 @@ const usersReducer = (state = initialState, action) => {
         ...state,
         languageRead: action.payload
       }
-
-
+      case DELETE_ROOM:
+        return {
+          ...state,
+          rooms: state.rooms.filter(room => room !== action.payload)
+        };
+      
 
     default:
       return { ...state };
