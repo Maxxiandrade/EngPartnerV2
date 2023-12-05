@@ -25,23 +25,23 @@ const Message = ({ message }) => {
     <div className={style.messageContainer} ref={ref}>
       
       <div className={style.messageRecieveInfo}>
-        {message.senderId === user.uid ?
+        {message?.senderId === user?.uid ?
 
-          <img src={user.photo} alt="" className={style.img} />
+          <img src={user?.photo} alt="" className={style.img} />
           : null}
         <div className={style.messageRecieve}>
-          {message.senderId === user.uid ?
-            <p className={style.pRecieve}>{message.text}</p> : null}
+          {message?.senderId === user?.uid ?
+            <p className={style.pRecieve}>{message?.text}</p> : null}
         </div>
       </div>
       
       <div className={style.messageContainerOwner}>
 
         <div className={style.messageSend}>
-          {message.senderId === uid ? <p className={style.pSend}>{message.text}</p> : null}
+          {message?.senderId === uid ? <p className={style.pSend}>{message?.text}</p> : null}
         </div>
         <div className={style.messageSendInfo}>
-          {message.senderId === uid ? <img src={photo} alt="" className={style.img} /> : null}
+          {message?.senderId === uid ? <img src={photo} alt="" className={style.img} /> : null}
         </div>
 
       </div>

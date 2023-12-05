@@ -14,7 +14,8 @@ const Friends = () => {
     useEffect(() => {
       const uid = localStorage.getItem("uid")
       if(uid){
-      dispatch(getFriends(uid));}
+        dispatch(getFriends(uid));
+      }
       console.log(friends);
     }, []);
     
@@ -26,11 +27,11 @@ const Friends = () => {
                 <>
                     <div className={style.container} key={friend.uid}>
                         <div className={style.userName}>
-                            <img src={friend.photo} alt="" className={style.photo} />
-                            {friend.user}
+                            <img src={friend?.photo} alt="" className={style.photo} />
+                            {friend?.user}
                         </div>
                         <div className={style.onOff}>
-                            {friend.isOn ?
+                            {friend?.isOn ?
                                 (<img src={online} alt='🟢' className={style.onlineOffline} />) :
                                 (<img src={offline} alt='🔴' className={style.onlineOffline} />)
                             }

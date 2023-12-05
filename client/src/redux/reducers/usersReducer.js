@@ -21,7 +21,10 @@ import {
   CREATE_ROOM,
   GET_REPORTED,
   UPDATE_USER_LANGUAGE,
-  UPDATE_USER_READ_LANGUAGE
+  UPDATE_USER_READ_LANGUAGE,
+  SET_VIP,
+  ADD_ROOM,
+  SET_EDIT_PROFILE,
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -150,6 +153,26 @@ const usersReducer = (state = initialState, action) => {
         uidGoogleAccount: "",
       };
 
+    case SET_VIP:
+      return {
+        ...state,
+        isVip: action.payload
+      }
+
+    case ADD_ROOM:
+      return {
+        ...state,
+        rooms: [...state.rooms, action.payload]
+      }
+
+    case SET_EDIT_PROFILE:
+      return {
+        ...state,
+        name: action.payload?.name,
+        lastname: action.payload?.lastname,
+        description: action.payload?.description,
+      }
+      
     case ERROR_GETTING_USERS:
       return { ...state, error: action.payload };
 

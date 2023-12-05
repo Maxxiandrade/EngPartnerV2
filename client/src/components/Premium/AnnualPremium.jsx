@@ -2,11 +2,15 @@ import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "axios";
 import style from "./premium.module.css";
 import premiumAnnual from "../../assets/premiumAnnual.png"
+import Swal from 'sweetalert2';
+import { useDispatch } from "react-redux";
+import { setVip } from "../../redux/actions/actions";
 import { API_URL } from "../../firebase-config";
 
-const AnnualPremium = ({ isVip, uid }) => {
 
+const AnnualPremium=({isVip,uid})=>{
 
+    const dispatch = useDispatch()
     const stripe = useStripe()
     const elements = useElements()
 
@@ -23,17 +27,31 @@ const AnnualPremium = ({ isVip, uid }) => {
                 const { data } = await axios.post(`${API_URL}/newPremium`, {
                     id,
                     amount: 6699,
-                    description: 'pay for month',
+                    description: 'pay for year',
                     uid
-
                 })
+                if(data){
+                    dispatch(setVip(true));
+                    Swal.fire({
+                        icon: 'success',
+                        title: '1 year Premium subscribed successfully!',
+                        text: 'Hurraa! Thank you and welcome to the premium experience!',
+                        showConfirmButton: false,
+                        timer: 4000, // 4 segundos
+                        showCloseButton: true,
+                    }).then(() => {
+                        setTimeout(() => {
+                            dispatch(getMyUser(localStorage.getItem("uid")))
+                        }, 1000);
+                    })
+                }
                 console.log(data);
             } catch (error) {
                 console.log(error);
             }
         }
-
     }
+
     return (
         <div className={style.conainer_form}>
             <form onSubmit={handleSubmit} className={style.paymentForm}>
