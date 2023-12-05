@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { getFriends, getMyUser, addRoom, putDeleteRoom } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { API_URL } from "../../firebase-config";
 
 //RENDERS
 import Navbar from "../Navbar/Navbar";
