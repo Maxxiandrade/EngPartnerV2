@@ -124,7 +124,7 @@ const Chat = ({ room, setRoom }) => {
               {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption 
               messageId={message.id}
               message={message.text}
-              user={message.user}
+              user={message.uid}
               setLastClickedMessageId={setLastClickedMessageId}/>}
               </div>
             </div>

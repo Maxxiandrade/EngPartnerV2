@@ -8,13 +8,13 @@ const ReportOption = ({setLastClickedMessageId, message, messageId,user}) => {
   const handleReportClick = (event) => {
     const selectedValue = event.target.value
     console.log(`Reported: ${selectedValue}`);
-    
+    console.log(message);
     const reportData = {
       user: user,
       reportData: {
-        reason: selectedValue,
+        reportType: selectedValue,
         timesReported: 1,
-        message: message,
+        report: message,
         messageId: messageId,
       }
     }
