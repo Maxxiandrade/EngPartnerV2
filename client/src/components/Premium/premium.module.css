@@ -1,179 +1,25 @@
-/* --------------------------NAVBAR---------------------------------- */
-.logo {
-  width: 40px;
-}
-
-.icon {
-  width: 25px;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #031525;
-  color: #0f295c;
-  border-bottom: solid 0.5px #30363d;
-}
-
-.navBtns {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.connectBtn,
-.signOut,
-.premium,
-.chatBtn,
-.adminBtn,
-.groupBtn {
-  background: transparent;
-  border: solid 0.5px #30363d;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-
-.connectBtn:not(:hover),
-.signOut:not(:hover),
-.premium:not(:hover),
-.chatBtn:not(:hover),
-.adminBtn:not(:hover),
-.groupBtn:not(:hover) {
-  transition: 0.5s;
-}
-
-.adminBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: red;
-  box-shadow: 0px 0px 10px rgb(255, 0, 0);
-}
-
-.chatBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: rgb(21, 255, 0);
-  box-shadow: 0px 0px 10px #49f028;
-}
-
-.groupBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: rgb(132, 0, 255);
-  box-shadow: 0px 0px 10px #b128f0;
-}
-
-.connectBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: #00bfc7;
-  box-shadow: 0px 0px 10px #ffffff;
-}
-
-.premium:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: yellow;
-  box-shadow: 0px 0px 10px #f0e628;
-}
-
-.signOut:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: grey;
-  box-shadow: 0px 0px 10px #8f8f8f;
-}
-
-.userPhoto {
-  cursor: pointer;
-  display: inline;
-  width: 49px;
-  border-radius: 10px;
-  border: solid 0.5px #30363d;
-  align-items: center;
-  margin-bottom: -14px;
-}
-
-.userPhoto:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: white;
-  box-shadow: 0px 0px 10px #ffffff;
-}
-.column{
-  z-index: 1000;
-  position: absolute;
-  top:4.5rem;
-  right: 1rem;
-  width: 125px;
-  padding: 15px;
-  border-radius: 15px ;
-  border: 1px solid lightgrey;
-  background-color: #031525;
-}
-.column::before{
-  content: '';
-  position: absolute;
-  top: -0.7rem;
-  right: 1.1rem;
-  width: 20px;
-  height: 20px;
-  transform: rotate(45deg);
-  background-color: #031525;
-  border-left: 1px solid lightgrey;
-  border-top: 1px solid lightgrey;
-}
-.li{
-  list-style: none;
-}
-
-.dropDownDiv{
-  display: flex;
-  color: #AFB8C1;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: solid 0.5px #30363d;
-  cursor: pointer;
-}
-.dropDownSpan{
-  margin-left: 3px;
-}
-
-.divLogout{
-  cursor: pointer;
-}
-.userPhoto2{
-  width: 25px;
-  border-radius: 10px;
-  border: solid 0.5px #30363d;
-}
-
-/* -------------------------------------------------------------------------- */
-
 .premiumMainDiv {
   background-color: #031525;
   display: flex;
   flex-direction: column;
-  height: fit-content;
-  padding-bottom: 40px;
+  height: 100vh;
 }
 
 .premiumCoponentsDiv {
   display: flex;
   justify-content: center;
-  padding-top: 2%;
+  padding-top: 1%;
   width: 100%;
   max-height: 70%;
   min-height: 70%;
 }
 
-.introPremiumDiv{
+.introPremiumDiv {
   width: 100%;
   background-color: #0896ef80;
 }
 
-.introH3{
+.introH3 {
   width: 70%;
   margin-left: auto;
   margin-right: auto;
@@ -181,7 +27,7 @@
   color: white;
 }
 
-.iconVerify{
+.iconVerify {
   width: 22px;
   margin-bottom: -3px;
 }
@@ -190,11 +36,11 @@
   background-color: #dff0ff;
   display: flex;
   margin: 0 3% 0 3%;
-  min-height: 90%;
+  min-height: 80%;
   width: 20%;
   border: solid 2px #32b1fe;
   border-radius: 10px;
-  box-shadow: 4px 4px 8px rgb(122, 204, 255, 0.5)
+  box-shadow: 4px 4px 8px rgb(122, 204, 255, 0.5);
 }
 
 .paymentForm {
@@ -205,22 +51,23 @@
   align-items: center;
   position: relative;
 }
-.discount{
+
+.discount {
   position: absolute;
   font-weight: bold;
   top: 0;
   right: 0;
   margin: 0;
   padding: 2px;
-  background-color: #32B1FE;
+  background-color: #32b1fe;
   color: yellow;
-  border-radius: 0px 8px 0px 8px ;
+  border-radius: 0px 8px 0px 8px;
 }
 
 .formTitle {
   font-size: 1.5em;
   margin-bottom: 10px;
-  color: #333  ;
+  color: #333;
 }
 
 .price {

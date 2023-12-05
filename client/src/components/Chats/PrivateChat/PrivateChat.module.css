@@ -107,6 +107,7 @@
   font-size: 18px;
   font-weight: 500;
 }
+
 .p {
   font-size: 14px;
   color: lightgray;
@@ -181,20 +182,17 @@
   cursor: pointer;
 }
 
-/* Message */
 .messageContainer {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
 
-/* Message Info */
 .messageRecieveInfo {
   display: flex;
   max-width: 85%;
 }
 
-/* Message Content*/
 .messageRecieve {
   margin-left: 5px;
   width: 100%;
@@ -208,8 +206,6 @@
   padding: 10px 20px;
   border-radius: 0px 10px 10px 10px;
 }
-
-/* Message Owner */
 
 .messageContainerOwner {
   display: flex;
@@ -244,111 +240,6 @@
   border-radius: 10px 0px 10px 10px;
 }
 
-/* -------------------------------NAVBAR------------------------------------------------ */
-
-.logo {
-  width: 40px;
-}
-
-.icon {
-  width: 25px;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-  background-color: #031525;
-  color: #0f295c;
-  border-bottom: solid 0.5px #30363d;
-}
-
-.navBtns {
-  justify-content: space-between;
-  align-items: center;
-}
-
-.connectBtn,
-.signOut,
-.premium,
-.chatBtn,
-.adminBtn,
-.groupBtn {
-  background: transparent;
-  border: solid 0.5px #30363d;
-  border-radius: 10px;
-  margin-right: 10px;
-}
-
-.connectBtn:not(:hover),
-.signOut:not(:hover),
-.premium:not(:hover), 
-.chatBtn:not(:hover),
-.adminBtn:not(:hover),
-.groupBtn:not(:hover){
-  transition: 0.5s;
-}
-
-.adminBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: red;
-  box-shadow: 0px 0px 10px rgb(255, 0, 0);
-}
-
-.chatBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: rgb(21, 255, 0);
-  box-shadow: 0px 0px 10px #49f028;
-}
-
-.groupBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: rgb(132, 0, 255);
-  box-shadow: 0px 0px 10px #b128f0;
-}
-
-.connectBtn:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: #00bfc7;
-  box-shadow: 0px 0px 10px #ffffff;
-}
-
-.premium:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: yellow;
-  box-shadow: 0px 0px 10px #f0e628;
-}
-
-.signOut:hover{
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: grey;
-  box-shadow: 0px 0px 10px #8f8f8f;
-}
-
-.userPhoto {
-  cursor: pointer;
-  display: inline;
-  width: 49px;
-  border-radius: 10px;
-  border: solid 0.5px #30363d;
-  align-items: center;
-  margin-bottom: -14px;
-}
-
-.userPhoto:hover {
-  transition: 0.5s;
-  background-color: #1f2147;
-  border-color: white;
-  box-shadow: 0px 0px 10px #ffffff;
-}
-
 .componentsDiv {
   display: flex;
   align-items: center;
@@ -356,52 +247,4 @@
   height: 80%;
   max-height: 80%;
   min-height: 80%;
-}
-
-.column{
-  z-index: 1000;
-  position: absolute;
-  top:4.5rem;
-  right: 1rem;
-  width: 125px;
-  padding: 15px;
-  border-radius: 15px ;
-  border: 1px solid lightgrey;
-  background-color: #031525;
-}
-.column::before{
-  content: '';
-  position: absolute;
-  top: -0.7rem;
-  right: 1.1rem;
-  width: 20px;
-  height: 20px;
-  transform: rotate(45deg);
-  background-color: #031525;
-  border-left: 1px solid lightgrey;
-  border-top: 1px solid lightgrey;
-}
-.li{
-  list-style: none;
-}
-
-.dropDownDiv{
-  display: flex;
-  color: #AFB8C1;
-  margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: solid 0.5px #30363d;
-  cursor: pointer;
-}
-.dropDownSpan{
-  margin-left: 3px;
-}
-
-.divLogout{
-  cursor: pointer;
-}
-.userPhoto2{
-  width: 25px;
-  border-radius: 10px;
-  border: solid 0.5px #30363d;
 }

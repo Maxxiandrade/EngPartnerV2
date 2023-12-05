@@ -1,30 +1,20 @@
+// STYLES
 import style from './CreateNewRoom.module.css'
 
-import logo from "../../assets/logo.png";
-import crown from "../../assets/svg/crown.svg";
-import connect from "../../assets/svg/connect.svg";
-import logOut from "../../assets/svg/logout.svg";
-import chat from "../../assets/svg/chat.svg"
-import group from "../../assets/svg/group.svg"
-import report from "../../assets/svg/report.svg"
-import verify from '../../assets/svg/verify.svg'
 import { List, ListItem, IconButton, ListItemText, ListItemAvatar, Avatar, Divider } from '@mui/material';
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-
 import Swal from 'sweetalert2';
 
-
+// TOOLS
 import { useEffect, useState } from "react";
 import { getFriends, getMyUser, addRoom } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
-import { auth, API_URL } from "../../firebase-config";
-import { CreateRoom } from "../../redux/actions/actions";
-import { Link, Navigate } from "react-router-dom";
-import Cookies from "universal-cookie";
 import axios from "axios";
-import { signOut } from "firebase/auth";
+
+//RENDERS
+import Navbar from "../Navbar/Navbar";
 
 
 
@@ -82,8 +72,8 @@ const CreateNewRooms = ({ setIsAuth }) => {
           const newGroup = {
             nameGroup: groupName,
             members: [...members, { id: uid }],
-          };    
-          
+          };
+
           await axios.post(`${API_URL}/createRoom`, newGroup)
           dispatch(addRoom(groupName));
           Swal.fire({
@@ -99,23 +89,10 @@ const CreateNewRooms = ({ setIsAuth }) => {
           setGroupName('');
         }
       })
-     
+
     } else {
-      console.log('Debe ingresar al menos un miembro y un nombre de grupo.');
+      console.log('You must enter at least one member and one group name.');
     }
-  };
-
-  
-  const cookies = new Cookies();
-
-  const handleLogOut = async () => {
-    const uid = auth.currentUser.uid
-    axios.put(`${API_URL}/geton`, { uid, is: "off" })
-    cookies.remove("auth-token");
-    localStorage.removeItem("uid");
-    await signOut(auth);
-    setIsAuth(false);
-    dispatch(clearUserDataInLogout());
   };
 
   function generate(element) {
@@ -128,54 +105,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
 
   return (
     <div className={style.createNewRoomsDiv}>
-      <nav className={style.nav}>
-        <Link to="/home">
-          <img src={logo} alt="Home" className={style.logo} />
-        </Link>
-        <div className={style.navBtns}>
-          <Link to='/messages'>
-            <button className={style.chatBtn}><img src={chat} alt="chat" className={style.icon} /></button>
-          </Link>
-          <Link to='/connect'>
-            <button className={style.connectBtn}>
-              <img src={connect} alt="connect" className={style.icon} />
-            </button>
-          </Link>
-          <Link to='/premium'>
-            <button className={style.premium}>
-              <img src={crown} alt="" className={style.icon} />
-            </button>
-          </Link>
-          <img src={userPhoto} alt="" className={style.userPhoto} onClick={() => setColumn(!colum)} />
-          {colum ?
-            <ul className={style.column}>
-              <li className={style.li}>
-                <Link to={`/profile/${uid}`}>
-                  <div className={style.dropDownDiv}>
-                    <img src={userPhoto} alt="" className={style.userPhoto2} />
-                    <span className={style.dropDownSpan}>Profile</span>
-                  </div>
-                </Link>
-              </li>
-              {vip ?
-                <li className={style.li}>
-                  <Link to='/CreateRoom'>
-                    <div className={style.dropDownDiv}>
-                      <img src={group} alt="group" className={style.icon} />
-                      <span className={style.dropDownSpan}>Create Room</span>
-                    </div>
-                  </Link>
-                </li> : ""}
-              <li className={style.li}>
-                <div className={style.dropDownDiv} onClick={handleLogOut}>
-                  <img src={logOut} alt="logout" className={style.icon} />
-                  <span className={style.dropDownSpan}><b>Logout</b></span>
-                </div>
-              </li>
-            </ul> : ''}
-
-        </div>
-      </nav>
+      <Navbar setIsAuth={setIsAuth} />
       <aside className={style.groupCreateContainer}>
         <div className={style.txtH1}>
           <h2>Create custom room:</h2>
@@ -209,44 +139,44 @@ const CreateNewRooms = ({ setIsAuth }) => {
           ))
         )}
         <div className={style.createBtnDiv}>
-        <button onClick={handleCreateRoom} className={style.createBtn}>Create Room</button>
+          <button onClick={handleCreateRoom} className={style.createBtn}>Create Room</button>
         </div>
 
 
-      <div style={{textAlign: 'center'}}>
-      <Divider />
-        <h2 style={{margin: '0px', marginTop: '10px'}}>My rooms</h2>
-        <List dense={true} sx={{ width: '80%', margin: '0px auto'}}>
+        <div style={{ textAlign: 'center' }}>
+          <Divider />
+          <h2 style={{ margin: '0px', marginTop: '10px' }}>My rooms</h2>
+          <List dense={true} sx={{ width: '80%', margin: '0px auto' }}>
             {rooms?.map((room) => (
               <>
-              <ListItem 
-                    secondaryAction={
-                      <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
-                      </IconButton>
-                    }
-                    sx={{
-                      '&:hover': {
-                        backgroundColor: 'rgba(0, 0, 0, 0.08)',
-                      },
-                      cursor: 'pointer',
-                    }}
-                  >
-                    <ListItemAvatar>
-                      <Avatar sx={{ bgcolor: '#252b80' }}>
-                        <GroupsOutlinedIcon sx={{ color: 'white', backgroundColor: '#252b80' }} />
-                      </Avatar>
-                    </ListItemAvatar>
-                    <ListItemText
-                      primary={room}
-                    />
-                  </ListItem>
+                <ListItem
+                  secondaryAction={
+                    <IconButton edge="end" aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
+                  }
+                  sx={{
+                    '&:hover': {
+                      backgroundColor: 'rgba(0, 0, 0, 0.08)',
+                    },
+                    cursor: 'pointer',
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar sx={{ bgcolor: '#252b80' }}>
+                      <GroupsOutlinedIcon sx={{ color: 'white', backgroundColor: '#252b80' }} />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={room}
+                  />
+                </ListItem>
               </>
             ))}
           </List>
-      </div>
-        
-            
+        </div>
+
+
 
       </aside>
     </div>
