@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { useDispatch } from "react-redux";
 import { setVip, getMyUser } from "../../redux/actions/actions";
+import { API_URL } from "../../firebase-config";
 
 
 const MonthPremium=({isVip,uid})=>{
@@ -24,7 +25,7 @@ const handleSubmit = async (e) => {
         console.log(uid)
         const {id}= paymentMethod  
         try {
-            const {data} = await axios.post('http://localhost:3001/newPremium',{
+            const {data}=await axios.post(`${API_URL}/newPremium`,{
                 id,
                 amount:799,
                 description: 'pay for month',

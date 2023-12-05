@@ -18,7 +18,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { useDispatch, useSelector } from "react-redux";
 import { editUser, handleUser, setEditProfile } from "../../redux/actions/actions";
-import { auth } from "../../firebase-config";
+import { auth, API_URL } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { getMyUser, clearUserDataInLogout, updateUserLanguage, updateUserReadLanguage } from "../../redux/actions/actions";
 import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Select, MenuItem } from "@mui/material";
@@ -64,7 +64,7 @@ const Profile = ({ setIsAuth }) => {
 
   useEffect(() => {
     axios
-      .post(`http://localhost:3001/user`, { uid: params.uid })
+      .post(`${API_URL}/user`, { uid: params.uid })
       .then(({ data }) => {
         if (data) {
           console.log(data);
@@ -149,7 +149,7 @@ const Profile = ({ setIsAuth }) => {
   };
 
   const handleLogOut = async () => {
-    axios.put("http://localhost:3001/geton", { uid, is: "off" });
+    axios.put(`${API_URL}/geton`, { uid, is: "off" });
     cookies.remove("auth-token");
     localStorage.removeItem("uid");
     await signOut(auth);

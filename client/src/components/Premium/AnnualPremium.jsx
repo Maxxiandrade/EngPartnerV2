@@ -5,6 +5,7 @@ import premiumAnnual from "../../assets/premiumAnnual.png"
 import Swal from 'sweetalert2';
 import { useDispatch } from "react-redux";
 import { setVip } from "../../redux/actions/actions";
+import { API_URL } from "../../firebase-config";
 
 
 const AnnualPremium=({isVip,uid})=>{
@@ -23,7 +24,7 @@ const AnnualPremium=({isVip,uid})=>{
             console.log(paymentMethod)
             const { id } = paymentMethod
             try {
-                const { data } = await axios.post('http://localhost:3001/newPremium', {
+                const { data } = await axios.post(`${API_URL}/newPremium`, {
                     id,
                     amount: 6699,
                     description: 'pay for year',

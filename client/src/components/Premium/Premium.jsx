@@ -15,7 +15,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { signOut } from "firebase/auth";
 import Cookies from "universal-cookie";
-import { auth } from "../../firebase-config";
+import { auth, API_URL } from "../../firebase-config";
 import { clearUserDataInLogout } from '../../redux/actions/actions';
 import axios from 'axios';
 import { loadStripe } from "@stripe/stripe-js";
@@ -46,7 +46,7 @@ function Premiun({ setIsAuth }) {
 
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
-    axios.put('http://localhost:3001/geton', { uid, is: "off" })
+    axios.put(`${API_URL}/geton`, { uid, is: "off" })
     cookies.remove("auth-token");
     localStorage.removeItem("uid");
     await signOut(auth);

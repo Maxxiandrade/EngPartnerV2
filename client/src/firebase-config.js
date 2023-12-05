@@ -30,7 +30,7 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const database = getDatabase(app)
 
-export const API_URL = import.meta.env.MODE === 'development' ? 'http://localhost:3001' : 'https://engpartner-aa0ce-default-rtdb.firebaseio.com';
+export const API_URL = import.meta.env.MODE === 'development' ? 'http://localhost:3001' : 'https://eng-partner-v2-server.vercel.app';
 
 export const db = getFirestore(app)
 export const auth = getAuth(app)

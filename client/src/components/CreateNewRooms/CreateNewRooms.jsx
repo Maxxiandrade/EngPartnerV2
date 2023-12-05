@@ -19,7 +19,7 @@ import Swal from 'sweetalert2';
 import { useEffect, useState } from "react";
 import { getFriends, getMyUser, addRoom } from "../../redux/actions/actions";
 import { useSelector, useDispatch } from "react-redux";
-import { auth } from "../../firebase-config";
+import { auth, API_URL } from "../../firebase-config";
 import { CreateRoom } from "../../redux/actions/actions";
 import { Link, Navigate } from "react-router-dom";
 import Cookies from "universal-cookie";
@@ -84,7 +84,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
             members: [...members, { id: uid }],
           };    
           
-          await axios.post(`http://localhost:3001/createRoom`, newGroup)
+          await axios.post(`${API_URL}/createRoom`, newGroup)
           dispatch(addRoom(groupName));
           Swal.fire({
             title: `New room created successfully, start a new conversation!`,
@@ -99,7 +99,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
           setGroupName('');
         }
       })
-      
+     
     } else {
       console.log('Debe ingresar al menos un miembro y un nombre de grupo.');
     }
@@ -110,7 +110,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
 
   const handleLogOut = async () => {
     const uid = auth.currentUser.uid
-    axios.put('http://localhost:3001/geton', { uid, is: "off" })
+    axios.put(`${API_URL}/geton`, { uid, is: "off" })
     cookies.remove("auth-token");
     localStorage.removeItem("uid");
     await signOut(auth);
