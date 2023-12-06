@@ -7,58 +7,58 @@
   margin: 0 auto;
   border-radius: 15px;
   overflow: hidden;
-  border: 2px solid #32b1fe;
-  background-color: #F0F8FF;
+  border: 1.5px solid #32b1fe;
+  background-color: #001e32;
   height: 100%;
   width: 100%;
 }
 
 .header {
-  background-color: #f0f8ff;
-  color: #FD2621;
+  background-color: #001e32;
   width: 100%;
-  font-size: 8px;
   text-align: center;
-  text-shadow: 1px 1px 1px #7c7c7c;
+  margin-top: 1.5%;
+  margin-bottom: 1.5%;
 }
 
 .messages {
-  background-color: #f0f8ff;
+  background-color: #001e32;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  overflow-y: auto; 
+  height: 100%;
+  overflow-y: auto;
   margin-bottom: 6%;
 }
 
 .message {
   position: relative;
-  color: rgb(0, 0, 0);
+  color: #ffff;
   display: flex;
   align-items: center;
   margin-bottom: 10px;
   width: 95%;
-  background-color: #dff0ff;
+  background-color: #ffffff5e;
   border-radius: 15px;
   padding: 5px 0px 5px 10px;
 }
 
 .user {
   display: flex;
-  text-shadow: --1.5px -1.5px 0  black,  
-      1.5px -1.5px 0  black,
-     -1.5px 1.5px 0  black,
-      1.5px 1.5px 0 black;
+  text-shadow: --1.5px -1.5px 0 black, 1.5px -1.5px 0 black,
+    -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;
   font-weight: bold;
   margin-right: 10px;
-  color: #535cd8;
+  color: #32b1fe;
+  line-height: 1.5;
+  text-shadow: 1px 1px 1px #000000;
   cursor: pointer;
   align-items: center;
   padding-top: 1px;
 }
 
-.user:hover{
+.user:hover {
   text-decoration: underline;
 }
 
@@ -67,7 +67,7 @@
   width: 100%;
 }
 
-.newMessageFormDiv{
+.newMessageFormDiv {
   width: 100%;
   position: absolute;
   bottom: 0;
@@ -76,9 +76,9 @@
 
 .newMessageInput {
   flex: 1;
-  border: 0.3px solid #4448be49;
+  border: 1px solid #4449be;
   outline: none;
-  background: #edf8ff;
+  background-color: #dff0ff;
   font-size: 16px;
   color: #333;
   padding: 10px;
@@ -88,30 +88,30 @@
 }
 
 .sendButton {
-  border: 1px solid #4449BE;
-  background: #DFF0FF;
+  border: 1px solid #4449be;
+  background: #dff0ff;
   margin-right: 10px;
 }
 
-.profilePic{
+.profilePic {
   border-radius: 50%;
   width: 40px;
   height: 40px;
   margin-right: 10px;
 }
 
-.profilePic:hover{
-  transition: 0.5s;
+.profilePic:hover {
+  transition: 0.2s;
   transform: scale(1.1);
   cursor: pointer;
 }
 
-.sendIcon{
+.sendIcon {
   height: 20px;
   width: 20px;
 }
 
-.textDiv{
+.textDiv {
   width: 100%;
   overflow: hidden;
   word-wrap: break-word;
@@ -123,21 +123,21 @@
   position: relative;
 }
 
-.report{
-  width: 15px;
+.report {
+  width: 18px;
   position: relative;
 }
 
-.verify{
+.verify {
   width: 25px;
   padding-right: 2px;
 }
-.AdminSvg{
+.AdminSvg {
   width: 25px;
   padding-right: 6px;
 }
 
-.messageFormDiv{
+.messageFormDiv {
   position: absolute;
   bottom: 0;
   width: 100%;

@@ -33,7 +33,6 @@ const CreateNewRooms = ({ setIsAuth }) => {
     const uid = localStorage.getItem('uid');
     if (uid) {
       dispatch(getFriends(uid));
-      dispatch(getMyUser(uid))
     }
   }, []);
 
