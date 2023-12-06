@@ -21,7 +21,8 @@ const putUser = require('../controllers/putUser')
 const putLanguage = require('../controllers/putLanguage');
 const putLanguageRead = require('../controllers/putLanguageRead');
 
-const getReported = require('../controllers/getReported')
+const getReported = require('../controllers/getReported');
+const deleteReport = require('../controllers/deleteReport');
 
 const router = Router();
 
@@ -40,6 +41,7 @@ router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
 router.post('/reports', postReport)
 router.post('/createRoom',postCreateRoom)
+router.post('/newPremium',postPremium)
 
 router.put('/geton', putIs)
 router.put('/edit', putUser)
@@ -47,7 +49,7 @@ router.put('/friend', putFriend)
 router.put('/language', putLanguage)
 router.put('/languageread', putLanguageRead)
 
-router.post('/newPremium',postPremium)
+router.delete('/report', deleteReport)
 // route Premium
 
 module.exports=router;
