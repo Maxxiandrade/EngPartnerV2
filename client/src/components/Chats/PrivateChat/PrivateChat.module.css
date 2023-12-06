@@ -1,5 +1,4 @@
 .home {
-  background-color: #031525;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -127,7 +126,10 @@
 }
 
 .messages {
-  background-color: #dff0ff;
+  background-image: url("../../../assets/chatlight.png");
+  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   padding: 10px;
   height: calc(100% - 160px);
   overflow: scroll;

@@ -1,15 +1,23 @@
-
 .reportMessage {
     position: absolute;
-    bottom: 20%;
-    left: 70%;
+    right: 0;
+    margin-right: 15px;
+    z-index: 1000;
+    border: 1px solid #32B1FE;
 }
 
 .optionStyle{
     cursor: pointer;
-    background-color: white;
+    background-color: #001E32;
+    transition: height 0.3s ease;
 }
 
 .optionStyle:hover{
-    background-color: rgb(180, 177, 177);
+    background-color: rgb(60, 60, 150);
+    transform: scale(1.05);
+    transition: 0.3s;
+}
+
+.optionStyle:hover{
+    transition: 0.3s;
 }
