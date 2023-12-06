@@ -43,6 +43,7 @@ const Login = ({ setIsAuth }) => {
         );
 
         localStorage.setItem('uid', auth?.currentUser?.uid);
+        localStorage.setItem('languageChecked', false);
         cookies.set('auth-token', result.user.refreshToken);
         setIsAuth(true);
         console.log(result.user);
@@ -61,6 +62,7 @@ const Login = ({ setIsAuth }) => {
         }));
 
         localStorage.setItem('uid', auth?.currentUser?.uid);
+        localStorage.setItem('languageChecked', false);
         cookies.set('auth-token', result.user.refreshToken);
         setIsAuth(true);
         console.log(result.user);
@@ -82,6 +84,7 @@ const Login = ({ setIsAuth }) => {
       const result = await signInWithEmailAndPassword(auth, email, password);
       const uid = result.user.uid
       localStorage.setItem('uid', auth?.currentUser?.uid);
+      localStorage.setItem('languageChecked', false);
       cookies.set("auth-token", result.user.refreshToken);
       setIsAuth(true);
       axios.put(`${API_URL}/geton`, { uid, is: "on" })

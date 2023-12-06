@@ -5,6 +5,7 @@ import ReportOption from "../ReportOption/ReportOption";
 import report from "../../../assets/svg/exclamation.svg"
 import AdminSvg from '../../../assets/svg/admin-verify.svg'
 import TopicsChat from "../TopicsChat/TopicsChat";
+import Skeleton from '@mui/material/Skeleton';
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -40,7 +41,7 @@ const Chat = () => {
   const [messageOptions, setMessageOptions] = useState({})
   const [lastClickedMessageId, setLastClickedMessageId] = useState(null)
   const optionsRef = useRef(null)
-
+  const [languageChecked, setLanguageChecked] = useState(localStorage.getItem('languageChecked') === 'true' ? true : false);
 
   const messageRef = collection(db, "messages");
   const messagesEndRef = useRef(null);
@@ -70,9 +71,8 @@ const Chat = () => {
   }, [room]);
 
   useEffect(() => {
-    const scroll = () => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }
-    scroll()
-  }, [messages])
+    console.log('klajaslkdsakjdalkjdskda');
+  }, [messages, languageChecked])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -99,11 +99,16 @@ const Chat = () => {
     console.log(messageId)
   };
 
+  const handleChangeSwitch = () => {
+    setLanguageChecked(!languageChecked);
+    localStorage.setItem('languageChecked', !languageChecked);
+  }
+
   return (
     <>
       <div className={style.chatApp}>
         <div className={style.header}>
-          <TopicsChat setingValueRoom={setingValueRoom} />
+          <TopicsChat setingValueRoom={setingValueRoom} languageChecked={languageChecked} setLanguageChecked={setLanguageChecked} handleChangeSwitch={handleChangeSwitch} />
         </div>
         <div className={style.messages}>
           {messages.map((message) => (
@@ -122,11 +127,15 @@ const Chat = () => {
                 </span>
               </Link>
               <div className={style.textDiv}>
-                {message.translatedText?.[language] ? message.translatedText?.[language] : message.text} {/* mensaje en lengua original */}
-                <hr />
-                <span>
-                  {message.translatedText?.[languageRead] ? message.translatedText?.[languageRead] : message.text} {/* mensaje traducido */}
-                </span>
+                {
+                  !message.translatedText?.[language] ?
+                  <Skeleton sx={{ width: '100%' }} />
+                  :
+                  languageChecked === false ? 
+                  <span> {message.translatedText?.[language]} </span>
+                  :
+                  <span> {message.translatedText?.[languageRead]} </span>
+                }
               </div>
               <div>
                 <img src={report} alt="" className={style.report} onClick={() => handleOptionsClick(message.id)} ref={optionsRef} />
