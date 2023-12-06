@@ -274,6 +274,7 @@ export const CreateRoom= (obj)=> async(dispatch)=>{
     payload: obj
   })
 }
+
 export const getReported = ()=>async(dispatch)=>{
   try{
       const {data} = await axios.get(`${API_URL}/reported`)
@@ -285,3 +286,15 @@ export const getReported = ()=>async(dispatch)=>{
       throw Error(error)
     }
 }
+
+export const deleteReport = (messageId, uid) => async () => {
+  try {
+    const request = {
+      data: { uid, messageId } 
+    };
+
+    await axios.delete(`${API_URL}/report`, request);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
