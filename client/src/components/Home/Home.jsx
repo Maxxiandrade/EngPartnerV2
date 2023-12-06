@@ -40,11 +40,11 @@ const Home = ({ setIsAuth }) => {
         <div className={style.homeMainDiv}>
           <Navbar setIsAuth={setIsAuth}/>
           <div className={style.homeComponentsDiv}>
+            <div></div>
             <div className={style.globalChat}>
               <TopicChat/>
-             
             </div>
-           
+            <div></div>
           </div>
         </div>
       ) : (

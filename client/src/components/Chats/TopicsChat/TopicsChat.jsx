@@ -20,9 +20,8 @@ const TopicsChat = ({ setingValueRoom }) => {
         <label htmlFor="roomSelect"></label>
         <section>
           <select id="roomSelect" onChange={handleTopic} className={style.selectStyle}>
-            <option disabled selected value="default">Select Chat</option>
             {rooms.map(room=>{
-              return <option value={room.toLowerCase()} key={room}> {room} </option>
+              return <option value={room.toLowerCase()} key={room} className={style.optionStyle}> {room} </option>
               })}
           </select>
         </section>

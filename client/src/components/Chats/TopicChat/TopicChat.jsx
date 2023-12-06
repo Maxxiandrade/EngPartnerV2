@@ -2,8 +2,8 @@ import style from "./TopicChat.module.css";
 import sendIcon from '../../../assets/svg/sendIcon.svg'
 import verify from '../../../assets/svg/verify.svg'
 import ReportOption from "../ReportOption/ReportOption";
-import report from "../../../assets/exclamation.svg"
-import AdminSvg from'../../../assets/svg/admin-verify.svg'
+import report from "../../../assets/svg/exclamation.svg"
+import AdminSvg from '../../../assets/svg/admin-verify.svg'
 import TopicsChat from "../TopicsChat/TopicsChat";
 
 import { useEffect, useState, useRef } from "react";
@@ -53,7 +53,7 @@ const Chat = () => {
       orderBy("createdAt")
     );
 
-    
+
     const unSubscribe = onSnapshot(queryMessages, (snapshot) => {
       const fetchedMessages = [];
       const initialOptions = {}
@@ -63,16 +63,16 @@ const Chat = () => {
       });
       setMessages(fetchedMessages);
       setMessageOptions(initialOptions)
-     
+
     });
 
     return () => unSubscribe();
   }, [room]);
 
-  useEffect(()=>{
-    const scroll = ()=> {messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });}
+  useEffect(() => {
+    const scroll = () => { messagesEndRef.current?.scrollIntoView({ behavior: "smooth" }); }
     scroll()
-  },[messages])
+  }, [messages])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -84,7 +84,7 @@ const Chat = () => {
       profilePic: user.photo,
       uid: user.uid,
       isVip: user.isVip,
-      isAdmin:user.isAdmin,
+      isAdmin: user.isAdmin,
       room,
     });
     setNewMessage("");
@@ -98,13 +98,12 @@ const Chat = () => {
     setLastClickedMessageId(messageId)
     console.log(messageId)
   };
-  
+
   return (
     <>
       <div className={style.chatApp}>
         <div className={style.header}>
-
-      <TopicsChat setingValueRoom={setingValueRoom} />
+          <TopicsChat setingValueRoom={setingValueRoom} />
         </div>
         <div className={style.messages}>
           {messages.map((message) => (
@@ -116,7 +115,7 @@ const Chat = () => {
                 <span className={style.user}>
                   <div className={style.verifyDiv}>
                     {message.isAdmin ? <img src={AdminSvg} className={style.AdminSvg} /> :
-                    message.isVip ? <img src={verify} className={style.verify} /> : ''
+                      message.isVip ? <img src={verify} className={style.verify} /> : ''
                     }
                   </div>
                   {`${message.user}:`}
@@ -124,35 +123,35 @@ const Chat = () => {
               </Link>
               <div className={style.textDiv}>
                 {message.translatedText?.[language] ? message.translatedText?.[language] : message.text} {/* mensaje en lengua original */}
-              <hr />
-              <span>
-                {message.translatedText?.[languageRead] ? message.translatedText?.[languageRead] : message.text} {/* mensaje traducido */}
-              </span>
+                <hr />
+                <span>
+                  {message.translatedText?.[languageRead] ? message.translatedText?.[languageRead] : message.text} {/* mensaje traducido */}
+                </span>
               </div>
               <div>
-                <img src={report} alt="" className={style.report} onClick={() => handleOptionsClick(message.id)} ref={optionsRef}/>
-              {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption 
-              messageId={message.id}
-              message={message.text}
-              user={message.uid}
-              setLastClickedMessageId={setLastClickedMessageId}/>}
+                <img src={report} alt="" className={style.report} onClick={() => handleOptionsClick(message.id)} ref={optionsRef} />
+                {messageOptions[message.id] && message.id === lastClickedMessageId && <ReportOption
+                  messageId={message.id}
+                  message={message.text}
+                  user={message.uid}
+                  setLastClickedMessageId={setLastClickedMessageId} />}
               </div>
             </div>
           ))}
           <div ref={messagesEndRef} />
         </div>
         <div className={style.messageFormDiv}>
-        <form onSubmit={handleSubmit} className={style.newMessageForm}>
-          <input
-            className={style.newMessageInput}
-            placeholder="Type a message..."
-            onChange={(e) => setNewMessage(e.target.value)}
-            value={newMessage}
-          />
-          <button className={style.sendButton} type="submit">
-            <img src={sendIcon} alt="Send" className={style.sendIcon} />
-          </button>
-        </form>
+          <form onSubmit={handleSubmit} className={style.newMessageForm}>
+            <input
+              className={style.newMessageInput}
+              placeholder="Type a message..."
+              onChange={(e) => setNewMessage(e.target.value)}
+              value={newMessage}
+            />
+            <button className={style.sendButton} type="submit">
+              <img src={sendIcon} alt="Send" className={style.sendIcon} />
+            </button>
+          </form>
         </div>
       </div>
     </>
