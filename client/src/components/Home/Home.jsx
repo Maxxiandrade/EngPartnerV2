@@ -2,6 +2,7 @@ import style from "./Home.module.css";
 
 //Tools
 import { auth } from "../../firebase-config";
+import { signOut } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
