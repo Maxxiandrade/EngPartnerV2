@@ -33,10 +33,10 @@
 .column {
   z-index: 1000;
   position: absolute;
-  top: 4.5rem;
+  top: 5.2rem;
   right: 1rem;
-  width: 125px;
-  padding: 15px;
+  width: 10rem;
+  padding: 1rem;
   border-radius: 15px;
   border: 1px solid lightgrey;
   background-color: #031525;
@@ -67,6 +67,7 @@
   padding-bottom: 5px;
   border-bottom: solid 0.5px #30363d;
   cursor: pointer;
+  align-items: center;
 }
 
 .dropDownDiv:hover{
@@ -97,7 +98,7 @@ transition: 0.2s ease-in-out;
 }
 
 .userPhoto:hover {
-  transition: 0.5s;
+  transition: 0.3s;
   background-color: #031525;
   border-color: white;
   box-shadow: 0px 0px 10px #ffffff;
@@ -121,25 +122,25 @@ transition: 0.2s ease-in-out;
 .connectBtn:not(:hover),
 .premium:not(:hover),
 .chatBtn:not(:hover) {
-  transition: 0.5s;
+  transition: 0.3s;
 }
 
 .chatBtn:hover {
-  transition: 0.5s;
+  transition: 0.3s;
   background-color: #031525;
   border-color: rgb(21, 255, 0);
   box-shadow: 0px 0px 10px #49f028;
 }
 
 .connectBtn:hover {
-  transition: 0.5s;
+  transition: 0.3s;
   background-color: #031525;
   border-color: #00bfc7;
   box-shadow: 0px 0px 10px #ffffff;
 }
 
 .premium:hover {
-  transition: 0.5s;
+  transition: 0.3s;
   background-color: #031525;
   border-color: yellow;
   box-shadow: 0px 0px 10px #f0e628;
