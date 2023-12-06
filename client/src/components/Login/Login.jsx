@@ -175,12 +175,6 @@ const Login = ({ setIsAuth }) => {
           </div>
         </div>
       </div>
-      <footer className={style.about}>
-        <p>
-          Developed by: Andrade Maximiliano, Britos Gaspar, D'lppolito Luciano,
-          Ford Vicente, Martinez Jose, Reyes Luis.
-        </p>
-      </footer>
     </>
   );
 };
