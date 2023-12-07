@@ -11,7 +11,6 @@ import defaultImg from "../../../assets/user-default-pfp.png";
 import Navbar from "../../Navbar/Navbar";
 import Searchbar from "../Searchbar/Searchbar";
 
-
 const Users = ({ setIsAuth }) => {
   const users = useSelector((state) => state.users.users);
   const uid = localStorage.getItem("uid");
@@ -43,6 +42,7 @@ const Users = ({ setIsAuth }) => {
               <div className={styles.textContainer}>
                 <div className={styles.nameAndVipContainer}>
                   <p>{user.name}</p>
+                  <p>({user.user})</p>
                   <p className={styles.age}>{user.age}</p>
                 </div>
                 <div className={styles.restPropsContainer}>
@@ -50,13 +50,9 @@ const Users = ({ setIsAuth }) => {
                   <p>{user.sex}</p>
                   <div className={styles.isOnContainerrr}>
                     {user.isOn ? (
-                      < span className={styles.spannn}>
-                        🟢
-                      </span>
+                      <span className={styles.spannn}>🟢</span>
                     ) : (
-                      <span className={styles.spannn}>
-                        🔴
-                      </span>
+                      <span className={styles.spannn}>🔴</span>
                     )}
                   </div>
                 </div>

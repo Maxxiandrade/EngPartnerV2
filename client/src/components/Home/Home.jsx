@@ -1,16 +1,15 @@
 import style from "./Home.module.css";
 
+
 //Tools
 import { auth } from "../../firebase-config";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
-import axios from 'axios';
+import { signOut } from "firebase/auth";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getMyUser } from '../../redux/actions/actions';
 
 //Renders
 import Navbar from "../Navbar/Navbar";
-import Friends from "./Friends/Friends";
-import TopicsChat from "../Chats/TopicsChat/TopicsChat";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 import { Navigate } from 'react-router-dom';
 import { API_URL } from "../../firebase-config";
@@ -40,11 +39,9 @@ const Home = ({ setIsAuth }) => {
         <div className={style.homeMainDiv}>
           <Navbar setIsAuth={setIsAuth}/>
           <div className={style.homeComponentsDiv}>
-            <div></div>
             <div className={style.globalChat}>
               <TopicChat/>
             </div>
-            <div></div>
           </div>
         </div>
       ) : (

@@ -38,6 +38,9 @@ const Navbar = ({ setIsAuth }) => {
         axios.put(`${API_URL}/geton`, { uid, is: "off" })
         cookies.remove("auth-token");
         localStorage.removeItem("uid");
+        localStorage.removeItem("language");
+        localStorage.removeItem("languageRead");
+        localStorage.removeItem('languageChecked');
         await signOut(auth);
         setIsAuth(false);
         dispatch(clearUserDataInLogout());

@@ -27,6 +27,7 @@
   overflow: hidden;
   max-height: 40px;
   transition: max-height 0.3s ease-in-out;
+  
 }
 
 .selectStyle:hover {
