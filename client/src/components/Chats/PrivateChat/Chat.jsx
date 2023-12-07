@@ -4,11 +4,6 @@ import Messages from './Messages'
 import Input from './Input'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-
-const Chat = () => {
-  
-  const user = useSelector(state => state.users.userChat)
 import { getFlagByCode } from '../../../utils/getFlagByCode'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
@@ -19,6 +14,7 @@ const Chat = () => {
   const language = useSelector(state=>state.users.language)
   const languageRead = useSelector(state=>state.users.languageRead)
   const [languageChecked, setLanguageChecked] = useState(localStorage.getItem('languageChecked') === 'true' ? true : false);
+  
 
   const handleChangeSwitch = () => {
     setLanguageChecked(!languageChecked);
