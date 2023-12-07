@@ -165,52 +165,64 @@ const Profile = ({ setIsAuth }) => {
                 </p>
               </div>
               <FormControl>
+                
                 <label htmlFor="language">Your selected language:</label>
-                <Select
+                <select
                   name="language"
                   defaultValue={language}
                   onChange={(e) => {
                     updateUserLanguage({ uid: localStorageUID, language: e.target.value })
                   }}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                    fontSize: "16px",
+                  }}
                 >
-                  <MenuItem value={'en'}>English 🇬🇧</MenuItem>
-                  <MenuItem value={'es'}>Spanish 🇪🇸</MenuItem>
-                  <MenuItem value={'fr'}>French 🇫🇷</MenuItem>
-                  <MenuItem value={'it'}>Italian 🇮🇹</MenuItem>
-                  <MenuItem value={'de'}>German 🇩🇪</MenuItem>
-                  <MenuItem value={'nl'}>Dutch (Holland) 🇳🇱</MenuItem>
-                  <MenuItem value={'pt'}>Portuguese 🇵🇹</MenuItem>
-                  <MenuItem value={'ru'}>Russian 🇷🇺</MenuItem>
-                  <MenuItem value={'zh'}>Chinese (Simplified) 🇨🇳</MenuItem>
-                  <MenuItem value={'zh-TW'}>Chinese (Traditional) 🇨🇳</MenuItem>
-                  <MenuItem value={'ko'}>Korean 🇰🇷</MenuItem>
-                  <MenuItem value={'gn'}>Guarani 🇵🇾</MenuItem>
-                  <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
-                </Select>
+                  <option value={'es'}>Spanish 🇪🇸</option>
+                  <option value={'en'}>English 🇬🇧</option>
+                  <option value={'fr'}>French 🇫🇷</option>
+                  <option value={'it'}>Italian 🇮🇹</option>
+                  <option value={'de'}>German 🇩🇪</option>
+                  <option value={'nl'}>Dutch (Holland) 🇳🇱</option>
+                  <option value={'pt'}>Portuguese 🇵🇹</option>
+                  <option value={'ru'}>Russian 🇷🇺</option>
+                  <option value={'zh'}>Chinese (Simplified) 🇨🇳</option>
+                  <option value={'zh-TW'}>Chinese (Traditional) 🇨🇳</option>
+                  <option value={'ko'}>Korean 🇰🇷</option>
+                  <option value={'gn'}>Guarani 🇵🇾</option>
+                  <option value={'id'}>Indonesian 🇮🇩</option>
+                </select>
 
                 <label htmlFor="languageRead" style={{ marginTop: "50px" }}>Your reading language:</label>
-                <Select
+                <select
                   name="languageRead"
                   defaultValue={languageRead}
                   onChange={(e) => {
-
                     updateUserReadLanguage({ uid: localStorageUID, languageRead: e.target.value })
                   }}
+                  style={{
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                    fontSize: "16px",
+                  }}
                 >
-                  <MenuItem value={'en'}>English 🇬🇧</MenuItem>
-                  <MenuItem value={'es'}>Spanish 🇪🇸</MenuItem>
-                  <MenuItem value={'fr'}>French 🇫🇷</MenuItem>
-                  <MenuItem value={'it'}>Italian 🇮🇹</MenuItem>
-                  <MenuItem value={'de'}>German 🇩🇪</MenuItem>
-                  <MenuItem value={'nl'}>Dutch (Holland) 🇳🇱</MenuItem>
-                  <MenuItem value={'pt'}>Portuguese 🇵🇹</MenuItem>
-                  <MenuItem value={'ru'}>Russian 🇷🇺</MenuItem>
-                  <MenuItem value={'zh'}>Chinese (Simplified) 🇨🇳</MenuItem>
-                  <MenuItem value={'zh-TW'}>Chinese (Traditional) 🇨🇳</MenuItem>
-                  <MenuItem value={'ko'}>Korean 🇰🇷</MenuItem>
-                  <MenuItem value={'gn'}>Guarani 🇵🇾</MenuItem>
-                  <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
-                </Select>
+                  <option value={'es'}>Spanish 🇪🇸</option>
+                  <option value={'en'}>English 🇬🇧</option>
+                  <option value={'fr'}>French 🇫🇷</option>
+                  <option value={'it'}>Italian 🇮🇹</option>
+                  <option value={'de'}>German 🇩🇪</option>
+                  <option value={'nl'}>Dutch (Holland) 🇳🇱</option>
+                  <option value={'pt'}>Portuguese 🇵🇹</option>
+                  <option value={'ru'}>Russian 🇷🇺</option>
+                  <option value={'zh'}>Chinese (Simplified) 🇨🇳</option>
+                  <option value={'zh-TW'}>Chinese (Traditional) 🇨🇳</option>
+                  <option value={'ko'}>Korean 🇰🇷</option>
+                  <option value={'gn'}>Guarani 🇵🇾</option>
+                  <option value={'id'}>Indonesian 🇮🇩</option>
+                </select>
               </FormControl>
               <button onClick={handleEdit} className={style.edit}>
                 <img src={pencil} alt="Edit" className={style.iconBtn} />
