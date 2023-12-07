@@ -3,6 +3,12 @@ import style from './PrivateChat.module.css'
 import Messages from './Messages'
 import Input from './Input'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+
+const Chat = () => {
+  
+  const user = useSelector(state => state.users.userChat)
 import { getFlagByCode } from '../../../utils/getFlagByCode'
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
@@ -60,13 +66,12 @@ const Chat = () => {
     },
   }));
 
-
-
-
   return (
     <div className={style.chat}>
-        <div className={style.chatInfo}>
-          <span>{user.user}</span>
+        <div className={style.chatInfoDiv}>
+          <Link to={`/profile/${user.uid}`}>
+            <span className={style.chatInfo}>{user.user}</span>
+          </Link>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'row wrap', fontSize: '30px', justifyContent: 'center' }}>
