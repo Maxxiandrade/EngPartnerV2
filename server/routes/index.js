@@ -23,6 +23,7 @@ const putLanguageRead = require('../controllers/putLanguageRead');
 
 const getReported = require('../controllers/getReported');
 const deleteReport = require('../controllers/deleteReport');
+const postBan = require('../controllers/postBan');
 
 const router = Router();
 
@@ -42,6 +43,8 @@ router.post('/createuser', postUser)
 router.post('/reports', postReport)
 router.post('/createRoom',postCreateRoom)
 router.post('/newPremium',postPremium)
+router.post('/ban', postBan)
+
 
 router.put('/geton', putIs)
 router.put('/edit', putUser)

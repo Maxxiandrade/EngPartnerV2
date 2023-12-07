@@ -3,9 +3,9 @@ import style from "./Admin.module.css";
 
 // TOOLS
 import React, { useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getReported, getMyUser, deleteReport } from "../../../redux/actions/actions";
+import { getReported, getMyUser, deleteReport, banUser } from "../../../redux/actions/actions";
 import axios from "axios";
 import { API_URL } from "../../../firebase-config";
 
@@ -42,6 +42,10 @@ const Admin = ({ setIsAuth }) => {
     dispatch(deleteReport(messageId, uid));
   };
 
+  const handleBan=async(uid)=>{
+    dispatch(banUser(uid))
+  }
+
   return isAdmin ? (
     <div className={style.adinMainDiv}>
       <Navbar setIsAuth={setIsAuth} />
@@ -54,27 +58,42 @@ const Admin = ({ setIsAuth }) => {
                 <th>Usuario</th>
                 <th>Tipo de Reporte</th>
                 <th>Mensaje Reportado</th>
+                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {usersToRender?.map((user) => (
                 <tr key={user.id}>
-                  <td>{user.user}</td>
+                  <td><Link to={`/profile/${user.uid}`}>
+                  {user.user}
+                  </Link>
+                  </td>
                   <td colSpan="2">
                     <table>
                       <tbody>
                         {user.reports &&
                           user.reports.map((report) => (
                             <tr key={report.reportId}>
-                    <button onClick={() => handleDeleteReport(report.messageId, user.uid)}>
-                      Remove report 
-                    </button>
                               <td>{report.reportType}</td>
                               <td>{report.report}</td>
                             </tr>
                           ))}
                       </tbody>
                     </table>
+                  </td>
+                  <td>
+                    <button onClick={() => handleBan(user.uid)}>
+                      Ban User
+                    </button>
+                    {user.reports &&
+                      user.reports.map((report) => (
+                        <button
+                          key={report.reportId}
+                          onClick={() => handleDeleteReport(report.messageId, user.uid)}
+                        >
+                          Remove report
+                        </button>
+                      ))}
                   </td>
                 </tr>
               ))}
@@ -86,5 +105,5 @@ const Admin = ({ setIsAuth }) => {
   ) : (
     <Navigate to="/" replace={true} />
   );
-};
-export default Admin;
+  };
+  export default Admin;

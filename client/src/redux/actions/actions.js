@@ -298,3 +298,15 @@ export const deleteReport = (messageId, uid) => async () => {
     throw new Error(error);
   }
 };
+
+export const banUser = (uid)=>async()=>{
+  try {
+    const request = {
+      uid,
+      action: "ban"
+    }
+    await axios.post(`${API_URL}/ban`, request)
+  } catch (error) {
+    throw Error(error)
+  }
+}
