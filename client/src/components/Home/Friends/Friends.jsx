@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import style from './Friends.module.css'
 import offline from '../../../assets/svg/offline.svg'
 import online from '../../../assets/svg/online.svg'
-import astronaut from '../../../assets/astronaut.png'
+import astronaut from '../../../assets/astronaut/astronaut.png'
 import { Link } from "react-router-dom";
 
 
