@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import styles from "./CreateUser.module.css";
-import { getAllCountries } from "../../redux/actions/countriesActions";
-import { createNewUser, setUserDataRegister, getAllUsers } from "../../redux/actions/actions";
-import { TextField } from "@mui/material";
+import astronautJetpack from "../../assets/astronaut/astronautJetpack.jpg"
+
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -12,13 +9,18 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Button from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
-import axios from "axios";
-import { StyledEngineProvider } from '@mui/material/styles';
-import { validation } from './validation';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TextField } from "@mui/material";
+
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCountries } from "../../redux/actions/countriesActions";
+import { createNewUser, setUserDataRegister, getAllUsers } from "../../redux/actions/actions";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { validation } from './validation';
 import { auth } from '../../firebase-config'
 import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import Cookies from 'universal-cookie'
@@ -297,7 +299,7 @@ const CreateUser = ( {setIsAuth} ) => {
 
 
   return (
-    <div className='mainDiv'>
+    <div className={styles.mainDiv}>
     <form className={styles.createUserContainer}>
     <h1 className={styles.h1Style} >Create your User</h1>
     <FormControl sx={{ m: 1, minWidth: '30%', display: 'flex', flexDirection: 'column', gap: '1em' }}>
@@ -446,7 +448,7 @@ const CreateUser = ( {setIsAuth} ) => {
         disabled={Object.keys(errors).length > 0 || createUserInfo.country === '' || errorUsername.user === true || errorEmail.email === true}
         >SAVE PROFILE</Button>
         }
-
+        <div></div>
         </FormControl>
 
     </form>

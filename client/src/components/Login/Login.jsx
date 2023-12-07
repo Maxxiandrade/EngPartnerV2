@@ -1,7 +1,8 @@
 //Visuals
+import style from "./Login.module.css";
 import logo from "../../assets/logo.png";
 import googleLogo from "../../assets/svg/googleLogo.svg";
-import style from "./Login.module.css";
+import astronautJetpack from "../../assets/astronaut/astronautJetpack.jpg"
 
 //Tools
 import axios from 'axios'
@@ -68,7 +69,7 @@ const Login = ({ setIsAuth }) => {
         axios.put(`${API_URL}/geton`, { uid, is: 'on' });
         navigate('/createuser');
       }
-      await setDoc(doc(db, "userChats", uid),{})
+      await setDoc(doc(db, "userChats", uid), {})
     } catch (error) {
       throw new Error(error);
     }
@@ -87,92 +88,60 @@ const Login = ({ setIsAuth }) => {
       axios.put(`${API_URL}/geton`, { uid, is: "on" })
       dispatch(getMyUser(uid))
 
-      await setDoc(doc(db, "userChats", uid),{})
+      await setDoc(doc(db, "userChats", uid), {})
     } catch (error) {
       throw Error(error);
     }
   };
-  
-  
-  
+
+
+
 
   return (
     <>
-      <div className={style.backgroundImg}>
-        <div className={style.container}>
+      <div className={style.container}>
+        <div className={style.textPhotoDiv}>
           <div className={style.textContainer}>
             <div className={style.iconTitleContainer}>
               <img src={logo} alt="" className={style.logo} />
               <h1>EngPartner</h1>
             </div>
-            <h2>¡Bienvenido a EngPartner!</h2>
+            <h2 className={style.loginH2}>Welcome!</h2>
             <p>
-              En EngPartner, nos apasiona conectar a personas que comparten el
-              deseo de dominar el idioma inglés y mejorar sus habilidades
-              lingüísticas. Nuestro objetivo es brindar un espacio interactivo y
-              colaborativo donde puedas sumergirte en el mundo del inglés,
-              practicar conversaciones en tiempo real y avanzar en tu
-              aprendizaje de una manera divertida y efectiva.
-              <br />
-              <br />
-              ¿Quieres perfeccionar tu inglés con hablantes nativos o compañeros
-              entusiastas de aprendizaje de todo el mundo? ¡Estás en el lugar
-              adecuado! Ofrecemos una plataforma de chat en tiempo real donde
-              puedes conectarte con personas que comparten tu pasión por el
-              idioma. Ya sea que estés buscando practicar tu pronunciación,
-              mejorar tu comprensión oral o simplemente entablar conversaciones
-              estimulantes, EngPartner te brinda la oportunidad de sumergirte en
-              un entorno enriquecedor.
-              <br />
-              <br />
-              Nuestros usuarios provienen de diversos lugares y culturas, lo que
-              te permite no solo mejorar tu inglés, sino también explorar
-              diferentes perspectivas y conocer nuevas amistades mientras
-              avanzas en tu viaje lingüístico.
-              <br />
-              <br />
-              Únete a nuestra comunidad de aprendizaje, sumérgete en
-              conversaciones estimulantes y lleva tu dominio del inglés al
-              siguiente nivel en EngPartner. ¡Descubre un mundo de posibilidades
-              para fortalecer tus habilidades lingüísticas mientras te diviertes
-              y conectas con personas de ideas afines!
+              EngPartner is a social network that connects you with people from all over the world to practice languages. Choose two languages of your choice and experience conversations translated in real time. Our platform eliminates language barriers, allowing you to immerse yourself in new cultures and expand your language skills in a fun and interactive way. Join our global community and build new friendships through the power of language.
             </p>
           </div>
-          <div className={style.formContainer}>
-            <form onSubmit={signInWithEmail} className={style.form}>
-              <label htmlFor="email" className={style.inputSize}>
-                Email
-              </label>
-              <input
-                type="text"
-                name="email"
-                id="email"
-                className={style.input}
-              />
-              <br />
-              <label htmlFor="password" className={style.inputSize}>
-                Password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                className={style.input}
-              />
-              <br />
-              <button type="submit" className={style.button}>
-                Log in
-              </button>
-              <button onClick={signInWithGoogle} className={style.button}>
-                <img src={googleLogo} alt="Google" className={style.googleLogo} /> Sign in with Google
-              </button>
-              <br />
-              <label className={style.inputSize}>Don't have an account?</label>
-              <Link to="/createuser">
-                <button className={style.button}>Register</button>
-              </Link>
-            </form>
-          </div>
+          <img src={astronautJetpack} className={style.astronaut} />
+        </div>
+        <div className={style.formContainer}>
+          <form onSubmit={signInWithEmail} className={style.form}>
+            <input
+              placeholder="Email"
+              type="text"
+              name="email"
+              id="email"
+              className={style.input}
+            />
+            <input
+              placeholder="Password"
+              type="password"
+              name="password"
+              id="password"
+              className={style.input}
+            />
+            <br />
+            <button type="submit" className={style.button}>
+              Log in
+            </button>
+            <button onClick={signInWithGoogle} className={style.button}>
+              <img src={googleLogo} alt="" className={style.googleLogo} /> Sign in with Google
+            </button>
+            <br />
+            <label className={style.inputSize}>Don't have an account?</label>
+            <Link to="/createuser">
+              <button className={style.button}>Register</button>
+            </Link>
+          </form>
         </div>
       </div>
     </>
