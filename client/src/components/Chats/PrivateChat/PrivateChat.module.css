@@ -19,13 +19,14 @@
     flex: 1;
     background-color: #0e1a33;
     border-right: solid 0.5px #ffffff;
+    height: 100%;
     .navbar {
       border-bottom: solid 0.5px #ffffff;
       display: flex;
       align-items: center;
       background-color: #172a54;
-      height: 50px;
-      padding: 10px;
+      height: 9%;
+      padding-left: 2%;
       justify-content: left;
       color: #dae1f5;
       .logo {
@@ -40,6 +41,7 @@
   .chat {
     flex: 2;
     max-width: 70%;
+    height: 100%;
   }
 }
 
@@ -144,6 +146,7 @@
 
 .chatInfoDiv{
   width: 100%;
+  height: 9%;
   display: flex;
   justify-content: center;
   background-color: #172a54;
@@ -152,7 +155,6 @@
 }
 
 .chatInfo {
-  height: 50px;
   width: fit-content;
   display: flex;
   align-items: center;
@@ -166,6 +168,27 @@
   text-decoration: underline;
   color: white;
 }
+.switchDiv{
+  background-color: #0E1A33;
+  display: flex;
+  align-items: center;
+  font-size: 25px;
+  justify-content: center;
+  height: 6%;
+}
+
+.switchClass{
+  margin: 1%;
+  padding: 1%;
+}
+
+.messagesInputDiv{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 85%;
+}
+
 
 .messages {
   background-image: url("../../../assets/chatlight.png");
@@ -173,7 +196,7 @@
   background-position: center;
   background-repeat: no-repeat;
   padding: 10px;
-  height: calc(100% - 160px);
+  height: 95%;
   overflow: scroll;
   max-width: 100%;
   overflow-x: hidden;
@@ -183,10 +206,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 50px;
+  height: 5%;
   background-color: white;
   color: black;
-  padding: 10px;
+  padding: 2%;
   border-top: solid 0.5px hsla(212, 12%, 21%, 0.5);
 
 }
