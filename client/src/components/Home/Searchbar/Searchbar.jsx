@@ -23,7 +23,7 @@ const Searchbar = () => {
       <div className={styles.inputAndBtnContainer}>
         <input
           type="search"
-          placeholder="EngPartner Name"
+          placeholder="EngPartner userID"
           value={userName}
           onChange={(event) => setUserName(event.target.value)}
         />
