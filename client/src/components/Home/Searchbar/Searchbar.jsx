@@ -15,6 +15,7 @@ const Searchbar = () => {
       window.alert("you need to type a username");
     } else {
       dispatch(getUserByUserName(userName));
+      setUserName("")
     }
   };
   return (
