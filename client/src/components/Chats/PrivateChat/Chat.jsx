@@ -70,14 +70,15 @@ const Chat = () => {
           </Link>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'row wrap', fontSize: '30px', justifyContent: 'center' }}>
+        <div className={style.switchDiv}>
           <div>{getFlagByCode(language)}</div>
-            <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} />
+            <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} className={style.switchClass}/>
           <div>{getFlagByCode(languageRead)}</div>
         </div>
-
+        <div className={style.messagesInputDiv}>
         <Messages languageChecked={languageChecked} setLanguageChecked={setLanguageChecked} handleChangeSwitch={handleChangeSwitch} />
         <Input/>
+        </div>
     </div>
   )
 }
