@@ -143,9 +143,9 @@ export const getOnline = () => async (dispatch) => {
   }
 };
 
-export const getUserByUserName = (name) => async (dispatch) => {
+export const getUserByUserName = (user) => async (dispatch) => {
   try {
-    const { data } = await axios(`${API_URL}/user?name=${name}`);
+    const { data } = await axios(`${API_URL}/user?user=${user}`);
     console.log(data);
 
     dispatch({
