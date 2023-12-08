@@ -1,6 +1,8 @@
 .connectContainer {
   height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav {
@@ -46,9 +48,11 @@
 }
 
 .textContainer {
+  margin: 1em;
   margin-right: 1em;
   display: flex;
   flex-direction: column;
+  gap: 2em;
   align-self: flex-start;
 }
 
@@ -96,6 +100,9 @@
   } */
   .usersContainer {
     margin-left: 1.2em;
+    margin-top: 2em;
+    height: 70%;
+    overflow: auto;
   }
   .userContainer {
     display: flex;
