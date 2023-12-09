@@ -56,10 +56,9 @@
   cursor: pointer;
   align-items: center;
   padding-top: 1px;
-}
-
-.user:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .newMessageForm {
@@ -98,12 +97,11 @@
   width: 40px;
   height: 40px;
   margin-right: 10px;
-}
-
-.profilePic:hover {
-  transition: 0.2s;
-  transform: scale(1.1);
-  cursor: pointer;
+  &:hover {
+    transition: 0.2s;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 }
 
 .sendIcon {
@@ -124,6 +122,7 @@
 }
 
 .report {
+  cursor: pointer;
   width: 18px;
   position: relative;
 }

@@ -40,7 +40,7 @@ body{
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #aaaaaa; 
+  background-color: transparent; 
   border-radius: 10px;
 }
 
@@ -55,6 +55,6 @@ body{
 }
 
 ::-moz-scrollbar-track {
-  background-color: #aaaaaa; 
+  background-color: transparent; 
   border-radius: 10px;
 }

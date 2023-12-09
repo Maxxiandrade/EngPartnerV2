@@ -1,8 +1,8 @@
 .createNewRoomsDiv {
   display: flex;
   flex-direction: column;
-  min-height: 110vh;
-  max-height: fit-content;
+  height: 100vh;
+  width: 100vw;
 }
 
 .photo {
@@ -15,26 +15,26 @@
 
 .groupCreateContainer {
   margin: auto;
-  position: relative;
   flex-direction: column;
-  align-items: flex-start;
   border-radius: 15px;
   border: 2px solid #005ea6;
   background-color: #dff0ff;
-  min-height: 95vh;
-  max-height: fit-content;
-  width: 35%;
+  height: 90%;
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 30%;
   color: black;
 }
 
 .inputDiv {
-    margin: auto;
-    display: flex;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2%;
 }
 
 .inputRoomName {
-    color: black;
-    margin: auto;
+  color: black;
+  margin: auto;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -53,22 +53,24 @@
   width: 100%;
   text-align: center;
   text-shadow: 1px 1px 1px #7c7c7c;
+  margin-bottom: 2%;
+  margin-top: 2%;
 }
 
-.txt{
-    color: #031525;
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
+.txt {
+  color: #031525;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
 }
 
 .container {
-    margin: 0px;
+  margin: 0px;
   margin-left: 10%;
 }
 
 .userName {
-    text-shadow: --1.5px -1.5px 0 black, 1.5px -1.5px 0 black,
+  text-shadow: --1.5px -1.5px 0 black, 1.5px -1.5px 0 black,
     -1.5px 1.5px 0 black, 1.5px 1.5px 0 black;
   font-weight: bold;
   padding-top: 1px;
@@ -77,32 +79,30 @@
   align-items: center;
 }
 
-.nameDiv{
-    display: flex;
+.nameDiv {
+  display: flex;
   align-items: center;
 }
 
 .addBtn,
-.createBtn{
-    background-color: #031525;
-    color: #79cbff;
-    border: 1px solid #79cbff;
-    margin: 15px auto;
-}
-
-.addBtn:hover,
-.createBtn:hover{
+.createBtn {
+  background-color: #031525;
+  color: #79cbff;
+  border: 1px solid #79cbff;
+  margin: 15px auto;
+  &:hover {
     color: white;
     transition: 0.3s;
+  }
 }
 
-.btnDiv{  
+.btnDiv {
   margin-left: auto;
   margin-right: 10%;
 }
 
-.createBtnDiv{
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
+.createBtnDiv {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }

@@ -92,13 +92,11 @@
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.buyButton:hover {
-  background-color: #007bb5;
-}
-
-.buyButton:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  &:hover {
+    background-color: #007bb5;
+  }
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 }
