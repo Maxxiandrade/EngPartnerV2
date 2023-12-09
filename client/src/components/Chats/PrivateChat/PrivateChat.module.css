@@ -60,20 +60,19 @@
   object-fit: cover;
 }
 
-.imgChat{
+.imgChat {
   background-color: #005abb;
   height: 50px;
   width: 50px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.imgChat:hover{
-  transform: scale(1.1);
-  transition: 0.3s;
-}
-.imgChat:not(:hover){
-  transition: 0.3s;
+  &:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
+  &:not(:hover) {
+    transition: 0.3s;
+  }
 }
 
 .userdiv {
@@ -81,11 +80,6 @@
   cursor: pointer;
   align-items: center;
   padding-top: 1px;
-}
-
-.userName:hover{
-  text-decoration: underline;
-  color: white;
 }
 
 .userName {
@@ -99,6 +93,10 @@
   margin-left: 10px;
   font-size: 20px;
   font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+    color: white;
+  }
 }
 
 .search {
@@ -144,10 +142,11 @@
   color: lightgray;
 }
 
-.chatInfoDiv{
+.chatInfoDiv {
   width: 100%;
   height: 9%;
   display: flex;
+  align-items: center;
   justify-content: center;
   background-color: #172a54;
   border-left: solid 0.5px #ffffff;
@@ -162,14 +161,14 @@
   color: white;
   font-size: larger;
   font-weight: bold;
+  &:hover {
+    text-decoration: underline;
+    color: white;
+  }
 }
 
-.chatInfo:hover{
-  text-decoration: underline;
-  color: white;
-}
-.switchDiv{
-  background-color: #0E1A33;
+.switchDiv {
+  background-color: #0e1a33;
   display: flex;
   align-items: center;
   font-size: 25px;
@@ -177,21 +176,21 @@
   height: 6%;
 }
 
-.switchClass{
+.switchClass {
   margin: 1%;
   padding: 1%;
 }
 
-.messagesInputDiv{
+.messagesInputDiv {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 85%;
 }
 
-
 .messages {
   background-image: url("../../../assets/chatlight.png");
+  filter: brightness(0.8);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -211,7 +210,6 @@
   color: black;
   padding: 2%;
   border-top: solid 0.5px hsla(212, 12%, 21%, 0.5);
-
 }
 
 .input {

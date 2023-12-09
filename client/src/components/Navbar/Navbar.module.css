@@ -14,15 +14,14 @@
   padding: 10px 20px;
   background-color: hsla(208, 85%, 8%, 0.5);
   border-bottom: solid 0.5px #30363d;
-}
+  &:hover {
+    background-color: hsla(208, 85%, 8%, 0.8);
+    transition: 0.5s;
+  }
 
-.nav:hover{
-  background-color: hsla(208, 85%, 8%, 0.8);
-  transition: 0.5s;
-}
-
-.nav:not(:hover){
-  transition: 0.5s;
+  &:not(:hover) {
+    transition: 0.5s;
+  }
 }
 
 .navBtns {
@@ -68,15 +67,14 @@
   border-bottom: solid 0.5px #30363d;
   cursor: pointer;
   align-items: center;
-}
+  &:hover {
+    transform: scale(1.05);
+    transition: 0.2s ease-in-out;
+  }
 
-.dropDownDiv:hover{
-transform: scale(1.05);  
-transition: 0.2s ease-in-out;
-}
-
-.dropDownDiv:not(:hover){
-  transition: 0.2s;
+  &:not(:hover) {
+    transition: 0.2s;
+  }
 }
 
 .dropDownSpan {
@@ -95,14 +93,14 @@ transition: 0.2s ease-in-out;
   border: solid 0.5px #30363d;
   align-items: center;
   margin-bottom: -14px;
+  &:hover {
+    transition: 0.3s;
+    background-color: #031525;
+    border-color: #ffffff;
+    box-shadow: 0px 0px 10px #ffffff;
+  }
 }
 
-.userPhoto:hover {
-  transition: 0.3s;
-  background-color: #031525;
-  border-color: white;
-  box-shadow: 0px 0px 10px #ffffff;
-}
 
 .userPhoto2 {
   width: 25px;
@@ -110,38 +108,38 @@ transition: 0.2s ease-in-out;
   border: solid 0.5px #30363d;
 }
 
+.chatBtn,
 .connectBtn,
-.premium,
-.chatBtn {
+.premium {
   background: transparent;
   border: solid 0.5px #30363d;
   border-radius: 10px;
   margin-right: 10px;
 }
 
-.connectBtn:not(:hover),
-.premium:not(:hover),
-.chatBtn:not(:hover) {
-  transition: 0.3s;
-}
-
 .chatBtn:hover {
   transition: 0.3s;
   background-color: #031525;
-  border-color: rgb(21, 255, 0);
-  box-shadow: 0px 0px 10px #49f028;
+  border-color: #15ff00;
+  box-shadow: 0px 0px 10px #15ff00;
 }
 
 .connectBtn:hover {
   transition: 0.3s;
   background-color: #031525;
-  border-color: #00bfc7;
-  box-shadow: 0px 0px 10px #ffffff;
+  border-color: #00f7ff;
+  box-shadow: 0px 0px 10px #00f7ff;
 }
 
 .premium:hover {
   transition: 0.3s;
   background-color: #031525;
-  border-color: yellow;
-  box-shadow: 0px 0px 10px #f0e628;
+  border-color: #fff200;
+  box-shadow: 0px 0px 10px #fff200;
+}
+
+.chatBtn:not(:hover), 
+.connectBtn:not(:hover),
+.premium:not(:hover){
+  transition: 0.3s;
 }

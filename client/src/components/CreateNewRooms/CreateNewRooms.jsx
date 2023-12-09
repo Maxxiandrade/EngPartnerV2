@@ -114,6 +114,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
         <div className={style.txtH1}>
           <h2>Create custom room:</h2>
         </div>
+        <div></div>
         <div className={style.inputDiv}>
           <input
             type="text"
@@ -149,7 +150,7 @@ const CreateNewRooms = ({ setIsAuth }) => {
 
         <div style={{ textAlign: 'center' }}>
           <Divider />
-          <h2 style={{ margin: '0px', marginTop: '10px' }}>My rooms</h2>
+          <h2 style={{ margin: '0px', marginTop: '10px' }}>Your rooms:</h2>
           <List dense={true} sx={{ width: '80%', margin: '0px auto' }}>
             {rooms?.map((room) => (
               <>

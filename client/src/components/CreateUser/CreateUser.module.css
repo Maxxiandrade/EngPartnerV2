@@ -86,10 +86,10 @@
   background: #e3ebfc;
   border: solid 1px #4449be;
   border-radius: 5px;
-}
-.createUserDiv:hover {
-  transition: 0.75s;
-  background: #94b5fc;
+  &:hover {
+    transition: 0.75s;
+    background: #94b5fc;
+  }
 }
 
 .createUserBtn {
