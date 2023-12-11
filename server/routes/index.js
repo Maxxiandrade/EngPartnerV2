@@ -24,6 +24,7 @@ const putLanguageRead = require('../controllers/putLanguageRead');
 const getReported = require('../controllers/getReported');
 const deleteReport = require('../controllers/deleteReport');
 const postBan = require('../controllers/postBan');
+const getVipUsers = require('../controllers/getVips');
 
 const router = Router();
 
@@ -33,7 +34,7 @@ router.get('/users',getAllUsers)
 router.get('/getonline', getOnline)
 router.get('/friends', getFriends)
 router.get('/reported', getReported)
-
+router.get('/vips', getVipUsers)
 
 router.post('/user', getMyUser)
 router.post('/send-message', postMessage)

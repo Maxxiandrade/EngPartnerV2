@@ -19,6 +19,7 @@ UPDATE_USER_READ_LANGUAGE,
 SET_VIP,
 ADD_ROOM,
 SET_EDIT_PROFILE,
+GET_VIPS,
  } from "../action_types/userActionTypes";
 
 
@@ -306,6 +307,18 @@ export const banUser = (uid)=>async()=>{
       action: "ban"
     }
     await axios.post(`${API_URL}/ban`, request)
+  } catch (error) {
+    throw Error(error)
+  }
+}
+
+export const getVips = ()=>async(dispatch)=>{
+  try {
+     const {data} = await axios(`${API_URL}/vips`)
+     dispatch({
+      type: GET_VIPS,
+      payload: data
+     }) 
   } catch (error) {
     throw Error(error)
   }

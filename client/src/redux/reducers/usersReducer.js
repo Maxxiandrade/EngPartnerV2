@@ -25,6 +25,7 @@ import {
   SET_VIP,
   ADD_ROOM,
   SET_EDIT_PROFILE,
+  GET_VIPS
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -58,7 +59,8 @@ const initialState = {
   genderFilter: "both",
   userChat: {},
   chatId: null,
-  reported:[]
+  reported:[],
+  vips:[]
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -271,7 +273,11 @@ const usersReducer = (state = initialState, action) => {
       }
 
 
-
+      case GET_VIPS:
+        return{
+          ...state,
+          vips: action.payload
+        }
     default:
       return { ...state };
   }

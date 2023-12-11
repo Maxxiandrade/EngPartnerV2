@@ -5,7 +5,7 @@ import style from "./Admin.module.css";
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getReported, getMyUser, deleteReport, banUser } from "../../../redux/actions/actions";
+import { getReported, getMyUser, deleteReport, banUser, getVips } from "../../../redux/actions/actions";
 import axios from "axios";
 import { API_URL } from "../../../firebase-config";
 
@@ -20,6 +20,7 @@ const Admin = ({ setIsAuth }) => {
   const [usersToRender, setUsersToRender] = useState([]);
 
   useEffect(() => {
+    dispatch(getVips())
     dispatch(getMyUser(uid));
     dispatch(getReported());
     const fetchUsers = async () => {
@@ -46,6 +47,9 @@ const Admin = ({ setIsAuth }) => {
     dispatch(banUser(uid))
   }
 
+  const vips = useSelector((state)=> state.users.vips)
+  const vipLength = vips.length
+ 
   return isAdmin ? (
     <div className={style.adinMainDiv}>
       <Navbar setIsAuth={setIsAuth} />
@@ -100,7 +104,9 @@ const Admin = ({ setIsAuth }) => {
             </tbody>
           </table>
         </div>
+        <p>Total Vip users: {vipLength}</p>
       </div>
+ 
     </div>
   ) : (
     <Navigate to="/" replace={true} />
