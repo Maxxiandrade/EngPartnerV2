@@ -12,6 +12,7 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
   const Myrooms = useSelector(state=> state.users?.rooms)
   const language = useSelector(state=> state.users?.language)
   const languageRead = useSelector(state=> state.users?.languageRead)
+  const isVip = useSelector(state=> state.users?.isVip)
   console.log(country);
   const [rooms,setRooms]= useState(['Global','Sport','Animals',"Food",'Tech',country, ...Myrooms ])
   const handleTopic = (e)=>{
@@ -71,11 +72,13 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
               })}
           </select>
 
-          <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'row wrap', fontSize: '30px', justifyContent: 'center' }}>
-            <div>{getFlagByCode(language)}</div>
-              <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} />
-            <div>{getFlagByCode(languageRead)}</div>
-          </div>
+          {!isVip && 
+            <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'row wrap', fontSize: '30px', justifyContent: 'center' }}>
+              <div>{getFlagByCode(language)}</div>
+                <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} />
+              <div>{getFlagByCode(languageRead)}</div>
+            </div>
+          }
           
         </section>
       </div>

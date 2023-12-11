@@ -13,6 +13,7 @@ const Chat = () => {
   const user = useSelector(state=>state.users.userChat)
   const language = useSelector(state=>state.users.language)
   const languageRead = useSelector(state=>state.users.languageRead)
+  const isVip = useSelector(state=>state.users.isVip)
   const [languageChecked, setLanguageChecked] = useState(localStorage.getItem('languageChecked') === 'true' ? true : false);
   
 
@@ -70,11 +71,14 @@ const Chat = () => {
           </Link>
         </div>
 
-        <div className={style.switchDiv}>
-          <div>{getFlagByCode(language)}</div>
-            <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} className={style.switchClass}/>
-          <div>{getFlagByCode(languageRead)}</div>
-        </div>
+        {
+          !isVip && 
+          <div className={style.switchDiv}>
+            <div>{getFlagByCode(language)}</div>
+              <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} className={style.switchClass}/>
+            <div>{getFlagByCode(languageRead)}</div>
+          </div>
+        }
         <div className={style.messagesInputDiv}>
         <Messages languageChecked={languageChecked} setLanguageChecked={setLanguageChecked} handleChangeSwitch={handleChangeSwitch} />
         <Input/>
