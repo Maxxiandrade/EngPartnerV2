@@ -1,5 +1,6 @@
 // STYLES
 import styles from "./Users.module.css";
+import { Link } from "react-router-dom";
 
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -32,7 +33,8 @@ const Users = ({ setIsAuth }) => {
           <p>Users not found</p>
         ) : (
           users.map((user) => (
-            <div className={styles.userContainer} key={user.id}>
+            <Link className={styles.linkContainer} to={`/profile/${user.uid}`}>
+              <div className={styles.userContainer} key={user.id}>
               <div className={styles.userImgContainer}>
                 <img
                   src={typeof user.photo === "string" ? user.photo : defaultImg}
@@ -58,6 +60,9 @@ const Users = ({ setIsAuth }) => {
                 </div>
               </div>
             </div>
+
+              </Link>
+                
           ))
         )}
       </div>
