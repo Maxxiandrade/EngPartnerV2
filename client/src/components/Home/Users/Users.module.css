@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.linkContainer {
+  max-width: 360px;
+}
+
 .usersContainer {
   display: flex;
   flex-direction: column;
@@ -95,6 +99,7 @@
   margin-bottom: 0;
 }
 
+
 @media screen and (min-width: 900px) {
   /* .connectContainer {
   } */
@@ -103,6 +108,10 @@
     margin-top: 2em;
     height: 70%;
     overflow: auto;
+  }
+
+  .linkContainer{
+    max-width: 460px;
   }
   .userContainer {
     display: flex;
