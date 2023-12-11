@@ -6,6 +6,7 @@ const postPremium= require('../controllers/postPremium')
 const postNewUser = require('../controllers/postNewUser');
 const postUser = require('../controllers/postUser');
 const postReport = require('../controllers/postReport');
+const postVisited = require('../controllers/postVisited')
 //get
 const getMyMessage = require('../controllers/getMyMessage');
 const getOnline = require('../controllers/getOnline')
@@ -46,6 +47,7 @@ router.post('/reports', postReport)
 router.post('/createRoom',postCreateRoom)
 router.post('/newPremium',postPremium)
 router.post('/ban', postBan)
+router.post('/profile', postVisited)
 
 
 router.put('/geton', putIs)
