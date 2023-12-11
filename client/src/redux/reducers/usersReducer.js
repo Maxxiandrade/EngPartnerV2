@@ -183,7 +183,7 @@ const usersReducer = (state = initialState, action) => {
     case GET_USER_BY_USERNAME:
       return {
         ...state,
-        users: [action.payload, ...state.users],
+        users: [action.payload],
       };
 
     //filters for searching users
