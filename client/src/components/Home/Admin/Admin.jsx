@@ -106,7 +106,7 @@ const Admin = ({ setIsAuth }) => {
         </div>
         <p>Total Vip users: {vipLength}</p>
       </div>
- 
+
     </div>
   ) : (
     <Navigate to="/" replace={true} />
