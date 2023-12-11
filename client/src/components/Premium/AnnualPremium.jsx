@@ -56,7 +56,7 @@ const AnnualPremium=({isVip,uid})=>{
                 <img src={premiumAnnual} alt="" className={style.paymentImage} width="300px" />
                 <p className={style.price}>$66.99</p>
                 <CardElement className={style.cardElement} />
-                <button disabled={isVip} className={style.buyButton}> BUY </button>
+                <button disabled={isVip} className={style.buyButton}> GET VIP </button>
             </form>
 
         </div>

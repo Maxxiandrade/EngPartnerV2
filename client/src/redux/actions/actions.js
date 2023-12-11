@@ -21,6 +21,7 @@ import {
   ADD_ROOM,
   SET_EDIT_PROFILE,
   DELETE_ROOM,
+GET_VIPS,
 } from "../action_types/userActionTypes";
 
 import { API_URL } from "../../firebase-config";
@@ -143,9 +144,9 @@ export const getOnline = () => async (dispatch) => {
   }
 };
 
-export const getUserByUserName = (name) => async (dispatch) => {
+export const getUserByUserName = (user) => async (dispatch) => {
   try {
-    const { data } = await axios(`${API_URL}/user?name=${name}`);
+    const { data } = await axios(`${API_URL}/user?user=${user}`);
     console.log(data);
 
     dispatch({
@@ -270,21 +271,57 @@ export const CreateRoom = (obj) => async (dispatch) => {
   await axios.post(`${API_URL}/createRoom`, obj);
   dispatch({
     type: CREATE_ROOM,
-    payload: obj,
-  });
-};
-export const getReported = () => async (dispatch) => {
+    payload: obj
+  })
+}
+
+export const getReported = ()=>async(dispatch)=>{
+  try{
+      const {data} = await axios.get(`${API_URL}/reported`)
+      dispatch({
+        type: GET_REPORTED,
+        payload: data
+      })
+    }catch(error){
+      throw Error(error)
+    }
+}
+
+export const deleteReport = (messageId, uid) => async () => {
   try {
-    const { data } = await axios.get(`${API_URL}/reported`);
-    dispatch({
-      type: GET_REPORTED,
-      payload: data,
-    });
+    const request = {
+      data: { uid, messageId } 
+    };
+
+    await axios.delete(`${API_URL}/report`, request);
   } catch (error) {
-    throw Error(error);
+    throw new Error(error);
   }
 };
 
+export const banUser = (uid)=>async()=>{
+  try {
+    const request = {
+      uid,
+      action: "ban"
+    }
+    await axios.post(`${API_URL}/ban`, request)
+  } catch (error) {
+    throw Error(error)
+  }
+}
+
+export const getVips = ()=>async(dispatch)=>{
+  try {
+     const {data} = await axios(`${API_URL}/vips`)
+     dispatch({
+      type: GET_VIPS,
+      payload: data
+     }) 
+  } catch (error) {
+    throw Error(error)
+  }
+}
 export const putDeleteRoom = (obj) => async (dispatch) => {
   const { data } = await axios.put(`${API_URL}/deleteRoom`, obj);
   dispatch({

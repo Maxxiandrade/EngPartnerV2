@@ -25,7 +25,8 @@ import {
   SET_VIP,
   ADD_ROOM,
   SET_EDIT_PROFILE,
-  DELETE_ROOM
+  DELETE_ROOM,
+  GET_VIPS
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -59,7 +60,8 @@ const initialState = {
   genderFilter: "both",
   userChat: {},
   chatId: null,
-  reported:[]
+  reported:[],
+  vips:[]
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -183,7 +185,7 @@ const usersReducer = (state = initialState, action) => {
     case GET_USER_BY_USERNAME:
       return {
         ...state,
-        users: [action.payload, ...state.users],
+        users: [action.payload],
       };
 
     //filters for searching users
@@ -276,7 +278,11 @@ const usersReducer = (state = initialState, action) => {
           rooms: state.rooms.filter(room => room !== action.payload)
         };
       
-
+      case GET_VIPS:
+        return{
+          ...state,
+          vips: action.payload
+        }
     default:
       return { ...state };
   }

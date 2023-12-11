@@ -22,7 +22,10 @@ const putLanguage = require('../controllers/putLanguage');
 const putLanguageRead = require('../controllers/putLanguageRead');
 const putMyRooms= require('../controllers/putMyRooms')
 
-const getReported = require('../controllers/getReported')
+const getReported = require('../controllers/getReported');
+const deleteReport = require('../controllers/deleteReport');
+const postBan = require('../controllers/postBan');
+const getVipUsers = require('../controllers/getVips');
 
 const router = Router();
 
@@ -32,7 +35,7 @@ router.get('/users',getAllUsers)
 router.get('/getonline', getOnline)
 router.get('/friends', getFriends)
 router.get('/reported', getReported)
-
+router.get('/vips', getVipUsers)
 
 router.post('/user', getMyUser)
 router.post('/send-message', postMessage)
@@ -41,6 +44,9 @@ router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)
 router.post('/reports', postReport)
 router.post('/createRoom',postCreateRoom)
+router.post('/newPremium',postPremium)
+router.post('/ban', postBan)
+
 
 router.put('/geton', putIs)
 router.put('/edit', putUser)
@@ -49,7 +55,7 @@ router.put('/language', putLanguage)
 router.put('/languageread', putLanguageRead)
 router.put('/deleteRoom',putMyRooms)
 
-router.post('/newPremium',postPremium)
+router.delete('/report', deleteReport)
 // route Premium
 
 module.exports=router;

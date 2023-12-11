@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
-
+import { getFlagByCode } from "../../../utils/getFlagByCode";
 
 const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, handleChangeSwitch }) => {
   const roomInputRef = useRef(null);
@@ -18,45 +18,6 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
     const topic = e.target.value
     const selectedRoom = topic === 'null' ? null : topic !== '' ? topic : roomInputRef.current.value;
     setingValueRoom(selectedRoom);
-  }
-
-  const getFlagByCode = (code) => {
-    if(code === 'es'){
-      return '🇪🇸'
-    }
-    if(code === 'en'){
-      return '🇬🇧'
-    }
-    if(code === 'fr'){
-      return '🇫🇷'
-    }
-    if(code === 'it'){
-      return '🇮🇹'
-    }
-    if(code === 'de'){
-      return '🇩🇪'
-    }
-    if(code === 'ru'){
-      return '🇷🇺'
-    }
-    if(code === 'zh' || code === 'zh-TW'){
-      return '🇨🇳'
-    }
-    if(code === 'nl'){
-      return '🇳🇱'
-    }
-    if(code === 'ko'){
-      return '🇰🇷'
-    }
-    if(code === 'gn'){
-      return '🇵🇾'
-    }
-    if(code === 'id'){
-      return '🇮🇩'
-    }
-    if(code === 'pt'){
-      return '🇵🇹'
-    }
   }
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({

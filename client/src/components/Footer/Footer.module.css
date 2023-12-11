@@ -3,15 +3,13 @@
   margin: 0 auto;
   text-align: center;
   background-color: hsla(208, 85%, 8%, 0.5);
-}
-
-.footer:hover{
+  &:hover {
     background-color: hsla(208, 85%, 8%, 0.8);
-  transition: 0.5s;
-}
-
-.footer:not(:hover){
     transition: 0.5s;
+  }
+  &:not(:hover) {
+    transition: 0.5s;
+  }
 }
 
 .madeBy {
@@ -60,8 +58,8 @@
 }
 
 .linkedinImgContainer:not(:hover),
-.githubImgContainer:not(:hover){
-    transition: 0.2s;
+.githubImgContainer:not(:hover) {
+  transition: 0.2s;
 }
 
 .photosContainer {

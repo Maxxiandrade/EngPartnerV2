@@ -1,10 +1,16 @@
 .connectContainer {
   height: 100vh;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .nav {
   align-items: center;
+}
+
+.linkContainer {
+  max-width: 360px;
 }
 
 .usersContainer {
@@ -46,9 +52,11 @@
 }
 
 .textContainer {
+  margin: 1em;
   margin-right: 1em;
   display: flex;
   flex-direction: column;
+  gap: 2em;
   align-self: flex-start;
 }
 
@@ -91,11 +99,19 @@
   margin-bottom: 0;
 }
 
+
 @media screen and (min-width: 900px) {
   /* .connectContainer {
   } */
   .usersContainer {
     margin-left: 1.2em;
+    margin-top: 2em;
+    height: 70%;
+    overflow: auto;
+  }
+
+  .linkContainer{
+    max-width: 460px;
   }
   .userContainer {
     display: flex;

@@ -30,7 +30,7 @@ body{
 }
 
 ::-webkit-scrollbar {
-  width: 12px; 
+  width: 10px; 
 }
 
 ::-webkit-scrollbar-thumb {
@@ -40,12 +40,12 @@ body{
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #a0a0a0; 
+  background-color: transparent; 
   border-radius: 10px;
 }
 
 ::-moz-scrollbar {
-  width: 12px;
+  width: 10px;
 }
 
 ::-moz-scrollbar-thumb {
@@ -55,6 +55,6 @@ body{
 }
 
 ::-moz-scrollbar-track {
-  background-color: #a0a0a0; 
+  background-color: transparent; 
   border-radius: 10px;
 }
