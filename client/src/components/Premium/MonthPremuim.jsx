@@ -56,7 +56,7 @@ const handleSubmit = async (e) => {
         <img src={premiumMonth} alt="" width="300px" height="269px"/>
         <p className={style.price}>$7,99</p>
          <CardElement className={style.cardElement}/>
-        <button disabled={isVip} className={style.buyButton}>BUY</button>
+        <button disabled={isVip} className={style.buyButton}>GET VIP</button>
     </form>
 
     </div>

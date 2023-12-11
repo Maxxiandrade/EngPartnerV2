@@ -20,3 +20,4 @@ export const SET_VIP = "SET_VIP"
 export const ADD_ROOM = "ADD_ROOM"
 export const SET_EDIT_PROFILE = "SET_EDIT_PROFILE"
 export const GET_VIPS = "GET_VIPS"
+export const DELETE_ROOM='DELETE_ROOM';

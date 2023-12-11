@@ -1,0 +1,102 @@
+.footer {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  background-color: hsla(208, 85%, 8%, 0.5);
+  &:hover {
+    background-color: hsla(208, 85%, 8%, 0.8);
+    transition: 0.5s;
+  }
+  &:not(:hover) {
+    transition: 0.5s;
+  }
+}
+
+.madeBy {
+  text-transform: uppercase;
+  background-image: linear-gradient(-225deg, #fdfdfd 67%, #000000 100%);
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite;
+  display: inline-block;
+  font-size: 1.2em;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
+.namesContainer {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.linkedinImgContainer a img {
+  width: 2.4em;
+}
+
+.githubImgContainer a img {
+  width: 2.4em;
+  background-color: rgba(200, 200, 200);
+  border-radius: 50px;
+}
+
+.linkedinImgContainer:hover,
+.githubImgContainer:hover {
+  transition: 0.2s;
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.linkedinImgContainer:not(:hover),
+.githubImgContainer:not(:hover) {
+  transition: 0.2s;
+}
+
+.photosContainer {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+}
+
+@media screen and (min-width: 1024px) {
+  .footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .madeBy {
+    width: 30%;
+    font-size: 2.4em;
+  }
+
+  .gridContainer {
+    width: 70%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+  .namesContainer {
+    justify-content: center;
+    gap: 3em;
+  }
+
+  .namesContainer p {
+    width: 180px;
+    text-align: start;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+}

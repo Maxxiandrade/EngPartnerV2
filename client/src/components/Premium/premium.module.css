@@ -1,5 +1,4 @@
 .premiumMainDiv {
-  background-color: #031525;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -16,7 +15,7 @@
 
 .introPremiumDiv {
   width: 100%;
-  background-color: #0896ef80;
+  background-color: hsla(203, 94%, 48%, 0.75);
 }
 
 .introH3 {
@@ -93,13 +92,11 @@
   font-size: 1.2em;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.buyButton:hover {
-  background-color: #007bb5;
-}
-
-.buyButton:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+  &:hover {
+    background-color: #007bb5;
+  }
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
 }

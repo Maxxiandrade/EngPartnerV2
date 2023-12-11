@@ -4,24 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import style from './Friends.module.css'
 import offline from '../../../assets/svg/offline.svg'
 import online from '../../../assets/svg/online.svg'
-import astronaut from '../../../assets/astronaut.png'
+import astronaut from '../../../assets/astronaut/astronaut.png'
 import { Link } from "react-router-dom";
 
 
-const Friends = () => {
-    const dispatch = useDispatch();
-    const friends = useSelector((state) => state.users.friends)
-
-    useEffect(() => {
-        const uid = localStorage.getItem("uid")
-        if (uid) {
-            dispatch(getFriends(uid));
-        }
-        console.log(friends);
-    }, []);
-
-
-    return (
+const Friends = ( {friends} ) => {
+  
+    return(
         <div className={style.friendContainer}>
             <div className={style.txtH1}><h1>Friends:</h1></div>
             {friends?.length === 0 ? <p className={style.txt}>It seems to be no one around here, try connecting with someone!<img src={astronaut} alt="" className={style.astronaut} /></p> : friends?.map((friend) => (

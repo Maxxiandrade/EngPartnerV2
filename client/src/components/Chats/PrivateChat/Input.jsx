@@ -4,7 +4,7 @@ import attach from '../../../assets/svg/attach.svg'
 import img from '../../../assets/svg/img.svg'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { Timestamp, arrayUnion, doc, updateDoc, serverTimestamp } from 'firebase/firestore'
+import { Timestamp, arrayUnion, doc, updateDoc, serverTimestamp, addDoc, collection } from 'firebase/firestore'
 import {db} from '../../../firebase-config'
 import {v4 as uuid} from "uuid"
 import sendIcon from "../../../assets/svg/sendIcon.svg"
@@ -14,10 +14,12 @@ const Input = () => {
   const [text, setText] = useState("")
   const uid = localStorage.getItem("uid");
   const user = useSelector((state)=>state.users.userChat)
+  const userPhoto = useSelector((state)=>state.users.photo)
   const userChat = user.uid
   const chatId = useSelector((state)=>state.users.chatId)
 
-  const handleSend = async()=>{
+  const handleSend = async(e)=>{
+    e.preven
       if(chatId)
       await updateDoc(doc(db,"chats", chatId),{
         messages: arrayUnion({
@@ -28,13 +30,23 @@ const Input = () => {
           photo: user.photo
         })
       })
-      await updateDoc(doc(db, "userChats", user.uid), {
+      /* await updateDoc(doc(db, "userChats", user.uid), {
         [chatId + ".lastMessage"]: {
           text,
         },
         [chatId + ".date"]: serverTimestamp(),
-      });
-  
+      }); */
+      await addDoc(collection(db, "messages"), {
+        id: uuid(),
+        privateChatMessage: true,
+        chatId: chatId, //El id del chat entre 2 personas
+        senderId: uid,
+        photo: userPhoto,
+        text: text,
+        reciverId: user.uid,
+        photoReciver: user.photo,
+        date: Timestamp.now(),
+      })  
       setText("");
   }
   return (

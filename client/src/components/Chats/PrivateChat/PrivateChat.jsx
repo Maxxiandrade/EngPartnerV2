@@ -2,7 +2,7 @@ import style from "./PrivateChat.module.css";
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMyUser, clearUserDataInLogout } from '../../../redux/actions/actions';
+import { getMyUser, clearUserDataInLogout, getFriends } from '../../../redux/actions/actions';
 
 import Navbar from "../../Navbar/Navbar";
 import Chat from "./Chat";
@@ -14,9 +14,11 @@ import { API_URL } from "../../../firebase-config";
 const PrivateChat = ({ setIsAuth }) => {
   const uid = localStorage.getItem("uid");
   const dispatch = useDispatch();
+  const friends = useSelector((state) => state.users.friends);
+  console.log(friends);
 
   useEffect(() => {
-    dispatch(getMyUser(uid));
+    dispatch(getFriends(uid));
   }, []);
 
   return (
@@ -28,7 +30,7 @@ const PrivateChat = ({ setIsAuth }) => {
           <Chat />
         </div>
         <div className={style.friendsComp}>
-          <Friends />
+          <Friends friends={friends} />
         </div>
       </div>
     </div>

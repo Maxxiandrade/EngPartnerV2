@@ -1,41 +1,40 @@
 .room {
+  margin: auto;
   position: relative;
 }
 
 .room:after {
-    font-size: 18px;
-    color: #4449be;
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
+  font-size: 18px;
+  color: #4449be;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
 }
 
 .selectStyle {
-  padding: 5px ;
-  font-size: 18px;
+  background-color: #e3ebfc;
+  font-weight: bold;
+  width: 20%;
+  padding: 5px;
+  font-size: 22px;
   border: 2px solid #4449be;
   border-radius: 10px;
-  background-color: #ecf0f1;
   color: #4449be;
   text-align-last: center;
   appearance: none;
-
   overflow: hidden;
   max-height: 40px;
   transition: max-height 0.3s ease-in-out;
-}
-
-.selectStyle:hover{
-    background-color: #E3EBFC;
+  &:hover {
+    background-color: #e3ebfc;
     transition: 0.3s;
-    max-height: 200px;
-}
-
-.selectStyle:focus {
+  }
+  &:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
     border: 2px solid #4449be;
-    background-color: #E3EBFC;
+    background-color: #e3ebfc;
+  }
 }

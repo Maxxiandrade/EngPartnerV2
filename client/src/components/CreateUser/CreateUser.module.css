@@ -1,129 +1,108 @@
+.mainDiv {
+  margin: 2% 0 2% 0;
+  display: flex;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+}
 
 .createUserContainer {
-    height: fit-content;
-    width: 25%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-    color: black;
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(2px);
-    border-radius: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.75);
+  height: fit-content;
+  width: 35%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  color: black;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.75);
+  padding: 2%;
 }
-.countriesContainer{
-    border: 1px solid greenyellow;
-    border-radius: 10px;
-    background-color: red;
-    cursor: pointer;
+
+.h1Style {
+  font-size: 30px;
+}
+
+.countriesContainer {
+  border: 1px solid greenyellow;
+  border-radius: 10px;
+  background-color: red;
+  cursor: pointer;
 }
 
 .showCountryContainer {
-    display: flex;
-    gap: .6em;
-  }
-  
-.hideCountryContainer {
-    display: none; /* Oculta countryContainer cuando hideCountry está activo */
+  display: flex;
+  gap: 0.6em;
 }
 
+.hideCountryContainer {
+  display: none;
+}
 
 .flagContainer {
-    height: 10px;
-    width: 20px;
+  height: 10px;
+  width: 20px;
 }
 
 .flagContainer img {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .selectedCountryContainer {
-    text-align: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;    
+  text-align: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.selectedCountry{
-    display: flex;
-    gap: .6em;
-    margin-left: 15px;
-}
-
-.h1Style{
-    font-size: 30px;
-}
-
-.mainDiv {
-    display: flex;
-    background-image: url("../../assets/fotor-ai-2023112322841.jpg");
-    background-size: auto;
-    background-position: center;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100vh;
-    overflow: scroll;
-    justify-content: center;
-    align-items: center;
+.selectedCountry {
+  display: flex;
+  gap: 0.6em;
+  margin-left: 15px;
 }
 
 .registerErrors {
-    color: red;
-  }
-  
-  .p {
-    color: #2e7d32;
-    text-align: center;
-    font-size: 20px;
-    font-weight: 500;
-  }
-  
-  .createUserDiv {
-    justify-content: center;
-    text-align: center;
-    color: #2127c4;
-    background: #e3ebfc;
-    border: solid 1px #4449be;
-    border-radius: 5px;
-  }
-  .createUserDiv:hover {
+  padding-bottom: 1%;
+  color: red;
+}
+
+.p {
+  color: #2e7d32;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.createUserDiv {
+  justify-content: center;
+  text-align: center;
+  color: #2127c4;
+  background: #e3ebfc;
+  border: solid 1px #4449be;
+  border-radius: 5px;
+  &:hover {
     transition: 0.75s;
     background: #94b5fc;
   }
-  
-  .createUserBtn {
-    background-color: transparent;
-    border: none;
-  }
-  
-  .logo {
-    width: 20%;
-  }
-  
-  .divLogo {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 3%;
-  }
-  
-  .mainDiv {
-    display: flex;
-    background-image: url("../../assets/fotor-ai-2023112322841.jpg");
-    background-size: auto;
-    background-position: center;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100vh;
-    overflow: scroll;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .registerErrors{
-      padding-bottom: 1%;
-  }
+}
+
+.createUserBtn {
+  background-color: transparent;
+  border: none;
+}
+
+.logo {
+  width: 20%;
+}
+
+.divLogo {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 3%;
+}

@@ -1,38 +1,38 @@
-import { useState } from 'react'
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getUserByUserName } from '../../../redux/actions/actions';
+import { getUserByUserName } from "../../../redux/actions/actions";
 
-import styles from './searchbar.module.css'
-import Filters from '../../Filters/Filters';
+import styles from "./searchbar.module.css";
+import Filters from "../../Filters/Filters";
 
-const Searchbar = ()=>{
-    const [userName, setUserName] = useState("")
-    const dispatch = useDispatch()
+const Searchbar = () => {
+  const [userName, setUserName] = useState("");
+  const dispatch = useDispatch();
 
-    const handleSearch = ()=>{
-        if(userName === ""){
-            window.alert("you need to type a userId")
-        } else {
-            dispatch(getUserByUserName(userName))
-        }
+  const handleSearch = () => {
+    if (userName === "") {
+      window.alert("you need to type a username");
+    } else {
+      dispatch(getUserByUserName(userName));
+      setUserName("")
     }
-    return (
-        <nav className={styles.nav}>
-            <div className={styles.inputAndBtnContainer}>
-            <input 
-                type="search" 
-                placeholder="EngPartner ID"
-                value={userName}
-                onChange={(event)=> setUserName(event.target.value)}
-                />
-                <button onClick={handleSearch}>Search</button>
-                
-            </div>
+  };
+  return (
+    <nav className={styles.nav}>
+      <div className={styles.inputAndBtnContainer}>
+        <input
+          type="search"
+          placeholder="EngPartner userID"
+          value={userName}
+          onChange={(event) => setUserName(event.target.value)}
+        />
+        <button onClick={handleSearch}>Search</button>
+      </div>
 
-                <Filters/>
-        </nav>
-    )
-}
+      <Filters />
+    </nav>
+  );
+};
 
-export default Searchbar
+export default Searchbar;
