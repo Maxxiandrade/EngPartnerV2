@@ -22,6 +22,7 @@ import {
   SET_EDIT_PROFILE,
   DELETE_ROOM,
 GET_VIPS,
+POST_VISITS,
 } from "../action_types/userActionTypes";
 
 import { API_URL } from "../../firebase-config";
@@ -329,3 +330,17 @@ export const putDeleteRoom = (obj) => async (dispatch) => {
     payload: obj.room,
   });
 };
+
+export const postUserVisiting = (userData) => async (dispatch)=>{
+  try {
+    const {data} = axios.post(`${API_URL}/profile`,userData)
+    console.log("visiting posted",{...data})
+
+  dispatch({
+    type: POST_VISITS,
+    payload: data
+  })
+  } catch (error) {
+    window.alert(`error when posting visits(redux): ${error}`)
+  }
+}

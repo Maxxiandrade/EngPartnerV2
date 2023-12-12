@@ -19,6 +19,7 @@ import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Select, Me
 
 // RENDERS
 import Navbar from "../Navbar/Navbar";
+import Visits from "../Visits/Visits";
 
 const Profile = ({ setIsAuth }) => {
 
@@ -265,6 +266,8 @@ const Profile = ({ setIsAuth }) => {
             </div>
           </div>
         )}
+        <Visits/>
+
       </div>
     );
 
@@ -311,6 +314,7 @@ const Profile = ({ setIsAuth }) => {
           </div>
         </div>
       )}
+      <Visits/>
     </div>
   );
 };

@@ -48,6 +48,7 @@ const initialState = {
   friends: [],
   reports: [],
   rooms:[],
+  visitingUsers:[],
   isVip: false,
   isOn: false,
   isAdmin: false,
