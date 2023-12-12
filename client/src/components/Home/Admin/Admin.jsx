@@ -5,7 +5,7 @@ import style from "./Admin.module.css";
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getReported, getMyUser, deleteReport, banUser, getVips, updateReportedUsers } from "../../../redux/actions/actions";
+import { getReported, getMyUser, deleteReport, banUser, getVips } from "../../../redux/actions/actions";
 import axios from "axios";
 import { API_URL } from "../../../firebase-config";
 
@@ -53,7 +53,6 @@ const Admin = ({ setIsAuth }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteReport(messageId, uid));
-        dispatch(updateReportedUsers(uid))
         Swal.fire({
           title: `The message was approved successfully`,
           icon: "success",
