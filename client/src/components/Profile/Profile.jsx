@@ -4,6 +4,7 @@ import pencil from "../../assets/svg/pencil.svg";
 import tick from "../../assets/svg/tick.svg";
 import addUser from "../../assets/svg/addUser.svg";
 import deleteUser from "../../assets/svg/deleteUser.svg";
+import verify from '../../assets/svg/verify.svg'
 import Swal from 'sweetalert2';
 
 //Tools
@@ -19,6 +20,7 @@ import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Select, Me
 
 // RENDERS
 import Navbar from "../Navbar/Navbar";
+import { getFlagByCode } from '../../utils/getFlagByCode';
 
 const Profile = ({ setIsAuth }) => {
 
@@ -26,6 +28,7 @@ const Profile = ({ setIsAuth }) => {
   const lastname = useSelector((state) => state.users.lastname);
   const description = useSelector((state) => state.users.description);
   const age = useSelector((state) => state.users.age);
+  const isVip = useSelector((state) => state.users.isVip);
 
   const localStorageUID = localStorage.getItem('uid');
   const user = useSelector((state) => state.users);
@@ -163,9 +166,12 @@ const Profile = ({ setIsAuth }) => {
                 <p className={style.profileDescription2}>
                   {description}
                 </p>
+                {!isVip && <p className={style.profileDescription3}>Your languages are { getFlagByCode(language) } and { getFlagByCode(languageRead) } . To be able to change it, you need to be a Premium<img src={verify} className={style.iconVerify}/> user</p>}
               </div>
-              <FormControl>
-                
+
+              {
+                isVip && (
+                <FormControl>
                 <label htmlFor="language">Your selected language:</label>
                 <select
                   name="language"
@@ -224,6 +230,11 @@ const Profile = ({ setIsAuth }) => {
                   <option value={'id'}>Indonesian 🇮🇩</option>
                 </select>
               </FormControl>
+                )
+                
+              }
+
+              
               <button onClick={handleEdit} className={style.edit}>
                 <img src={pencil} alt="Edit" className={style.iconBtn} />
               </button>
