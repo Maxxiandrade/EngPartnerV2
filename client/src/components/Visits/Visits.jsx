@@ -2,15 +2,24 @@
 import styles from './Visits.module.css'
 
 import { postUserVisiting } from '../../redux/actions/actions'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
-const Visits = ({name,lastname,sex,age,country,uid})=>{
+const Visits = ({visitedUid})=>{
     const dispatch = useDispatch()
+
+    const uid = useSelector(state=> state.users.uid)
+    const name = useSelector(state=> state.users.name)
+    const lastname = useSelector(state=> state.users.lastname)
+    const sex = useSelector(state=> state.users.sex)
+    const country = useSelector(state=> state.users.country)
+    const age = useSelector(state=> state.users.age)
+    const userVisited = visitedUid
+    
 
     const handlePostUserVisit = ()=>{
         const userData = {
-            user: uid,
+            user: userVisited,
             visitingUserData: {
                 name: name,
                 lastname: lastname,
@@ -22,12 +31,13 @@ const Visits = ({name,lastname,sex,age,country,uid})=>{
         }
         console.log(userData)
         dispatch(postUserVisiting(userData))
-
     }
 
-    useEffect(()=>{
-        handlePostUserVisit()
-    },[])
+    useEffect(() => {
+        if (uid && name && lastname && sex && country && age && userVisited) {
+            handlePostUserVisit();
+        } 
+    }, [uid, name, lastname, sex, country, age]);
 
     
     return(

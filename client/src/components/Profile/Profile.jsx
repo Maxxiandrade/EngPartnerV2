@@ -314,7 +314,9 @@ const Profile = ({ setIsAuth }) => {
           </div>
         </div>
       )}
-      <Visits/>
+      <Visits
+      visitedUid={changes.uid}
+      />
     </div>
   );
 };
