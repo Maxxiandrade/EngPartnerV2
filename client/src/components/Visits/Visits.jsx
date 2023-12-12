@@ -42,7 +42,7 @@ const Visits = ({visitedUid})=>{
     
     return(
         <div>
-            <p>visitfhfghfghfgs</p>
+            <p>Visitors</p>
 
         </div>
     )

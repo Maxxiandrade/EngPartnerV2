@@ -7,6 +7,7 @@ const postNewUser = require('../controllers/postNewUser');
 const postUser = require('../controllers/postUser');
 const postReport = require('../controllers/postReport');
 const postVisited = require('../controllers/postVisited')
+const getVisitingUsers = require('../controllers/getVisitingUsers')
 //get
 const getMyMessage = require('../controllers/getMyMessage');
 const getOnline = require('../controllers/getOnline')
@@ -37,6 +38,7 @@ router.get('/getonline', getOnline)
 router.get('/friends', getFriends)
 router.get('/reported', getReported)
 router.get('/vips', getVipUsers)
+router.get('/user/visitingusers', getVisitingUsers)
 
 router.post('/user', getMyUser)
 router.post('/send-message', postMessage)
@@ -48,6 +50,7 @@ router.post('/createRoom',postCreateRoom)
 router.post('/newPremium',postPremium)
 router.post('/ban', postBan)
 router.post('/profile', postVisited)
+
 
 
 router.put('/geton', putIs)
