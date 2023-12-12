@@ -25,11 +25,11 @@ const ReportOption = ({setLastClickedMessageId, message, messageId,user}) => {
 
   return (
     <div className={style.reportMessage}>
-        <option disabled selected value="default" className={style.optionStyle}>Select a report option:</option>
+        <option disabled selected value="default" className={style.optionStyle1}>Select a report option:</option>
         <option onClick={handleReportClick} className={style.optionStyle} value="innapropriateContent">Innapropriate Content</option>
         <option onClick={handleReportClick} className={style.optionStyle} value="spam">Spam</option>
-        <option onClick={handleReportClick} className={style.optionStyle} value="HarrassmentBehavior">Harassment Behavior</option>
-        <option onClick={handleReportClick} className={style.optionStyle} value="misleadingOfFalseContent">Misleading or false content</option>
+        <option onClick={handleReportClick} className={style.optionStyle} value="HarrassmentBehavior">Harassment</option>
+        <option onClick={handleReportClick} className={style.optionStyle} value="misleadingOfFalseContent">Misleading content</option>
         <option onClick={handleReportClick} className={style.optionStyle} value="fakeIdentity">Fake identity</option>
     </div>
   );

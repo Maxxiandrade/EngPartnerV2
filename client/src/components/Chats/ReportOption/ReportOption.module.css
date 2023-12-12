@@ -3,18 +3,28 @@
   right: 0;
   margin-right: 15px;
   z-index: 1000;
-  border: 1px solid #32b1fe;
 }
 
 .optionStyle {
+  border: 1px solid #32b1fe;
+  width: 100%;
+  padding: 2%;
   cursor: pointer;
   background-color: #001e32;
   transition: height 0.3s ease;
   &:hover {
-    background-color: rgb(60, 60, 150);
+    background-color: #AE2025;
     transition: 0.3s;
   }
   &:not(:hover) {
     transition: 0.3s;
   }
+}
+
+.optionStyle1{
+  border: 1px solid #32b1fe;
+  width: 100%;
+  padding: 2%;
+  background-color: #001e32;
+  transition: height 0.3s ease;
 }

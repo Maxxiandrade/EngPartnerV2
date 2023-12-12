@@ -4,14 +4,25 @@
   height: 100vh;
 }
 
+.componentsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 80%;
+}
+
+.friendsComp {
+  margin-top: 5%;
+  width: 20%;
+  height: 100%;
+}
+
 .container {
   margin-top: 5%;
   border: 1px solid white;
   border-radius: 10px;
   width: 60%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
   display: flex;
   overflow: hidden;
 
@@ -39,6 +50,7 @@
     }
   }
   .chat {
+    position: relative;
     flex: 2;
     max-width: 70%;
     height: 100%;
@@ -142,6 +154,8 @@
   color: lightgray;
 }
 
+/* -----------------------CHAT--------------------------------------- */
+
 .chatInfoDiv {
   width: 100%;
   height: 9%;
@@ -173,19 +187,12 @@
   align-items: center;
   font-size: 25px;
   justify-content: center;
-  height: 6%;
+  height: 7%;
 }
 
-.switchClass {
-  margin: 1%;
-  padding: 1%;
-}
-
-.messagesInputDiv {
-  display: flex;
-  flex-direction: column;
+.messagesDiv {
   width: 100%;
-  height: 85%;
+  height: 91%;
 }
 
 .messages {
@@ -194,29 +201,31 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 10px;
-  height: 95%;
+  height: 84%;
   overflow: scroll;
-  max-width: 100%;
   overflow-x: hidden;
 }
 
+.inputDiv {
+  height: 9%;
+  width: 100%;
+}
+
 .inputComp {
+  padding-inline-end: 1%;
+  padding-inline-start: 1%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 5%;
   background-color: white;
   color: black;
-  padding: 2%;
   border-top: solid 0.5px hsla(212, 12%, 21%, 0.5);
 }
 
 .input {
+  height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   border: none;
   color: #2f2d52;
   background-color: transparent;
@@ -271,15 +280,15 @@
 
 .pRecieve {
   color: black;
-  background-color: #b3e0ff;
+  background-color: hsl(0, 0%, 90%);
   padding: 10px 20px;
   margin: 1% 0 1% 0;
   border-radius: 0px 10px 10px 10px;
 }
 
 .pSend {
-  color: white;
-  background-color: #005abb;
+  color: black;
+  background-color: #b3e0ff;
   padding: 10px 20px;
   margin: 1% 0 1% 0;
   border-radius: 10px 0px 10px 10px;
@@ -300,22 +309,4 @@
   width: 100%;
   max-width: 100%;
   word-wrap: break-word;
-}
-
-.friendsComp {
-  margin-top: 5%;
-  box-sizing: border-box;
-  width: 20%;
-  height: 100%;
-  min-height: 100%;
-  max-height: 100%;
-}
-
-.componentsDiv {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 80%;
-  max-height: 80%;
-  min-height: 80%;
 }
