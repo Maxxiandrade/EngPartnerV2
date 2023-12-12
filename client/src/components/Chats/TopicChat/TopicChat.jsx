@@ -6,6 +6,7 @@ import report from "../../../assets/svg/exclamation.svg"
 import AdminSvg from '../../../assets/svg/admin-verify.svg'
 import TopicsChat from "../TopicsChat/TopicsChat";
 import Skeleton from '@mui/material/Skeleton';
+import Divider from '@mui/material/Divider';
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -20,6 +21,7 @@ import {
 import { auth, db } from "../../../firebase-config";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getFlagByCode } from "../../../utils/getFlagByCode";
 
 const Chat = () => {
 
@@ -36,6 +38,7 @@ const Chat = () => {
   const language = localStorage.getItem('language')
   const languageRead = localStorage.getItem('languageRead')
   const user = useSelector(state => state.users)
+  const isVip = useSelector(state => state.users.isVip)
   const [newMessage, setNewMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [messageOptions, setMessageOptions] = useState({})
@@ -127,7 +130,8 @@ const Chat = () => {
                 </span>
               </Link>
               <div className={style.textDiv}>
-                {
+                { !isVip ?
+                  (
                   !message.translatedText?.[language] ?
                   <Skeleton sx={{ width: '100%' }} />
                   :
@@ -135,6 +139,24 @@ const Chat = () => {
                   <span> {message.translatedText?.[language]} </span>
                   :
                   <span> {message.translatedText?.[languageRead]} </span>
+                  )
+
+                  :
+
+                  (
+                    !message.translatedText?.[language] ?
+                    <span>
+                      <Skeleton sx={{ width: '100%' }} />
+                      <Divider sx={{margin: '3px 0', backgroundColor: '#6da9fc', borderBottomWidth: 2}} />
+                      <Skeleton sx={{ width: '100%' }} />
+                    </span>
+                    :
+                    <span>
+                      {`${getFlagByCode(language)}: ${message.translatedText?.[language]}`}
+                      <Divider sx={{margin: '3px 0', backgroundColor: '#6da9fc', borderBottomWidth: 2}} />
+                      {`${getFlagByCode(languageRead)}: ${message.translatedText?.[languageRead]}`}
+                    </span>
+                    )
                 }
               </div>
               <div>

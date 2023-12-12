@@ -6,6 +6,8 @@ import { useEffect, useRef } from 'react'
 import { getMyUser } from '../../../redux/actions/actions'
 import { Link } from 'react-router-dom'
 import Skeleton from '@mui/material/Skeleton';
+import { Divider } from '@mui/material'
+import { getFlagByCode } from '../../../utils/getFlagByCode'
 
 
 const Message = ({ message, languageChecked }) => {
@@ -16,6 +18,7 @@ const Message = ({ message, languageChecked }) => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.users.language);
   const languageRead = useSelector((state) => state.users.languageRead);
+  const isVip = useSelector((state) => state.users.isVip);
 
   useEffect(() => {
     console.log(message);
@@ -31,32 +34,93 @@ const Message = ({ message, languageChecked }) => {
           </Link>
           : null}
         <div className={style.messageRecieve}>
-          {message?.senderId === user?.uid ?
+
+          {/* Formato de mensaje si el usuario no es vip */}
+          {message?.senderId === user?.uid && !isVip ?
             !message.translatedText?.[language] ?
-            <p className={style.pRecieve}> <Skeleton sx={{ width: '100%' }} /> </p>
+              <p className={style.pRecieve}> <Skeleton sx={{ width: '100%' }} /> </p>
+              :
+              languageChecked === false ?
+                <p className={style.pRecieve}> {message.translatedText?.[language]} </p>
+                :
+                <p className={style.pRecieve}> {message.translatedText?.[languageRead]} </p>
             :
-            languageChecked === false ? 
-            <p className={style.pRecieve}> {message.translatedText?.[language]} </p>
+            null
+          }
+
+          {/* Formato de mensaje si el usuario SI vip */}
+          {message?.senderId === user?.uid && isVip ?
+            !message.translatedText?.[language] ?
+              <>
+                <p className={style.pRecieve}>
+                  <Skeleton sx={{ width: '100%' }} />
+                  <Divider sx={{ margin: '3px 0', backgroundColor: '#6da9fc', borderBottomWidth: 3 }} />
+                  <Skeleton sx={{ width: '100%' }} />
+                </p>
+              </>
+              :
+              <p className={style.pRecieve}>
+                <span>{getFlagByCode(language)}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ wordBreak: 'break-word' }}>
+                    {message.translatedText?.[language]}
+                  </span>
+                </div>
+
+                <Divider sx={{ margin: '3px 0', backgroundColor: '#6da9fc', borderBottomWidth: 3 }} />
+
+                <span>{getFlagByCode(languageRead)}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ marginRight: '5px', wordBreak: 'break-word' }}>
+                    {message.translatedText?.[languageRead]}
+                  </span>
+                </div>
+              </p>
             :
-            <p className={style.pRecieve}> {message.translatedText?.[languageRead]} </p>
-            : 
-           null
+            null
           }
         </div>
       </div>
 
       <div className={style.messageContainerOwner}>
         <div className={style.messageSend}>
-        {message?.senderId === uid ?
+          {/* Formato de mensaje si el usuario no es vip */}
+          {message?.senderId === uid && !isVip ?
             !message.translatedText?.[language] ?
-            <p className={style.pSend}> <Skeleton sx={{ width: '100%' }} /> </p>
+              <p className={style.pSend}> <Skeleton sx={{ width: '100%' }} /> </p>
+              :
+              languageChecked === false ?
+                <p className={style.pSend}> {message.translatedText?.[language]} </p>
+                :
+                <p className={style.pSend}> {message.translatedText?.[languageRead]} </p>
             :
-            languageChecked === false ? 
-            <p className={style.pSend}> {message.translatedText?.[language]} </p>
+            null
+          }
+
+          {/* Formato de mensaje si el usuario SI vip */}
+          {message?.senderId === uid && isVip ?
+            !message.translatedText?.[language] ?
+              <>
+                <p className={style.pSend}>
+                  <Skeleton sx={{ width: '100%' }} />
+                  <Divider sx={{ margin: '3px 0', backgroundColor: '#6da9fc', borderBottomWidth: 3 }} />
+                  <Skeleton sx={{ width: '100%' }} />
+                </p>
+              </>
+              :
+              <p className={style.pSend}>
+                <span>{getFlagByCode(language)}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ wordBreak: 'break-word' }}>{message.translatedText?.[language]}</span>
+                </div>
+                <Divider sx={{ margin: '3px 0', backgroundColor: '#6da9fc', borderBottomWidth: 3 }} />
+                <span> {getFlagByCode(languageRead)}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ marginRight: '5px', wordBreak: 'break-word' }}>{message.translatedText?.[languageRead]} </span>
+                </div>
+              </p>
             :
-            <p className={style.pSend}> {message.translatedText?.[languageRead]} </p>
-            : 
-           null
+            null
           }
         </div>
         <div className={style.messageSendInfo}>

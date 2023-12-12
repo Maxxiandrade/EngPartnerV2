@@ -10,11 +10,12 @@ import Switch from '@mui/material/Switch';
 
 
 const Chat = () => {
-  const user = useSelector(state=>state.users.userChat)
-  const language = useSelector(state=>state.users.language)
-  const languageRead = useSelector(state=>state.users.languageRead)
+  const user = useSelector(state => state.users.userChat)
+  const language = useSelector(state => state.users.language)
+  const languageRead = useSelector(state => state.users.languageRead)
+  const isVip = useSelector(state => state.users.isVip)
   const [languageChecked, setLanguageChecked] = useState(localStorage.getItem('languageChecked') === 'true' ? true : false);
-  
+
 
   const handleChangeSwitch = () => {
     setLanguageChecked(!languageChecked);
@@ -22,13 +23,13 @@ const Chat = () => {
   }
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 70,
-    height: 34,
+    width: 63,
+    height: 30,
     padding: 7,
     '& .MuiSwitch-switchBase': {
       margin: 1,
       padding: 0,
-      transform: 'translateX(6px)',
+      transform: 'translateX(2px)',
       '&.Mui-checked': {
         color: '#fff',
         transform: 'translateX(32px)',
@@ -39,11 +40,11 @@ const Chat = () => {
       },
     },
     '& .MuiSwitch-thumb': {
-      backgroundColor:'#042c54',
+      backgroundColor: '#042c54',
       border: '2px solid #3c70a3',
       borderRadius: '50%',
-      width: 32,
-      height: 32,
+      width: 24,
+      height: 24,
       '&:before': {
         content: "''",
         position: 'absolute',
@@ -62,23 +63,27 @@ const Chat = () => {
     },
   }));
 
+
   return (
     <div className={style.chat}>
-        <div className={style.chatInfoDiv}>
-          <Link to={`/profile/${user.uid}`}>
-            <span className={style.chatInfo}>{user.user}</span>
-          </Link>
-        </div>
-
+      <div className={style.chatInfoDiv}>
+        <Link to={`/profile/${user.uid}`}>
+          <span className={style.chatInfo}>{user.user}</span>
+        </Link>
+      </div>
+      <div className={style.messagesDiv}>
+      {!isVip && (
         <div className={style.switchDiv}>
           <div>{getFlagByCode(language)}</div>
-            <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} className={style.switchClass}/>
+          <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} className={style.switchClass} />
           <div>{getFlagByCode(languageRead)}</div>
         </div>
-        <div className={style.messagesInputDiv}>
+      )}
         <Messages languageChecked={languageChecked} setLanguageChecked={setLanguageChecked} handleChangeSwitch={handleChangeSwitch} />
-        <Input/>
-        </div>
+      <div className={style.inputDiv}>
+        <Input />
+      </div>
+      </div>
     </div>
   )
 }

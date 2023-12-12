@@ -30,16 +30,10 @@ const Input = () => {
           photo: user.photo
         })
       })
-      /* await updateDoc(doc(db, "userChats", user.uid), {
-        [chatId + ".lastMessage"]: {
-          text,
-        },
-        [chatId + ".date"]: serverTimestamp(),
-      }); */
       await addDoc(collection(db, "messages"), {
         id: uuid(),
         privateChatMessage: true,
-        chatId: chatId, //El id del chat entre 2 personas
+        chatId: chatId,
         senderId: uid,
         photo: userPhoto,
         text: text,
@@ -53,11 +47,6 @@ const Input = () => {
     <div className={style.inputComp}>
         <input type="text" placeholder='Type a message...' className={style.input} onChange={e=>setText(e.target.value)} value={text}/>
         <div className={style.send}>
-            <img src={attach} alt="" className={style.sendImg} />
-            <input type="file"  style={{display:"none"}} id='file' onChange={e=>setImg(e.target.files[0])}/>
-            <label htmlFor="file">
-                <img src={img} alt=""  className={style.sendImg}/>
-            </label>
             <button className={style.sendButton} onClick={handleSend}><img src={sendIcon} alt="send" className={style.sendIcon}/></button>
         </div>
     </div>

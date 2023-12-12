@@ -10,6 +10,7 @@ const Messages = ( {languageChecked, setLanguageChecked, handleChangeSwitch} ) =
     const chatId = useSelector((state)=>state.users.chatId)
     const user = useSelector((state)=>state.users.userChat)
     const [messages, setMessages] = useState([])
+    const isVip = useSelector(state => state.users.isVip)
 
     useEffect(() => {
       if (chatId) {
@@ -37,7 +38,7 @@ const Messages = ( {languageChecked, setLanguageChecked, handleChangeSwitch} ) =
       console.log(messages)
 
   return (
-    <div className={style.messages}>
+    <div className={style.messages} style={isVip?{height:'91%'}:{height:'84%'}}>
       {messages?.map((m) => (
         <Message message={m} key={m.id} languageChecked={languageChecked} />
       ))}

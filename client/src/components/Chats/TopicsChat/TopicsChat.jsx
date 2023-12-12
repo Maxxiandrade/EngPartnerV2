@@ -12,6 +12,7 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
   const Myrooms = useSelector(state=> state.users?.rooms)
   const language = useSelector(state=> state.users?.language)
   const languageRead = useSelector(state=> state.users?.languageRead)
+  const isVip = useSelector(state=> state.users?.isVip)
   console.log(country);
   const [rooms,setRooms]= useState(['Global','Sport','Animals',"Food",'Tech',country, ...Myrooms ])
   const handleTopic = (e)=>{
@@ -21,13 +22,13 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
   }
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 70,
-    height: 34,
+    width: 63,
+    height: 30,
     padding: 7,
     '& .MuiSwitch-switchBase': {
       margin: 1,
       padding: 0,
-      transform: 'translateX(6px)',
+      transform: 'translateX(2px)',
       '&.Mui-checked': {
         color: '#fff',
         transform: 'translateX(32px)',
@@ -41,8 +42,8 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
       backgroundColor:'#042c54',
       border: '2px solid #3c70a3',
       borderRadius: '50%',
-      width: 32,
-      height: 32,
+      width: 24,
+      height: 24,
       '&:before': {
         content: "''",
         position: 'absolute',
@@ -71,11 +72,13 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
               })}
           </select>
 
-          <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'row wrap', fontSize: '30px', justifyContent: 'center' }}>
-            <div>{getFlagByCode(language)}</div>
-              <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} />
-            <div>{getFlagByCode(languageRead)}</div>
-          </div>
+          {!isVip && 
+            <div style={{ display: 'flex', alignItems: 'center', flexFlow: 'row wrap', fontSize: '30px', justifyContent: 'center' }}>
+              <div>{getFlagByCode(language)}</div>
+                <MaterialUISwitch checked={languageChecked} onChange={handleChangeSwitch} />
+              <div>{getFlagByCode(languageRead)}</div>
+            </div>
+          }
           
         </section>
       </div>
