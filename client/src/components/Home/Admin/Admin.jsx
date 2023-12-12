@@ -40,7 +40,7 @@ const Admin = ({ setIsAuth }) => {
     fetchUsers();
   }, []);
 
-  const handleDeleteReport = ( messageId, uid ) => {
+  const handleDeleteReport = (messageId, uid) => {
     Swal.fire({
       title: `You will be approving this message`,
       icon: "warning",
@@ -64,7 +64,7 @@ const Admin = ({ setIsAuth }) => {
     });
   };
 
-  const handleBan=async(user)=>{
+  const handleBan = async (user) => {
     Swal.fire({
       title: `You will be banning ${user.name}, (${user.user})`,
       icon: "warning",
@@ -88,9 +88,9 @@ const Admin = ({ setIsAuth }) => {
     });
   }
 
-  const vips = useSelector((state)=> state.users.vips)
+  const vips = useSelector((state) => state.users.vips)
   const vipLength = vips.length
- 
+
   return isAdmin ? (
     <div className={style.adinMainDiv}>
       <Navbar setIsAuth={setIsAuth} />
@@ -100,19 +100,21 @@ const Admin = ({ setIsAuth }) => {
           <table className={style.reportTable}>
             <thead>
               <tr>
-                <th>Usuario</th>
-                <th>Tipo de Reporte</th>
-                <th>Mensaje Reportado</th>
-                <th>Acciones</th>
+                <th>User</th>
+                <th>Report</th>
+                <th>Reported message</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               {usersToRender?.map((user) => (
                 <tr key={user.id}>
+
                   <td><Link to={`/profile/${user.uid}`}>
-                  {user.user}
+                    {user.user}
                   </Link>
                   </td>
+
                   <td colSpan="2">
                     <table>
                       <tbody>
@@ -120,37 +122,47 @@ const Admin = ({ setIsAuth }) => {
                           user.reports.map((report) => (
                             <tr key={report.reportId}>
                               <td>{report.reportType}</td>
-                              <td>{report.report}</td>
+                              <td style={{wordBreak:'break-word'}}>{report.report}</td>
                             </tr>
                           ))}
                       </tbody>
                     </table>
                   </td>
+
                   <td>
-                    <button onClick={() => handleBan(user)}>
-                      Ban User
-                    </button>
-                    {user.reports &&
-                      user.reports.map((report) => (
-                        <button
-                          key={report.reportId}
-                          onClick={() => handleDeleteReport(report.messageId, user.uid)}
-                        >
-                          Remove report
-                        </button>
-                      ))}
+                    <table>
+                      <tbody>
+                        <td style={{width:'60%', height:'100%', border:'none', padding: '5%'}}>
+                      {user.reports &&
+                        user.reports.map((report) => (
+                          <button
+                            key={report.reportId}
+                            onClick={() => handleDeleteReport(report.messageId, user.uid)}
+                            className={style.removeBtn}
+                          >
+                            Remove report
+                          </button>
+                        ))}
+                        </td>
+                        <td style={{width:'60%', height:'100%', border:'none'}}>
+                      <button onClick={() => handleBan(user)} className={style.banBtn}>
+                        Ban User
+                      </button>
+                      </td>
+                      </tbody>
+                    </table>
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <p>Total Vip users: {vipLength}</p>
+        <p style={{ padding: '1%', color: 'white', fontWeight: 'bold' }}>Total Vip users: {vipLength}</p>
       </div>
 
     </div>
   ) : (
     <Navigate to="/" replace={true} />
   );
-  };
-  export default Admin;
+};
+export default Admin;
