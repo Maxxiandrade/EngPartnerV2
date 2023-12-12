@@ -5,12 +5,14 @@ import style from "./Admin.module.css";
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getReported, getMyUser, deleteReport, banUser, getVips } from "../../../redux/actions/actions";
+import { getReported, getMyUser, deleteReport, banUser, getVips, updateReportedUsers } from "../../../redux/actions/actions";
 import axios from "axios";
 import { API_URL } from "../../../firebase-config";
 
 // RENDERS
 import Navbar from "../../Navbar/Navbar";
+import Swal from 'sweetalert2';
+
 
 const Admin = ({ setIsAuth }) => {
   const uid = localStorage.getItem("uid");
@@ -39,12 +41,52 @@ const Admin = ({ setIsAuth }) => {
   }, []);
 
   const handleDeleteReport = ( messageId, uid ) => {
-    console.log(messageId, uid);
-    dispatch(deleteReport(messageId, uid));
+    Swal.fire({
+      title: `You will be approving this message`,
+      icon: "warning",
+      confirmButtonText: "Approve",
+      confirmButtonColor: "#46c740",
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      cancelButtonColor: "#3085d6",
+      toast: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteReport(messageId, uid));
+        dispatch(updateReportedUsers(uid))
+        Swal.fire({
+          title: `The message was approved successfully`,
+          icon: "success",
+          toast: true,
+          timer: 3000,
+          showConfirmButton: false,
+        });
+      }
+    });
   };
 
-  const handleBan=async(uid)=>{
-    dispatch(banUser(uid))
+  const handleBan=async(user)=>{
+    Swal.fire({
+      title: `You will be banning ${user.name}, (${user.user})`,
+      icon: "warning",
+      confirmButtonText: "Ban user",
+      confirmButtonColor: "#d33",
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      cancelButtonColor: "#3085d6",
+      toast: true,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(banUser(user?.uid))
+        Swal.fire({
+          title: `${user.name} has been banned`,
+          icon: "success",
+          toast: true,
+          timer: 3000,
+          showConfirmButton: false,
+        });
+      }
+    });
   }
 
   const vips = useSelector((state)=> state.users.vips)
@@ -86,7 +128,7 @@ const Admin = ({ setIsAuth }) => {
                     </table>
                   </td>
                   <td>
-                    <button onClick={() => handleBan(user.uid)}>
+                    <button onClick={() => handleBan(user)}>
                       Ban User
                     </button>
                     {user.reports &&
