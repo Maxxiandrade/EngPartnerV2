@@ -17,7 +17,7 @@ const getVisitingUsers = async (req, res) => {
     const userData = userDoc.data();
     const visitingUsers = userData.visitingUsers || []; 
 
-    return res.status(200).json({ visitingUsers });
+    return res.status(200).json(visitingUsers);
   } catch (error) {
     return res.status(500).json({ error: 'Error when getting visitingUsers' });
   }
