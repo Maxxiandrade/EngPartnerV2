@@ -57,8 +57,17 @@
   width: 50%;
 }
 
-/* Estilos para el botón */
-.reportTable td button {
+.removeBtn{
+  margin-top: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #208800;
+  color: white;
+  cursor: pointer;
+}
+
+.banBtn{
   margin-top: 10px;
   padding: 5px 10px;
   border: 1px solid #ddd;
