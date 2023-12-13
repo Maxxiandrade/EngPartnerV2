@@ -64,7 +64,8 @@ const initialState = {
   userChat: {},
   chatId: null,
   reported:[],
-  vips:[]
+  vips:[],
+  visitingUsers: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -99,7 +100,8 @@ const usersReducer = (state = initialState, action) => {
         reports: action.payload.reports,
         language: action.payload.language,
         languageRead: action.payload.languageRead,
-        cca2:action.payload?.cca2,
+        cca2: action.payload?.cca2,
+        visitingUsers: action.payload?.visitingUsers,
       };
 
     case SET_USER_DATA_REGISTER:
@@ -122,7 +124,8 @@ const usersReducer = (state = initialState, action) => {
         isAdmin: action.payload.isAdmin,
         language: action.payload.language,
         languageRead: action.payload.languageRead,
-        rooms: action.payload.rooms
+        rooms: action.payload.rooms,
+        visitingUsers: action.payload.visitingUsers,        
       };
 
     case SET_USER_DATA_GOOGLE_ACCOUNT:
@@ -158,6 +161,7 @@ const usersReducer = (state = initialState, action) => {
         emailGoogleAccount: "",
         photoGoogleAccount: "",
         uidGoogleAccount: "",
+        visitingUsers: [],
       };
 
     case SET_VIP:

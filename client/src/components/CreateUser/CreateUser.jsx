@@ -61,7 +61,8 @@ const CreateUser = ( {setIsAuth} ) => {
     isAdmin: false,
     language: '',
     languageRead: '',
-    rooms: []
+    rooms: [],
+    visitingUsers: [],
   });
   
   const [errors, setErrors] = useState({})
@@ -295,7 +296,7 @@ const CreateUser = ( {setIsAuth} ) => {
     }
     
     getAge()
-  }, [countries, selectedCountry, createUserInfo.date, uidGoogleAccount, emailGoogleAccount, photoGoogleAccount, createUserInfo.photo, allUsers]);
+  }, [countries, selectedCountry, createUserInfo.date, uidGoogleAccount, emailGoogleAccount, photoGoogleAccount, createUserInfo.photo]);
 
 
   return (

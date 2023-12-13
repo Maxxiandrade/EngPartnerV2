@@ -6,7 +6,7 @@ const axios= require('axios')
 const postUser = async (req, res) => {
     try {
         const { uid, email, name, lastname, age, date, sex, country, photo, description, isOn, isVip, isAdmin, user, friends, language,
-        languageRead, rooms } = req.body;
+        languageRead, rooms, visitingUsers } = req.body;
         const { data } = await axios(`${API_URL}/getcountries`);
         const cca2 = data.find((coun) => coun.country === country)?.cca2;
         // Obtener una referencia a la colección 'users'
@@ -42,7 +42,8 @@ const postUser = async (req, res) => {
             languageRead,
             reports:[],
             rooms,
-            cca2
+            cca2,
+            visitingUsers
         });
 
         res.status(200).json('ok');
