@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline, getMyUser } from "../../../redux/actions/actions";
-import { filterUsersByCountry } from "../../../redux/actions/countriesActions";
+// import { filterUsersByCountry } from "../../../redux/actions/countriesActions";
 import defaultImg from "../../../assets/user-default-pfp.png";
 
 // RENDERS
@@ -20,30 +20,13 @@ const Users = ({ setIsAuth }) => {
   const uid = localStorage.getItem("uid");
   const dispatch = useDispatch();
   console.log(users);
-  const [selectedCountry, setSelectedCountry] = useState(null);
+  // const [selectedCountry, setSelectedCountry] = useState(null);
 
   useEffect(() => {
     dispatch(getOnline());
     dispatch(getMyUser(uid));
   }, []);
 
-  const onSelectMarker = (user) => {
-    setSelectedCountry(user.country);
-  };
-
-  const onSelectCountry = async (country) => {
-    console.log("Selected Country:", country);
-    setSelectedCountry(country);
-    await dispatch(filterUsersByCountry(users, country));
-  };
-
-  const displayedUsers = selectedCountry ? filteredUsers : users;
-  console.log("Displaying Users:", displayedUsers);
-
-  const clearFilter = () => {
-    setSelectedCountry(null);
-    dispatch(clearFilteredUsers());
-  };
 
   return (
     <div className={styles.connectContainer}>
@@ -51,10 +34,10 @@ const Users = ({ setIsAuth }) => {
       <Searchbar />
       <div className={styles.usersContainer}>
         <h3 className={styles.connectH3}>Find new friends</h3>
-        {displayedUsers.length === 0 ? (
+        {users.length === 0 ? (
           <p>Users not found</p>
         ) : (
-          displayedUsers.map((user) => (
+          users.map((user) => (
             <Link
               key={user.id}
               className={styles.linkContainer}
@@ -92,12 +75,6 @@ const Users = ({ setIsAuth }) => {
           ))
         )}
       </div>
-      <button onClick={clearFilter}>Clear</button>
-      <GoogleMapComponent
-        users={users} // Pasa todos los usuarios al componente del mapa
-        onSelectMarker={onSelectMarker}
-        onSelectCountry={onSelectCountry}
-      />
     </div>
   );
 };
