@@ -26,7 +26,9 @@ import {
   ADD_ROOM,
   SET_EDIT_PROFILE,
   DELETE_ROOM,
-  GET_VIPS
+  GET_VIPS,
+  POST_VISITS,
+  GET_VISITS
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -48,6 +50,7 @@ const initialState = {
   friends: [],
   reports: [],
   rooms:[],
+  visitingUsers:[],
   isVip: false,
   isOn: false,
   isAdmin: false,
@@ -283,6 +286,12 @@ const usersReducer = (state = initialState, action) => {
         return{
           ...state,
           vips: action.payload
+        }
+
+      case GET_VISITS:
+        return{
+          ...state,
+          visitingUsers: action.payload
         }
     default:
       return { ...state };

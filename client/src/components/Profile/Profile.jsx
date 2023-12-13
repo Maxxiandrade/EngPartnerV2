@@ -21,6 +21,7 @@ import { FormControl } from "@mui/material";
 // RENDERS
 import Navbar from "../Navbar/Navbar";
 import { getFlagByCode } from '../../utils/getFlagByCode';
+import Visits from "../Visits/Visits";
 
 const Profile = ({ setIsAuth }) => {
 
@@ -82,11 +83,8 @@ const Profile = ({ setIsAuth }) => {
       .post(`${API_URL}/user`, { uid: params.uid })
       .then(({ data }) => {
         if (data) {
-          console.log(data);
           setProfile(data);
         }
-        console.log(isFriend);
-        console.log(user);
       });
   }, [params?.uid, friendList, isFriend]);
 
@@ -299,6 +297,8 @@ const Profile = ({ setIsAuth }) => {
             </div>
           </div>
         )}
+        <Visits/>
+
       </div>
     );
 
@@ -345,6 +345,9 @@ const Profile = ({ setIsAuth }) => {
           </div>
         </div>
       )}
+      <Visits
+      visitedUid={changes.uid}
+      />
     </div>
   );
 };
