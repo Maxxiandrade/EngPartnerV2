@@ -20,23 +20,28 @@
   text-shadow: 1px 1px 1px #7c7c7c;
 }
 /* ------------------TABLE--------------------------- */
+.header {
+  display: flex;
+  background-color: #f2f2f2;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #001c2d;
+}
+.columnHeader {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
 .reportTable {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
   background-color: rgba(255, 255, 255, 0.9);
 }
-
 
 .reportTable td {
   border: 1px solid #ddd;
   padding: 8px;
-}
-
-.reportTable th {
-  border: 1px solid #ddd;
-  padding: 8px;
-  background-color: #f2f2f2;
 }
 
 .reportTable td {
@@ -53,14 +58,24 @@
 }
 
 /* ---------------------BUTTONS--------------------- */
-.removeBtn{
+.removeBtn {
   border-radius: 5px;
   background-color: #208800;
   color: white;
+  &:hover {
+    transition: 0.3s;
+    background-color: #1c7900;
+    border-color: #001c2d;
+  }
 }
 
-.banBtn{
+.banBtn {
   border-radius: 5px;
-  background-color: #fd2621;
+  background-color: #c50300;
   color: white;
+  &:hover {
+    transition: 0.3s;
+    background-color: #ac0300;
+    border-color: #001c2d;
+  }
 }

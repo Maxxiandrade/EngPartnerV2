@@ -97,40 +97,38 @@ const Admin = ({ setIsAuth }) => {
       <div className={style.adminContainer}>
         <h1 className={style.adminH1}>Admin panel</h1>
         <div>
+          <div className={style.header}>
+            <div className={style.columnHeader} style={{ width: '182.55px' }}>User</div>
+            <div className={style.columnHeader} style={{ width: '208.44px' }}>Report</div>
+            <div className={style.columnHeader} style={{ width: '898.64px' }}>Reported message</div>
+            <div className={style.columnHeader} style={{ width: '174px' }}>Actions</div>
+          </div>
           <table className={style.reportTable}>
-            <thead>
-              <tr>
-                <th style={{ width: '15%' }}>User</th>
-                <th style={{ width: '16.4%' }}>Report</th>
-                <th style={{ width: '60%' }}>Reported message</th>
-                <th style={{ width: '8%' }}>Ban</th>
-              </tr>
-            </thead>
             <tbody>
               {usersToRender?.map((user) => (
                 <tr key={user.id}>
 
-                  <td style={{ wordBreak: 'break-word', textAlign: 'center', fontSize:'20px' }}>
+                  <td style={{ width: '13%', wordBreak: 'break-word', textAlign: 'center', fontSize: '20px' }}>
                     <Link to={`/profile/${user.uid}`}>
                       {user.user}
                     </Link>
                   </td>
 
-                  <td colSpan="2" style={{borderRight:'none'}}>
+                  <td colSpan="2" style={{ borderRight: 'none', padding: '0', borderBottom: 'none' }}>
                     <table>
                       <tbody>
                         {user.reports &&
                           user.reports.map((report) => (
                             <tr key={report.reportId}>
-                              <td style={{ fontWeight: 'bold', width: '16%', textAlign: 'center' }}>{report.reportType}</td>
-                              <td style={{ wordBreak: 'break-word', color: 'black', width: '50%' }}>{report.report}</td>
-                              <td style={{ width: '10%', border:'none'}}>
+                              <td style={{ fontWeight: 'bold', width: '18%', textAlign: 'center' }}>{report.reportType}</td>
+                              <td style={{ wordBreak: 'break-word', color: 'black', width: '73%' }}>{report.report}</td>
+                              <td style={{ border: 'none' }}>
                                 <button
                                   key={report.reportId}
                                   onClick={() => handleDeleteReport(report.messageId, user.uid)}
                                   className={style.removeBtn}
                                 >
-                                  Remove report
+                                  Remove
                                 </button>
                               </td>
                             </tr>
@@ -139,9 +137,9 @@ const Admin = ({ setIsAuth }) => {
                     </table>
                   </td>
 
-                  <td style={{borderLeft:'none'}}>
+                  <td style={{ borderLeft: 'none', paddingLeft: '0' }}>
                     <button onClick={() => handleBan(user)} className={style.banBtn}>
-                      Ban User
+                      Ban
                     </button>
                   </td>
 
