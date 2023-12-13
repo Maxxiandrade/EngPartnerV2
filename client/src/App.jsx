@@ -58,7 +58,7 @@ function App() {
           path="profile/:uid"
           element={<Profile setIsAuth={setIsAuth} />}
         />
-        <Route path="connect" element={<Users />} />
+        <Route path="connect" element={<Users setIsAuth={setIsAuth} />} />
         <Route path="/premium" element={<Premium setIsAuth={setIsAuth} />} />
         <Route
           path="/messages"
