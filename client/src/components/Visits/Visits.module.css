@@ -1,1 +1,61 @@
 
+.visitorsContainer {
+    margin-left: 1em;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    max-height: 300px;
+    overflow: auto;
+}
+
+.visitors {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+}
+
+.visitantContainer {
+    margin-right: 1em;
+    display: flex;
+    background-color: #edf8ff60;
+    border-radius: 5px;
+    border: 1px solid #32b1fe;
+}
+
+.imgContainer {
+    border-radius: 50%;
+    margin: .2em 0;
+    margin-left: .2em;
+}
+
+.imgContainer img {
+    border-radius: 50%;
+    display: block;
+}
+
+.textContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.nameDiv {
+    display: flex;
+    gap: .5em;
+}
+
+.nameDiv p {
+    font-weight: bold;
+    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+}
+
+.secondText {
+    display: flex;
+    gap: .5em;
+}
+
+.secondText p {
+    font-weight: bold;
+    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+}

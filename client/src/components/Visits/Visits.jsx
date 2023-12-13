@@ -4,6 +4,7 @@ import styles from './Visits.module.css'
 import { postUserVisiting,getVisitors } from '../../redux/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import {Link} from 'react-router-dom'
 
 const Visits = ({visitedUid})=>{
     const dispatch = useDispatch()
@@ -55,14 +56,27 @@ const Visits = ({visitedUid})=>{
     
     if (!userVisited) {
         return (
-          <div>
-            <p>Visitors</p>
+          <div className={styles.visitorsContainer}>
+            <p className={styles.visitors}>Visitors</p>
             {visitors.map(visitant => (
-              <div key={visitant.uid}>
-                <div className="imgContainer">
-                    <img src={visitant.photo} alt="" />
+              <div className={styles.visitantContainer} key={visitant.uid}>
+                <Link to={`profile/${visitant.uid}`}>
+                <div className={styles.imgContainer}>
+                    <img src={visitant.photo} alt={visitant.name} />
                 </div>
+                </Link>
+                
+                <div className={styles.textContainer}>
+                <div className={styles.nameDiv}>
                 <p>{visitant.name}</p>
+                <p>{visitant.lastname}</p>
+                </div>
+
+                <div className={styles.secondText}>
+                <p>{visitant.sex}</p>
+                <p>{visitant.age}</p>
+                </div>
+                </div>
               </div>
             ))}
           </div>
