@@ -1,11 +1,14 @@
 const {db, fs} = require('../firebase-confing')
 const {addDoc, collection, setDoc, getDoc, doc} = require('firebase/firestore')
+const {API_URL}=require('../firebase-confing');
+const axios= require('axios')
 
 const postUser = async (req, res) => {
     try {
         const { uid, email, name, lastname, age, date, sex, country, photo, description, isOn, isVip, isAdmin, user, friends, language,
         languageRead, rooms } = req.body;
-
+        const { data } = await axios(`${API_URL}/getcountries`);
+        const cca2 = data.find((coun) => coun.country === country)?.cca2;
         // Obtener una referencia a la colección 'users'
         const usersCollection = collection(fs, 'users');
 
@@ -38,7 +41,8 @@ const postUser = async (req, res) => {
             language,
             languageRead,
             reports:[],
-            rooms
+            rooms,
+            cca2
         });
 
         res.status(200).json('ok');
