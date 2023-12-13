@@ -4,10 +4,12 @@ import styles from './Visits.module.css'
 import { postUserVisiting,getVisitors } from '../../redux/actions/actions'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const Visits = ({visitedUid})=>{
     const dispatch = useDispatch()
+    const navigate = useNavigate()
+    
 
     const uid = useSelector(state=> state.users.uid)
     console.log(uid)
@@ -20,6 +22,12 @@ const Visits = ({visitedUid})=>{
     const userVisited = visitedUid
     const isVip = useSelector(state=> state.users.isVip)
     const visitors = useSelector(state=> state.users.visitingUsers)
+
+    
+
+    const handleGoToVip = ()=>{
+      navigate('/premium')
+    }
 
     const handlePostUserVisit = ()=>{
         const userData = {
@@ -51,21 +59,13 @@ const Visits = ({visitedUid})=>{
     }, [uid]);
 
     
-    if(isVip === false){
-      return(
-        <div className={styles.noVipMessageContainer}>
-          <p className={styles.visitors}>Get the VIP to access your visitors</p>
-          <button className={styles.buttonToVip}>Get it now</button>
-        </div>
-      )
-    }
+    
 
-    if (!userVisited) {
+    if (!userVisited && isVip === true) {
         return (
           <div className={styles.visitorsContainer}>
             <p className={styles.visitors}>Visitors</p>
             {visitors.map(visitant => (
-              visitant.uid != uid ?
               <div className={styles.visitantContainer} key={visitant.uid}>
                 <Link to={`/profile/${visitant.uid}`}>
                   {console.log(visitant.uid)}
@@ -86,12 +86,14 @@ const Visits = ({visitedUid})=>{
                 </div>
                 </div>
               </div>
-              : ''
             ))}
           </div>
         );
-      } else {
-        return null; 
+      } else if(!visitedUid){
+        return <div className={styles.noVipMessageContainer}>
+        <p className={styles.visitors}>Get the VIP to access your visitors</p>
+        <button onClick={handleGoToVip} className={styles.buttonToVip}>Get it now</button>
+      </div>; 
       }
 }
 
