@@ -37,13 +37,17 @@ const getMyUser = async (req, res) => {
     try {
         const { uid } = req.body;
         const userSnapshot = await db.collection('users').where('uid', '==', uid).get();
-        
         if (userSnapshot.empty) {
             res.status(404).json({ error: 'Usuario no encontrado' });
             return;
         }
         const userData = userSnapshot.docs[0].data();
         await fitrueorFalse(userData, uid)
+        
+        // const { data } = await axios(`http://localhost:3001/getcountries`);
+        const { data } = await axios(`${API_URL}/getcountries`);
+        const cca2 = data.find((country) => country.country === userData?.country)?.cca2;
+        
         
         const userInfo = {
             uid: userData?.uid,
@@ -64,7 +68,8 @@ const getMyUser = async (req, res) => {
             rooms:userData?.rooms,
             reports: userData?.reports,
             language: userData?.language,
-            languageRead: userData?.languageRead
+            languageRead: userData?.languageRead,
+            cca2
         }; 
         res.status(200).json(userInfo);
     } catch (error) {

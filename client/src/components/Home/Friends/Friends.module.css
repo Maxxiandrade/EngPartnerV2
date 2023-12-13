@@ -10,7 +10,6 @@
   border: 2px solid #005ea6;
   background-color: #dff0ff;
   height: 100%;
-  padding: 3%;
 }
 
 .photo {
@@ -26,6 +25,7 @@
 }
 
 .txtH1 {
+  margin: 2% auto;
   font-size: 8px;
   color: #fd2621;
   width: 100%;
@@ -77,8 +77,9 @@
 }
 
 .txt {
+  margin: 0 auto;
   color: #371a46;
-  width: 100%;
+  width: 95%;
   text-align: center;
   font-weight: bold;
 }

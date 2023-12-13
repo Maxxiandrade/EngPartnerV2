@@ -89,6 +89,8 @@
   cursor: pointer;
   display: inline;
   width: 49px;
+  height: 49px;
+  max-height: 49px;
   border-radius: 10px;
   border: solid 0.5px #30363d;
   align-items: center;
