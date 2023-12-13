@@ -18,11 +18,8 @@ const Visits = ({visitedUid})=>{
     const age = useSelector(state=> state.users.age)
     const photo = useSelector(state=> state.users.photo)
     const userVisited = visitedUid
-
+    const isVip = useSelector(state=> state.users.isVip)
     const visitors = useSelector(state=> state.users.visitingUsers)
-    // console.log(visitors)
-
-    
 
     const handlePostUserVisit = ()=>{
         const userData = {
@@ -54,6 +51,15 @@ const Visits = ({visitedUid})=>{
     }, [uid]);
 
     
+    if(isVip === false){
+      return(
+        <div className={styles.noVipMessageContainer}>
+          <p className={styles.visitors}>Get the VIP to access your visitors</p>
+          <button className={styles.buttonToVip}>Get it now</button>
+        </div>
+      )
+    }
+
     if (!userVisited) {
         return (
           <div className={styles.visitorsContainer}>

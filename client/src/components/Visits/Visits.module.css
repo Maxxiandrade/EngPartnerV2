@@ -1,3 +1,26 @@
+.noVipMessageContainer{
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 360px;
+    gap: 1em;
+}
+
+.buttonToVip{
+    margin-left: 1em;
+    text-align: center;
+    background-color: red;
+    width: 50%;
+    height: 50px;
+    margin: 0 auto;
+ 
+}
+
+.buttonToVip:hover{
+    width: 60%;
+    height: 60px;
+}
 
 .visitorsContainer {
     margin-left: 1em;
