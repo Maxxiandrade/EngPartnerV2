@@ -100,58 +100,51 @@ const Admin = ({ setIsAuth }) => {
           <table className={style.reportTable}>
             <thead>
               <tr>
-                <th>User</th>
-                <th>Report</th>
-                <th>Reported message</th>
-                <th>Actions</th>
+                <th style={{ width: '15%' }}>User</th>
+                <th style={{ width: '16.4%' }}>Report</th>
+                <th style={{ width: '60%' }}>Reported message</th>
+                <th style={{ width: '8%' }}>Ban</th>
               </tr>
             </thead>
             <tbody>
               {usersToRender?.map((user) => (
                 <tr key={user.id}>
 
-                  <td><Link to={`/profile/${user.uid}`}>
-                    {user.user}
-                  </Link>
+                  <td style={{ wordBreak: 'break-word', textAlign: 'center', fontSize:'20px' }}>
+                    <Link to={`/profile/${user.uid}`}>
+                      {user.user}
+                    </Link>
                   </td>
 
-                  <td colSpan="2">
+                  <td colSpan="2" style={{borderRight:'none'}}>
                     <table>
                       <tbody>
                         {user.reports &&
                           user.reports.map((report) => (
                             <tr key={report.reportId}>
-                              <td>{report.reportType}</td>
-                              <td style={{wordBreak:'break-word'}}>{report.report}</td>
+                              <td style={{ fontWeight: 'bold', width: '16%', textAlign: 'center' }}>{report.reportType}</td>
+                              <td style={{ wordBreak: 'break-word', color: 'black', width: '50%' }}>{report.report}</td>
+                              <td style={{ width: '10%', border:'none'}}>
+                                <button
+                                  key={report.reportId}
+                                  onClick={() => handleDeleteReport(report.messageId, user.uid)}
+                                  className={style.removeBtn}
+                                >
+                                  Remove report
+                                </button>
+                              </td>
                             </tr>
                           ))}
                       </tbody>
                     </table>
                   </td>
 
-                  <td>
-                    <table>
-                      <tbody>
-                        <td style={{width:'60%', height:'100%', border:'none', padding: '5%'}}>
-                      {user.reports &&
-                        user.reports.map((report) => (
-                          <button
-                            key={report.reportId}
-                            onClick={() => handleDeleteReport(report.messageId, user.uid)}
-                            className={style.removeBtn}
-                          >
-                            Remove report
-                          </button>
-                        ))}
-                        </td>
-                        <td style={{width:'60%', height:'100%', border:'none'}}>
-                      <button onClick={() => handleBan(user)} className={style.banBtn}>
-                        Ban User
-                      </button>
-                      </td>
-                      </tbody>
-                    </table>
+                  <td style={{borderLeft:'none'}}>
+                    <button onClick={() => handleBan(user)} className={style.banBtn}>
+                      Ban User
+                    </button>
                   </td>
+
                 </tr>
               ))}
             </tbody>
