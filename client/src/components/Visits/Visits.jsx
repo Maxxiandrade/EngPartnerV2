@@ -15,6 +15,7 @@ const Visits = ({visitedUid})=>{
     const sex = useSelector(state=> state.users.sex)
     const country = useSelector(state=> state.users.country)
     const age = useSelector(state=> state.users.age)
+    const photo = useSelector(state=> state.users.photo)
     const userVisited = visitedUid
 
     const visitors = useSelector(state=> state.users.visitingUsers)
@@ -31,6 +32,7 @@ const Visits = ({visitedUid})=>{
                 sex: sex,
                 age: age,
                 country: country,
+                photo: photo,
                 uid: uid,
             }
         }
@@ -39,32 +41,35 @@ const Visits = ({visitedUid})=>{
     }
 
     useEffect(() => {
-        if (uid && name && lastname && sex && country && age && userVisited) {
+        if (uid && name && lastname && sex && country && age && photo && userVisited) {
             handlePostUserVisit();
         } 
-    }, [uid, name, lastname, sex, country, age]);
+    }, [uid, name, lastname, sex, country, age, photo]);
 
     useEffect(() => {
         if(uid){
-            dispatch(getVisitors(uid)); // Llama a getVisitors al montar el componente o cuando cambie uid
+            dispatch(getVisitors(uid))
         }
     }, [uid]);
 
     
-    return(
-        <div>
+    if (!userVisited) {
+        return (
+          <div>
             <p>Visitors</p>
             {visitors.map(visitant => (
-      <div key={visitant.uid}> {/* Asegúrate de tener una propiedad única como key, aquí se usa uid */}
-        <p>Name: {visitant.name}</p>
-        <p>Lastname: {visitant.lastname}</p>
-        <p>Sex: {visitant.sex}</p>
-        <p>Age: {visitant.age}</p>
-        <p>Country: {visitant.country}</p>
-      </div>
-    ))}
-        </div>
-    )
+              <div key={visitant.uid}>
+                <div className="imgContainer">
+                    <img src={visitant.photo} alt="" />
+                </div>
+                <p>{visitant.name}</p>
+              </div>
+            ))}
+          </div>
+        );
+      } else {
+        return null; 
+      }
 }
 
 export default Visits

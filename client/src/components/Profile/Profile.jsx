@@ -83,11 +83,8 @@ const Profile = ({ setIsAuth }) => {
       .post(`${API_URL}/user`, { uid: params.uid })
       .then(({ data }) => {
         if (data) {
-          console.log(data);
           setProfile(data);
         }
-        console.log(isFriend);
-        console.log(user);
       });
   }, [params?.uid, friendList, isFriend]);
 

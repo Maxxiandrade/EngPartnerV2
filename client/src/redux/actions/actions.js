@@ -335,6 +335,7 @@ export const putDeleteRoom = (obj) => async (dispatch) => {
 export const postUserVisiting = (userData) => async (dispatch)=>{
   try {
     const {data} = axios.post(`${API_URL}/profile`,userData)
+    console.log(data)
 
   dispatch({
     type: POST_VISITS,
