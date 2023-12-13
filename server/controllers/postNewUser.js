@@ -4,8 +4,10 @@ const postNewUser = async (req, res) => {
     try {
         
         const { uid,mail, name, lastname, age, isVip,sex,country, user, language, languageRead, rooms } = req.body;
-
-        const result = await createUser(uid,mail,name, lastname, age, isVip,sex,country, user, language, languageRead, rooms);
+        const { data } = await axios(`${API_URL}/getcountries`);
+        const cca2 = data.find((coun) => coun.country === country)?.cca2;
+        
+        const result = await createUser(uid,mail,name, lastname, age, isVip,sex,country, user, language, languageRead, rooms,cca2);
 
         res.status(200).json(result)
     } catch (error) {
@@ -13,7 +15,7 @@ const postNewUser = async (req, res) => {
     }
 }
 
-const createUser= async (uid,mail, name,lastname, age, isVip,sex,country, user, language, languageRead, rooms)=>{
+const createUser= async (uid,mail, name,lastname, age, isVip,sex,country, user, language, languageRead, rooms,cca2)=>{
 
     try {
         const newUser= await db.collection('users').add({
@@ -29,7 +31,8 @@ const createUser= async (uid,mail, name,lastname, age, isVip,sex,country, user, 
             language,
             languageRead,
             timestamp: new Date(),
-            rooms
+            rooms,
+            cca2
         })
         return  newUser
         
