@@ -38,7 +38,7 @@ router.get('/reported', getReported)
 router.get('/vips', getVipUsers)
 
 router.post('/user', getMyUser)
-router.post('/send-message', postMessage)
+router.post('/send-messgetMyUserage', postMessage)
 router.post('/newUser',postNewUser)
 router.post('/myMessage', getMyMessage)
 router.post('/createuser', postUser)

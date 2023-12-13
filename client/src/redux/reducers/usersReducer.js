@@ -96,6 +96,7 @@ const usersReducer = (state = initialState, action) => {
         reports: action.payload.reports,
         language: action.payload.language,
         languageRead: action.payload.languageRead,
+        cca2:action.payload?.cca2,
       };
 
     case SET_USER_DATA_REGISTER:
