@@ -16,11 +16,21 @@
 
     width: 100%;
     max-width: 470px;
+    border-radius: 5px;
+    border: 1px solid #32b1fe;
 }
 
 .nav button {
     width: 30%;
     max-width: 200px;
+    background-color: #edf8ff60;
+    border-radius: 2px;
+    transition: .2s ease-in-out;
+}
+
+.nav button:hover{
+    background-color: #c1d2dd60;
+    border: 1px solid #32b1fe;
 }
 
 @media screen and (min-width: 900px){
