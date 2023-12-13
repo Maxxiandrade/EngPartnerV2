@@ -10,6 +10,7 @@ const getAllCountries = async (req, res) => {
                 country: countries.name.common,
                 flag: countries.flags.png,
                 languages: countries.languages,
+                cca2:countries.cca2,
             }
             allCountries.push(country)
         })

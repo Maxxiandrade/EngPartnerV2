@@ -1,5 +1,4 @@
 .adinMainDiv {
-  background-color: #031525;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -20,59 +19,48 @@
   text-align: center;
   text-shadow: 1px 1px 1px #7c7c7c;
 }
-
+/* ------------------TABLE--------------------------- */
 .reportTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 
-.reportTable th,
+
 .reportTable td {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
 .reportTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
   background-color: #f2f2f2;
 }
 
 .reportTable td {
+  padding: 8px;
   text-align: left;
 }
 
-.reportTable td:first-child {
-  width: 20%;
-}
-
 .reportTable td table {
-  width: 100%;
   border-collapse: collapse;
 }
 
 .reportTable td table td {
-  border: 1px solid #ddd;
   padding: 8px;
-  width: 50%;
 }
 
+/* ---------------------BUTTONS--------------------- */
 .removeBtn{
-  margin-top: 10px;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #208800;
   color: white;
-  cursor: pointer;
 }
 
 .banBtn{
-  margin-top: 10px;
-  padding: 5px 10px;
-  border: 1px solid #ddd;
   border-radius: 5px;
   background-color: #fd2621;
   color: white;
-  cursor: pointer;
 }
