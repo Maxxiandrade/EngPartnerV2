@@ -59,8 +59,10 @@ const Visits = ({visitedUid})=>{
           <div className={styles.visitorsContainer}>
             <p className={styles.visitors}>Visitors</p>
             {visitors.map(visitant => (
+              visitant.uid != uid ?
               <div className={styles.visitantContainer} key={visitant.uid}>
-                <Link to={`profile/${visitant.uid}`}>
+                <Link to={`/profile/${visitant.uid}`}>
+                  {console.log(visitant.uid)}
                 <div className={styles.imgContainer}>
                     <img src={visitant.photo} alt={visitant.name} />
                 </div>
@@ -78,6 +80,7 @@ const Visits = ({visitedUid})=>{
                 </div>
                 </div>
               </div>
+              : ''
             ))}
           </div>
         );
