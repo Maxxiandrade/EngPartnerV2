@@ -1,6 +1,7 @@
 const { db } = require('../firebase-confing');
-
+const {API_URL}=require('../firebase-confing');
 const postNewUser = async (req, res) => {
+    
     try {
         
         const { uid,mail, name, lastname, age, isVip,sex,country, user, language, languageRead, rooms } = req.body;
