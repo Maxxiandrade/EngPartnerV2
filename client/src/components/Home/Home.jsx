@@ -9,17 +9,19 @@ import { useDispatch } from "react-redux";
 import { getMyUser } from '../../redux/actions/actions';
 
 //Renders
+import RateCard from "../RateCard/RateCard";
 import Navbar from "../Navbar/Navbar";
 import TopicChat from '../Chats/TopicChat/TopicChat'
 import { Navigate } from 'react-router-dom';
 import { API_URL } from "../../firebase-config";
-
+import { useState } from "react";
 
 const Home = ({ setIsAuth }) => {
   console.log(`Entorno: ${import.meta.env.MODE}, URL del back a que apunta: ${API_URL}`);
   const dispatch = useDispatch();
   const uid = auth.currentUser?.uid;
   const localStorageUID = localStorage.getItem('uid');
+  const [rating, setRating] = useState(false)
 
 
 
@@ -37,12 +39,14 @@ const Home = ({ setIsAuth }) => {
      <>
       {localStorageUID ? (
         <div className={style.homeMainDiv}>
-          <Navbar setIsAuth={setIsAuth}/>
+          <Navbar setIsAuth={setIsAuth} rating={rating} setRating={setRating}/>
           <div className={style.homeComponentsDiv}>
             <div className={style.globalChat}>
               <TopicChat/>
             </div>
           </div>
+          {rating ?
+            <RateCard/>:''}
         </div>
       ) : (
         <Navigate to="/" replace={true} />

@@ -19,13 +19,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMyUser, clearUserDataInLogout } from '../../redux/actions/actions';
 import axios from 'axios';
 import { API_URL } from "../../firebase-config";
+import RateCard from "../RateCard/RateCard";
 
-
+    
 import React from 'react'
 
-const Navbar = ({ setIsAuth }) => {
+const Navbar = ({ setIsAuth ,setRating,rating }) => {
     const [showRate, setShowRate] = useState(false)
-
+    const didRate=useSelector(state => state.users.didRate)
     const vip = useSelector(state => state.users.isVip)
     const admin = useSelector((state) => state.users.isAdmin)
     const [colum, setColumn] = useState(false)
@@ -34,8 +35,7 @@ const Navbar = ({ setIsAuth }) => {
     const uid = localStorage.getItem("uid");
     const localStorageUID = localStorage.getItem('uid');
     const cookies = new Cookies();
-
-
+    
     const handleLogOut = async () => {
         axios.put(`${API_URL}/geton`, { uid, is: "off" })
         cookies.remove("auth-token");
@@ -57,8 +57,7 @@ const Navbar = ({ setIsAuth }) => {
         }
         dispatch(getMyUser(localStorageUID));
         console.log('holas')
-      }, [uid]);
-
+      }, [uid, didRate]);
 
 
 
@@ -116,18 +115,20 @@ const Navbar = ({ setIsAuth }) => {
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
-                                <li className={style.li}>
-                                    <div className={style.dropDownDiv} onClick={handleLogOut}>
-                                        <button>Rate us</button>
+                              { !didRate ? <li className={style.li}>
+                                    <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
+                                        <img src={logOut} alt="logout" className={style.icon} />
+                                        <span className={style.dropDownSpan}><b>Rating</b></span>
                                     </div>
-                                </li>
-
+                                </li>: ''}
                             </ul> : ''}
+                        
                     </div>
                 </nav>
             ) : (
                 <Navigate to="/" replace={true} />
             )}
+           
         </>
         )
     } else return (
@@ -177,13 +178,19 @@ const Navbar = ({ setIsAuth }) => {
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
-                                
+                                { !didRate ? <li className={style.li}>
+                                    <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
+                                        <img src={logOut} alt="logout" className={style.icon} />
+                                        <span className={style.dropDownSpan}><b>Rating</b></span>
+                                    </div>
+                                </li>: ''}
                             </ul> : ''}
                     </div>
                 </nav>
             ) : (
                 <Navigate to="/" replace={true} />
             )}
+              {rating ?<RateCard/> : ''}
         </>
     );
 }

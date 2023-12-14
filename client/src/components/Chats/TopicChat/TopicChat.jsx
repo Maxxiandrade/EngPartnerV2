@@ -186,7 +186,6 @@ const Chat = () => {
           </form>
         </div>
       </div>
-        <RateCard/>
     </>
   );
 };
