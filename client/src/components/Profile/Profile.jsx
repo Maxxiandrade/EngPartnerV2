@@ -174,7 +174,7 @@ const Profile = ({ setIsAuth }) => {
                 alt="Profile"
                 className={style.profilePhoto}
               />
-              <button style={{ marginTop: "20px", backgroundColor: "#d33", color: "white" }} onClick={() => { handleCloseAccount(localStorageUID) }}>Close account</button>
+              <button className={style.clouseAccBtn} onClick={() => { handleCloseAccount(localStorageUID) }}>Close account</button>
             </div>
             <div className={style.profileInfo}>
               <div className={style.infoDiv}>

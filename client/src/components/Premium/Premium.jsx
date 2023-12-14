@@ -40,10 +40,10 @@ function Premiun({ setIsAuth }) {
       cancelButtonColor: "#3085d6",
       confirmButtonColor: "#d33",
       confirmButtonText: "Unsuscribe"
-    }).then( async (result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.put(`${API_URL}/geton`,{ uid: uid, is:"notPremium"} )
+          await axios.put(`${API_URL}/geton`, { uid: uid, is: "notPremium" })
           dispatch(setVip(false))
           Swal.fire({
             title: "Subscription deleted!",
@@ -60,27 +60,27 @@ function Premiun({ setIsAuth }) {
     });
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getMyUser(uid))
-  },[])
+  }, [])
 
   return (
     <div className={style.premiumMainDiv}>
-      <Navbar setIsAuth={setIsAuth}/>
-        <div className={style.introPremiumDiv}>
-          {vip ? 
+      <Navbar setIsAuth={setIsAuth} />
+      <div className={style.introPremiumDiv}>
+        {vip ?
           <h3 className={style.introH3}>Welcome to the VIP experience, {name} <img src={verify} className={style.iconVerify} />! Check out the features that will enhance your EngPartner experience!</h3>
           :
           <h3 className={style.introH3}>Unlock VIP with our <img src={verify} className={style.iconVerify} /> VIP membership!</h3>
-          }
+        }
 
-          {vip ?
-          <p className={style.introH3}>Go enjoy our 'CREATE ROOM' special feature! You cant test it by clicking your Profile Pic {'>'} 'Create Room' </p>
+        {vip ?
+          <p className={style.introH3}>Go enjoy our 'CREATE ROOM' special feature! You cant test it by clicking your Profile Pic {'>'} 'Create Room'. Or </p>
           :
-          <p className={style.introH3}>Get exclusive access to features that will enhance your EngPartner experience.
-          You can choose between our monthly or annual subscription.</p>
-          }
-        </div>
+          <p className={style.introH3}>Get exclusive access to features that will enhance your EngPartner experience. <b>VIP</b> users can create private rooms, see who has visited their profile, view translations in real time and change their reading languages!
+          </p>
+        }
+      </div>
       <div className={style.premiumCoponentsDiv}>
         <Elements stripe={stripePromise}>
           <MonthPremium key="month" isVip={isVip} uid={uid} />
@@ -90,8 +90,8 @@ function Premiun({ setIsAuth }) {
         </Elements>
       </div>
 
-        {isVip && <Button variant="contained" color="error" sx={{ width: "20%", margin: '0 auto', marginTop: '30px' }}
-          onClick={handleUnsuscribe}>Unsuscribe</Button>}
+      {isVip && <Button variant="contained" color="error" sx={{ width: "20%", margin: '0 auto', marginTop: '30px' }}
+        onClick={handleUnsuscribe}>Unsuscribe</Button>}
     </div>
   )
 }

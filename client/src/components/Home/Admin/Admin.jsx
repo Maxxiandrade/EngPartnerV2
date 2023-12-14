@@ -151,7 +151,7 @@ const Admin = ({ setIsAuth }) => {
           </table>
         </div>
         <p style={{ padding: '1%', color: 'white', fontWeight: 'bold' }}>Total Vip users: {vipLength}</p>
-      <p style={{ padding: '1%', color: 'white', fontWeight: 'bold' }}>
+      <p style={{ padding: '1%', color: 'white', fontWeight: 'bold'}}>
       AVERAGE RATING: {rating} *
       </p>
       </div>
