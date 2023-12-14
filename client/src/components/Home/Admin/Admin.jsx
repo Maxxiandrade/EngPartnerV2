@@ -97,61 +97,52 @@ const Admin = ({ setIsAuth }) => {
       <div className={style.adminContainer}>
         <h1 className={style.adminH1}>Admin panel</h1>
         <div>
+          <div className={style.header}>
+            <div className={style.columnHeader} style={{ width: '182.55px' }}>User</div>
+            <div className={style.columnHeader} style={{ width: '208.44px' }}>Report</div>
+            <div className={style.columnHeader} style={{ width: '898.64px' }}>Reported message</div>
+            <div className={style.columnHeader} style={{ width: '174px' }}>Actions</div>
+          </div>
           <table className={style.reportTable}>
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Report</th>
-                <th>Reported message</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
             <tbody>
               {usersToRender?.map((user) => (
                 <tr key={user.id}>
 
-                  <td><Link to={`/profile/${user.uid}`}>
-                    {user.user}
-                  </Link>
+                  <td style={{ width: '13%', wordBreak: 'break-word', textAlign: 'center', fontSize: '20px' }}>
+                    <Link to={`/profile/${user.uid}`}>
+                      {user.user}
+                    </Link>
                   </td>
 
-                  <td colSpan="2">
+                  <td colSpan="2" style={{ borderRight: 'none', padding: '0', borderBottom: 'none' }}>
                     <table>
                       <tbody>
                         {user.reports &&
                           user.reports.map((report) => (
                             <tr key={report.reportId}>
-                              <td>{report.reportType}</td>
-                              <td style={{wordBreak:'break-word'}}>{report.report}</td>
+                              <td style={{ fontWeight: 'bold', width: '18%', textAlign: 'center' }}>{report.reportType}</td>
+                              <td style={{ wordBreak: 'break-word', color: 'black', width: '73%' }}>{report.report}</td>
+                              <td style={{ border: 'none' }}>
+                                <button
+                                  key={report.reportId}
+                                  onClick={() => handleDeleteReport(report.messageId, user.uid)}
+                                  className={style.removeBtn}
+                                >
+                                  Remove
+                                </button>
+                              </td>
                             </tr>
                           ))}
                       </tbody>
                     </table>
                   </td>
 
-                  <td>
-                    <table>
-                      <tbody>
-                        <td style={{width:'60%', height:'100%', border:'none', padding: '5%'}}>
-                      {user.reports &&
-                        user.reports.map((report) => (
-                          <button
-                            key={report.reportId}
-                            onClick={() => handleDeleteReport(report.messageId, user.uid)}
-                            className={style.removeBtn}
-                          >
-                            Remove report
-                          </button>
-                        ))}
-                        </td>
-                        <td style={{width:'60%', height:'100%', border:'none'}}>
-                      <button onClick={() => handleBan(user)} className={style.banBtn}>
-                        Ban User
-                      </button>
-                      </td>
-                      </tbody>
-                    </table>
+                  <td style={{ borderLeft: 'none', paddingLeft: '0' }}>
+                    <button onClick={() => handleBan(user)} className={style.banBtn}>
+                      Ban
+                    </button>
                   </td>
+
                 </tr>
               ))}
             </tbody>

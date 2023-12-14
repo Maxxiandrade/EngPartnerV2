@@ -69,7 +69,8 @@ const getMyUser = async (req, res) => {
             reports: userData?.reports,
             language: userData?.language,
             languageRead: userData?.languageRead,
-            cca2
+            cca2,
+            visitingUsers: userData?.visitingUsers,
         }; 
         res.status(200).json(userInfo);
     } catch (error) {

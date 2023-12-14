@@ -69,10 +69,9 @@
 }
 
 /* .vipButton {
-  } */
-  
-  .vipActive {
-    background-color: rgb(207, 207, 24);
+} */
+
+.vipActive {
     color: #000;
     /* Otros estilos si es necesario cuando isVipFilterValue es true */
   }
@@ -87,10 +86,10 @@
         position: absolute;
         width: 40%;
         max-width: 550px;
-        top: 25%;
-        right: 20%;
+        top: 28%;
+        right: 25%;
 
-        background-color: #dff0ff;
+        background-color: #edf8ff60;
         height: 40%;
         border-radius: 10px;
     }
