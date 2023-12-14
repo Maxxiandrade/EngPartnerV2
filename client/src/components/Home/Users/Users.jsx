@@ -1,8 +1,9 @@
-/* eslint-disable react/jsx-key */
 // STYLES
 import styles from "./Users.module.css";
-import { Link } from "react-router-dom";
+import offline from '../../../assets/svg/offline.svg'
+import online from '../../../assets/svg/online.svg'
 
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getOnline, getMyUser } from "../../../redux/actions/actions";
@@ -32,8 +33,8 @@ const Users = ({ setIsAuth }) => {
     <div className={styles.connectContainer}>
       <Navbar setIsAuth={setIsAuth} />
       <Searchbar />
-      <div className={styles.usersContainer}>
         <h3 className={styles.connectH3}>Find new friends</h3>
+      <div className={styles.usersContainer}>
         {users.length === 0 ? (
           <p>Users not found</p>
         ) : (
@@ -63,9 +64,9 @@ const Users = ({ setIsAuth }) => {
                     <p>{user.sex}</p>
                     <div className={styles.isOnContainerrr}>
                       {user.isOn ? (
-                        <span className={styles.spannn}>🟢</span>
+                        <span className={styles.spannn}><img src={online} alt='🟢' className={styles.onlineOffline} /></span>
                       ) : (
-                        <span className={styles.spannn}>🔴</span>
+                        <span className={styles.spannn}><img src={offline} alt='🔴' className={styles.onlineOffline} /></span>
                       )}
                     </div>
                   </div>
