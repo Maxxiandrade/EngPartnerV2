@@ -1,94 +1,95 @@
-.linkToPremium{
-    width: 50%;
-}
-.noVipMessageContainer{
-    margin-left: 1em;
+.visitsMainDiv{
+    margin: auto;
+    width: fit-content;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    width: 360px;
-    gap: 1em;
+    border: 2px solid #32b1fe;
+  border-radius: 15px;
+  background-color: #edf8ff60;
 }
 
-.buttonToVip{
-    margin-left: 1em;
-    text-align: center;
-    background-color: #edf8ff60;
-    width: 50%;
-    height: 50px;
-    margin: 0 auto;
-    border: none;
-    transition: .2s ease;
-    border: 1px solid #32b1fe;
- 
-}
-
-.buttonToVip:hover{
-    width: 60%;
-    height: 60px;
-    background-color: #d2e0e960;
+.noVipMessageContainer {
+    margin: auto;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    border: 2px solid #32b1fe;
+  border-radius: 15px;
+  background-color: #edf8ff60;
 }
 
 .visitorsContainer {
-    margin-left: 1em;
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    max-height: 300px;
-    overflow: auto;
+  align-items: center;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-height: 300px;
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .visitors {
-    font-size: 1.4rem;
-    font-weight: bold;
-    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+    margin-bottom: 2%;
+  text-align: center;
+  font-size: 1.4rem;
+  text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black,
+    1.5px 1.5px black;
 }
 
 .visitantContainer {
-    margin-right: 1em;
-    display: flex;
-    background-color: #edf8ff60;
-    border-radius: 5px;
+  padding: 2%;
+  width: 350px;
+  display: flex;
+  background-color: hsla(203, 100%, 96%, 0.4);
+  border: 1px solid hsla(203, 100%, 96%, 0.4);
+  border-radius: 5px;
+  &:hover {
+    background-color: hsla(204, 24%, 47%, 0.4);
     border: 1px solid #32b1fe;
+    transition: 0.3s;
+  }
 }
 
 .imgContainer {
-    width: 100px;
-    border-radius: 50%;
-    margin: .2em 0;
-    margin-left: .2em;
+  width: 100px;
+  border-radius: 50%;
+  margin: 0.2em 0;
+  margin-left: 0.2em;
 }
 
 .imgContainer img {
-    width: 100%;
-    border-radius: 50%;
-    display: block;
-    object-fit: cover;
-}
-
-.textContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 100%;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
 }
 
 .nameDiv {
-    display: flex;
-    gap: .5em;
+  color: white;
+  text-shadow: none;
+  margin-left: 5%;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
 }
 
 .nameDiv p {
-    font-weight: bold;
-    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+  font-weight: bold;
 }
 
 .secondText {
-    display: flex;
-    gap: .5em;
+  display: flex;
+  gap: 0.5em;
 }
 
 .secondText p {
-    font-weight: bold;
-    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+  font-weight: bold;
+  text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black,
+    1.5px 1.5px black;
+}
+
+.iconVerify {
+  margin-bottom: -5px;
+  width: 22px;
 }

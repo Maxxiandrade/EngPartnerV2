@@ -27,6 +27,7 @@ body{
   background-position: center;
   background-repeat: no-repeat;
   overflow-x: hidden;
+  background-attachment: fixed;
 }
 
 ::-webkit-scrollbar {
