@@ -1,3 +1,33 @@
+.linkToPremium{
+    width: 50%;
+}
+.noVipMessageContainer{
+    margin-left: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 360px;
+    gap: 1em;
+}
+
+.buttonToVip{
+    margin-left: 1em;
+    text-align: center;
+    background-color: #edf8ff60;
+    width: 50%;
+    height: 50px;
+    margin: 0 auto;
+    border: none;
+    transition: .2s ease;
+    border: 1px solid #32b1fe;
+ 
+}
+
+.buttonToVip:hover{
+    width: 60%;
+    height: 60px;
+    background-color: #d2e0e960;
+}
 
 .visitorsContainer {
     margin-left: 1em;
@@ -24,14 +54,17 @@
 }
 
 .imgContainer {
+    width: 100px;
     border-radius: 50%;
     margin: .2em 0;
     margin-left: .2em;
 }
 
 .imgContainer img {
+    width: 100%;
     border-radius: 50%;
     display: block;
+    object-fit: cover;
 }
 
 .textContainer {
