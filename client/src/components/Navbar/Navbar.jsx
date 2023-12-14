@@ -22,12 +22,12 @@ import axios from 'axios';
 import { API_URL } from "../../firebase-config";
 import RateCard from "../RateCard/RateCard";
 
-    
+
 import React from 'react'
 
-const Navbar = ({ setIsAuth ,setRating,rating }) => {
+const Navbar = ({ setIsAuth, setRating, rating }) => {
     const [showRate, setShowRate] = useState(false)
-    const didRate=useSelector(state => state.users.didRate)
+    const didRate = useSelector(state => state.users.didRate)
     const vip = useSelector(state => state.users.isVip)
     const admin = useSelector((state) => state.users.isAdmin)
     const [colum, setColumn] = useState(false)
@@ -36,7 +36,7 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
     const uid = localStorage.getItem("uid");
     const localStorageUID = localStorage.getItem('uid');
     const cookies = new Cookies();
-    
+
     const handleLogOut = async () => {
         axios.put(`${API_URL}/geton`, { uid, is: "off" })
         cookies.remove("auth-token");
@@ -53,12 +53,12 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
         console.log(uid)
         console.log("is admin" + " " + admin)
         if (!localStorageUID) {
-          signOut(auth);
-          setIsAuth(false);
+            signOut(auth);
+            setIsAuth(false);
         }
         dispatch(getMyUser(localStorageUID));
         console.log('holas')
-      }, [uid, didRate]);
+    }, [uid, didRate]);
 
 
 
@@ -89,7 +89,7 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                 <li className={style.li}>
                                     <Link to={`/profile/${uid}`}>
                                         <div className={style.dropDownDiv}>
-                                            <img src={userPhoto} alt="" className={style.userPhoto2} />
+                                            <img src={userPhoto} className={style.userPhoto2} />
                                             <span className={style.dropDownSpan}><b>Profile</b></span>
                                         </div>
                                     </Link>
@@ -97,7 +97,7 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                 <li className={style.li}>
                                     <Link to="/admin">
                                         <div className={style.dropDownDiv}>
-                                            <img src={report} alt="admin" className={style.icon} />
+                                            <img src={report} className={style.icon} />
                                             <span className={style.dropDownSpan}><b>Admin Panel</b></span>
                                         </div>
                                     </Link>
@@ -105,31 +105,31 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                 <li className={style.li}>
                                     <Link to='/CreateRoom'>
                                         <div className={style.dropDownDiv}>
-                                            <img src={group} alt="group" className={style.icon} />
+                                            <img src={group} className={style.icon} />
                                             <span className={style.dropDownSpan}><b>Create Room</b></span>
                                         </div>
                                     </Link>
                                 </li>
-                              { !didRate ? <li className={style.li}>
+                                {!didRate ? <li className={style.li}>
                                     <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
-                                        <img src={star} alt="logout" className={style.icon} />
-                                        <span className={style.dropDownSpan}><b>Rating</b></span>
+                                        <img src={star} className={style.icon} />
+                                        <span className={style.dropDownSpan}><b>Rate Us</b></span>
                                     </div>
-                                </li>: ''}
+                                </li> : ''}
                                 <li className={style.li}>
                                     <div className={style.dropDownDiv} onClick={handleLogOut}>
-                                        <img src={logOut} alt="logout" className={style.icon} />
+                                        <img src={logOut} className={style.icon} />
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
                             </ul> : ''}
-                        
+
                     </div>
                 </nav>
             ) : (
                 <Navigate to="/" replace={true} />
             )}
-           
+
         </>
         )
     } else return (
@@ -159,7 +159,7 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                 <li className={style.li}>
                                     <Link to={`/profile/${uid}`}>
                                         <div className={style.dropDownDiv}>
-                                            <img src={userPhoto} alt="" className={style.userPhoto2} />
+                                            <img src={userPhoto} className={style.userPhoto2} />
                                             <span className={style.dropDownSpan}>Profile</span>
                                         </div>
                                     </Link>
@@ -168,30 +168,30 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                     <li className={style.li}>
                                         <Link to='/CreateRoom'>
                                             <div className={style.dropDownDiv}>
-                                                <img src={group} alt="group" className={style.icon} />
+                                                <img src={group} className={style.icon} />
                                                 <span className={style.dropDownSpan}>Create Room</span>
                                             </div>
                                         </Link>
                                     </li> : ""}
+                                {vip && !didRate ? <li className={style.li}>
+                                    <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
+                                        <img src={star} className={style.icon} />
+                                        <span className={style.dropDownSpan}><b>Rate Us</b></span>
+                                    </div>
+                                </li> : ''}
                                 <li className={style.li}>
                                     <div className={style.dropDownDiv} onClick={handleLogOut}>
-                                        <img src={logOut} alt="logout" className={style.icon} />
+                                        <img src={logOut} className={style.icon} />
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
-                                { !didRate ? <li className={style.li}>
-                                    <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
-                                        <img src={logOut} alt="logout" className={style.icon} />
-                                        <span className={style.dropDownSpan}><b>Rating</b></span>
-                                    </div>
-                                </li>: ''}
                             </ul> : ''}
                     </div>
                 </nav>
             ) : (
                 <Navigate to="/" replace={true} />
             )}
-              {rating ?<RateCard/> : ''}
+            {rating ? <RateCard /> : ''}
         </>
     );
 }
