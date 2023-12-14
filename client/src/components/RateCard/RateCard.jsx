@@ -1,5 +1,7 @@
-import { useState } from "react";
 import styles from './RateCard.module.css'
+import goldenStar from '../../assets/golden-star.png'
+
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 
@@ -28,7 +30,7 @@ const RateCard = () => {
       dispatch(getMyUser(uid))
       
     }, 500);
-    setStyle(false); // Cambia el estado para ocultar el formulario después de enviarlo
+    setStyle(false);
   };
 
   return (
@@ -37,7 +39,7 @@ const RateCard = () => {
       <div className={styles.starsContainer}>
         {stars.map(value => (
           <span value={value} className={styles.numberValues} key={value} onClick={() => handleRating(value)}>
-            ⭐️
+            <img src={goldenStar} alt="⭐️" className={styles.stars}/>
           </span>
         ))}
       </div>

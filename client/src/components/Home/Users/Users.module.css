@@ -16,16 +16,15 @@
 .usersContainer {
   display: flex;
   flex-direction: column;
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
+  width: 25%;
+  margin: 0;
 }
 
 .connectH3 {
+  padding-left: 1%;
     font-size: 1.6rem;
     font-weight: bold;
     text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
-    margin-bottom: .6em;
 }
 
 .userContainer {
@@ -34,7 +33,7 @@
   height: 100px;
   max-height: 100px;
   margin-bottom: 1em;
-  background-color: #edf8ff60;
+  background-color: #edf8ffbd;
   border-radius: 5px;
   border: 1px solid #32b1fe;
 }
@@ -103,10 +102,12 @@
   margin-bottom: 0;
 }
 
+.onlineOffline{
+  width: 25px !important;
+}
 
 @media screen and (min-width: 900px) {
-  /* .connectContainer {
-  } */
+
   .usersContainer {
     margin-left: 1.2em;
     margin-top: 2em;

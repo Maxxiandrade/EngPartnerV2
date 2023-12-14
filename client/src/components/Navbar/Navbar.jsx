@@ -8,6 +8,7 @@ import crown from "../../assets/svg/crown.svg";
 import logOut from "../../assets/svg/logout.svg";
 import group from "../../assets/svg/group.svg";
 import report from "../../assets/svg/report.svg";
+import star from "../../assets/svg/star.svg"
 
 // TOOLS
 import { signOut } from "firebase/auth";
@@ -89,7 +90,7 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                     <Link to={`/profile/${uid}`}>
                                         <div className={style.dropDownDiv}>
                                             <img src={userPhoto} alt="" className={style.userPhoto2} />
-                                            <span className={style.dropDownSpan}>Profile</span>
+                                            <span className={style.dropDownSpan}><b>Profile</b></span>
                                         </div>
                                     </Link>
                                 </li>
@@ -97,7 +98,7 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                     <Link to="/admin">
                                         <div className={style.dropDownDiv}>
                                             <img src={report} alt="admin" className={style.icon} />
-                                            <span className={style.dropDownSpan}>Admin Panel</span>
+                                            <span className={style.dropDownSpan}><b>Admin Panel</b></span>
                                         </div>
                                     </Link>
                                 </li>
@@ -105,22 +106,22 @@ const Navbar = ({ setIsAuth ,setRating,rating }) => {
                                     <Link to='/CreateRoom'>
                                         <div className={style.dropDownDiv}>
                                             <img src={group} alt="group" className={style.icon} />
-                                            <span className={style.dropDownSpan}>Create Room</span>
+                                            <span className={style.dropDownSpan}><b>Create Room</b></span>
                                         </div>
                                     </Link>
                                 </li>
+                              { !didRate ? <li className={style.li}>
+                                    <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
+                                        <img src={star} alt="logout" className={style.icon} />
+                                        <span className={style.dropDownSpan}><b>Rating</b></span>
+                                    </div>
+                                </li>: ''}
                                 <li className={style.li}>
                                     <div className={style.dropDownDiv} onClick={handleLogOut}>
                                         <img src={logOut} alt="logout" className={style.icon} />
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
-                              { !didRate ? <li className={style.li}>
-                                    <div className={style.dropDownDiv} onClick={() => setRating(!rating)}>
-                                        <img src={logOut} alt="logout" className={style.icon} />
-                                        <span className={style.dropDownSpan}><b>Rating</b></span>
-                                    </div>
-                                </li>: ''}
                             </ul> : ''}
                         
                     </div>
