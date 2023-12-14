@@ -22,7 +22,10 @@
 }
 
 .connectH3 {
-  color: #10b310;
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black, 1.5px 1.5px black;
+    margin-bottom: .6em;
 }
 
 .userContainer {
@@ -31,8 +34,9 @@
   height: 100px;
   max-height: 100px;
   margin-bottom: 1em;
-  background: #dff0ff;
+  background-color: #edf8ff60;
   border-radius: 5px;
+  border: 1px solid #32b1fe;
 }
 
 .userImgContainer {
