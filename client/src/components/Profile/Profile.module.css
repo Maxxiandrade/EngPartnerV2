@@ -179,3 +179,14 @@
   outline: none;
   border-color: #007bff;
 }
+
+.clouseAccBtn{
+  margin-top: 20px;
+  background-color: #d33;
+  color: white;
+  &:hover{
+    border: 1px solid white;
+    background-color: rgb(190, 40, 40);
+    transition: 0.3s;
+  }
+}
