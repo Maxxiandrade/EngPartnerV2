@@ -1,5 +1,6 @@
 import style from "./Home.module.css";
-
+import astroLike from "../../assets/astronaut/astronautLike.jpg"
+import astroCelebration from "../../assets/astronaut/astronautCelebration.png"
 
 //Tools
 import { auth } from "../../firebase-config";
@@ -42,9 +43,11 @@ const Home = ({ setIsAuth }) => {
         <div className={style.homeMainDiv}>
           <Navbar setIsAuth={setIsAuth} rating={rating} setRating={setRating}/>
           <div className={style.homeComponentsDiv}>
+            <div className={style.astro2}><img src={astroCelebration} style={{width:'400px'}} /></div>
             <div className={style.globalChat}>
               <TopicChat/>
             </div>
+            <div className={style.astro}><img src={astroLike} style={{width:'400px'}} /></div>
           </div>
           {rating ?
             <RateCard/>:''}
