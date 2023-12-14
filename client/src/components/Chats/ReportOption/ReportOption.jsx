@@ -1,6 +1,6 @@
 import style from './ReportOption.module.css';
 import { useDispatch } from 'react-redux';
-import { submitReport } from '../../../redux/actions/actions';
+import { submitReport, getReported} from '../../../redux/actions/actions';
 import Swal from 'sweetalert2';
 
 const ReportOption = ({setLastClickedMessageId, message, messageId,user}) => {
@@ -21,8 +21,6 @@ const ReportOption = ({setLastClickedMessageId, message, messageId,user}) => {
     }).then((result) => {
       if (result.isConfirmed) {
         const selectedValue = event.target.value
-        console.log(`Reported: ${selectedValue}`);
-        console.log(message);
         const reportData = {
           user: user,
           reportData: {
@@ -32,10 +30,8 @@ const ReportOption = ({setLastClickedMessageId, message, messageId,user}) => {
             messageId: messageId,
           }
         }
-        console.log(reportData)
         dispatch(submitReport(reportData))
         setLastClickedMessageId(null)
-
         Swal.fire({
           title: `Message reported!`,
           icon: "success",
@@ -43,6 +39,9 @@ const ReportOption = ({setLastClickedMessageId, message, messageId,user}) => {
           timer: 3000,
           showConfirmButton: false,
         });
+        setTimeout(() => {
+          dispatch(getReported())
+        }, 1500)
       }
     });
 

@@ -25,7 +25,6 @@ const Admin = ({ setIsAuth }) => {
   useEffect(() => {
     dispatch(getRating())
     dispatch(getVips())
-    dispatch(getMyUser(uid));
     dispatch(getReported());
     const fetchUsers = async () => {
       const usersData = [];
@@ -108,6 +107,7 @@ const Admin = ({ setIsAuth }) => {
           <table className={style.reportTable}>
             <tbody>
               {usersToRender?.map((user) => (
+                user.reports.length > 0 &&
                 <tr key={user.id}>
 
                   <td style={{ width: '13%', wordBreak: 'break-word', textAlign: 'center', fontSize: '20px' }}>
@@ -119,7 +119,7 @@ const Admin = ({ setIsAuth }) => {
                   <td colSpan="2" style={{ borderRight: 'none', padding: '0', borderBottom: 'none' }}>
                     <table>
                       <tbody>
-                        {user.reports &&
+                        {user?.reports &&
                           user.reports.map((report) => (
                             <tr key={report.reportId}>
                               <td style={{ fontWeight: 'bold', width: '18%', textAlign: 'center' }}>{report.reportType}</td>
