@@ -20,7 +20,7 @@ const postRating = async (req, res) => {
         await updateDoc(ratingRef, {
             ratings: arrayUnion(rating)
         });
-        res.status(200).json("Rating agregado y usuario actualizado");
+        res.status(200).json("ok");
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
