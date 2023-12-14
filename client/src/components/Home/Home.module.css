@@ -59,3 +59,14 @@ body{
   background-color: transparent; 
   border-radius: 10px;
 }
+
+.astro{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.astro2{
+  position: absolute;
+  right: 0;
+}
