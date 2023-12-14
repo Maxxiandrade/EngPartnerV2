@@ -14,12 +14,16 @@ const TopicsChat = ({ setingValueRoom, languageChecked, setLanguageChecked, hand
   const languageRead = useSelector(state=> state.users?.languageRead)
   const isVip = useSelector(state=> state.users?.isVip)
   console.log(country);
-  const [rooms,setRooms]= useState([country,'Sport','Animals',"Food",'Tech',...Myrooms ])
+  const [rooms,setRooms]= useState(['Global','Sport','Animals',"Food",'Tech', country, ...Myrooms ])
   const handleTopic = (e)=>{
     const topic = e.target.value
     const selectedRoom = topic === 'null' ? null : topic !== '' ? topic : roomInputRef.current.value;
     setingValueRoom(selectedRoom);
   }
+
+  useEffect(()=>{
+    setRooms(['Global','Sport','Animals',"Food",'Tech', country, ...Myrooms ])
+  }, [country, Myrooms])
 
   const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     width: 63,
