@@ -18,7 +18,7 @@ const getRating = async (req, res) => {
 
       const roundedAverage =  Math.round(averageRating);
 
-      res.status(200).json({ averageRating: roundedAverage });
+      res.status(200).json(roundedAverage);
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({ success: false, message: 'Internal Server Error' });

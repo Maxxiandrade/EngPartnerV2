@@ -24,6 +24,7 @@ import {
 GET_VIPS,
 POST_VISITS,
 GET_VISITS,
+GET_RATING,
 RATED,
 } from "../action_types/userActionTypes";
 
@@ -362,6 +363,16 @@ export const getVisitors = (uid) => async (dispatch)=>{
   }
 }
 
+export const getRating = ()=>async(dispatch)=>{
+  try {
+    const {data} = await axios.get(`${API_URL}/rating`)
+    dispatch({
+      type: GET_RATING,
+      payload: data
+    })
+  } catch (error) {
+    throw Error(error)
+  }}
 export const rated = (userRated)=> async (dispatch)=>{
   try {
     const {data} = await axios.post(`${API_URL}/rate`, userRated)

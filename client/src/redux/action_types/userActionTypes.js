@@ -23,4 +23,5 @@ export const GET_VIPS = "GET_VIPS"
 export const DELETE_ROOM='DELETE_ROOM';
 export const POST_VISITS = "POST_VISITS"
 export const GET_VISITS = "GET_VISITS"
+export const GET_RATING = "GET_RATING"
 export const RATED = "RATED"

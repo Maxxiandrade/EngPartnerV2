@@ -5,7 +5,7 @@ import style from "./Admin.module.css";
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getReported, getMyUser, deleteReport, banUser, getVips } from "../../../redux/actions/actions";
+import { getReported, getMyUser, deleteReport, banUser, getVips, getRating } from "../../../redux/actions/actions";
 import axios from "axios";
 import { API_URL } from "../../../firebase-config";
 
@@ -20,8 +20,10 @@ const Admin = ({ setIsAuth }) => {
   const dispatch = useDispatch();
   const reportedUsers = useSelector((state) => state.users.reported);
   const [usersToRender, setUsersToRender] = useState([]);
+  const rating = useSelector((state)=>state.users.rating)
 
   useEffect(() => {
+    dispatch(getRating())
     dispatch(getVips())
     dispatch(getMyUser(uid));
     dispatch(getReported());
@@ -149,6 +151,9 @@ const Admin = ({ setIsAuth }) => {
           </table>
         </div>
         <p style={{ padding: '1%', color: 'white', fontWeight: 'bold' }}>Total Vip users: {vipLength}</p>
+      <p style={{ padding: '1%', color: 'white', fontWeight: 'bold'}}>
+      AVERAGE RATING: {rating} *
+      </p>
       </div>
 
     </div>
