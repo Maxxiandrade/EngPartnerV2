@@ -170,7 +170,7 @@ const Filters = () => {
             />
             <span>{ageValue}</span>
           <button onClick={handleFilterByVip}
-          className={`${styles.vipButton} ${isVipFilterValue ? styles.vipActive : ''}`}>vip</button>
+          className={`${styles.vipButton} ${isVipFilterValue ? styles.vipActive : ''}`}>vip: {`${isVipFilterValue}`}</button>
           </div>
 
 
