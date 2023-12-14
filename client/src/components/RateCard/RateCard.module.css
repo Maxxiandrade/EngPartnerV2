@@ -1,0 +1,15 @@
+
+.mainCard{
+    position: absolute;
+    text-align: center;
+    background-color: red;
+    height: 300px;
+    width: 300px;
+}
+
+.numberValues {
+    background: purple;
+    margin-left: 1em;
+    border-radius: 50%;
+    font-size: 2em;
+}

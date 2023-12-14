@@ -7,6 +7,7 @@ import AdminSvg from '../../../assets/svg/admin-verify.svg'
 import TopicsChat from "../TopicsChat/TopicsChat";
 import Skeleton from '@mui/material/Skeleton';
 import Divider from '@mui/material/Divider';
+import RateCard from "../../RateCard/RateCard";
 
 import { useEffect, useState, useRef } from "react";
 import {
@@ -185,6 +186,7 @@ const Chat = () => {
           </form>
         </div>
       </div>
+        <RateCard/>
     </>
   );
 };

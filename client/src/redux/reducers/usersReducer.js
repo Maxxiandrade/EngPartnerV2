@@ -28,7 +28,8 @@ import {
   DELETE_ROOM,
   GET_VIPS,
   POST_VISITS,
-  GET_VISITS
+  GET_VISITS,
+  RATED
 } from "../action_types/userActionTypes";
 
 const initialState = {
@@ -66,6 +67,7 @@ const initialState = {
   reported:[],
   vips:[],
   visitingUsers: [],
+  rating: [],
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -296,6 +298,12 @@ const usersReducer = (state = initialState, action) => {
         return{
           ...state,
           visitingUsers: action.payload
+        }
+
+      case RATED:
+        return {
+          ...state,
+          rating: action.payload
         }
     default:
       return { ...state };
