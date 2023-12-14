@@ -6,7 +6,6 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import './register.css'
 import logo from '../../assets/logo-EngPartner.png'
-import fondo from '../../assets/fotor-ai-2023112322841.jpg'
 
 //Tools
 import { validation } from './validation';
