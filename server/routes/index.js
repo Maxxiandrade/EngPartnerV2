@@ -30,6 +30,7 @@ const deleteReport = require('../controllers/deleteReport');
 const postBan = require('../controllers/postBan');
 const getVipUsers = require('../controllers/getVips');
 const getRating = require('../controllers/getrating');
+const postRating = require('../controllers/postRating');
 
 const router = Router();
 
@@ -53,7 +54,7 @@ router.post('/createRoom',postCreateRoom)
 router.post('/newPremium',postPremium)
 router.post('/ban', postBan)
 router.post('/profile', postVisited)
-
+router.post('/rate', postRating)
 
 
 router.put('/geton', putIs)

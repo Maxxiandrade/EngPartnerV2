@@ -267,10 +267,10 @@ const CreateUser = ( {setIsAuth} ) => {
         // Maneja el error específico de Firebase
         if (error.code === 'auth/email-already-in-use') {
           console.error('Error: El correo electrónico ya está en uso');
-          alert('El correo electrónico ya está en uso. Por favor, utiliza otro correo electrónico.');
+          alert('Email is already in use. Please use another email.');
         } else {
           console.error('Ocurrio este error al registrar usuario:', error);
-          alert('Hubo un error al registrar el usuario. Por favor, inténtalo de nuevo.');
+          alert('There was an error registering the user. Please try again.');
         }
       }
     }
@@ -385,7 +385,7 @@ const CreateUser = ( {setIsAuth} ) => {
           </div>
         )}
 
-        <label htmlFor="language">Select your languaje:</label>
+        <label htmlFor="language">Select your primary language:</label>
         {errors.language && <span className='registerErrors'>{errors.language}</span>}
         <Select
           name="language"
@@ -407,7 +407,7 @@ const CreateUser = ( {setIsAuth} ) => {
           <MenuItem value={'id'}>Indonesian 🇮🇩</MenuItem>
         </Select>
 
-        <label htmlFor="languageRead">Select the language you want to read:</label>
+        <label htmlFor="languageRead">Select your secondary language:</label>
         {errors.languageRead && <span className='registerErrors'>{errors.languageRead}</span>}
         <Select
           name="languageRead"
