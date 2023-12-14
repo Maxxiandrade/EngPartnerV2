@@ -156,7 +156,7 @@ export const getUserByUserName = (user) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    window.alert(`error when searching this user by id: ${error}`);
+    window.alert("No users with the provided ID");
   }
 };
 export const getMyUser = (uid) => async (dispatch) => {

@@ -284,7 +284,7 @@ const Profile = ({ setIsAuth }) => {
                         value={changes.description}
                         name="description"
                       />
-                  <button onClick={finishEdit} className={style.save}>
+                  <button onClick={finishEdit} disabled={changes.name==''||changes.lastname==''} className={style.save}>
                     <img src={tick} alt="Done" className={style.iconBtn} />
                   </button>
                     </div>
