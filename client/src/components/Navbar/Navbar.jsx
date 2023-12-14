@@ -24,6 +24,8 @@ import { API_URL } from "../../firebase-config";
 import React from 'react'
 
 const Navbar = ({ setIsAuth }) => {
+    const [showRate, setShowRate] = useState(false)
+
     const vip = useSelector(state => state.users.isVip)
     const admin = useSelector((state) => state.users.isAdmin)
     const [colum, setColumn] = useState(false)
@@ -114,6 +116,12 @@ const Navbar = ({ setIsAuth }) => {
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
+                                <li className={style.li}>
+                                    <div className={style.dropDownDiv} onClick={handleLogOut}>
+                                        <button>Rate us</button>
+                                    </div>
+                                </li>
+
                             </ul> : ''}
                     </div>
                 </nav>
@@ -169,6 +177,7 @@ const Navbar = ({ setIsAuth }) => {
                                         <span className={style.dropDownSpan}><b>Logout</b></span>
                                     </div>
                                 </li>
+                                
                             </ul> : ''}
                     </div>
                 </nav>

@@ -1,15 +1,62 @@
 
 .mainCard{
     position: absolute;
-    text-align: center;
     background-color: red;
     height: 300px;
-    width: 300px;
+    width: 25%;
+    right: 40%;
+    top: 30%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    border: 1px solid #32b1fe;
+    background-color: #001e32;
+    border-radius: 5px;
+}
+
+.starsContainer {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.mainCard p {
+    margin-top: .6em;
+    text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-shadow: -1.5px -1.5px 0 black, 1.5px -1.5px black, -1.5px 1.5px black,
+    1.5px 1.5px black;
 }
 
 .numberValues {
-    background: purple;
-    margin-left: 1em;
+    /* background: purple; */
+    text-align: center;
     border-radius: 50%;
-    font-size: 2em;
+    font-size: 1.6em;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    width: min-content;
+
+    &:hover{
+        transform: scale(1.1);
+        /* background: #32b1fe; */
+    }
+}
+
+.submitRate {
+    text-transform: uppercase;
+    background: #32b1fe;
+    width: 30%;
+    margin: 0 auto;
+    transition: .2s ease-in-out;
+
+    &:hover{
+        width: 35%;
+        background: #2b8fce;
+    }
 }

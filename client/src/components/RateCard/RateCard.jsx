@@ -28,14 +28,14 @@ const RateCard = ()=>{
     return (
         <form onSubmit={onSubmitRate} className={styles.mainCard}>
           <p>Your rate: {currentRating}</p>
-          <div>
+          <div className={styles.starsContainer}>
             {stars.map((value) => (
               <span value={value} className={styles.numberValues} key={value} onClick={() => handleRating(value)}>
-                {value}
+                 ⭐️
               </span>
             ))}
           </div>
-          <button type="submit">send</button>
+          <button className={styles.submitRate} type="submit">send</button>
         </form>
       );
 }

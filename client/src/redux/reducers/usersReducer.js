@@ -68,6 +68,7 @@ const initialState = {
   vips:[],
   visitingUsers: [],
   rating: [],
+  didRate: null
 };
 
 const usersReducer = (state = initialState, action) => {
