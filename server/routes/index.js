@@ -8,6 +8,7 @@ const postUser = require('../controllers/postUser');
 const postReport = require('../controllers/postReport');
 const postVisited = require('../controllers/postVisited')
 const getVisitingUsers = require('../controllers/getVisitingUsers')
+
 //get
 const getMyMessage = require('../controllers/getMyMessage');
 const getOnline = require('../controllers/getOnline')
@@ -28,6 +29,7 @@ const getReported = require('../controllers/getReported');
 const deleteReport = require('../controllers/deleteReport');
 const postBan = require('../controllers/postBan');
 const getVipUsers = require('../controllers/getVips');
+const getRating = require('../controllers/getrating');
 const postRating = require('../controllers/postRating');
 
 const router = Router();
@@ -40,6 +42,7 @@ router.get('/friends', getFriends)
 router.get('/reported', getReported)
 router.get('/vips', getVipUsers)
 router.get('/user/visitingusers', getVisitingUsers)
+router.get('/rating',getRating)
 
 router.post('/user', getMyUser)
 router.post('/send-messgetMyUserage', postMessage)
