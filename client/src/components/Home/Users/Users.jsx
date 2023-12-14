@@ -75,7 +75,6 @@ const Users = ({ setIsAuth }) => {
           ))
         )}
       </div>
-      <GoogleMapComponent users={users}/>
     </div>
   );
 };
