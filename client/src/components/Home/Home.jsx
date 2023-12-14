@@ -6,7 +6,7 @@ import { auth } from "../../firebase-config";
 import { signOut } from "firebase/auth";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getMyUser } from '../../redux/actions/actions';
+import { getMyUser, getReported } from '../../redux/actions/actions';
 
 //Renders
 import Navbar from "../Navbar/Navbar";
@@ -29,6 +29,7 @@ const Home = ({ setIsAuth }) => {
       signOut(auth);
       setIsAuth(false);
     }
+    dispatch(getReported())
     dispatch(getMyUser(localStorageUID));
     console.log('holas')
   }, [uid]);
