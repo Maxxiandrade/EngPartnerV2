@@ -1,4 +1,6 @@
-
+.mainCardOff{
+    display: none;
+}
 .mainCard{
     position: absolute;
     background-color: red;
