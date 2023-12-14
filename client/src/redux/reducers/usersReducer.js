@@ -7,6 +7,7 @@ import {
 } from "../action_types/filterActionTypes";
 
 import {
+  GET_RATING,
   SET_USER_DATA_REGISTER,
   GET_ALL_USERS,
   ERROR_GETTING_USERS,
@@ -66,6 +67,7 @@ const initialState = {
   reported:[],
   vips:[],
   visitingUsers: [],
+  rating: null
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -296,6 +298,11 @@ const usersReducer = (state = initialState, action) => {
         return{
           ...state,
           visitingUsers: action.payload
+        }
+      case GET_RATING:
+        return{
+          ...state,
+          rating: action.payload
         }
     default:
       return { ...state };

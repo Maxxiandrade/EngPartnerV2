@@ -24,6 +24,7 @@ import {
 GET_VIPS,
 POST_VISITS,
 GET_VISITS,
+GET_RATING,
 } from "../action_types/userActionTypes";
 
 import { API_URL } from "../../firebase-config";
@@ -358,5 +359,17 @@ export const getVisitors = (uid) => async (dispatch)=>{
     })
   } catch (error) {
     window.alert(`error when getting visitors(redux) ${error}`)
+  }
+}
+
+export const getRating = ()=>async(dispatch)=>{
+  try {
+    const {data} = await axios.get(`${API_URL}/rating`)
+    dispatch({
+      type: GET_RATING,
+      payload: data
+    })
+  } catch (error) {
+    throw Error(error)
   }
 }
