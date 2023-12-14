@@ -75,8 +75,9 @@ const Profile = ({ setIsAuth }) => {
         cookies.remove("token");
         setIsAuth(false);
         localStorage.clear();
-      }})
-    }
+      }
+    })
+  }
 
   useEffect(() => {
     axios
@@ -173,7 +174,7 @@ const Profile = ({ setIsAuth }) => {
                 alt="Profile"
                 className={style.profilePhoto}
               />
-              <button style={{ marginTop: "20px", backgroundColor: "#d33", color: "white" }} onClick={()=> {handleCloseAccount(localStorageUID)}}>Close account</button>
+              <button style={{ marginTop: "20px", backgroundColor: "#d33", color: "white" }} onClick={() => { handleCloseAccount(localStorageUID) }}>Close account</button>
             </div>
             <div className={style.profileInfo}>
               <div className={style.infoDiv}>
@@ -186,84 +187,82 @@ const Profile = ({ setIsAuth }) => {
                 <p className={style.profileDescription2}>
                   {description}
                 </p>
-                {!isVip && <p className={style.profileDescription3}>Your languages are { getFlagByCode(language) } and { getFlagByCode(languageRead) } . To be able to change it, you need to be a Premium<img src={verify} className={style.iconVerify}/> user</p>}
+                {!isVip && <p className={style.profileDescription3}>Your languages are {getFlagByCode(language)} and {getFlagByCode(languageRead)} . To be able to change it, you need to be a VIP<img src={verify} className={style.iconVerify} /> user</p>}
               </div>
-
-              {
-                isVip && (
-                <FormControl>
-                <label htmlFor="language">Your selected language:</label>
-                <select
-                  name="language"
-                  defaultValue={language}
-                  onChange={(e) => {
-                    updateUserLanguage({ uid: localStorageUID, language: e.target.value })
-                  }}
-                  style={{
-                    padding: "10px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    fontSize: "16px",
-                  }}
-                >
-                  <option value={'es'}>Spanish 🇪🇸</option>
-                  <option value={'en'}>English 🇬🇧</option>
-                  <option value={'fr'}>French 🇫🇷</option>
-                  <option value={'it'}>Italian 🇮🇹</option>
-                  <option value={'de'}>German 🇩🇪</option>
-                  <option value={'nl'}>Dutch (Holland) 🇳🇱</option>
-                  <option value={'pt'}>Portuguese 🇵🇹</option>
-                  <option value={'ru'}>Russian 🇷🇺</option>
-                  <option value={'zh'}>Chinese (Simplified) 🇨🇳</option>
-                  <option value={'zh-TW'}>Chinese (Traditional) 🇨🇳</option>
-                  <option value={'ko'}>Korean 🇰🇷</option>
-                  <option value={'gn'}>Guarani 🇵🇾</option>
-                  <option value={'id'}>Indonesian 🇮🇩</option>
-                </select>
-
-                <label htmlFor="languageRead" style={{ marginTop: "50px" }}>Your reading language:</label>
-                <select
-                  name="languageRead"
-                  defaultValue={languageRead}
-                  onChange={(e) => {
-                    updateUserReadLanguage({ uid: localStorageUID, languageRead: e.target.value })
-                  }}
-                  style={{
-                    padding: "10px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                    fontSize: "16px",
-                  }}
-                >
-                  <option value={'es'}>Spanish 🇪🇸</option>
-                  <option value={'en'}>English 🇬🇧</option>
-                  <option value={'fr'}>French 🇫🇷</option>
-                  <option value={'it'}>Italian 🇮🇹</option>
-                  <option value={'de'}>German 🇩🇪</option>
-                  <option value={'nl'}>Dutch (Holland) 🇳🇱</option>
-                  <option value={'pt'}>Portuguese 🇵🇹</option>
-                  <option value={'ru'}>Russian 🇷🇺</option>
-                  <option value={'zh'}>Chinese (Simplified) 🇨🇳</option>
-                  <option value={'zh-TW'}>Chinese (Traditional) 🇨🇳</option>
-                  <option value={'ko'}>Korean 🇰🇷</option>
-                  <option value={'gn'}>Guarani 🇵🇾</option>
-                  <option value={'id'}>Indonesian 🇮🇩</option>
-                </select>
-              </FormControl>
-                )
-              }
               
+                {
+                  isVip && (
+                    <div className={style.selectDiv}>
+                    <FormControl>
+                      <label htmlFor="language">Your primary language:</label>
+                      <select
+                        name="language"
+                        defaultValue={language}
+                        onChange={(e) => {
+                          updateUserLanguage({ uid: localStorageUID, language: e.target.value })
+                        }}
+                        style={{
+                          padding: "10px",
+                          borderRadius: "5px",
+                          border: "1px solid #ccc",
+                          fontSize: "16px",
+                        }}
+                      >
+                        <option value={'es'}>Spanish 🇪🇸</option>
+                        <option value={'en'}>English 🇬🇧</option>
+                        <option value={'fr'}>French 🇫🇷</option>
+                        <option value={'it'}>Italian 🇮🇹</option>
+                        <option value={'de'}>German 🇩🇪</option>
+                        <option value={'nl'}>Dutch (Holland) 🇳🇱</option>
+                        <option value={'pt'}>Portuguese 🇵🇹</option>
+                        <option value={'ru'}>Russian 🇷🇺</option>
+                        <option value={'zh'}>Chinese (Simplified) 🇨🇳</option>
+                        <option value={'zh-TW'}>Chinese (Traditional) 🇨🇳</option>
+                        <option value={'ko'}>Korean 🇰🇷</option>
+                        <option value={'gn'}>Guarani 🇵🇾</option>
+                        <option value={'id'}>Indonesian 🇮🇩</option>
+                      </select>
+
+                      <label htmlFor="languageRead" style={{ marginTop: "50px" }}>Your secondary language:</label>
+                      <select
+                        name="languageRead"
+                        defaultValue={languageRead}
+                        onChange={(e) => {
+                          updateUserReadLanguage({ uid: localStorageUID, languageRead: e.target.value })
+                        }}
+                        style={{
+                          padding: "10px",
+                          borderRadius: "5px",
+                          border: "1px solid #ccc",
+                          fontSize: "16px",
+                        }}
+                      >
+                        <option value={'es'}>Spanish 🇪🇸</option>
+                        <option value={'en'}>English 🇬🇧</option>
+                        <option value={'fr'}>French 🇫🇷</option>
+                        <option value={'it'}>Italian 🇮🇹</option>
+                        <option value={'de'}>German 🇩🇪</option>
+                        <option value={'nl'}>Dutch (Holland) 🇳🇱</option>
+                        <option value={'pt'}>Portuguese 🇵🇹</option>
+                        <option value={'ru'}>Russian 🇷🇺</option>
+                        <option value={'zh'}>Chinese (Simplified) 🇨🇳</option>
+                        <option value={'zh-TW'}>Chinese (Traditional) 🇨🇳</option>
+                        <option value={'ko'}>Korean 🇰🇷</option>
+                        <option value={'gn'}>Guarani 🇵🇾</option>
+                        <option value={'id'}>Indonesian 🇮🇩</option>
+                      </select>
+                    </FormControl>
+              </div>
+                  )
+                }
               <button onClick={handleEdit} className={style.edit}>
                 <img src={pencil} alt="Edit" className={style.iconBtn} />
               </button>
               {edit && (
                 <>
-                  <button onClick={finishEdit} className={style.save}>
-                    <img src={tick} alt="Done" className={style.iconBtn} />
-                  </button>
                   <div className={style.inputDivContainer}>
                     <div className={style.inputDiv}>
-                      <h2>Edit Profile</h2>
+                      <h2 style={{marginBottom:'3%'}}>Edit Profile</h2>
                       <input
                         type="text"
                         placeholder={profile.name}
@@ -271,7 +270,6 @@ const Profile = ({ setIsAuth }) => {
                         value={changes.name}
                         name="name"
                       />
-                      <br />
                       <input
                         type="text"
                         placeholder={profile.lastname}
@@ -279,7 +277,6 @@ const Profile = ({ setIsAuth }) => {
                         value={changes.lastname}
                         name="lastname"
                       />
-                      <br />
                       <input
                         type="text"
                         placeholder={profile.description}
@@ -287,18 +284,20 @@ const Profile = ({ setIsAuth }) => {
                         value={changes.description}
                         name="description"
                       />
+                  <button onClick={finishEdit} disabled={changes.name==''||changes.lastname==''} className={style.save}>
+                    <img src={tick} alt="Done" className={style.iconBtn} />
+                  </button>
                     </div>
 
 
                   </div>
-                  
+
                 </>
               )}
             </div>
           </div>
         )}
-        <Visits/>
-
+        <Visits />
       </div>
     );
 
@@ -346,7 +345,7 @@ const Profile = ({ setIsAuth }) => {
         </div>
       )}
       <Visits
-      visitedUid={changes.uid}
+        visitedUid={changes.uid}
       />
     </div>
   );

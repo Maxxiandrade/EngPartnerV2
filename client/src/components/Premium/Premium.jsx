@@ -45,7 +45,6 @@ function Premiun({ setIsAuth }) {
         try {
           await axios.put(`${API_URL}/geton`,{ uid: uid, is:"notPremium"} )
           dispatch(setVip(false))
-          console.log("premium sacado");
           Swal.fire({
             title: "Subscription deleted!",
             text: "You unsuscribed successfully.",
@@ -72,7 +71,7 @@ function Premiun({ setIsAuth }) {
           {vip ? 
           <h3 className={style.introH3}>Welcome to the VIP experience, {name} <img src={verify} className={style.iconVerify} />! Check out the features that will enhance your EngPartner experience!</h3>
           :
-          <h3 className={style.introH3}>Unlock a premium experience with our <img src={verify} className={style.iconVerify} /> VIP membership!</h3>
+          <h3 className={style.introH3}>Unlock VIP with our <img src={verify} className={style.iconVerify} /> VIP membership!</h3>
           }
 
           {vip ?
