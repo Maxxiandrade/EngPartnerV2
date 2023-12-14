@@ -362,10 +362,10 @@ export const getVisitors = (uid) => async (dispatch)=>{
   }
 }
 
-export const rated = (value)=> async (dispatch)=>{
+export const rated = (userRated)=> async (dispatch)=>{
   try {
-    // const {data} = await axios.post()
-    console.log(value)
+    const {data} = await axios.post(`${API_URL}/rate`, userRated)
+    console.log(data)
 
     dispatch({
       type: RATED,

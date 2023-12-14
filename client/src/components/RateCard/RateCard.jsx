@@ -16,20 +16,26 @@ const RateCard = ()=>{
         console.log(currentRating)
     }
 
-    const onSubmitRate = (currentRating) => {
-        dispatch(rated(currentRating))
+    const onSubmitRate = (event) => {
+        event.preventDefault()
+        const userRated = {
+            rating: currentRating,
+            uid: uid
+        }
+        console.log(userRated)
+        dispatch(rated(userRated))
     }
     return (
-        <form className={styles.mainCard}>
-          <p>Valoración actual: {currentRating}</p>
+        <form onSubmit={onSubmitRate} className={styles.mainCard}>
+          <p>Your rate: {currentRating}</p>
           <div>
             {stars.map((value) => (
-              <span className={styles.numberValues} key={value} onClick={() => handleRating(value)}>
+              <span value={value} className={styles.numberValues} key={value} onClick={() => handleRating(value)}>
                 {value}
               </span>
             ))}
           </div>
-          <button onSubmit={onSubmitRate}>send</button>
+          <button type="submit">send</button>
         </form>
       );
 }
