@@ -19,6 +19,7 @@
 }
 
 .visitorsContainer {
+  margin-bottom: 1%;
   align-items: center;
   width: 400px;
   display: flex;
