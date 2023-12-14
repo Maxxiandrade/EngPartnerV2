@@ -18,7 +18,9 @@ const PrivateChat = ({ setIsAuth }) => {
   console.log(friends);
 
   useEffect(() => {
-    dispatch(getFriends(uid));
+    setTimeout(() => {
+      dispatch(getFriends(uid));
+    }, 1000);
   }, []);
 
   return (
